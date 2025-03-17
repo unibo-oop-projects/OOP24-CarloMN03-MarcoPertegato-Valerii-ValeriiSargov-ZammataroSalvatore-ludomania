@@ -1,2 +1,2 @@
 # OOP24-ludomania
-Mini Casinò con 2 attrazioni principali: BlackJack e Roulette europea
+Mini Casinò con 3 attrazioni principali: BlackJack, Roulette europea, trent-et-quarante
