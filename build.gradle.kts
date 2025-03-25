@@ -17,6 +17,7 @@ plugins {
 
 repositories { // Where to search for dependencies
     mavenCentral()
+    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -41,6 +42,9 @@ dependencies {
     // when dependencies share the same version, grouping in a val helps to keep them in sync
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+
+    //lyudaio:jcards
+    implementation("com.github.lyudaio:jcards:main-SNAPSHOT")
 }
 
 application {
