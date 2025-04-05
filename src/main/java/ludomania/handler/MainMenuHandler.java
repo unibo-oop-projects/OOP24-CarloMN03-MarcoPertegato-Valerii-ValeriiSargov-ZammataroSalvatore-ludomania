@@ -1,4 +1,4 @@
-package ludomania.model;
+package ludomania.handler;
 
 public interface MainMenuHandler {
 

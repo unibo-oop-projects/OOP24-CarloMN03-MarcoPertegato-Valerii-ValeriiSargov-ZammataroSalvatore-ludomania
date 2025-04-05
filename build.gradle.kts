@@ -61,7 +61,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("ludomania.Ludomania")
+    mainClass.set("ludomania.core.Ludomania")
 }
 
 tasks.test {

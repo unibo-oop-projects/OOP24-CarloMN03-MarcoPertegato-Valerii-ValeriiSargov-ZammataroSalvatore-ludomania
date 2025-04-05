@@ -13,9 +13,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Builder;
-import ludomania.model.MainMenuHandler;
+import ludomania.core.LanguageManager;
+import ludomania.handler.MainMenuHandler;
 import ludomania.model.MainMenuModel;
-import ludomania.util.LanguageManager;
 
 public class MainMenuViewBuilder implements Builder<Region> {
     private final MainMenuHandler eventHandler;
