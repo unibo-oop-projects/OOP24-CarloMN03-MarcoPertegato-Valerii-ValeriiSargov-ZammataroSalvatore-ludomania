@@ -1,17 +1,22 @@
 package ludomania.model.bet.impl;
 
 import ludomania.model.bet.api.TrenteEtQuaranteBet;
+import ludomania.model.bet.api.TrenteEtQuaranteBetType;
 
 public class CouleurBet extends TrenteEtQuaranteBet{
+private final TrenteEtQuaranteBetType type;
 
-    public CouleurBet(int value) {
+    public CouleurBet(int value, TrenteEtQuaranteBetType type) {
         super(value);
-        //TODO Auto-generated constructor stub
+        this.type = type;
+    }
+
+    public TrenteEtQuaranteBetType getType(){
+        return type;
     }
 
     @Override
     public Double evaluate(Double amount) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'evaluate'");
+        return amount * type.getPayout();
     }
 }
