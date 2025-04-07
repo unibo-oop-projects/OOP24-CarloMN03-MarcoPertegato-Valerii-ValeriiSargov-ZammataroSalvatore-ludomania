@@ -13,19 +13,24 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
+import ludomania.core.AudioManager;
 import ludomania.core.LanguageManager;
 import ludomania.core.SceneManager;
 
 public class SettingsController {
     private final SettingsManager settingsManager;
     private final VBox view;
-    SceneManager sceneManager;
+    private final SceneManager sceneManager;
+    private final LanguageManager languageManager;
+    private final AudioManager audioManager;
 
-    public SettingsController(SettingsManager settingsManager, SceneManager sceneManager) {
+    public SettingsController(SettingsManager settingsManager, SceneManager sceneManager,
+            LanguageManager languageManager, AudioManager audioManager) {
         this.settingsManager = settingsManager;
         this.sceneManager = sceneManager;
+        this.languageManager = languageManager;
+        this.audioManager = audioManager;
         this.view = buildView();
-        LanguageManager.initialize(settingsManager.currentLocaleProperty().get());
     }
 
     public VBox getView() {
@@ -45,11 +50,7 @@ public class SettingsController {
                 Locale.ENGLISH);
         languageCombo.setConverter(new LocaleStringConverter());
         languageCombo.valueProperty().bindBidirectional(settingsManager.currentLocaleProperty());
-        settingsManager.currentLocaleProperty().addListener((obs, oldLocale, newLocale) -> {
-            if (newLocale != null) {
-                LanguageManager.setLocale(newLocale);
-            }
-        });
+
         // 2. Sezione Volume
         Label volumeLabel = new Label("Volume:");
         Slider volumeSlider = new Slider(0, 1, settingsManager.volumeProperty().get());

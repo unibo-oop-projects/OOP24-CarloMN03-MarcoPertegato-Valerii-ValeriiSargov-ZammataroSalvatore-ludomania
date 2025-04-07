@@ -19,9 +19,11 @@ import ludomania.model.MainMenuModel;
 
 public class MainMenuViewBuilder implements Builder<Region> {
     private final MainMenuHandler eventHandler;
+    private final LanguageManager languageManager;
 
-    public MainMenuViewBuilder(MainMenuModel model, MainMenuHandler eventHandler) {
+    public MainMenuViewBuilder(MainMenuModel model, MainMenuHandler eventHandler, LanguageManager languageManager) {
         this.eventHandler = eventHandler;
+        this.languageManager = languageManager;
     }
 
     @Override
@@ -99,6 +101,6 @@ public class MainMenuViewBuilder implements Builder<Region> {
     }
 
     void setText(Labeled target, String property) {
-        target.textProperty().bind(LanguageManager.bind(property));
+        target.textProperty().bind(languageManager.bind(property));
     }
 }

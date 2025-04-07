@@ -11,7 +11,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import ludomania.core.LanguageManager;
 
 public class SettingsManager {
     private static final String PREFS_NODE = "ludomania.settings";
@@ -31,7 +30,6 @@ public class SettingsManager {
         Locale savedLocale = Locale.forLanguageTag(
                 prefs.get("locale", Locale.ITALIAN.toLanguageTag()));
         currentLocale.set(savedLocale);
-        LanguageManager.setLocale(savedLocale);
         volume.set(prefs.getDouble("volume", 0.8));
         fullscreen.set(prefs.getBoolean("fullscreen", false));
         resolutionWidth.set(prefs.getInt("resolutionWidth", 800));
