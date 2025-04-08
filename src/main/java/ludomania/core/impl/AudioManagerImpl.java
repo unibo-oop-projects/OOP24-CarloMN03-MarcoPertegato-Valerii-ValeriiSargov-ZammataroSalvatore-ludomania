@@ -1,4 +1,4 @@
-package ludomania.core;
+package ludomania.core.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,8 +6,9 @@ import java.util.Map;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import ludomania.core.api.AudioManager;
 
-public class AudioManagerImpl implements AudioManager {
+public final class AudioManagerImpl implements AudioManager {
     private final Map<String, AudioClip> soundEffects;
     private final Map<String, MediaPlayer> backgroundTracks;
     private double masterVolume;

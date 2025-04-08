@@ -1,4 +1,4 @@
-package ludomania.settings;
+package ludomania.settings.impl;
 
 import java.util.Locale;
 
@@ -13,10 +13,12 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.util.Builder;
-import ludomania.core.LanguageManager;
+import ludomania.core.api.LanguageManager;
+import ludomania.settings.api.SettingsHandler;
+import ludomania.view.ViewBuilder;
 
-public class SettingsViewBuilder implements Builder<Region> {
+public final class SettingsViewBuilder implements ViewBuilder {
+    private static final int TOP_RIGHT_BOTTOM_LEFT = 15;
     private final LanguageManager languageManager;
     private final SettingsHandler eventHandler;
 
@@ -29,7 +31,7 @@ public class SettingsViewBuilder implements Builder<Region> {
     public Region build() {
         final VBox results = new VBox(languageSelector(), volumeSlider(), fullscreenCheck(), resolutionSelector(),
                 actionButton());
-        results.setPadding(new Insets(15));
+        results.setPadding(new Insets(TOP_RIGHT_BOTTOM_LEFT));
         results.getStyleClass().add("settings-container");
         return results;
     }

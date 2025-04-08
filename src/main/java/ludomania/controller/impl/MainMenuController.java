@@ -1,25 +1,26 @@
-package ludomania.controller;
+package ludomania.controller.impl;
 
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.util.Builder;
-import ludomania.core.AudioManager;
-import ludomania.core.SceneManager;
+import ludomania.controller.api.Controller;
+import ludomania.core.api.AudioManager;
+import ludomania.core.api.SceneManager;
 import ludomania.handler.MainMenuHandler;
 import ludomania.view.MainMenuViewBuilder;
 
-public class MainMenuController implements Controller, MainMenuHandler {
+public final class MainMenuController implements Controller, MainMenuHandler {
     private final Builder<Parent> viewBuilder;
     private final SceneManager sceneManager;
     private final AudioManager audioManager;
 
-    public MainMenuController(final SceneManager sceneManager,final AudioManager audioManager) {
+    public MainMenuController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.sceneManager = sceneManager;
         this.audioManager = audioManager;
         viewBuilder = new MainMenuViewBuilder(this, sceneManager.getLanguageManager());
     }
 
-    @Override
+    @Override 
     public Parent getView() {
         return viewBuilder.build();
     }

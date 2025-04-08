@@ -1,12 +1,15 @@
-package ludomania.core;
+package ludomania.core.impl;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ludomania.controller.MainMenuController;
-import ludomania.settings.SettingsController;
-import ludomania.settings.SettingsManager;
+import ludomania.controller.impl.MainMenuController;
+import ludomania.core.api.AudioManager;
+import ludomania.core.api.LanguageManager;
+import ludomania.core.api.SceneManager;
+import ludomania.settings.api.SettingsManager;
+import ludomania.settings.impl.SettingsController;
 
-public class SceneManager {
+public final class SceneManagerImpl implements SceneManager {
     private final SettingsManager settingsManager;
     private final AudioManager audioManager;
     private final LanguageManager languageManager;
@@ -14,7 +17,7 @@ public class SceneManager {
     private final Stage primaryStage;
     private final Scene mainScene;
 
-    public SceneManager(final Stage primaryStage, final SettingsManager settingsManager,
+    public SceneManagerImpl(final Stage primaryStage, final SettingsManager settingsManager,
             final AudioManager audioManager,
             final LanguageManager languageManager) {
         this.primaryStage = primaryStage;
@@ -36,12 +39,14 @@ public class SceneManager {
         primaryStage.setScene(mainScene);
     }
 
+    @Override
     public void switchToMainMenu() {
         audioManager.playMusic("devilTrigger");
         mainScene
                 .setRoot(new MainMenuController(this, audioManager).getView());
     }
 
+    @Override
     public void switchToSettings() {
         mainScene
                 .setRoot(new SettingsController(settingsManager, this, audioManager).getView());
@@ -78,6 +83,7 @@ public class SceneManager {
         });
     }
 
+    @Override
     public LanguageManager getLanguageManager() {
         return this.languageManager;
     }

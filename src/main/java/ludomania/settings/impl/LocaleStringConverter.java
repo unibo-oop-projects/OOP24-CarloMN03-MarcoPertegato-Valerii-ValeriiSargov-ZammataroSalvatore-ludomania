@@ -1,4 +1,4 @@
-package ludomania.settings;
+package ludomania.settings.impl;
 
 import java.util.Locale;
 

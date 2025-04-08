@@ -1,4 +1,4 @@
-package ludomania.settings;
+package ludomania.settings.impl;
 
 import java.util.Locale;
 import java.util.prefs.Preferences;
@@ -11,9 +11,13 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import ludomania.settings.api.SettingsManager;
 
-public class SettingsManager {
+public final class SettingsManagerImpl implements SettingsManager {
     private static final String PREFS_NODE = "ludomania.settings";
+    private static final double DEFAULT_AUDIO_VALUE = 0.8;
+    private static final int DEFAULT_WIDTH_VALUE = 800;
+    private static final int DEFAULT_HEIGHT_VALUE = 600;
 
     private final ObjectProperty<Locale> currentLocale = new SimpleObjectProperty<>();
     private final DoubleProperty volume = new SimpleDoubleProperty();
@@ -21,7 +25,7 @@ public class SettingsManager {
     private final IntegerProperty resolutionWidth = new SimpleIntegerProperty();
     private final IntegerProperty resolutionHeight = new SimpleIntegerProperty();
 
-    public SettingsManager() {
+    public SettingsManagerImpl() {
         load();
     }
 
@@ -30,13 +34,13 @@ public class SettingsManager {
         final Locale savedLocale = Locale.forLanguageTag(
                 prefs.get("locale", Locale.ITALIAN.toLanguageTag()));
         currentLocale.set(savedLocale);
-        volume.set(prefs.getDouble("volume", 0.8));
+        volume.set(prefs.getDouble("volume", DEFAULT_AUDIO_VALUE));
         fullscreen.set(prefs.getBoolean("fullscreen", false));
-        resolutionWidth.set(prefs.getInt("resolutionWidth", 800));
-        resolutionHeight.set(prefs.getInt("resolutionHeight", 600));
-
+        resolutionWidth.set(prefs.getInt("resolutionWidth", DEFAULT_WIDTH_VALUE));
+        resolutionHeight.set(prefs.getInt("resolutionHeight", DEFAULT_HEIGHT_VALUE));
     }
 
+    @Override
     public void save() {
         final Preferences prefs = Preferences.userRoot().node(PREFS_NODE);
         prefs.put("locale", currentLocale.get().toLanguageTag());
@@ -47,22 +51,27 @@ public class SettingsManager {
     }
 
     // Property getters
+    @Override
     public ObjectProperty<Locale> currentLocaleProperty() {
         return currentLocale;
     }
 
+    @Override
     public DoubleProperty volumeProperty() {
         return volume;
     }
 
+    @Override
     public BooleanProperty fullscreenProperty() {
         return fullscreen;
     }
 
+    @Override
     public IntegerProperty resolutionWidthProperty() {
         return resolutionWidth;
     }
 
+    @Override
     public IntegerProperty resolutionHeightProperty() {
         return resolutionHeight;
     }

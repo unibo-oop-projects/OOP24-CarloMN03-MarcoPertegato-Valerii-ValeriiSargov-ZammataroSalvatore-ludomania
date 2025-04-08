@@ -12,15 +12,15 @@ import javafx.scene.control.Labeled;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Builder;
-import ludomania.core.LanguageManager;
+import ludomania.core.api.LanguageManager;
 import ludomania.handler.MainMenuHandler;
 
-public class MainMenuViewBuilder implements Builder<Parent> {
+public final class MainMenuViewBuilder implements ViewBuilder {
+    private static final int TOP_RIGHT_BOTTOM_LEFT = 20;
     private final MainMenuHandler eventHandler;
     private final LanguageManager languageManager;
 
-    public MainMenuViewBuilder(final MainMenuHandler eventHandler,final  LanguageManager languageManager) {
+    public MainMenuViewBuilder(final MainMenuHandler eventHandler, final LanguageManager languageManager) {
         this.eventHandler = eventHandler;
         this.languageManager = languageManager;
     }
@@ -37,7 +37,7 @@ public class MainMenuViewBuilder implements Builder<Parent> {
 
     private Node createGameSelector() {
         final HBox results = new HBox(6, gameBox(), gameBox(), gameBox());
-        results.setPadding(new Insets(20));
+        results.setPadding(new Insets(TOP_RIGHT_BOTTOM_LEFT));
         return results;
     }
 
@@ -61,7 +61,7 @@ public class MainMenuViewBuilder implements Builder<Parent> {
         final Button logInButton = new Button();
         setText(newUserButton, "new_user");
         setText(logInButton, "log_in");
-        //logInButton.setOnMouseClicked(evt -> );
+        // logInButton.setOnMouseClicked(evt -> );
         final VBox result = new VBox(10, newUserButton, logInButton);
         result.setAlignment(Pos.BASELINE_LEFT);
         return result;
@@ -99,7 +99,7 @@ public class MainMenuViewBuilder implements Builder<Parent> {
         return label;
     }
 
-    void setText(final Labeled target,final  String property) {
+    void setText(final Labeled target, final String property) {
         target.textProperty().bind(languageManager.bind(property));
     }
 }

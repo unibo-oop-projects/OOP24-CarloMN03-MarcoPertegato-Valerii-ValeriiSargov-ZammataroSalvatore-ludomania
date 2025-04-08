@@ -1,26 +1,34 @@
-package ludomania.settings;
+package ludomania.settings.impl;
 
 import java.util.Locale;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
 import javafx.scene.Parent;
-import ludomania.core.AudioManager;
-import ludomania.core.SceneManager;
+import ludomania.controller.api.Controller;
+import ludomania.core.api.AudioManager;
+import ludomania.core.api.SceneManager;
+import ludomania.settings.api.SettingsHandler;
+import ludomania.settings.api.SettingsManager;
 
-public class SettingsController implements SettingsHandler {
+public final class SettingsController implements SettingsHandler, Controller {
+    private static final double DEFAULT_AUDIO_VALUE = 0.8;
+    private static final int DEFAULT_WIDTH_VALUE = 800;
+    private static final int DEFAULT_HEIGHT_VALUE = 600;
     private final SettingsManager settingsManager;
     private final SettingsViewBuilder viewBuilder;
     private final SceneManager sceneManager;
     private final AudioManager audioManager;
 
-    public SettingsController(final SettingsManager settingsManager,final  SceneManager sceneManager,final  AudioManager audioManager) {
+    public SettingsController(final SettingsManager settingsManager, final SceneManager sceneManager,
+            final AudioManager audioManager) {
         this.settingsManager = settingsManager;
         this.sceneManager = sceneManager;
         this.audioManager = audioManager;
         viewBuilder = new SettingsViewBuilder(this, sceneManager.getLanguageManager());
     }
 
+    @Override
     public Parent getView() {
         return viewBuilder.build();
     }
@@ -29,10 +37,10 @@ public class SettingsController implements SettingsHandler {
     public void resetToDefaults() {
         audioManager.playSound("click");
         settingsManager.currentLocaleProperty().set(Locale.getDefault());
-        settingsManager.volumeProperty().set(0.8);
+        settingsManager.volumeProperty().set(DEFAULT_AUDIO_VALUE);
         settingsManager.fullscreenProperty().set(false);
-        settingsManager.resolutionWidthProperty().set(800);
-        settingsManager.resolutionHeightProperty().set(600);
+        settingsManager.resolutionWidthProperty().set(DEFAULT_WIDTH_VALUE);
+        settingsManager.resolutionHeightProperty().set(DEFAULT_HEIGHT_VALUE);
     }
 
     @Override
