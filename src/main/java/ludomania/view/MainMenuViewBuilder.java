@@ -5,30 +5,29 @@ import java.util.Objects;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Builder;
 import ludomania.core.LanguageManager;
 import ludomania.handler.MainMenuHandler;
-import ludomania.model.MainMenuModel;
 
-public class MainMenuViewBuilder implements Builder<Region> {
+public class MainMenuViewBuilder implements Builder<Parent> {
     private final MainMenuHandler eventHandler;
     private final LanguageManager languageManager;
 
-    public MainMenuViewBuilder(MainMenuModel model, MainMenuHandler eventHandler, LanguageManager languageManager) {
+    public MainMenuViewBuilder(final MainMenuHandler eventHandler,final  LanguageManager languageManager) {
         this.eventHandler = eventHandler;
         this.languageManager = languageManager;
     }
 
     @Override
-    public Region build() {
-        VBox results = new VBox(headingLabel("Ludomania"), createGameSelector(), createOptions());
+    public Parent build() {
+        final VBox results = new VBox(headingLabel("Ludomania"), createGameSelector(), createOptions());
         results.getStylesheets()
                 .add(Objects.requireNonNull(this.getClass().getResource("/css/mainMenu.css")).toExternalForm());
         results.setAlignment(Pos.BASELINE_CENTER);
@@ -37,39 +36,39 @@ public class MainMenuViewBuilder implements Builder<Region> {
     }
 
     private Node createGameSelector() {
-        HBox results = new HBox(6, gameBox(), gameBox(), gameBox());
+        final HBox results = new HBox(6, gameBox(), gameBox(), gameBox());
         results.setPadding(new Insets(20));
         return results;
     }
 
     private Node gameBox() {
-        Rectangle game = new Rectangle(150, 150);
+        final Rectangle game = new Rectangle(150, 150);
         return new HBox(2, game);
     }
 
     private Node createOptions() {
-        Node userLogin = userLoginSection();
-        Node gameButtons = mainGameButton();
-        Node shopSign = shopSign();
-        HBox results = new HBox(10, userLogin, gameButtons, shopSign);
+        final Node userLogin = userLoginSection();
+        final Node gameButtons = mainGameButton();
+        final Node shopSign = shopSign();
+        final HBox results = new HBox(10, userLogin, gameButtons, shopSign);
 
         results.setAlignment(Pos.CENTER);
         return results;
     }
 
     private Node userLoginSection() {
-        Button newUserButton = new Button();
-        Button logInButton = new Button();
+        final Button newUserButton = new Button();
+        final Button logInButton = new Button();
         setText(newUserButton, "new_user");
         setText(logInButton, "log_in");
-        logInButton.setOnMouseClicked(evt -> System.out.println("ciao!"));
-        VBox result = new VBox(10, newUserButton, logInButton);
+        //logInButton.setOnMouseClicked(evt -> );
+        final VBox result = new VBox(10, newUserButton, logInButton);
         result.setAlignment(Pos.BASELINE_LEFT);
         return result;
     }
 
     private Node mainGameButton() {
-        Button startButton = new Button(), settingsButton = new Button(),
+        final Button startButton = new Button(), settingsButton = new Button(),
                 exitButton = new Button();
         setText(exitButton, "exit");
         setText(startButton, "start");
@@ -77,30 +76,30 @@ public class MainMenuViewBuilder implements Builder<Region> {
         startButton.setOnMouseClicked(evt -> eventHandler.handleStartGame());
         settingsButton.setOnMouseClicked(evt -> eventHandler.handleSettings());
         exitButton.setOnMouseClicked(evt -> eventHandler.handleExit());
-        VBox result = new VBox(10, startButton, settingsButton, exitButton);
+        final VBox result = new VBox(10, startButton, settingsButton, exitButton);
         result.setAlignment(Pos.BASELINE_CENTER);
         return result;
     }
 
     private Node shopSign() {
-        Label shopSign = new Label();
-        Label shoppingCartImage = new Label();
-        VBox result = new VBox(10, shopSign, shoppingCartImage);
+        final Label shopSign = new Label();
+        final Label shoppingCartImage = new Label();
+        final VBox result = new VBox(10, shopSign, shoppingCartImage);
         result.setAlignment(Pos.BASELINE_RIGHT);
         return result;
     }
 
-    private Node headingLabel(String contents) {
+    private Node headingLabel(final String contents) {
         return styledLabel(contents, "heading-label");
     }
 
-    private Node styledLabel(String contents, String styleClass) {
-        Label label = new Label(contents);
+    private Node styledLabel(final String contents, final String styleClass) {
+        final Label label = new Label(contents);
         label.getStyleClass().add(styleClass);
         return label;
     }
 
-    void setText(Labeled target, String property) {
+    void setText(final Labeled target,final  String property) {
         target.textProperty().bind(languageManager.bind(property));
     }
 }

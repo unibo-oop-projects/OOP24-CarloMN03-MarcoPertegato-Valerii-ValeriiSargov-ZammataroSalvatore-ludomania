@@ -25,9 +25,9 @@ public class SettingsManager {
         load();
     }
 
-    public void load() {
-        Preferences prefs = Preferences.userRoot().node(PREFS_NODE);
-        Locale savedLocale = Locale.forLanguageTag(
+    private void load() {
+        final Preferences prefs = Preferences.userRoot().node(PREFS_NODE);
+        final Locale savedLocale = Locale.forLanguageTag(
                 prefs.get("locale", Locale.ITALIAN.toLanguageTag()));
         currentLocale.set(savedLocale);
         volume.set(prefs.getDouble("volume", 0.8));
@@ -38,13 +38,12 @@ public class SettingsManager {
     }
 
     public void save() {
-        Preferences prefs = Preferences.userRoot().node(PREFS_NODE);
+        final Preferences prefs = Preferences.userRoot().node(PREFS_NODE);
         prefs.put("locale", currentLocale.get().toLanguageTag());
         prefs.putDouble("volume", volume.get());
         prefs.putBoolean("fullscreen", fullscreen.get());
         prefs.putInt("resolutionWidth", resolutionWidth.get());
         prefs.putInt("resolutionHeight", resolutionHeight.get());
-        System.out.println("Lingua salvata: " + currentLocale.get().toLanguageTag());
     }
 
     // Property getters

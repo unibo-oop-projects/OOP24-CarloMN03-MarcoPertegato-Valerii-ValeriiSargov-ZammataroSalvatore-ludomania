@@ -12,36 +12,45 @@ public class SceneManager {
     private final LanguageManager languageManager;
 
     private final Stage primaryStage;
+    private final Scene mainScene;
 
-    public SceneManager(Stage primaryStage, SettingsManager settingsManager, AudioManager audioManager,
-            LanguageManager languageManager) {
+    public SceneManager(final Stage primaryStage, final SettingsManager settingsManager,
+            final AudioManager audioManager,
+            final LanguageManager languageManager) {
         this.primaryStage = primaryStage;
         this.audioManager = audioManager;
         this.settingsManager = settingsManager;
         this.languageManager = languageManager;
-        primaryStage.setWidth(settingsManager.resolutionWidthProperty().get());
-        primaryStage.setHeight(settingsManager.resolutionHeightProperty().get());
+        if (!settingsManager.fullscreenProperty().get()) {
+            primaryStage.setWidth(settingsManager.resolutionWidthProperty().get());
+            primaryStage.setHeight(settingsManager.resolutionHeightProperty().get());
+        }
+        primaryStage.setFullScreen(settingsManager.fullscreenProperty().get());
+        bindFullscreenToStage();
         bindResolutionToStage();
         bindVolumeToManager();
         bindLanguageToManager();
+        this.mainScene = new Scene(new MainMenuController(this, audioManager).getView(),
+                settingsManager.resolutionWidthProperty().get(),
+                settingsManager.resolutionHeightProperty().get());
+        primaryStage.setScene(mainScene);
     }
 
     public void switchToMainMenu() {
-        int currentWidth = settingsManager.resolutionWidthProperty().get();
-        int currentHeight = settingsManager.resolutionHeightProperty().get();
         audioManager.playMusic("devilTrigger");
-        primaryStage
-                .setScene(new Scene(new MainMenuController(this, audioManager).getView(), currentWidth, currentHeight));
+        mainScene
+                .setRoot(new MainMenuController(this, audioManager).getView());
     }
 
     public void switchToSettings() {
-        int currentWidth = settingsManager.resolutionWidthProperty().get();
-        int currentHeight = settingsManager.resolutionHeightProperty().get();
-        primaryStage
-                .setScene(new Scene(
-                        new SettingsController(settingsManager, this, languageManager, audioManager).getView(),
-                        currentWidth,
-                        currentHeight));
+        mainScene
+                .setRoot(new SettingsController(settingsManager, this, audioManager).getView());
+    }
+
+    private void bindFullscreenToStage() {
+        settingsManager.fullscreenProperty().addListener((obs, oldVal, newVal) -> {
+            primaryStage.setFullScreen(newVal);
+        });
     }
 
     private void bindResolutionToStage() {

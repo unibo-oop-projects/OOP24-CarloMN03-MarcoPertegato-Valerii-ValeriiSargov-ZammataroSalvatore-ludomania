@@ -2,108 +2,32 @@ package ludomania.settings;
 
 import java.util.Locale;
 
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.util.StringConverter;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.Property;
+import javafx.scene.Parent;
 import ludomania.core.AudioManager;
-import ludomania.core.LanguageManager;
 import ludomania.core.SceneManager;
 
-public class SettingsController {
+public class SettingsController implements SettingsHandler {
     private final SettingsManager settingsManager;
-    private final VBox view;
+    private final SettingsViewBuilder viewBuilder;
     private final SceneManager sceneManager;
-    private final LanguageManager languageManager;
     private final AudioManager audioManager;
 
-    public SettingsController(SettingsManager settingsManager, SceneManager sceneManager,
-            LanguageManager languageManager, AudioManager audioManager) {
+    public SettingsController(final SettingsManager settingsManager,final  SceneManager sceneManager,final  AudioManager audioManager) {
         this.settingsManager = settingsManager;
         this.sceneManager = sceneManager;
-        this.languageManager = languageManager;
         this.audioManager = audioManager;
-        this.view = buildView();
+        viewBuilder = new SettingsViewBuilder(this, sceneManager.getLanguageManager());
     }
 
-    public VBox getView() {
-        return view;
+    public Parent getView() {
+        return viewBuilder.build();
     }
 
-    private VBox buildView() {
-        VBox root = new VBox(10);
-        root.setPadding(new Insets(15));
-        root.getStyleClass().add("settings-container");
-
-        // 1. Sezione Lingua
-        Label languageLabel = new Label("Lingua:");
-        ComboBox<Locale> languageCombo = new ComboBox<>();
-        languageCombo.getItems().addAll(
-                Locale.ITALIAN,
-                Locale.ENGLISH);
-        languageCombo.setConverter(new LocaleStringConverter());
-        languageCombo.valueProperty().bindBidirectional(settingsManager.currentLocaleProperty());
-
-        // 2. Sezione Volume
-        Label volumeLabel = new Label("Volume:");
-        Slider volumeSlider = new Slider(0, 1, settingsManager.volumeProperty().get());
-        volumeSlider.valueProperty().bindBidirectional(settingsManager.volumeProperty());
-        volumeSlider.setShowTickLabels(true);
-
-        // 3. Sezione Schermo Intero
-        CheckBox fullscreenCheck = new CheckBox("Schermo intero");
-        fullscreenCheck.selectedProperty().bindBidirectional(settingsManager.fullscreenProperty());
-
-        // 4. Sezione Risoluzione
-        Label resolutionLabel = new Label("Risoluzione:");
-        ChoiceBox<String> resolutionChoice = new ChoiceBox<>();
-        resolutionChoice.getItems().addAll("800x600", "1280x720", "1920x1080", "2560x1440");
-        resolutionChoice.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) {
-                String[] parts = newVal.split("x");
-                settingsManager.resolutionWidthProperty().set(Integer.parseInt(parts[0]));
-                settingsManager.resolutionHeightProperty().set(Integer.parseInt(parts[1]));
-            }
-        });
-
-        // 5. Pulsanti
-        Button applyButton = new Button("Applica");
-        applyButton.setOnAction(e -> settingsManager.save());
-
-        Button resetButton = new Button("Ripristina");
-        resetButton.setOnAction(e -> resetToDefaults());
-        Button back = new Button("TORNA INDIETRO");
-        back.setOnMouseClicked(evt -> {
-            sceneManager.switchToMainMenu();
-        });
-        HBox buttonBox = new HBox(10, applyButton, resetButton, back);
-
-        // Costruzione layout
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-
-        grid.addRow(0, languageLabel, languageCombo);
-        grid.addRow(1, volumeLabel, volumeSlider);
-        grid.addRow(2, new Label(), fullscreenCheck);
-        grid.addRow(3, resolutionLabel, resolutionChoice);
-
-        root.getChildren().addAll(
-                new Label("IMPOSTAZIONI"),
-                grid,
-                buttonBox);
-
-        return root;
-    }
-
-    private void resetToDefaults() {
+    @Override
+    public void resetToDefaults() {
+        audioManager.playSound("click");
         settingsManager.currentLocaleProperty().set(Locale.getDefault());
         settingsManager.volumeProperty().set(0.8);
         settingsManager.fullscreenProperty().set(false);
@@ -111,15 +35,44 @@ public class SettingsController {
         settingsManager.resolutionHeightProperty().set(600);
     }
 
-    private static class LocaleStringConverter extends StringConverter<Locale> {
-        @Override
-        public String toString(Locale locale) {
-            return locale.getDisplayName(locale);
-        }
+    @Override
+    public LocaleStringConverter getLocaleStringConverter() {
+        return new LocaleStringConverter();
+    }
 
-        @Override
-        public Locale fromString(String string) {
-            return Locale.forLanguageTag(string);
+    @Override
+    public void handleBack() {
+        audioManager.playSound("click");
+        sceneManager.switchToMainMenu();
+    }
+
+    @Override
+    public Property<Locale> getCurrentLocaleProperty() {
+        return settingsManager.currentLocaleProperty();
+    }
+
+    @Override
+    public Property<Boolean> fullscreenProperty() {
+        return settingsManager.fullscreenProperty();
+    }
+
+    @Override
+    public DoubleProperty getVolumeProperty() {
+        return settingsManager.volumeProperty();
+    }
+
+    @Override
+    public void save() {
+        audioManager.playSound("click");
+        settingsManager.save();
+    }
+
+    @Override
+    public void resolutionHandler(final String newVal) {
+        if (newVal != null) {
+            final String[] parts = newVal.split("x");
+            settingsManager.resolutionWidthProperty().set(Integer.parseInt(parts[0]));
+            settingsManager.resolutionHeightProperty().set(Integer.parseInt(parts[1]));
         }
     }
 }

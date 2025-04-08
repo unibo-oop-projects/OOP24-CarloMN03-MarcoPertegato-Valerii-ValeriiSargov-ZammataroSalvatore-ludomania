@@ -1,7 +1,7 @@
 package ludomania.controller;
 
-import javafx.scene.layout.Region;
+import javafx.scene.Parent;
 
 public interface Controller {
-    public Region getView();
+    Parent getView();
 }
