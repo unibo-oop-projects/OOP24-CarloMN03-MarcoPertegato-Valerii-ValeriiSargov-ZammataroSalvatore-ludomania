@@ -1,5 +1,5 @@
 package ludomania.model.player.api;
 
-public interface TrenteEtQuarantePlayer extends Player{
-        
+public interface TrenteEtQuarantePlayer extends Player {
+
 }

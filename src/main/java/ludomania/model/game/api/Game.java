@@ -7,13 +7,13 @@ package ludomania.model.game.api;
  * Provides methods for executing the game logic, checking if the game is over,
  * and offering the option to play again.
  */
-public interface Game {
+public interface Game<T> {
     /**
      * Runs the game and returns the result.
      * 
      * @return the result of the game
      */
-    CounterResult runGame();
+    CounterResult<T> runGame();
 
     /**
      * Checks if the game is over.
