@@ -23,5 +23,10 @@ public interface MainMenuHandler {
      */
     void handleExit();
 
+    /**
+     * Handles the action to open the shop screen.
+     */
+    void handleShop();
+
     void selectGame(int gameId);
 }

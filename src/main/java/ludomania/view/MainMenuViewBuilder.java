@@ -55,28 +55,21 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     }
 
     private Node gameBox(String imagePath, int gameId) {
-
-        ImageView imageView = new ImageView(new Image(imagePath));
+        final ImageView imageView = new ImageView(new Image(imagePath));
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setCache(true);
-
-        // Fisso preferenze del contenitore
-        VBox gameFrame = new VBox(imageView);
+        final VBox gameFrame = new VBox(imageView);
         gameFrame.setAlignment(Pos.BASELINE_CENTER);
-        gameFrame.setMinSize(0, 0); // Importantissimo per evitare crescita infinita
-        VBox.setVgrow(imageView, Priority.ALWAYS); // Lascia crescere l'immagine
-        HBox.setHgrow(gameFrame, Priority.ALWAYS); // Ogni frame occupa stesso spazio
-
-        // L'immagine si adatta al contenitore
+        gameFrame.setMinSize(0, 0);
+        VBox.setVgrow(imageView, Priority.ALWAYS);
+        HBox.setHgrow(gameFrame, Priority.ALWAYS);
         imageView.fitWidthProperty().bind(gameFrame.widthProperty().subtract(8));
-
         gameFrame.getStyleClass().add("game-border");
         gameFrame.setOnMouseClicked(event -> {
             highLightSelectedGame(gameFrame);
             eventHandler.selectGame(gameId);
         });
-
         gameFrames.add(gameFrame);
         return gameFrame;
     }
@@ -92,8 +85,10 @@ public final class MainMenuViewBuilder implements ViewBuilder {
         final Node userLogin = userLoginSection();
         final Node gameButtons = mainGameButton();
         final Node shopSign = shopSign();
+        HBox.setHgrow(userLogin, Priority.ALWAYS);
+        HBox.setHgrow(gameButtons, Priority.ALWAYS);
+        HBox.setHgrow(shopSign, Priority.ALWAYS);
         final HBox results = new HBox(10, userLogin, gameButtons, shopSign);
-
         results.setAlignment(Pos.CENTER);
         return results;
     }
@@ -123,11 +118,19 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     }
 
     private Node shopSign() {
+        // final ImageView imageView = new ImageView(new
+        // Image("images/shopping-cart.png"));
         final Label shopSign = new Label();
-        final Label shoppingCartImage = new Label();
-        final VBox result = new VBox(10, shopSign, shoppingCartImage);
-        result.setAlignment(Pos.BASELINE_RIGHT);
-        return result;
+        setText(shopSign, "shop");
+        // imageView.setPreserveRatio(true);
+        // imageView.setCache(true);
+        final VBox gameFrame = new VBox(shopSign);
+        gameFrame.setAlignment(Pos.BASELINE_CENTER);
+        gameFrame.setOnMouseClicked(event -> {
+            eventHandler.handleShop();
+        });
+        gameFrames.add(gameFrame);
+        return gameFrame;
     }
 
     private Node headingLabel(final String contents) {

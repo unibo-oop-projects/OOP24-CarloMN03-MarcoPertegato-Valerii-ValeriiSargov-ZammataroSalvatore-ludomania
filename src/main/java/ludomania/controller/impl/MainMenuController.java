@@ -29,19 +29,16 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     @Override
     public void handleStartGame() {
         switch (selectedGameId) {
-            case 1:
-                handleSettings();
-                break;
-            case 2:
-                handleExit();
-                break;
-            case 3:
+            case 1 -> handleSettings();
+            case 2 -> handleExit();
+            case 3 -> {
                 audioManager.playSound("click");
                 audioManager.playSound("click");
                 audioManager.playSound("click");
                 audioManager.playSound("click");
-                break;
-            default:
+            }
+            default -> {
+            }
 
         }
     }
@@ -60,6 +57,10 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     @Override
     public void selectGame(int gameId) {
         this.selectedGameId = gameId;
+    }
+
+    @Override
+    public void handleShop() {
     }
 
 }
