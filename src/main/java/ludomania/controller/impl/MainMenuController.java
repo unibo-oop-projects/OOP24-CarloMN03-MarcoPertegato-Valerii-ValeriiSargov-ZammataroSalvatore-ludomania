@@ -13,6 +13,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     private final Builder<Parent> viewBuilder;
     private final SceneManager sceneManager;
     private final AudioManager audioManager;
+    private int selectedGameId = 1;
 
     public MainMenuController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.sceneManager = sceneManager;
@@ -20,16 +21,29 @@ public final class MainMenuController implements Controller, MainMenuHandler {
         viewBuilder = new MainMenuViewBuilder(this, sceneManager.getLanguageManager());
     }
 
-    @Override 
+    @Override
     public Parent getView() {
         return viewBuilder.build();
     }
 
-    public void startGame() {
-    }
-
     @Override
     public void handleStartGame() {
+        switch (selectedGameId) {
+            case 1:
+                handleSettings();
+                break;
+            case 2:
+                handleExit();
+                break;
+            case 3:
+                audioManager.playSound("click");
+                audioManager.playSound("click");
+                audioManager.playSound("click");
+                audioManager.playSound("click");
+                break;
+            default:
+
+        }
     }
 
     @Override
@@ -41,6 +55,11 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     @Override
     public void handleExit() {
         Platform.exit();
+    }
+
+    @Override
+    public void selectGame(int gameId) {
+        this.selectedGameId = gameId;
     }
 
 }

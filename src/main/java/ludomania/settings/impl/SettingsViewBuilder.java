@@ -56,6 +56,7 @@ public final class SettingsViewBuilder implements ViewBuilder {
         final Label volumeLabel = new Label();
         setText(volumeLabel, "volume_label");
         final Slider volumeSlider = new Slider(0, 1, eventHandler.getVolumeProperty().getValue());
+        volumeSlider.setBlockIncrement(0.1);
         volumeSlider.valueProperty().bindBidirectional(eventHandler.getVolumeProperty());
         volumeSlider.setShowTickLabels(true);
         results = new VBox(volumeLabel, volumeSlider);

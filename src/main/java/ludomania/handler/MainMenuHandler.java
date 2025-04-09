@@ -22,4 +22,6 @@ public interface MainMenuHandler {
      * Handles the action to exit the application.
      */
     void handleExit();
+
+    void selectGame(int gameId);
 }

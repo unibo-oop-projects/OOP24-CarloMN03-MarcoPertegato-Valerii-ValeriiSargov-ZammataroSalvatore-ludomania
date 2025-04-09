@@ -1,5 +1,7 @@
 package ludomania.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.geometry.Insets;
@@ -9,14 +11,21 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import ludomania.core.api.LanguageManager;
 import ludomania.handler.MainMenuHandler;
 
 public final class MainMenuViewBuilder implements ViewBuilder {
+    private static final String GAME_1_IMAGE_PATH = "images/game1.png";
+    private static final String GAME_2_IMAGE_PATH = "images/game2.png";
+    private static final String GAME_3_IMAGE_PATH = "images/game3.png";
     private static final int TOP_RIGHT_BOTTOM_LEFT = 20;
+    private final List<VBox> gameFrames = new ArrayList<>();
     private final MainMenuHandler eventHandler;
     private final LanguageManager languageManager;
 
@@ -36,14 +45,47 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     }
 
     private Node createGameSelector() {
-        final HBox results = new HBox(6, gameBox(), gameBox(), gameBox());
+        final HBox results = new HBox(6, gameBox(GAME_1_IMAGE_PATH, 1), gameBox(GAME_2_IMAGE_PATH, 2),
+                gameBox(GAME_3_IMAGE_PATH, 3));
         results.setPadding(new Insets(TOP_RIGHT_BOTTOM_LEFT));
+        results.setAlignment(Pos.CENTER);
+        results.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        HBox.setHgrow(results, Priority.ALWAYS);
         return results;
     }
 
-    private Node gameBox() {
-        final Rectangle game = new Rectangle(150, 150);
-        return new HBox(2, game);
+    private Node gameBox(String imagePath, int gameId) {
+
+        ImageView imageView = new ImageView(new Image(imagePath));
+        imageView.setPreserveRatio(true);
+        imageView.setSmooth(true);
+        imageView.setCache(true);
+
+        // Fisso preferenze del contenitore
+        VBox gameFrame = new VBox(imageView);
+        gameFrame.setAlignment(Pos.BASELINE_CENTER);
+        gameFrame.setMinSize(0, 0); // Importantissimo per evitare crescita infinita
+        VBox.setVgrow(imageView, Priority.ALWAYS); // Lascia crescere l'immagine
+        HBox.setHgrow(gameFrame, Priority.ALWAYS); // Ogni frame occupa stesso spazio
+
+        // L'immagine si adatta al contenitore
+        imageView.fitWidthProperty().bind(gameFrame.widthProperty().subtract(8));
+
+        gameFrame.getStyleClass().add("game-border");
+        gameFrame.setOnMouseClicked(event -> {
+            highLightSelectedGame(gameFrame);
+            eventHandler.selectGame(gameId);
+        });
+
+        gameFrames.add(gameFrame);
+        return gameFrame;
+    }
+
+    private void highLightSelectedGame(VBox selectedGameFrame) {
+        for (VBox gameFrame : gameFrames) {
+            gameFrame.getStyleClass().remove("selected-game");
+        }
+        selectedGameFrame.getStyleClass().add("selected-game");
     }
 
     private Node createOptions() {
@@ -61,7 +103,6 @@ public final class MainMenuViewBuilder implements ViewBuilder {
         final Button logInButton = new Button();
         setText(newUserButton, "new_user");
         setText(logInButton, "log_in");
-        // logInButton.setOnMouseClicked(evt -> );
         final VBox result = new VBox(10, newUserButton, logInButton);
         result.setAlignment(Pos.BASELINE_LEFT);
         return result;
