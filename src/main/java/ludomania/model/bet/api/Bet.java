@@ -1,6 +1,15 @@
 package ludomania.model.bet.api;
 
-public interface Bet {
+public abstract class Bet {
+    private final double value;
+    
+    public Bet(double value){
+        this.value=value;
+    }
 
-    Double evaluate(Double amount);
+    public double getValue(){
+        return value;
+    }
+
+    public abstract Double evaluate(Double amount);
 }

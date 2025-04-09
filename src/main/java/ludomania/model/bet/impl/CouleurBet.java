@@ -1,9 +1,7 @@
 package ludomania.model.bet.impl;
+import ludomania.model.bet.api.Bet;
 
-import ludomania.model.bet.api.TrenteEtQuaranteBet;
-import ludomania.model.bet.api.TrenteEtQuaranteBetType;
-
-public class CouleurBet extends TrenteEtQuaranteBet{
+public class CouleurBet extends Bet{
 private final TrenteEtQuaranteBetType type;
 
     public CouleurBet(int value, TrenteEtQuaranteBetType type) {

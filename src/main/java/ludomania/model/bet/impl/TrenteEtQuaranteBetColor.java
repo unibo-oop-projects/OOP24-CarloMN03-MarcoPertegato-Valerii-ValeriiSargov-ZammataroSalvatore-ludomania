@@ -1,22 +1,20 @@
-package ludomania.model.bet.api;
+package ludomania.model.bet.impl;
 
 public enum TrenteEtQuaranteBetColor {
     ROUGE("Rouge", 1.0),
     NOIR("Noir", 1.0);
 
-    private final String displayName;
-    private final double payout;
+    private final TrenteEtQuaranteBetLogic logic;
 
     TrenteEtQuaranteBetColor(String displayName, double payout) {
-        this.displayName = displayName;
-        this.payout = payout;
+        this.logic = new TrenteEtQuaranteBetLogic(displayName, payout);
     }
 
     public String getDisplayName(){
-        return displayName;
+        return logic.getDisplayName();
     }
 
     public double getPayout(){
-        return payout;
+        return logic.getPayout();
     }    
 }
