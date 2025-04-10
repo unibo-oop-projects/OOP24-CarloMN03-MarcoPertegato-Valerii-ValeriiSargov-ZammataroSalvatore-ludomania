@@ -37,8 +37,10 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     @Override
     public Parent build() {
         final VBox results = new VBox(headingLabel("Ludomania"), createGameSelector(), createOptions());
+
         results.getStylesheets()
                 .add(Objects.requireNonNull(this.getClass().getResource("/css/mainMenu.css")).toExternalForm());
+
         results.setAlignment(Pos.BASELINE_CENTER);
         results.getStyleClass().add("background");
         return results;

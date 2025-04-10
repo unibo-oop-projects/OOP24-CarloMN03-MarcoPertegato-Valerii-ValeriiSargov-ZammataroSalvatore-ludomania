@@ -2,7 +2,7 @@ package ludomania.model.wallet.api;
 
 public interface Wallet {
 
-    Double withdraw(Double amount);
+    boolean withdraw(Double amount);
 
-    Double deposit(Double amount);
+    boolean deposit(Double amount);
 }

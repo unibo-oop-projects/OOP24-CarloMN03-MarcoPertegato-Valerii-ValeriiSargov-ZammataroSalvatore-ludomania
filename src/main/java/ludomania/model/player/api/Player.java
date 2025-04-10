@@ -1,15 +1,22 @@
 package ludomania.model.player.api;
 
-import java.util.List;
-
 import ludomania.model.bet.api.Bet;
 import ludomania.model.wallet.api.Wallet;
 
-public interface Player {
+public abstract class Player {
+    private final Wallet wallet;
 
-    List<Bet> getBets();
+    public Player(Wallet wallet) {
+        this.wallet = wallet;
+    }
 
-    Wallet getWallet();
+    public boolean deposit(Double amount) {
+        return wallet.deposit(amount);
+    }
 
-    void makeBet(Bet singleBet);
+    public boolean withdraw(Double amount) {
+        return wallet.withdraw(amount);
+    }
+
+    abstract public Bet makeBet(Double amount);
 }

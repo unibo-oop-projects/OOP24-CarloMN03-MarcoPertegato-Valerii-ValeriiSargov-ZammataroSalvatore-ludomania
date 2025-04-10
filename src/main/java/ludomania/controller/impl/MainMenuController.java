@@ -33,9 +33,6 @@ public final class MainMenuController implements Controller, MainMenuHandler {
             case 2 -> handleExit();
             case 3 -> {
                 audioManager.playSound("click");
-                audioManager.playSound("click");
-                audioManager.playSound("click");
-                audioManager.playSound("click");
             }
             default -> {
             }

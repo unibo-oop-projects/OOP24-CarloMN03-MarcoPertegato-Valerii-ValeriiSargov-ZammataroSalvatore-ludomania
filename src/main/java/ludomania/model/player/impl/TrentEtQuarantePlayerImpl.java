@@ -1,27 +1,17 @@
 package ludomania.model.player.impl;
 
-import java.util.List;
-
 import ludomania.model.bet.api.Bet;
 import ludomania.model.player.api.TrenteEtQuarantePlayer;
 import ludomania.model.wallet.api.Wallet;
 
-public class TrentEtQuarantePlayerImpl implements TrenteEtQuarantePlayer {
+public class TrentEtQuarantePlayerImpl extends TrenteEtQuarantePlayer {
 
-    @Override
-    public List<Bet> getBets() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBets'");
+    public TrentEtQuarantePlayerImpl(Wallet wallet) {
+        super(wallet);
     }
 
     @Override
-    public void makeBet(Bet singleBet) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'makeBet'");
-    }
-
-    @Override
-    public Wallet getWallet() {
+    public Bet makeBet(Double amount) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

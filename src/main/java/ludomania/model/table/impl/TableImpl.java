@@ -22,11 +22,9 @@ public class TableImpl<T> implements Table {
     @Override
     public void openTable(List<Player> players) {
         Map<Player, Double> winners;
-        while (playAgain()) {
-            CounterResult<T> result = game.runGame();
-            winners = croupier.checkBets(players, result);
-            payUp(winners);
-        }
+        CounterResult<T> result = game.runGame();
+        winners = croupier.checkBets(result);
+        payUp(winners);
     }
 
     @Override
@@ -34,11 +32,8 @@ public class TableImpl<T> implements Table {
         for (Map.Entry<Player, Double> entry : winner.entrySet()) {
             Player player = entry.getKey();
             double amount = entry.getValue();
-            player.getWallet().deposit(amount);
+            player.deposit(amount);
         }
     }
 
-    private boolean playAgain() {
-        return playAgainFlag;
-    }
 }

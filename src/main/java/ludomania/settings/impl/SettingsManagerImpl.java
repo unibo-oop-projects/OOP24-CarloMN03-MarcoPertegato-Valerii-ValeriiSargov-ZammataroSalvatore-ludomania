@@ -50,7 +50,6 @@ public final class SettingsManagerImpl implements SettingsManager {
         prefs.putInt("resolutionHeight", resolutionHeight.get());
     }
 
-    // Property getters
     @Override
     public ObjectProperty<Locale> currentLocaleProperty() {
         return currentLocale;

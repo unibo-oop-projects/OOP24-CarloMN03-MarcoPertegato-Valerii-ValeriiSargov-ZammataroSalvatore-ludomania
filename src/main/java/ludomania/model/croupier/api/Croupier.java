@@ -1,14 +1,25 @@
 package ludomania.model.croupier.api;
 
-import java.util.List;
 import java.util.Map;
 
+import ludomania.model.bet.api.Bet;
 import ludomania.model.game.api.CounterResult;
 import ludomania.model.player.api.Player;
 
-public interface Croupier<T> {
+public abstract class Croupier<T> {
+    private final Map<Player, Bet> roundBet;
 
-    void give(Player player);
+    public Croupier(Map<Player, Bet> roundBet) {
+        this.roundBet = roundBet;
+    }
 
-    Map<Player, Double> checkBets(List<Player> player, CounterResult<T> result);
+    public void addBet(Player player, Bet bet) {
+        roundBet.put(player, bet);
+    }
+
+    public void clearRound() {
+        roundBet.clear();
+    }
+
+    public abstract Map<Player, Double> checkBets(CounterResult<T> result);
 }

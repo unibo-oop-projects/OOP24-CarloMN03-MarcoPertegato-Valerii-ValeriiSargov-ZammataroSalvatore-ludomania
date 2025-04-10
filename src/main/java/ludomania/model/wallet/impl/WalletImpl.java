@@ -7,13 +7,18 @@ public class WalletImpl implements Wallet {
     private DoubleProperty money;
 
     @Override
-    public Double withdraw(Double amount) {
-        return money.subtract(amount).doubleValue();
+    public boolean withdraw(Double amount) {
+        if (money.getValue() - amount >= 0) {
+            money.subtract(amount).doubleValue();
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public Double deposit(Double amount) {
-        return money.add(amount).doubleValue();
+    public boolean deposit(Double amount) {
+        money.add(amount).doubleValue();
+        return true;
     }
 
 }

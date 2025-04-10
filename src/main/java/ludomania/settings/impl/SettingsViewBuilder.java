@@ -66,6 +66,7 @@ public final class SettingsViewBuilder implements ViewBuilder {
     VBox fullscreenCheck() {
         final CheckBox fullscreenCheck = new CheckBox();
         setText(fullscreenCheck, "fullscreen_check");
+
         fullscreenCheck.selectedProperty().bindBidirectional(eventHandler.fullscreenProperty());
         return new VBox(fullscreenCheck);
     }
