@@ -18,7 +18,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     public MainMenuController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.sceneManager = sceneManager;
         this.audioManager = audioManager;
-        viewBuilder = new MainMenuViewBuilder(this, sceneManager.getLanguageManager());
+        viewBuilder = new MainMenuViewBuilder(this, sceneManager.getLanguageManager(),sceneManager.getImageManager());
     }
 
     @Override
