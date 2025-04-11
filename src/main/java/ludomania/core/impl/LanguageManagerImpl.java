@@ -38,11 +38,7 @@ public final class LanguageManagerImpl implements LanguageManager {
         }
         return "Nessun testo disponibile";
     }
-    // public static String getString(String key) {
-    // return bundleProperty.get().getString(key);
-    // }
-
-    // Property osservabile per ascoltare cambiamenti (utile per logica avanzata)
+    
     @Override
     public ObjectProperty<ResourceBundle> bundleProperty() {
         return bundleProperty;

@@ -78,7 +78,7 @@ public final class SceneManagerImpl implements SceneManager {
 
     private void bindVolumeToManager() {
         settingsManager.volumeProperty().addListener((obs, oldValue, newValue) -> {
-            settingsManager.save(); // Salva ogni volta che il volume cambia
+            settingsManager.save();
             audioManager.setMasterVolume(newValue.doubleValue());
         });
     }
