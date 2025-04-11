@@ -16,7 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import ludomania.core.api.ImageManager;
+import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
 import ludomania.handler.MainMenuHandler;
 
@@ -30,13 +30,13 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     private final List<VBox> gameFrames = new ArrayList<>();
     private final MainMenuHandler eventHandler;
     private final LanguageManager languageManager;
-    private final ImageManager imageManager;
+    private final ImageProvider imageProvider;
 
     public MainMenuViewBuilder(final MainMenuHandler eventHandler, final LanguageManager languageManager,
-            final ImageManager imageManager) {
+            final ImageProvider imageProvider) {
         this.eventHandler = eventHandler;
         this.languageManager = languageManager;
-        this.imageManager = imageManager;
+        this.imageProvider = imageProvider;
     }
 
     @Override
@@ -62,7 +62,7 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     }
 
     private Node gameBox(String imageId, int gameId) {
-        final ImageView imageView = new ImageView(imageManager.getImage(imageId));
+        final ImageView imageView = new ImageView(imageProvider.getImage(imageId));
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setCache(true);
@@ -122,7 +122,7 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     }
 
     private Node shopSign() {
-        final ImageView imageView = new ImageView(imageManager.getImage(SHOPPING_CART_IMAGE_ID));
+        final ImageView imageView = new ImageView(imageProvider.getImage(SHOPPING_CART_IMAGE_ID));
         final Label shopSign = new Label();
         setText(shopSign, "shop");
         imageView.setPreserveRatio(true);

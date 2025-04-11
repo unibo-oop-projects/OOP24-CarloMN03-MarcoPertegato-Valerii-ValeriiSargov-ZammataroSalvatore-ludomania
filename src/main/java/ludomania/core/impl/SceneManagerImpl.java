@@ -4,7 +4,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ludomania.controller.impl.MainMenuController;
 import ludomania.core.api.AudioManager;
-import ludomania.core.api.ImageManager;
+import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
 import ludomania.core.api.SceneManager;
 import ludomania.settings.api.SettingsManager;
@@ -14,19 +14,19 @@ public final class SceneManagerImpl implements SceneManager {
     private final SettingsManager settingsManager;
     private final AudioManager audioManager;
     private final LanguageManager languageManager;
-    private final ImageManager imageManager;
+    private final ImageProvider imageProvider;
 
     private final Stage primaryStage;
     private final Scene mainScene;
 
     public SceneManagerImpl(final Stage primaryStage, final SettingsManager settingsManager,
             final AudioManager audioManager,
-            final LanguageManager languageManager, final ImageManager imageManager) {
+            final LanguageManager languageManager, final ImageProvider imageProvider) {
         this.primaryStage = primaryStage;
         this.audioManager = audioManager;
         this.settingsManager = settingsManager;
         this.languageManager = languageManager;
-        this.imageManager = imageManager;
+        this.imageProvider = imageProvider;
         if (!settingsManager.fullscreenProperty().get()) {
             primaryStage.setWidth(settingsManager.resolutionWidthProperty().get());
             primaryStage.setHeight(settingsManager.resolutionHeightProperty().get());
@@ -92,7 +92,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
 
     @Override
-    public ImageManager getImageManager() {
-        return this.imageManager;
+    public ImageProvider getImageProvider() {
+        return this.imageProvider;
     }
 }
