@@ -34,10 +34,9 @@ public class ImageManagerImpl implements ImageManager {
     }
     @Override
     public Image getImage(String id) {
-        try {
+        if(images.containsKey(id)){
             return images.get(id);
-        } catch (Exception e) {
-            return images.get("default");
         }
+        return images.get("default");
     }
 }
