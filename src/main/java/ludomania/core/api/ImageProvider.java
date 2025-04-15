@@ -2,8 +2,8 @@ package ludomania.core.api;
 
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import ludomania.cosmetics.CosmeticTheme;
 
@@ -19,8 +19,8 @@ public interface ImageProvider {
 
     Color getBackgroundColor();
 
-    Node getSVGCard(Rank rank, Suit suit);
+    Region getSVGCard(Rank rank, Suit suit);
 
-    Node getSVGFiche(Integer number);
+    Region getSVGFiche(Integer number);
 
 }

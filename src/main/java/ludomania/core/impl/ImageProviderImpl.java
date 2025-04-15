@@ -8,15 +8,14 @@ import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.ImageTranscoder;
-import org.apache.batik.transcoder.image.JPEGTranscoder;
+import org.apache.batik.transcoder.image.PNGTranscoder;
 
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import ludomania.core.api.ImageManager;
 import ludomania.core.api.ImageProvider;
@@ -57,12 +56,10 @@ public class ImageProviderImpl implements ImageProvider {
     }
 
     @Override
-    public Node getSVGCard(Rank rank, Suit suit) {
+    public Region getSVGCard(Rank rank, Suit suit) {
         String svg = currentTheme.getCard(rank, suit);
         try {
-            ImageTranscoder transcoder = new JPEGTranscoder();
-
-            transcoder.addTranscodingHint(JPEGTranscoder.KEY_QUALITY, 0.95f);
+            ImageTranscoder transcoder = new PNGTranscoder();
 
             TranscoderInput input = new TranscoderInput(new StringReader(svg));
 
@@ -75,7 +72,7 @@ public class ImageProviderImpl implements ImageProvider {
             Image fxImage = new Image(new ByteArrayInputStream(imgData));
 
             ImageView imageView = new ImageView(fxImage);
-            return imageView;
+            return new HBox(imageView);
 
         } catch (TranscoderException e) {
             return new HBox();
@@ -83,9 +80,26 @@ public class ImageProviderImpl implements ImageProvider {
     }
 
     @Override
-    public Node getSVGFiche(Integer number) {
-        Group group = new Group();
-        return group;
+    public Region getSVGFiche(Integer number) {
+        String svg = currentTheme.getFiche(number);
+        try {
+            ImageTranscoder transcoder = new PNGTranscoder();
+
+            TranscoderInput input = new TranscoderInput(new StringReader(svg));
+
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            TranscoderOutput output = new TranscoderOutput(outputStream);
+
+            transcoder.transcode(input, output);
+
+            byte[] imgData = outputStream.toByteArray();
+            Image fxImage = new Image(new ByteArrayInputStream(imgData));
+
+            ImageView imageView = new ImageView(fxImage);
+            return new HBox(imageView);
+        } catch (TranscoderException e) {
+            return new HBox();
+        }
     }
 
 }

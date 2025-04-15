@@ -133,7 +133,8 @@ public final class MainMenuViewBuilder implements ViewBuilder {
         setText(shopSign, "shop");
         imageView.setPreserveRatio(true);
         imageView.setCache(true);
-        final VBox gameFrame = new VBox(shopSign, imageView);
+        Region image = imageProvider.getSVGFiche(500);
+        final VBox gameFrame = new VBox(shopSign, imageView, image);
         imageView.setFitHeight(Region.USE_COMPUTED_SIZE);
         imageView.setFitWidth(Region.USE_COMPUTED_SIZE);
         gameFrame.setAlignment(Pos.BASELINE_CENTER);

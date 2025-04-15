@@ -31,7 +31,7 @@ public final class Ludomania extends Application {
         final ImageManager imageManager = new ImageManagerImpl(new HashMap<>());
         imageManager.init();
         final ImageProvider imageProvider = new ImageProviderImpl(imageManager,
-                new CosmeticSet(CosmeticTheme.EUROPEAN, CosmeticTheme.NEON, CosmeticTheme.EUROPEAN));
+                new CosmeticSet(CosmeticTheme.EUROPEAN, CosmeticTheme.EUROPEAN, CosmeticTheme.EUROPEAN));
 
         final AudioManager audioManager = new AudioManagerImpl(settingsManager.volumeProperty().doubleValue());
         audioManager.initialize();
