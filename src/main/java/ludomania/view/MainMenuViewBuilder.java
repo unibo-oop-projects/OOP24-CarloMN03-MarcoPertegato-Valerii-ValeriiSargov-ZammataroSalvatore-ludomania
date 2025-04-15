@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import io.lyuda.jcards.Rank;
-import io.lyuda.jcards.Suit;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -141,11 +139,10 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     }
 
     private Node headingLabel(final String contents) {
-        return new HBox(styledLabel(contents, "heading-label"), imageProvider.getSVGCard(Rank.ACE, Suit.CLUBS));
+        return styledLabel(contents, "heading-label");
     }
 
     private Node styledLabel(final String contents, final String styleClass) {
-
         final Label label = new Label(contents);
         label.getStyleClass().add(styleClass);
         return label;

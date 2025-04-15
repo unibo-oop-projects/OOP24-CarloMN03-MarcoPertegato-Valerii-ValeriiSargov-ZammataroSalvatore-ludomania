@@ -60,10 +60,6 @@ public class ImageProviderImpl implements ImageProvider {
     @Override
     public Node getSVGCard(Rank rank, Suit suit) {
         String svg = currentTheme.getCard(rank, suit);
-        svg = svg.replaceAll("href=\"(#[^\"]+)\"", "xlink:href=\"$1\"");
-        if (!svg.contains("xmlns:xlink")) {
-            svg = svg.replace("<svg", "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" ");
-        }
         try {
             ImageTranscoder transcoder = new JPEGTranscoder();
 

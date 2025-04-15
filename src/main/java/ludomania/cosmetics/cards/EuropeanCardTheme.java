@@ -16,6 +16,11 @@ public class EuropeanCardTheme implements CardTheme {
 
     @Override
     public String getCosmetic(Rank rank, Suit suit) {
-        return CardImage.makeCard(suit.getPath(), rank.getPath(), getCard(), getColor());
+        String svg = CardImage.makeCard(suit.getPath(), rank.getPath(), getCard(), getColor());
+        svg = svg.replaceAll("href=\"(#[^\"]+)\"", "xlink:href=\"$1\"");
+        if (!svg.contains("xmlns:xlink")) {
+            svg = svg.replace("<svg", "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" ");
+        }
+        return svg;
     }
 }
