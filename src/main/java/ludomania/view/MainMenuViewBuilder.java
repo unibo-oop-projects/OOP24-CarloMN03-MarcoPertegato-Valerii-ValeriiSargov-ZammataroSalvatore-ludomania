@@ -11,27 +11,32 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
 import ludomania.handler.MainMenuHandler;
 
 public final class MainMenuViewBuilder implements ViewBuilder {
-    private static final String GAME_1_IMAGE_PATH = "images/game1.png";
-    private static final String GAME_2_IMAGE_PATH = "images/game2.png";
-    private static final String GAME_3_IMAGE_PATH = "images/game3.png";
+    private static final String GAME_1_IMAGE_ID = "game1";
+    private static final String GAME_2_IMAGE_ID = "game2";
+    private static final String GAME_3_IMAGE_ID = "game3";
+    private static final String SHOPPING_CART_IMAGE_ID = "shoppingCart";
+
     private static final int TOP_RIGHT_BOTTOM_LEFT = 20;
     private final List<VBox> gameFrames = new ArrayList<>();
     private final MainMenuHandler eventHandler;
     private final LanguageManager languageManager;
+    private final ImageProvider imageProvider;
 
-    public MainMenuViewBuilder(final MainMenuHandler eventHandler, final LanguageManager languageManager) {
+    public MainMenuViewBuilder(final MainMenuHandler eventHandler, final LanguageManager languageManager,
+            final ImageProvider imageProvider) {
         this.eventHandler = eventHandler;
         this.languageManager = languageManager;
+        this.imageProvider = imageProvider;
     }
 
     @Override
@@ -47,8 +52,8 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     }
 
     private Node createGameSelector() {
-        final HBox results = new HBox(6, gameBox(GAME_1_IMAGE_PATH, 1), gameBox(GAME_2_IMAGE_PATH, 2),
-                gameBox(GAME_3_IMAGE_PATH, 3));
+        final HBox results = new HBox(6, gameBox(GAME_1_IMAGE_ID, 1), gameBox(GAME_2_IMAGE_ID, 2),
+                gameBox(GAME_3_IMAGE_ID, 3));
         results.setPadding(new Insets(TOP_RIGHT_BOTTOM_LEFT));
         results.setAlignment(Pos.CENTER);
         results.setPrefHeight(Region.USE_COMPUTED_SIZE);
@@ -56,8 +61,8 @@ public final class MainMenuViewBuilder implements ViewBuilder {
         return results;
     }
 
-    private Node gameBox(String imagePath, int gameId) {
-        final ImageView imageView = new ImageView(new Image(imagePath));
+    private Node gameBox(String imageId, int gameId) {
+        final ImageView imageView = new ImageView(imageProvider.getImage(imageId));
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setCache(true);
@@ -87,9 +92,6 @@ public final class MainMenuViewBuilder implements ViewBuilder {
         final Node userLogin = userLoginSection();
         final Node gameButtons = mainGameButton();
         final Node shopSign = shopSign();
-        HBox.setHgrow(userLogin, Priority.ALWAYS);
-        HBox.setHgrow(gameButtons, Priority.ALWAYS);
-        HBox.setHgrow(shopSign, Priority.ALWAYS);
         final HBox results = new HBox(10, userLogin, gameButtons, shopSign);
         results.setAlignment(Pos.CENTER);
         return results;
@@ -120,13 +122,14 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     }
 
     private Node shopSign() {
-        // final ImageView imageView = new ImageView(new
-        // Image("images/shopping-cart.png"));
+        final ImageView imageView = new ImageView(imageProvider.getImage(SHOPPING_CART_IMAGE_ID));
         final Label shopSign = new Label();
         setText(shopSign, "shop");
-        // imageView.setPreserveRatio(true);
-        // imageView.setCache(true);
-        final VBox gameFrame = new VBox(shopSign);
+        imageView.setPreserveRatio(true);
+        imageView.setCache(true);
+        final VBox gameFrame = new VBox(shopSign, imageView);
+        imageView.setFitHeight(Region.USE_COMPUTED_SIZE);
+        imageView.setFitWidth(Region.USE_COMPUTED_SIZE);
         gameFrame.setAlignment(Pos.BASELINE_CENTER);
         gameFrame.setOnMouseClicked(event -> {
             eventHandler.handleShop();

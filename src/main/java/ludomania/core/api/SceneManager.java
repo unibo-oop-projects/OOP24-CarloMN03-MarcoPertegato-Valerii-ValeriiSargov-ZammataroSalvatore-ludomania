@@ -25,5 +25,6 @@ public interface SceneManager {
      * @return the language manager instance
      */
     LanguageManager getLanguageManager();
+    ImageProvider getImageProvider();
 
 }

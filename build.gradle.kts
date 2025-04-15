@@ -49,6 +49,12 @@ dependencies {
     implementation("org.jooq:jool:0.9.15")
 
     implementation("org.openjfx:javafx-media:21:$osName")
+
+    //Batik
+    implementation("org.apache.xmlgraphics:batik-transcoder:1.17")
+    implementation("org.apache.xmlgraphics:batik-codec:1.17")
+    implementation("org.apache.xmlgraphics:batik-svg-dom:1.17")
+    implementation("xml-apis:xml-apis:1.4.01")
 }
 
 application {
