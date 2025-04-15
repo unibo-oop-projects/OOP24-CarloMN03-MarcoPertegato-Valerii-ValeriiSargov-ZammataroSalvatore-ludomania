@@ -7,15 +7,15 @@ import ludomania.cosmetics.CardTheme;
 import ludomania.cosmetics.CosmeticTheme;
 import ludomania.cosmetics.FicheTheme;
 
-class CosmeticSet {
+public class CosmeticSet {
     private CardTheme card;
     private FicheTheme fiche;
     private BackgroundTheme background;
 
     public CosmeticSet(CosmeticTheme card, CosmeticTheme background, CosmeticTheme fiche) {
-        setCardTheme(card);
-        setBackgroundTheme(background);
-        setFicheTheme(fiche);
+        this.background = background.createBackgroundTheme();
+        this.card = card.createCardTheme();
+        this.fiche = fiche.createFicheTheme();
     }
 
     public void setBackgroundTheme(CosmeticTheme theme) {

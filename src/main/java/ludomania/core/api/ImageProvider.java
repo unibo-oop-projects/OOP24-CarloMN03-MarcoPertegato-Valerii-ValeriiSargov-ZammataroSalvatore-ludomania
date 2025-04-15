@@ -2,6 +2,7 @@ package ludomania.core.api;
 
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import ludomania.cosmetics.CosmeticTheme;
 
@@ -15,10 +16,10 @@ public interface ImageProvider {
 
     Image getImage(String id);
 
-    String getSVGBackground();
+    Node getSVGBackground();
 
-    String getSVGCard(Rank rank, Suit suit);
+    Node getSVGCard(Rank rank, Suit suit);
 
-    String getSVGFiche(Integer number);
+    Node getSVGFiche(Integer number);
 
 }
