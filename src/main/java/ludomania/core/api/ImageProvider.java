@@ -4,6 +4,7 @@ import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import ludomania.cosmetics.CosmeticTheme;
 
 public interface ImageProvider {
@@ -16,7 +17,7 @@ public interface ImageProvider {
 
     Image getImage(String id);
 
-    Node getSVGBackground();
+    Color getBackgroundColor();
 
     Node getSVGCard(Rank rank, Suit suit);
 

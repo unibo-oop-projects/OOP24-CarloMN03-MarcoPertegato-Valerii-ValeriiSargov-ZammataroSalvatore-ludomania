@@ -6,7 +6,7 @@ public class EuropeanBackgroundTheme implements BackgroundTheme {
 
     @Override
     public String getCosmetic() {
-        throw new UnsupportedOperationException("Unimplemented method 'getCosmetic'");
+        return "#287233";
     }
 
 }
