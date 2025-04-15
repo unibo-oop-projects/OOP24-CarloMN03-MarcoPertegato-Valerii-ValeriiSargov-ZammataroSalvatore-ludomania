@@ -23,7 +23,7 @@ import ludomania.cosmetics.CosmeticTheme;
 
 public class ImageProviderImpl implements ImageProvider {
     private final ImageManager imageManager;
-    private CosmeticSet currentTheme;
+    private final CosmeticSet currentTheme;
 
     public ImageProviderImpl(ImageManager imageManager, CosmeticSet cosmeticSet) {
         this.imageManager = imageManager;
