@@ -39,6 +39,7 @@ public final class SceneManagerImpl implements SceneManager {
         this.mainScene = new Scene(new MainMenuController(this, audioManager).getView(),
                 settingsManager.resolutionWidthProperty().get(),
                 settingsManager.resolutionHeightProperty().get());
+        System.out.println(imageProvider.getBackgroundColor());
         primaryStage.setScene(mainScene);
     }
 

@@ -2,6 +2,7 @@ package ludomania.core.impl;
 
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
+import javafx.scene.paint.Color;
 import ludomania.cosmetics.BackgroundTheme;
 import ludomania.cosmetics.CardTheme;
 import ludomania.cosmetics.CosmeticTheme;
@@ -30,8 +31,8 @@ public class CosmeticSet {
         fiche = theme.createFicheTheme();
     }
 
-    public String getBackground() {
-        return background.getCosmetic();
+    public Color getBackground() {
+        return Color.web(background.getCosmetic());
     }
 
     public String getCard(Rank rank, Suit suit) {

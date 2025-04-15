@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import ludomania.core.api.ImageManager;
 import ludomania.core.api.ImageProvider;
 import ludomania.cosmetics.CosmeticTheme;
@@ -51,10 +52,8 @@ public class ImageProviderImpl implements ImageProvider {
     }
 
     @Override
-    public Node getSVGBackground() {
-        Group group = new Group();
-
-        return group;
+    public Color getBackgroundColor() {
+        return currentTheme.getBackground();
     }
 
     @Override

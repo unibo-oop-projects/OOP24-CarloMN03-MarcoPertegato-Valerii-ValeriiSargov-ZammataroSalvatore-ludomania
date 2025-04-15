@@ -12,6 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -47,7 +50,10 @@ public final class MainMenuViewBuilder implements ViewBuilder {
                 .add(Objects.requireNonNull(this.getClass().getResource("/css/mainMenu.css")).toExternalForm());
 
         results.setAlignment(Pos.BASELINE_CENTER);
-        results.getStyleClass().add("background");
+        results.setBackground(new Background(new BackgroundFill(
+                imageProvider.getBackgroundColor(),
+                CornerRadii.EMPTY,
+                Insets.EMPTY)));
         return results;
     }
 
