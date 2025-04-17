@@ -112,4 +112,8 @@ public final class SceneManagerImpl implements SceneManager {
     public ImageProvider getImageProvider() {
         return this.imageProvider;
     }
+
+    @Override
+    public void switchToCosmetics() {
+    }
 }

@@ -138,7 +138,7 @@ public final class MainMenuViewBuilder implements ViewBuilder {
         imageView.setFitWidth(Region.USE_COMPUTED_SIZE);
         gameFrame.setAlignment(Pos.BASELINE_CENTER);
         gameFrame.setOnMouseClicked(event -> {
-            eventHandler.handleShop();
+            eventHandler.handleCosmetics();
         });
         gameFrames.add(gameFrame);
         return gameFrame;

@@ -24,9 +24,9 @@ public interface MainMenuHandler {
     void handleExit();
 
     /**
-     * Handles the action to open the shop screen.
+     * Handles the action to open the cosmetic screen.
      */
-    void handleShop();
+    void handleCosmetics();
 
     void selectGame(int gameId);
 }
