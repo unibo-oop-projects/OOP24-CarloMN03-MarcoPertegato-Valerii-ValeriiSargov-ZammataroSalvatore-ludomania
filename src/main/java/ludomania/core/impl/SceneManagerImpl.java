@@ -36,6 +36,7 @@ public final class SceneManagerImpl implements SceneManager {
         bindResolutionToStage();
         bindVolumeToManager();
         bindLanguageToManager();
+        bindCosmeticToProvider();
         this.mainScene = new Scene(new MainMenuController(this, audioManager).getView(),
                 settingsManager.resolutionWidthProperty().get(),
                 settingsManager.resolutionHeightProperty().get());
@@ -84,6 +85,21 @@ public final class SceneManagerImpl implements SceneManager {
         settingsManager.volumeProperty().addListener((obs, oldValue, newValue) -> {
             settingsManager.save();
             audioManager.setMasterVolume(newValue.doubleValue());
+        });
+    }
+
+    private void bindCosmeticToProvider() {
+        settingsManager.cardThemeProperty().addListener((obs, oldValue, newValue) -> {
+            settingsManager.save();
+            imageProvider.setCardTheme(newValue);
+        });
+        settingsManager.ficheThemeProperty().addListener((obs, oldValue, newValue) -> {
+            settingsManager.save();
+            imageProvider.setFicheTheme(newValue);
+        });
+        settingsManager.backgroundThemeProperty().addListener((obs, oldValue, newValue) -> {
+            settingsManager.save();
+            imageProvider.setBackgroundTheme(newValue);
         });
     }
 

@@ -65,4 +65,12 @@ public enum CosmeticTheme {
     public abstract BackgroundTheme createBackgroundTheme();
 
     public abstract FicheTheme createFicheTheme();
+
+    public static CosmeticTheme fromId(String id) {
+        try {
+            return CosmeticTheme.valueOf(id);
+        } catch (IllegalArgumentException | NullPointerException e) {
+            return CosmeticTheme.EUROPEAN;
+        }
+    }
 }

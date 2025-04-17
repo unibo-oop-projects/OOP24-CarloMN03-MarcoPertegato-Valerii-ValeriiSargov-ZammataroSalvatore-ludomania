@@ -6,6 +6,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import ludomania.cosmetics.CosmeticTheme;
 
 /**
  * Interface for managing application settings such as locale, volume,
@@ -54,4 +55,10 @@ public interface SettingsManager {
      * @return an {@link IntegerProperty} for resolution height
      */
     IntegerProperty resolutionHeightProperty();
+
+    ObjectProperty<CosmeticTheme> cardThemeProperty();
+
+    ObjectProperty<CosmeticTheme> ficheThemeProperty();
+
+    ObjectProperty<CosmeticTheme> backgroundThemeProperty();
 }

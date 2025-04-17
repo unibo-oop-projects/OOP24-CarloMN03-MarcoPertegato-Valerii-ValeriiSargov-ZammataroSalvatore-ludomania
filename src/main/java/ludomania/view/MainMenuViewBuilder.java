@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import io.lyuda.jcards.Rank;
+import io.lyuda.jcards.Suit;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -130,11 +132,12 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     private Node shopSign() {
         final ImageView imageView = new ImageView(imageProvider.getImage(SHOPPING_CART_IMAGE_ID));
         final Label shopSign = new Label();
+        final Node card = imageProvider.getSVGCard(Rank.ACE, Suit.CLUBS);
         setText(shopSign, "shop");
         imageView.setPreserveRatio(true);
         imageView.setCache(true);
         Region image = imageProvider.getSVGFiche(500);
-        final VBox gameFrame = new VBox(shopSign, imageView, image);
+        final VBox gameFrame = new VBox(shopSign, imageView, image, card);
         imageView.setFitHeight(Region.USE_COMPUTED_SIZE);
         imageView.setFitWidth(Region.USE_COMPUTED_SIZE);
         gameFrame.setAlignment(Pos.BASELINE_CENTER);
