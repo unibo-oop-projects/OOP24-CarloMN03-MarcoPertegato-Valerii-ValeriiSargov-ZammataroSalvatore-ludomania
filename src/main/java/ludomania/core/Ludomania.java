@@ -15,7 +15,6 @@ import ludomania.core.impl.ImageManagerImpl;
 import ludomania.core.impl.ImageProviderImpl;
 import ludomania.core.impl.LanguageManagerImpl;
 import ludomania.core.impl.SceneManagerImpl;
-import ludomania.cosmetics.CosmeticTheme;
 import ludomania.settings.api.SettingsManager;
 import ludomania.settings.impl.SettingsManagerImpl;
 
@@ -31,7 +30,8 @@ public final class Ludomania extends Application {
         final ImageManager imageManager = new ImageManagerImpl(new HashMap<>());
         imageManager.init();
         final ImageProvider imageProvider = new ImageProviderImpl(imageManager,
-                new CosmeticSet(CosmeticTheme.EUROPEAN, CosmeticTheme.EUROPEAN, CosmeticTheme.EUROPEAN));
+                new CosmeticSet(settingsManager.cardThemeProperty().get(),
+                        settingsManager.backgroundThemeProperty().get(), settingsManager.ficheThemeProperty().get()));
 
         final AudioManager audioManager = new AudioManagerImpl(settingsManager.volumeProperty().doubleValue());
         audioManager.initialize();

@@ -60,14 +60,17 @@ public final class SettingsManagerImpl implements SettingsManager {
         prefs.put("backgroundThemeId", cardTheme.getName());
     }
 
+    @Override
     public ObjectProperty<CosmeticTheme> cardThemeProperty() {
         return cardTheme;
     }
 
+    @Override
     public ObjectProperty<CosmeticTheme> ficheThemeProperty() {
         return ficheTheme;
     }
 
+    @Override
     public ObjectProperty<CosmeticTheme> backgroundThemeProperty() {
         return backgroundTheme;
     }
