@@ -2,6 +2,7 @@ package ludomania.core.impl;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ludomania.controller.impl.CosmeticController;
 import ludomania.controller.impl.MainMenuController;
 import ludomania.core.api.AudioManager;
 import ludomania.core.api.ImageProvider;
@@ -55,6 +56,11 @@ public final class SceneManagerImpl implements SceneManager {
     public void switchToSettings() {
         mainScene
                 .setRoot(new SettingsController(settingsManager, this, audioManager).getView());
+    }
+
+    @Override
+    public void switchToCosmetics() {
+        mainScene.setRoot(new CosmeticController(settingsManager, this, audioManager).getView());
     }
 
     private void bindFullscreenToStage() {
@@ -111,9 +117,5 @@ public final class SceneManagerImpl implements SceneManager {
     @Override
     public ImageProvider getImageProvider() {
         return this.imageProvider;
-    }
-
-    @Override
-    public void switchToCosmetics() {
     }
 }
