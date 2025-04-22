@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.Slider;
@@ -19,86 +20,101 @@ import ludomania.view.ViewBuilder;
 
 public final class SettingsViewBuilder implements ViewBuilder {
     private static final int TOP_RIGHT_BOTTOM_LEFT = 15;
+    private static final int DEFAULT_SPACING = 10;
+
     private final LanguageManager languageManager;
     private final SettingsHandler eventHandler;
 
-    public SettingsViewBuilder(final SettingsHandler eventHandler, final LanguageManager languageManager) {
+    public SettingsViewBuilder(final SettingsHandler eventHandler,
+            final LanguageManager languageManager) {
         this.eventHandler = eventHandler;
         this.languageManager = languageManager;
     }
 
     @Override
     public Region build() {
-        final VBox results = new VBox(languageSelector(), volumeSlider(), fullscreenCheck(), resolutionSelector(),
-                actionButton());
-        results.setPadding(new Insets(TOP_RIGHT_BOTTOM_LEFT));
-        results.getStyleClass().add("settings-container");
-        return results;
+        VBox container = new VBox(DEFAULT_SPACING,
+                createLanguageSelector(),
+                createVolumeSlider(),
+                createFullscreenCheck(),
+                createResolutionSelector(),
+                createActionButtons());
+
+        container.setPadding(new Insets(TOP_RIGHT_BOTTOM_LEFT));
+        container.getStyleClass().add("settings-container");
+        return container;
     }
 
-    VBox languageSelector() {
-        final VBox results;
-        final Label languageLabel = new Label();
-        setText(languageLabel, "language_label");
-
-        final ComboBox<Locale> languageCombo = new ComboBox<>();
-        languageCombo.getItems().addAll(
-                Locale.ITALIAN,
-                Locale.ENGLISH);
-        languageCombo.setConverter(eventHandler.getLocaleStringConverter());
-        languageCombo.valueProperty().bindBidirectional(eventHandler.getCurrentLocaleProperty());
-        results = new VBox(languageLabel, languageCombo);
-        return results;
+    private VBox createLanguageSelector() {
+        return createLabeledControl(
+                "language_label",
+                createLocaleComboBox());
     }
 
-    VBox volumeSlider() {
-        final VBox results;
-        final Label volumeLabel = new Label();
-        setText(volumeLabel, "volume_label");
-        final Slider volumeSlider = new Slider(0, 1, eventHandler.getVolumeProperty().getValue());
-        volumeSlider.setBlockIncrement(0.1);
-        volumeSlider.valueProperty().bindBidirectional(eventHandler.getVolumeProperty());
-        volumeSlider.setShowTickLabels(true);
-        results = new VBox(volumeLabel, volumeSlider);
-        return results;
+    private ComboBox<Locale> createLocaleComboBox() {
+        ComboBox<Locale> comboBox = new ComboBox<>();
+        comboBox.getItems().addAll(Locale.ITALIAN, Locale.ENGLISH);
+        comboBox.setConverter(eventHandler.getLocaleStringConverter());
+        comboBox.valueProperty().bindBidirectional(eventHandler.getCurrentLocaleProperty());
+        return comboBox;
     }
 
-    VBox fullscreenCheck() {
-        final CheckBox fullscreenCheck = new CheckBox();
-        setText(fullscreenCheck, "fullscreen_check");
-
-        fullscreenCheck.selectedProperty().bindBidirectional(eventHandler.fullscreenProperty());
-        return new VBox(fullscreenCheck);
+    private VBox createVolumeSlider() {
+        return createLabeledControl(
+                "volume_label",
+                createVolumeControl());
     }
 
-    VBox resolutionSelector() {
-        final Label resolutionLabel = new Label();
-        setText(resolutionLabel, "resolution_label");
-        final ChoiceBox<String> resolutionChoice = new ChoiceBox<>();
-        resolutionChoice.getItems().addAll("800x600", "1280x720", "1920x1080", "2560x1440");
-        resolutionChoice.getSelectionModel().selectedItemProperty().addListener(
-                (obs, oldVal, newVal) -> {
-                    eventHandler.resolutionHandler(newVal);
-                });
-        return new VBox(resolutionLabel, resolutionChoice);
+    private Slider createVolumeControl() {
+        Slider slider = new Slider(0, 1, eventHandler.getVolumeProperty().getValue());
+        slider.setBlockIncrement(0.1);
+        slider.valueProperty().bindBidirectional(eventHandler.getVolumeProperty());
+        slider.setShowTickLabels(true);
+        return slider;
     }
 
-    HBox actionButton() {
-        final Button applyButton = new Button();
-        setText(applyButton, "apply_button");
-        applyButton.setOnAction(e -> eventHandler.save());
-
-        final Button resetButton = new Button();
-        setText(resetButton, "reset_button");
-        resetButton.setOnAction(e -> eventHandler.resetToDefaults());
-        final Button back = new Button();
-        setText(back, "go_back_button");
-        back.setOnMouseClicked(evt -> eventHandler.handleBack());
-        final HBox buttonBox = new HBox(10, applyButton, resetButton, back);
-        return new HBox(applyButton, resetButton, back, buttonBox);
+    private VBox createFullscreenCheck() {
+        CheckBox checkBox = new CheckBox();
+        setText(checkBox, "fullscreen_check");
+        checkBox.selectedProperty().bindBidirectional(eventHandler.fullscreenProperty());
+        return new VBox(checkBox);
     }
 
-    void setText(final Labeled target, final String property) {
+    private VBox createResolutionSelector() {
+        return createLabeledControl(
+                "resolution_label",
+                createResolutionChoiceBox());
+    }
+
+    private ChoiceBox<String> createResolutionChoiceBox() {
+        ChoiceBox<String> choiceBox = new ChoiceBox<>();
+        choiceBox.getItems().addAll("800x600", "1280x720", "1920x1080", "2560x1440");
+        choiceBox.getSelectionModel().selectedItemProperty()
+                .addListener((obs, oldVal, newVal) -> eventHandler.resolutionHandler(newVal));
+        return choiceBox;
+    }
+
+    private HBox createActionButtons() {
+        return new HBox(DEFAULT_SPACING,
+                createButton("apply_button", e -> eventHandler.save()),
+                createButton("reset_button", e -> eventHandler.resetToDefaults()),
+                createButton("go_back_button", e -> eventHandler.handleBack()));
+    }
+
+    private <T extends Control> VBox createLabeledControl(String labelKey, T control) {
+        Label label = new Label();
+        setText(label, labelKey);
+        return new VBox(label, control);
+    }
+
+    private Button createButton(String textKey, javafx.event.EventHandler<javafx.event.ActionEvent> handler) {
+        Button button = new Button();
+        setText(button, textKey);
+        button.setOnAction(handler);
+        return button;
+    }
+
+    private void setText(Labeled target, String property) {
         target.textProperty().bind(languageManager.bind(property));
     }
 }
