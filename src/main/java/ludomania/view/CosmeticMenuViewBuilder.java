@@ -2,6 +2,7 @@ package ludomania.view;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import io.lyuda.jcards.Rank;
@@ -79,7 +80,7 @@ public class CosmeticMenuViewBuilder implements ViewBuilder {
     private <T> Node createSelectionSection(List<T> items,
             CosmeticTheme selectedTheme,
             Function<T, Node> graphicCreator,
-            java.util.function.Consumer<T> changeHandler) {
+            Consumer<T> changeHandler) {
         ToggleGroup toggleGroup = new ToggleGroup();
         HBox container = new HBox();
         container.setAlignment(Pos.BASELINE_CENTER);
