@@ -84,16 +84,19 @@ public class CosmeticController implements Controller, CosmeticMenuHandler {
 
     @Override
     public void handleFicheChange(FicheTheme theme) {
+        audioManager.playSound("click");
         settingsManager.ficheThemeProperty().set(theme.getTheme());
     }
 
     @Override
     public void handleCardChange(CardTheme theme) {
+        audioManager.playSound("click");
         settingsManager.cardThemeProperty().set(theme.getTheme());
     }
 
     @Override
     public void handleBackgroundChange(BackgroundTheme theme) {
+        audioManager.playSound("click");
         settingsManager.backgroundThemeProperty().set(theme.getTheme());
     }
 

@@ -90,9 +90,9 @@ public final class MainMenuViewBuilder implements ViewBuilder {
         frame.setMinSize(0, 0);
         frame.getStyleClass().add("game-border");
 
-        if (content instanceof ImageView) {
+        if (content instanceof ImageView imageView) {
             VBox.setVgrow(content, Priority.ALWAYS);
-            ((ImageView) content).fitWidthProperty().bind(frame.widthProperty().subtract(8));
+            imageView.fitWidthProperty().bind(frame.widthProperty().subtract(8));
         }
 
         HBox.setHgrow(frame, Priority.ALWAYS);
