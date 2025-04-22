@@ -2,6 +2,8 @@ package ludomania.settings.impl;
 
 import java.util.Locale;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -107,7 +109,7 @@ public final class SettingsViewBuilder implements ViewBuilder {
         return new VBox(label, control);
     }
 
-    private Button createButton(String textKey, javafx.event.EventHandler<javafx.event.ActionEvent> handler) {
+    private Button createButton(String textKey, EventHandler<ActionEvent> handler) {
         Button button = new Button();
         setText(button, textKey);
         button.setOnAction(handler);
