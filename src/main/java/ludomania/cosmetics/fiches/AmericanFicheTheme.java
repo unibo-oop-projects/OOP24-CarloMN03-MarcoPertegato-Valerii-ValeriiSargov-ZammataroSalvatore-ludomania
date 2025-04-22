@@ -11,9 +11,9 @@ public class AmericanFicheTheme implements FicheTheme {
                         <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100" height="100">
                             <style>
                                 tspan { white-space:pre }
-                                    .s0 { fill:rgb(0, 0, 0) }
+                                    .s0 { fill:rgb(102, 5, 16) }
                                     .s1 { fill: %s }
-                                    .t1 { font-size: 150px;fill:rgb(202, 255, 123);font-weight: 400;font-family: "DejaVuSans", "DejaVu Sans" }
+                                    .t1 { font-size: 150px;fill:rgb(0, 0, 0);font-weight: 400;font-family: "DejaVuSans", "DejaVu Sans" }
                             </style>
                             <path id="Background" fill-rule="evenodd" class="s0" d="m300 600c-165.9 0-300-134.1-300-300 0-165.9 134.1-300 300-300 165.9 0 300 134.1 300 300 0 165.9-134.1 300-300 300z"/>
                             <path id="Forma 1" fill-rule="evenodd" class="s1" d="m300.5 517c-124.7 0-225.5-97-225.5-217 0-120 100.8-217 225.5-217 124.7 0 225.5 97 225.5 217 0 120-100.8 217-225.5 217z"/>

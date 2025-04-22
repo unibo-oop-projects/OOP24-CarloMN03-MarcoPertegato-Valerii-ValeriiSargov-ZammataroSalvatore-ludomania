@@ -8,8 +8,11 @@ import ludomania.cosmetics.CosmeticTheme;
 
 public class NeonCardTheme implements CardTheme {
 
-    private String getColor() {
-        return "#800080";
+    private String getColor(Suit suit) {
+        if (suit.equals(Suit.CLUBS) || suit.equals(Suit.SPADES)) {
+            return "#2235E3";
+        }
+        return "#33B51B";
     }
 
     private String getCard() {
@@ -18,7 +21,7 @@ public class NeonCardTheme implements CardTheme {
 
     @Override
     public String getCosmetic(Rank rank, Suit suit) {
-        String svg = CardImage.makeCard(suit.getPath(), rank.getPath(), getCard(), getColor());
+        String svg = CardImage.makeCard(suit.getPath(), rank.getPath(), getCard(), getColor(suit));
         svg = svg.replaceAll("href=\"(#[^\"]+)\"", "xlink:href=\"$1\"");
         if (!svg.contains("xmlns:xlink")) {
             svg = svg.replace("<svg", "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" ");

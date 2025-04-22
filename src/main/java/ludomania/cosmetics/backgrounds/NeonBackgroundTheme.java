@@ -7,7 +7,7 @@ public class NeonBackgroundTheme implements BackgroundTheme {
 
     @Override
     public String getCosmetic() {
-        return "#b300cb";
+        return "#800000";
     }
 
     @Override
