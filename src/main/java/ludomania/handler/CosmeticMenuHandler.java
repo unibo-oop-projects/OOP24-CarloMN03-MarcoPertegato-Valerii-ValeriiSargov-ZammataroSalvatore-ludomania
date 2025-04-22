@@ -4,6 +4,7 @@ import java.util.List;
 
 import ludomania.cosmetics.BackgroundTheme;
 import ludomania.cosmetics.CardTheme;
+import ludomania.cosmetics.CosmeticTheme;
 import ludomania.cosmetics.FicheTheme;
 
 public interface CosmeticMenuHandler {
@@ -13,11 +14,17 @@ public interface CosmeticMenuHandler {
 
     List<BackgroundTheme> getBackgroundThemes();
 
-    void handleFicheChange(String Theme);
+    void handleFicheChange(FicheTheme theme);
 
-    void handleCardChange(String Theme);
+    void handleCardChange(CardTheme theme);
 
-    void handleBackgroundChange(String Theme);
+    void handleBackgroundChange(BackgroundTheme theme);
 
     void handleBack();
+
+    CosmeticTheme getSelectedCardTheme();
+
+    CosmeticTheme getSelectedFicheTheme();
+
+    CosmeticTheme getSelectedBackgroundTheme();
 }

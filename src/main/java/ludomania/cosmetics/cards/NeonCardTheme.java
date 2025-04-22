@@ -4,6 +4,7 @@ import io.lyuda.jcards.CardImage;
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
 import ludomania.cosmetics.CardTheme;
+import ludomania.cosmetics.CosmeticTheme;
 
 public class NeonCardTheme implements CardTheme {
 
@@ -26,7 +27,7 @@ public class NeonCardTheme implements CardTheme {
     }
 
     @Override
-    public String getTheme() {
-        return "NEON";
+    public CosmeticTheme getTheme() {
+        return CosmeticTheme.NEON;
     }
 }

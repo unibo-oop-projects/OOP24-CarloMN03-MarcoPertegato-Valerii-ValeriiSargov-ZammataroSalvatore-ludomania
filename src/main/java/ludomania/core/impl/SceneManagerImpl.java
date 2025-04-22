@@ -1,6 +1,8 @@
 package ludomania.core.impl;
 
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import ludomania.controller.impl.CosmeticController;
 import ludomania.controller.impl.MainMenuController;
@@ -28,39 +30,65 @@ public final class SceneManagerImpl implements SceneManager {
         this.settingsManager = settingsManager;
         this.languageManager = languageManager;
         this.imageProvider = imageProvider;
+        initializeStageSettings();
+        this.mainScene = createMainScene();
+        primaryStage.setScene(mainScene);
+    }
+
+    private void initializeStageSettings() {
         if (!settingsManager.fullscreenProperty().get()) {
             primaryStage.setWidth(settingsManager.resolutionWidthProperty().get());
             primaryStage.setHeight(settingsManager.resolutionHeightProperty().get());
         }
         primaryStage.setFullScreen(settingsManager.fullscreenProperty().get());
+
         bindFullscreenToStage();
         bindResolutionToStage();
         bindVolumeToManager();
         bindLanguageToManager();
         bindCosmeticToProvider();
-        this.mainScene = new Scene(new MainMenuController(this, audioManager).getView(),
+    }
+
+    private Scene createMainScene() {
+        Parent root = new MainMenuController(this, audioManager).getView();
+        applyBackgroundToRoot(root);
+
+        Scene scene = new Scene(root,
                 settingsManager.resolutionWidthProperty().get(),
                 settingsManager.resolutionHeightProperty().get());
-        System.out.println(imageProvider.getBackgroundColor());
-        primaryStage.setScene(mainScene);
+        scene.setFill(imageProvider.getBackgroundColor());
+        return scene;
+    }
+
+    private void applyBackgroundToRoot(Parent root) {
+        Color bgColor = imageProvider.getBackgroundColor();
+        String cssColor = String.format("#%02x%02x%02x",
+                (int) (bgColor.getRed() * 255),
+                (int) (bgColor.getGreen() * 255),
+                (int) (bgColor.getBlue() * 255));
+        root.setStyle("-fx-background-color: " + cssColor + ";");
     }
 
     @Override
     public void switchToMainMenu() {
         audioManager.playMusic("devilTrigger");
-        mainScene
-                .setRoot(new MainMenuController(this, audioManager).getView());
+        Parent root = new MainMenuController(this, audioManager).getView();
+        applyBackgroundToRoot(root);
+        mainScene.setRoot(root);
     }
 
     @Override
     public void switchToSettings() {
-        mainScene
-                .setRoot(new SettingsController(settingsManager, this, audioManager).getView());
+        Parent root = new SettingsController(settingsManager, this, audioManager).getView();
+        applyBackgroundToRoot(root);
+        mainScene.setRoot(root);
     }
 
     @Override
     public void switchToCosmetics() {
-        mainScene.setRoot(new CosmeticController(settingsManager, this, audioManager).getView());
+        Parent root = new CosmeticController(settingsManager, this, audioManager).getView();
+        applyBackgroundToRoot(root);
+        mainScene.setRoot(root);
     }
 
     private void bindFullscreenToStage() {
@@ -106,7 +134,15 @@ public final class SceneManagerImpl implements SceneManager {
         settingsManager.backgroundThemeProperty().addListener((obs, oldValue, newValue) -> {
             settingsManager.save();
             imageProvider.setBackgroundTheme(newValue);
+            updateAllBackgrounds();
         });
+    }
+
+    private void updateAllBackgrounds() {
+        if (mainScene.getRoot() != null) {
+            applyBackgroundToRoot(mainScene.getRoot());
+        }
+        mainScene.setFill(imageProvider.getBackgroundColor());
     }
 
     @Override

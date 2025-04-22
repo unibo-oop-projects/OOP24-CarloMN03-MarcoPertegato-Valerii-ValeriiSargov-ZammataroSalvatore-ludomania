@@ -31,6 +31,18 @@ public class CosmeticSet {
         fiche = theme.createFicheTheme();
     }
 
+    public void setBackgroundTheme(BackgroundTheme theme) {
+        background = theme;
+    }
+
+    public void setCardTheme(CardTheme theme) {
+        card = theme;
+    }
+
+    public void setFicheTheme(FicheTheme theme) {
+        fiche = theme;
+    }
+
     public Color getBackground() {
         return Color.web(background.getCosmetic());
     }

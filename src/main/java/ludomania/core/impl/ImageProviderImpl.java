@@ -19,7 +19,10 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import ludomania.core.api.ImageManager;
 import ludomania.core.api.ImageProvider;
+import ludomania.cosmetics.BackgroundTheme;
+import ludomania.cosmetics.CardTheme;
 import ludomania.cosmetics.CosmeticTheme;
+import ludomania.cosmetics.FicheTheme;
 
 public class ImageProviderImpl implements ImageProvider {
     private final ImageManager imageManager;
@@ -36,12 +39,27 @@ public class ImageProviderImpl implements ImageProvider {
     }
 
     @Override
+    public void setBackgroundTheme(BackgroundTheme theme) {
+        currentTheme.setBackgroundTheme(theme);
+    }
+
+    @Override
     public void setCardTheme(CosmeticTheme theme) {
         currentTheme.setCardTheme(theme);
     }
 
     @Override
+    public void setCardTheme(CardTheme theme) {
+        currentTheme.setCardTheme(theme);
+    }
+
+    @Override
     public void setFicheTheme(CosmeticTheme theme) {
+        currentTheme.setFicheTheme(theme);
+    }
+
+    @Override
+    public void setFicheTheme(FicheTheme theme) {
         currentTheme.setFicheTheme(theme);
     }
 

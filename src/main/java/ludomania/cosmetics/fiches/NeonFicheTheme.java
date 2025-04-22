@@ -1,5 +1,6 @@
 package ludomania.cosmetics.fiches;
 
+import ludomania.cosmetics.CosmeticTheme;
 import ludomania.cosmetics.FicheTheme;
 
 public class NeonFicheTheme implements FicheTheme {
@@ -47,7 +48,7 @@ public class NeonFicheTheme implements FicheTheme {
     }
 
     @Override
-    public String getTheme() {
-        return "NEON";
+    public CosmeticTheme getTheme() {
+        return CosmeticTheme.NEON;
     }
 }

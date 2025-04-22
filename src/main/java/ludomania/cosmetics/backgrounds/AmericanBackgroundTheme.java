@@ -1,6 +1,7 @@
 package ludomania.cosmetics.backgrounds;
 
 import ludomania.cosmetics.BackgroundTheme;
+import ludomania.cosmetics.CosmeticTheme;
 
 public class AmericanBackgroundTheme implements BackgroundTheme {
 
@@ -10,7 +11,7 @@ public class AmericanBackgroundTheme implements BackgroundTheme {
     }
 
     @Override
-    public String getTheme() {
-        return "AMERICAN";
+    public CosmeticTheme getTheme() {
+        return CosmeticTheme.AMERICAN;
     }
 }

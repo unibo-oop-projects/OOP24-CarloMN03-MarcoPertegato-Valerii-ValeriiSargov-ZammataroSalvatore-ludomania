@@ -4,6 +4,7 @@ import io.lyuda.jcards.CardImage;
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
 import ludomania.cosmetics.CardTheme;
+import ludomania.cosmetics.CosmeticTheme;
 
 public class AmericanCardTheme implements CardTheme {
 
@@ -26,8 +27,8 @@ public class AmericanCardTheme implements CardTheme {
     }
 
     @Override
-    public String getTheme() {
-        return "AMERICAN";
+    public CosmeticTheme getTheme() {
+        return CosmeticTheme.AMERICAN;
     }
 
 }

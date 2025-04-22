@@ -1,5 +1,6 @@
 package ludomania.cosmetics.fiches;
 
+import ludomania.cosmetics.CosmeticTheme;
 import ludomania.cosmetics.FicheTheme;
 
 public class AmericanFicheTheme implements FicheTheme {
@@ -47,7 +48,7 @@ public class AmericanFicheTheme implements FicheTheme {
     }
 
     @Override
-    public String getTheme() {
-        return "AMERICAN";
+    public CosmeticTheme getTheme() {
+        return CosmeticTheme.AMERICAN;
     }
 }

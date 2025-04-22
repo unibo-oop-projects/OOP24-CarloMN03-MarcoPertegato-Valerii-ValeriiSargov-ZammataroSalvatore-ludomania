@@ -55,9 +55,9 @@ public final class SettingsManagerImpl implements SettingsManager {
         prefs.putBoolean("fullscreen", fullscreen.get());
         prefs.putInt("resolutionWidth", resolutionWidth.get());
         prefs.putInt("resolutionHeight", resolutionHeight.get());
-        prefs.put("cardThemeId", cardTheme.getName());
-        prefs.put("ficheThemeId", cardTheme.getName());
-        prefs.put("backgroundThemeId", cardTheme.getName());
+        prefs.put("cardThemeId", cardTheme.get().name());
+        prefs.put("ficheThemeId", ficheTheme.get().name());
+        prefs.put("backgroundThemeId", backgroundTheme.get().name());
     }
 
     @Override
