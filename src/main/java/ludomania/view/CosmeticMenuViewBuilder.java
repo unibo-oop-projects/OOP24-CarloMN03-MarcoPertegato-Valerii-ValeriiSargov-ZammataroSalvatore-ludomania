@@ -1,5 +1,6 @@
 package ludomania.view;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.function.Function;
 
@@ -120,9 +121,8 @@ public class CosmeticMenuViewBuilder implements ViewBuilder {
 
     private <T> boolean isSelectedTheme(T item, CosmeticTheme selectedTheme) {
         try {
-            // Using reflection to call getTheme() on different theme types
             return item.getClass().getMethod("getTheme").invoke(item).equals(selectedTheme);
-        } catch (Exception e) {
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             return false;
         }
     }
