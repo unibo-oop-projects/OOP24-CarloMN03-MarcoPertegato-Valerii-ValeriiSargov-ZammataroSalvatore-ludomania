@@ -23,4 +23,9 @@ public class EuropeanCardTheme implements CardTheme {
         }
         return svg;
     }
+
+    @Override
+    public String getTheme() {
+        return "EUROPEAN";
+    }
 }

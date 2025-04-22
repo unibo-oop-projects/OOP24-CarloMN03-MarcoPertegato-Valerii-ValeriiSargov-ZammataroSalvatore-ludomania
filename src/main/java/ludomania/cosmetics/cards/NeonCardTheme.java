@@ -25,4 +25,8 @@ public class NeonCardTheme implements CardTheme {
         return svg;
     }
 
+    @Override
+    public String getTheme() {
+        return "NEON";
+    }
 }

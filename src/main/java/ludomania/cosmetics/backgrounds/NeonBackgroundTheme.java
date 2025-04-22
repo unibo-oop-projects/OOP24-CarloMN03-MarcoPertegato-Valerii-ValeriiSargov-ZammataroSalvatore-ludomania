@@ -9,4 +9,9 @@ public class NeonBackgroundTheme implements BackgroundTheme {
         return "#b300cb";
     }
 
+    @Override
+    public String getTheme() {
+        return "NEON";
+    }
+
 }

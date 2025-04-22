@@ -23,4 +23,5 @@ public interface ImageProvider {
 
     Region getSVGFiche(Integer number);
 
+    Region svgHelperMethod(String svg);
 }

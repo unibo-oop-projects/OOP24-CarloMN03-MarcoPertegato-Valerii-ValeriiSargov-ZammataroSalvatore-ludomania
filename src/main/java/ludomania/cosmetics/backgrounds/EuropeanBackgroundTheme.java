@@ -9,4 +9,8 @@ public class EuropeanBackgroundTheme implements BackgroundTheme {
         return "#287233";
     }
 
+    @Override
+    public String getTheme() {
+        return "EUROPEAN";
+    }
 }

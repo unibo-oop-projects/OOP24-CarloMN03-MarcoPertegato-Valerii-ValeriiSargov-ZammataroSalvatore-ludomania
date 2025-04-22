@@ -25,4 +25,9 @@ public class AmericanCardTheme implements CardTheme {
         return svg;
     }
 
+    @Override
+    public String getTheme() {
+        return "AMERICAN";
+    }
+
 }

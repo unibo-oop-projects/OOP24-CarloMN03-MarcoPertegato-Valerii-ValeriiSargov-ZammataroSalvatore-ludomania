@@ -58,48 +58,33 @@ public class ImageProviderImpl implements ImageProvider {
     @Override
     public Region getSVGCard(Rank rank, Suit suit) {
         String svg = currentTheme.getCard(rank, suit);
-        try {
-            ImageTranscoder transcoder = new PNGTranscoder();
+        return svgHelperMethod(svg);
 
-            TranscoderInput input = new TranscoderInput(new StringReader(svg));
-
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            TranscoderOutput output = new TranscoderOutput(outputStream);
-
-            transcoder.transcode(input, output);
-
-            byte[] imgData = outputStream.toByteArray();
-            Image fxImage = new Image(new ByteArrayInputStream(imgData));
-
-            ImageView imageView = new ImageView(fxImage);
-            return new HBox(imageView);
-
-        } catch (TranscoderException e) {
-            return new HBox();
-        }
     }
 
     @Override
     public Region getSVGFiche(Integer number) {
         String svg = currentTheme.getFiche(number);
+        return svgHelperMethod(svg);
+    }
+
+    @Override
+    public Region svgHelperMethod(String svg) {
         try {
             ImageTranscoder transcoder = new PNGTranscoder();
-
             TranscoderInput input = new TranscoderInput(new StringReader(svg));
-
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             TranscoderOutput output = new TranscoderOutput(outputStream);
-
+            input.setURI("http://IDontKnowWhyINeedThisURIToMakeThisMethodWorkButItNeedsIt" + "=^.^=" + ".com/");
             transcoder.transcode(input, output);
-
             byte[] imgData = outputStream.toByteArray();
             Image fxImage = new Image(new ByteArrayInputStream(imgData));
-
             ImageView imageView = new ImageView(fxImage);
+            imageView.setPreserveRatio(true);
+            imageView.setFitHeight(100);
             return new HBox(imageView);
         } catch (TranscoderException e) {
             return new HBox();
         }
     }
-
 }

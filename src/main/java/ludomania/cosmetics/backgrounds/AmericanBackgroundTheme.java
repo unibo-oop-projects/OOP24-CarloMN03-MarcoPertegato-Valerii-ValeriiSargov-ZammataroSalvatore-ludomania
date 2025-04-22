@@ -9,4 +9,8 @@ public class AmericanBackgroundTheme implements BackgroundTheme {
         return "#2596be";
     }
 
+    @Override
+    public String getTheme() {
+        return "AMERICAN";
+    }
 }
