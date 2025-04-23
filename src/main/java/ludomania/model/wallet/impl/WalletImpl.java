@@ -1,15 +1,20 @@
 package ludomania.model.wallet.impl;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import ludomania.model.wallet.api.Wallet;
 
 public class WalletImpl implements Wallet {
-    private DoubleProperty money;
+    private final DoubleProperty money;
+
+    public WalletImpl(Double startingAmount) {
+        money = new SimpleDoubleProperty(startingAmount);
+    }
 
     @Override
     public boolean withdraw(Double amount) {
-        if (money.getValue() - amount >= 0) {
-            money.subtract(amount).doubleValue();
+        if (canWithdraw(amount)) {
+            money.set(money.get() - amount);
             return true;
         }
         return false;
@@ -17,8 +22,17 @@ public class WalletImpl implements Wallet {
 
     @Override
     public boolean deposit(Double amount) {
-        money.add(amount).doubleValue();
+        money.set(money.get() + amount);
         return true;
+    }
+
+    public boolean canWithdraw(Double amount) {
+        return money.get() - amount >= 0;
+    }
+
+    @Override
+    public Double getMoney() {
+        return money.get();
     }
 
 }
