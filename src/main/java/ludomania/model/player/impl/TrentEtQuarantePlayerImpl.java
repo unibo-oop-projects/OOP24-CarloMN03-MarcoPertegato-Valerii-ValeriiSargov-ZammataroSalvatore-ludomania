@@ -12,7 +12,8 @@ public class TrentEtQuarantePlayerImpl extends TrenteEtQuarantePlayer {
 
     @Override
     public Bet makeBet(Double amount) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'makeBet'");
     }
 
 }

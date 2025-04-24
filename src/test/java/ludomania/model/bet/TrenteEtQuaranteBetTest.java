@@ -1,53 +1,41 @@
 package ludomania.model.bet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ludomania.model.bet.impl.CouleurBet;
-import ludomania.model.bet.impl.RougeBet;
-import ludomania.model.bet.impl.TrenteEtQuaranteBetColor;
-import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
+import ludomania.model.bet.api.TrenteEtQuaranteBetType;
+import ludomania.model.bet.impl.TrenteEtQuaranteBet;
 
 public class TrenteEtQuaranteBetTest {
 
     private static final int ROUGE_AMOUNT = 100;
-    private static final int COULEUR_AMOUNT = 55;    
+    private static final int ENVERSE_AMOUNT = 55;    
     
-    private RougeBet rBet;
-    private double rougePayout;
-
-    private CouleurBet cBet;
-    private double couleurPayout;
+    private TrenteEtQuaranteBet rBet;
+    private TrenteEtQuaranteBet cBet;
 
     @BeforeEach
     public void setUp(){
-        rBet = new RougeBet(ROUGE_AMOUNT, TrenteEtQuaranteBetColor.ROUGE);
-        rougePayout = rBet.getColor().getPayout();
-        cBet = new CouleurBet(COULEUR_AMOUNT, TrenteEtQuaranteBetType.ENVERSE);
-        couleurPayout = cBet.getType().getPayout();
-    }
-
-    @Test
-    public void testGetValue() {
-        assertEquals(ROUGE_AMOUNT, rBet.getValue());
-        assertEquals(COULEUR_AMOUNT, cBet.getValue());
+        rBet = new TrenteEtQuaranteBet(ROUGE_AMOUNT, TrenteEtQuaranteBetType.ROUGE);        
+        cBet = new TrenteEtQuaranteBet(ENVERSE_AMOUNT, TrenteEtQuaranteBetType.ENVERSE);
     }
 
     @Test
     public void testGetters() {
-        assertEquals(TrenteEtQuaranteBetColor.ROUGE, rBet.getColor());
-        assertEquals("Rouge", rBet.getColor().getDisplayName());
+        assertEquals(ROUGE_AMOUNT, rBet.getValue());
+        assertEquals(TrenteEtQuaranteBetType.ROUGE, rBet.getType());
+        assertEquals("Rouge", rBet.getType().getTypeName());
+
+        assertEquals(ENVERSE_AMOUNT, cBet.getValue());        
         assertEquals(TrenteEtQuaranteBetType.ENVERSE, cBet.getType());
-        assertEquals("Enverse", cBet.getType().getDisplayName());
+        assertEquals("Enverse", cBet.getType().getTypeName());
     }
 
     @Test
     public void testEvaluate() {
-        assertEquals(ROUGE_AMOUNT * rougePayout, rBet.evaluate());
-        assertEquals(COULEUR_AMOUNT * couleurPayout, cBet.evaluate());
+        assertEquals(ROUGE_AMOUNT * rBet.getType().getPayout(), rBet.evaluate());
+        assertEquals(ENVERSE_AMOUNT * cBet.getType().getPayout(), cBet.evaluate());
     }
 }
