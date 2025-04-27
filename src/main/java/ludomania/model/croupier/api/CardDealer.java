@@ -2,7 +2,6 @@ package ludomania.model.croupier.api;
 
 import java.util.Map;
 import java.util.Random;
-
 import io.lyuda.jcards.Card;
 import io.lyuda.jcards.Deck;
 import io.lyuda.jcards.DeckFactory;
@@ -11,6 +10,7 @@ import ludomania.model.player.api.Player;
 
 public abstract class CardDealer<T> extends Croupier<T> {
 
+    private static final int MIN_DECK_NUM = 3;
     private final DeckFactory decks;
 
     public CardDealer(Map<Player, Bet> roundBet, DeckFactory decks) {
@@ -52,6 +52,6 @@ public abstract class CardDealer<T> extends Croupier<T> {
     }
 
     public boolean needToResetAllDecks() {
-        return decks.getDeckCount() < 3;
+        return decks.getDeckCount() < MIN_DECK_NUM;
     }
 }

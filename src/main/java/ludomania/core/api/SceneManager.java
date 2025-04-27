@@ -26,4 +26,8 @@ public interface SceneManager {
      */
     LanguageManager getLanguageManager();
 
+    ImageProvider getImageProvider();
+
+    void switchToCosmetics();
+
 }

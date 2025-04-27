@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import ludomania.cosmetics.CosmeticTheme;
 import ludomania.settings.api.SettingsManager;
 
 public final class SettingsManagerImpl implements SettingsManager {
@@ -24,6 +25,9 @@ public final class SettingsManagerImpl implements SettingsManager {
     private final BooleanProperty fullscreen = new SimpleBooleanProperty();
     private final IntegerProperty resolutionWidth = new SimpleIntegerProperty();
     private final IntegerProperty resolutionHeight = new SimpleIntegerProperty();
+    private final ObjectProperty<CosmeticTheme> cardTheme = new SimpleObjectProperty<>();
+    private final ObjectProperty<CosmeticTheme> ficheTheme = new SimpleObjectProperty<>();
+    private final ObjectProperty<CosmeticTheme> backgroundTheme = new SimpleObjectProperty<>();
 
     public SettingsManagerImpl() {
         load();
@@ -38,6 +42,9 @@ public final class SettingsManagerImpl implements SettingsManager {
         fullscreen.set(prefs.getBoolean("fullscreen", false));
         resolutionWidth.set(prefs.getInt("resolutionWidth", DEFAULT_WIDTH_VALUE));
         resolutionHeight.set(prefs.getInt("resolutionHeight", DEFAULT_HEIGHT_VALUE));
+        cardTheme.set(CosmeticTheme.fromId(prefs.get("cardThemeId", CosmeticTheme.EUROPEAN.name())));
+        ficheTheme.set(CosmeticTheme.fromId(prefs.get("ficheThemeId", CosmeticTheme.EUROPEAN.name())));
+        backgroundTheme.set(CosmeticTheme.fromId(prefs.get("backgroundThemeId", CosmeticTheme.EUROPEAN.name())));
     }
 
     @Override
@@ -48,6 +55,24 @@ public final class SettingsManagerImpl implements SettingsManager {
         prefs.putBoolean("fullscreen", fullscreen.get());
         prefs.putInt("resolutionWidth", resolutionWidth.get());
         prefs.putInt("resolutionHeight", resolutionHeight.get());
+        prefs.put("cardThemeId", cardTheme.get().name());
+        prefs.put("ficheThemeId", ficheTheme.get().name());
+        prefs.put("backgroundThemeId", backgroundTheme.get().name());
+    }
+
+    @Override
+    public ObjectProperty<CosmeticTheme> cardThemeProperty() {
+        return cardTheme;
+    }
+
+    @Override
+    public ObjectProperty<CosmeticTheme> ficheThemeProperty() {
+        return ficheTheme;
+    }
+
+    @Override
+    public ObjectProperty<CosmeticTheme> backgroundThemeProperty() {
+        return backgroundTheme;
     }
 
     @Override
