@@ -3,7 +3,7 @@ package ludomania.cosmetics.backgrounds;
 import ludomania.cosmetics.BackgroundTheme;
 import ludomania.cosmetics.CosmeticTheme;
 
-public class EuropeanBackgroundTheme implements BackgroundTheme {
+public final class EuropeanBackgroundTheme implements BackgroundTheme {
 
     @Override
     public String getCosmetic() {

@@ -11,6 +11,17 @@ import ludomania.core.api.SceneManager;
 import ludomania.settings.api.SettingsHandler;
 import ludomania.settings.api.SettingsManager;
 
+/**
+ * Controller responsible for handling user interactions in the settings view.
+ * <p>
+ * Manages settings such as language, audio volume, fullscreen mode, and screen
+ * resolution,
+ * delegating persistence to the {@link SettingsManager}.
+ * <p>
+ * Also handles navigation actions and sound feedback via the
+ * {@link AudioManager}.
+ */
+
 public final class SettingsController implements SettingsHandler, Controller {
     private static final double DEFAULT_AUDIO_VALUE = 0.8;
     private static final int DEFAULT_WIDTH_VALUE = 800;
@@ -19,6 +30,14 @@ public final class SettingsController implements SettingsHandler, Controller {
     private final SettingsViewBuilder viewBuilder;
     private final SceneManager sceneManager;
     private final AudioManager audioManager;
+
+    /**
+     * Constructs a SettingsController with the required managers.
+     *
+     * @param settingsManager the manager handling user preferences persistence
+     * @param sceneManager    the manager handling scene navigation
+     * @param audioManager    the manager handling audio feedback
+     */
 
     public SettingsController(final SettingsManager settingsManager, final SceneManager sceneManager,
             final AudioManager audioManager) {

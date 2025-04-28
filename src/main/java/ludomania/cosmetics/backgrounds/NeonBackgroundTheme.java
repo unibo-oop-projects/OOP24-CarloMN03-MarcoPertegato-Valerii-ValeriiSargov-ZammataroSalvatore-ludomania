@@ -3,7 +3,7 @@ package ludomania.cosmetics.backgrounds;
 import ludomania.cosmetics.BackgroundTheme;
 import ludomania.cosmetics.CosmeticTheme;
 
-public class NeonBackgroundTheme implements BackgroundTheme {
+public final class NeonBackgroundTheme implements BackgroundTheme {
 
     @Override
     public String getCosmetic() {

@@ -6,9 +6,9 @@ import io.lyuda.jcards.Suit;
 import ludomania.cosmetics.CardTheme;
 import ludomania.cosmetics.CosmeticTheme;
 
-public class NeonCardTheme implements CardTheme {
+public final class NeonCardTheme implements CardTheme {
 
-    private String getColor(Suit suit) {
+    private String getColor(final Suit suit) {
         if (suit.equals(Suit.CLUBS) || suit.equals(Suit.SPADES)) {
             return "#2235E3";
         }
@@ -20,7 +20,7 @@ public class NeonCardTheme implements CardTheme {
     }
 
     @Override
-    public String getCosmetic(Rank rank, Suit suit) {
+    public String getCosmetic(final Rank rank, final Suit suit) {
         String svg = CardImage.makeCard(suit.getPath(), rank.getPath(), getCard(), getColor(suit));
         svg = svg.replaceAll("href=\"(#[^\"]+)\"", "xlink:href=\"$1\"");
         if (!svg.contains("xmlns:xlink")) {
