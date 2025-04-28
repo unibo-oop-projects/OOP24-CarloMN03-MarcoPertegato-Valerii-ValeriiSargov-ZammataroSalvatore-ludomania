@@ -3,9 +3,9 @@ package ludomania.cosmetics.fiches;
 import ludomania.cosmetics.CosmeticTheme;
 import ludomania.cosmetics.FicheTheme;
 
-public class EuropeanFicheTheme implements FicheTheme {
-    private String getFiche(String color, int number) {
-        String svg = String.format(
+public final class EuropeanFicheTheme implements FicheTheme {
+    private String getFiche(final String color, final int number) {
+        return String.format(
                 """
                         <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100" height="100">
                             <style>
@@ -23,11 +23,10 @@ public class EuropeanFicheTheme implements FicheTheme {
                             </text>
                             </svg>""",
                 color, number);
-        return svg;
     }
 
     @Override
-    public String getCosmetic(Integer value) {
+    public String getCosmetic(final Integer value) {
         if (value >= 500) {
             return getFiche("#800080", value);
         }

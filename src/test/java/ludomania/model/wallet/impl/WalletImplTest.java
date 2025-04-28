@@ -11,16 +11,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class WalletImplTest {
+class WalletImplTest {
 
     private static final double MAX_DELTA = 0.001;
     private static final double AMOUNT = 100.0;
-    private static final double startingAmount = 100.0;
+    private static final double STARTING_AMOUNT = 100.0;
     private WalletImpl wallet;
 
     @BeforeEach
     void setUp() {
-        this.wallet = new WalletImpl(startingAmount);
+        this.wallet = new WalletImpl(STARTING_AMOUNT);
     }
 
     /**

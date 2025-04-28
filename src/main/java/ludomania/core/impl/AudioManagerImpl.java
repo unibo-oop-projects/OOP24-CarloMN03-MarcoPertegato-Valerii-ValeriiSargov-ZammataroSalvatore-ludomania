@@ -8,11 +8,27 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import ludomania.core.api.AudioManager;
 
+/**
+ * Implementation of the {@link AudioManager} interface that manages sound
+ * effects and background music.
+ * <p>
+ * This class is responsible for loading, playing, and controlling the volume of
+ * sound effects and background music.
+ * It provides methods to load audio files, play sound effects, and control the
+ * master volume of all sounds.
+ * </p>
+ */
+
 public final class AudioManagerImpl implements AudioManager {
     private final Map<String, AudioClip> soundEffects;
     private final Map<String, MediaPlayer> backgroundTracks;
     private double masterVolume;
 
+    /**
+     * Constructs an {@link AudioManagerImpl} with the specified master volume.
+     *
+     * @param masterVolume the initial volume level for all sounds
+     */
     public AudioManagerImpl(final double masterVolume) {
         soundEffects = new HashMap<>();
         backgroundTracks = new HashMap<>();
