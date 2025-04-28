@@ -33,7 +33,7 @@ public final class Ludomania extends Application {
     /**
      * The main entry point for the application.
      * <p>
-     * This method starts the application by calling the {@link launch(String[])}
+     * This method starts the application by calling the launch(String[])
      * method from JavaFX.
      * </p>
      * 

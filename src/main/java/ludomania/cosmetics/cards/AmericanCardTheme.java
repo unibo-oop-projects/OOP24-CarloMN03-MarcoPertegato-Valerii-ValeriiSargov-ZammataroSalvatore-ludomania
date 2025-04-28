@@ -6,6 +6,15 @@ import io.lyuda.jcards.Suit;
 import ludomania.cosmetics.CardTheme;
 import ludomania.cosmetics.CosmeticTheme;
 
+/**
+ * The {@code AmericanCardTheme} class implements the {@link CardTheme}
+ * interface,
+ * providing a cosmetic style for cards inspired by American motifs.
+ * <p>
+ * This theme defines specific colors for each suit and generates a customized
+ * SVG representation for the cards.
+ * </p>
+ */
 public final class AmericanCardTheme implements CardTheme {
 
     private String getColor(final Suit suit) {

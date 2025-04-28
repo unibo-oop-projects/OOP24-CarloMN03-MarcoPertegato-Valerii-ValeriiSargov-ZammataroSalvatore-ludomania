@@ -1,15 +1,40 @@
 package ludomania.cosmetics.fiches;
 
+import java.util.Map;
+
 import ludomania.cosmetics.CosmeticTheme;
 import ludomania.cosmetics.FicheValue;
 
-public class AmericanFicheTheme extends SimpleFicheTheme {
+/**
+ * The {@code AmericanFicheTheme} class defines the color scheme for fiches
+ * using
+ * an American-style theme.
+ * <p>
+ * It sets specific background, text, and fiche colors to match a style
+ * commonly associated with American casino fiches.
+ * </p>
+ * <p>
+ * This class extends {@link SimpleFicheTheme} and overrides the methods needed
+ * to
+ * initialize the color mapping and define the theme type.
+ * </p>
+ *
+ * @see SimpleFicheTheme
+ */
+public final class AmericanFicheTheme extends SimpleFicheTheme {
+    /**
+     * Constructs a new {@code AmericanFicheTheme} instance,
+     * initializing the color scheme by calling {@link #initialize()}.
+     */
+    public AmericanFicheTheme() {
+        initialize();
+    }
 
     @Override
     protected void initColori() {
-        backgroundColor = "#660510";
-        textColor = "#000000";
-
+        setBackgroundColor("#660510");
+        setTextColor("#000000");
+        final Map<FicheValue, String> colori = getColori();
         colori.put(FicheValue.UNO, "#FFFFFF");
         colori.put(FicheValue.CINQUE, "#800000");
         colori.put(FicheValue.DIECI, "#000080");

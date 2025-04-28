@@ -6,6 +6,14 @@ import io.lyuda.jcards.Suit;
 import ludomania.cosmetics.CardTheme;
 import ludomania.cosmetics.CosmeticTheme;
 
+/**
+ * The {@code NeonCardTheme} class implements the {@link CardTheme} interface,
+ * providing a cosmetic style for cards with a vibrant neon theme.
+ * <p>
+ * This theme assigns neon-like colors to the suits and generates
+ * customized SVG representations for the cards.
+ * </p>
+ */
 public final class NeonCardTheme implements CardTheme {
 
     private String getColor(final Suit suit) {
