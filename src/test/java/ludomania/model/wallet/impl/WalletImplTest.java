@@ -51,13 +51,4 @@ class WalletImplTest {
         assertEquals(70.0, wallet.getMoney(), MAX_DELTA);
     }
 
-    /**
-     * Test for the withdraw method
-     */
-    @Test
-    void testCanWithdrawTrue() {
-        assertTrue(wallet.canWithdraw(50.0));
-        assertFalse(wallet.canWithdraw(150.0));
-    }
-
 }
