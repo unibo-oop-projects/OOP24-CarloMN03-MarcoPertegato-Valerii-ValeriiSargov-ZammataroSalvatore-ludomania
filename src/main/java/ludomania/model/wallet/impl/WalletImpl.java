@@ -38,7 +38,7 @@ public final class WalletImpl implements Wallet {
         return true;
     }
 
-    public boolean canWithdraw(final Double amount) {
+    private boolean canWithdraw(final Double amount) {
         return money.get() - amount >= 0;
     }
 

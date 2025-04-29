@@ -98,7 +98,7 @@ public final class CosmeticMenuViewBuilder implements ViewBuilder {
     }
 
     @SuppressWarnings("unchecked")
-	private <T> Node createSelectionSection(final List<T> items,
+    private <T> Node createSelectionSection(final List<T> items,
             final CosmeticTheme selectedTheme,
             final Function<T, Node> graphicCreator,
             final Consumer<T> changeHandler) {
