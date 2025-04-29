@@ -55,6 +55,9 @@ dependencies {
     implementation("org.apache.xmlgraphics:batik-codec:1.17")
     implementation("org.apache.xmlgraphics:batik-svg-dom:1.17")
     implementation("xml-apis:xml-apis:1.4.01")
+
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation("org.json:json:20250107")
 }
 
 application {
