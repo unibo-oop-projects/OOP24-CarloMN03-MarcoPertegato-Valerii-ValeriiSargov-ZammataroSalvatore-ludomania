@@ -1,5 +1,8 @@
 package ludomania.cosmetics;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import ludomania.cosmetics.backgrounds.AmericanBackgroundTheme;
@@ -12,12 +15,10 @@ import ludomania.cosmetics.fiches.AmericanFicheTheme;
 import ludomania.cosmetics.fiches.EuropeanFicheTheme;
 import ludomania.cosmetics.fiches.NeonFicheTheme;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Test class for the CosmeticTheme enum.
  */
-public class CosmeticThemeTest {
+class CosmeticThemeTest {
 
     @Test
     void testCreateCardTheme() {

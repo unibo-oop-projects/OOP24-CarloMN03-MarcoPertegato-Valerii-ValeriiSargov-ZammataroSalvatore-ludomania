@@ -1,20 +1,12 @@
 package ludomania.core.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
-
-import org.junit.jupiter.api.BeforeEach;
-
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
-import javafx.application.Platform;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -39,53 +31,54 @@ import ludomania.cosmetics.CosmeticTheme;
 import ludomania.cosmetics.FicheTheme;
 import ludomania.settings.api.SettingsManager;
 
-class SceneManagerImplBindingTest extends ApplicationTest{
-
-    private SceneManagerImpl sceneManager;
+class SceneManagerImplBindingTest extends ApplicationTest {
+    private static final double EXPECTED_VOLUME = 0.66;
+    private static final int DEFAULT_WIDTH = 800;
+    private static final int DEFAULT_HEIGHT = 600;
+    private static final double VOLUME_TOLERANCE = 0.001;
+    private static final int RESOLUTION_WIDTH_1 = 1280;
+    private static final int RESOLUTION_HEIGHT_1 = 720;
+    private static final int RESOLUTION_WIDTH_2 = 1920;
+    private static final int RESOLUTION_HEIGHT_2 = 1080;
     private TestSettingsManager settingsManager;
     private TestAudioManager audioManager;
     private TestLanguageManager languageManager;
-    private TestImageProvider imageProvider;
     private Stage stage;
 
     @Override
-    public void start(Stage stage) {
+    public void start(final Stage stage) {
         this.stage = stage;
-
         settingsManager = new TestSettingsManager();
         audioManager = new TestAudioManager();
         languageManager = new TestLanguageManager();
-        imageProvider = new TestImageProvider();
-
-        stage.setScene(new Scene(new StackPane(), 800, 600));
+        stage.setScene(new Scene(new StackPane(), DEFAULT_WIDTH, DEFAULT_HEIGHT));
         stage.show();
-
-        sceneManager = new SceneManagerImpl(stage, settingsManager, audioManager, languageManager, imageProvider);
+        new SceneManagerImpl(stage, settingsManager, audioManager, languageManager, new TestImageProvider());
     }
 
     @Test
     void testVolumeBinding() {
-        settingsManager.volumeProperty().set(0.66);
-        assertEquals(0.66, audioManager.getMasterVolume(), 0.001);
+        settingsManager.volumeProperty().set(EXPECTED_VOLUME);
+        assertEquals(EXPECTED_VOLUME, audioManager.getMasterVolume(), VOLUME_TOLERANCE);
     }
 
     @Test
     void testLanguageBinding() {
-        Locale newLocale = Locale.FRENCH;
+        final Locale newLocale = Locale.FRENCH;
         settingsManager.currentLocaleProperty().set(newLocale);
         assertEquals(newLocale, languageManager.getLocale());
     }
 
     @Test
     void testResolutionBinding() {
-        settingsManager.resolutionWidthProperty().set(1280);
-        settingsManager.resolutionHeightProperty().set(720);
-        assertEquals(1280, stage.getWidth());
-        assertEquals(720, stage.getHeight());
-        settingsManager.resolutionWidthProperty().set(1920);
-        settingsManager.resolutionHeightProperty().set(1080);
-        assertEquals(1920, stage.getWidth());
-        assertEquals(1080, stage.getHeight());
+        settingsManager.resolutionWidthProperty().set(RESOLUTION_WIDTH_1);
+        settingsManager.resolutionHeightProperty().set(RESOLUTION_HEIGHT_1);
+        assertEquals(RESOLUTION_WIDTH_1, stage.getWidth());
+        assertEquals(RESOLUTION_HEIGHT_1, stage.getHeight());
+        settingsManager.resolutionWidthProperty().set(RESOLUTION_WIDTH_2);
+        settingsManager.resolutionHeightProperty().set(RESOLUTION_HEIGHT_2);
+        assertEquals(RESOLUTION_WIDTH_2, stage.getWidth());
+        assertEquals(RESOLUTION_HEIGHT_2, stage.getHeight());
     }
 
     class TestSettingsManager implements SettingsManager {
@@ -99,9 +92,12 @@ class SceneManagerImplBindingTest extends ApplicationTest{
         private final BooleanProperty fullscreen = new SimpleBooleanProperty(true);
         private final IntegerProperty resolutionWidth = new SimpleIntegerProperty(DEFAULT_WIDTH_VALUE);
         private final IntegerProperty resolutionHeight = new SimpleIntegerProperty(DEFAULT_HEIGHT_VALUE);
-        private final ObjectProperty<CosmeticTheme> cardTheme = new SimpleObjectProperty<>(CosmeticTheme.fromId("EUROPEAN"));
-        private final ObjectProperty<CosmeticTheme> ficheTheme = new SimpleObjectProperty<>(CosmeticTheme.fromId("EUROPEAN"));
-        private final ObjectProperty<CosmeticTheme> backgroundTheme = new SimpleObjectProperty<>(CosmeticTheme.fromId("EUROPEAN"));
+        private final ObjectProperty<CosmeticTheme> 
+            cardTheme = new SimpleObjectProperty<>(CosmeticTheme.fromId("EUROPEAN"));
+        private final ObjectProperty<CosmeticTheme> 
+            ficheTheme = new SimpleObjectProperty<>(CosmeticTheme.fromId("EUROPEAN"));
+        private final ObjectProperty<CosmeticTheme> 
+            backgroundTheme = new SimpleObjectProperty<>(CosmeticTheme.fromId("EUROPEAN"));
 
         @Override
         public BooleanProperty fullscreenProperty() {
@@ -153,7 +149,7 @@ class SceneManagerImplBindingTest extends ApplicationTest{
         private double volume = 1.0;
 
         @Override
-        public void setMasterVolume(double volume) {
+        public void setMasterVolume(final double volume) {
             this.volume = volume;
         }
 
@@ -167,19 +163,19 @@ class SceneManagerImplBindingTest extends ApplicationTest{
         }
 
         @Override
-        public void loadSoundEffect(String id, String filePath) {
+        public void loadSoundEffect(final String id, final String filePath) {
         }
 
         @Override
-        public void loadBackgroundTrack(String id, String filePath) {
+        public void loadBackgroundTrack(final String id, final String filePath) {
         }
 
         @Override
-        public void playSound(String id) {
+        public void playSound(final String id) {
         }
 
         @Override
-        public void playMusic(String id) {
+        public void playMusic(final String id) {
         }
 
         @Override
@@ -192,7 +188,7 @@ class SceneManagerImplBindingTest extends ApplicationTest{
         private Locale locale;
 
         @Override
-        public void setLocale(Locale locale) {
+        public void setLocale(final Locale locale) {
             this.locale = locale;
         }
 
@@ -201,7 +197,7 @@ class SceneManagerImplBindingTest extends ApplicationTest{
         }
 
         @Override
-        public StringBinding bind(String key) {
+        public StringBinding bind(final String key) {
             return new StringBinding() {
                 @Override
                 protected String computeValue() {
@@ -211,7 +207,7 @@ class SceneManagerImplBindingTest extends ApplicationTest{
         }
 
         @Override
-        public String getString(String key) {
+        public String getString(final String key) {
             return "ciao";
         }
 
@@ -229,46 +225,47 @@ class SceneManagerImplBindingTest extends ApplicationTest{
         }
 
         @Override
-        public void setCardTheme(CardTheme theme) {
+        public void setCardTheme(final CardTheme theme) {
         }
 
         @Override
-        public void setBackgroundTheme(BackgroundTheme theme) {
+        public void setBackgroundTheme(final BackgroundTheme theme) {
         }
 
         @Override
-        public void setFicheTheme(FicheTheme theme) {
+        public void setFicheTheme(final FicheTheme theme) {
         }
 
         @Override
-        public void setBackgroundTheme(CosmeticTheme theme) {
+        public void setBackgroundTheme(final CosmeticTheme theme) {
         }
 
         @Override
-        public void setCardTheme(CosmeticTheme theme) {
+        public void setCardTheme(final CosmeticTheme theme) {
         }
 
         @Override
-        public void setFicheTheme(CosmeticTheme theme) {
+        public void setFicheTheme(final CosmeticTheme theme) {
         }
 
         @Override
-        public Image getImage(String id) {
-            return new Image("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wIAAgMBApU3JxkAAAAASUVORK5CYII=");
+        public Image getImage(final String id) {
+            return new Image("data:image/png;base64"
+            + ",iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wIAAgMBApU3JxkAAAAASUVORK5CYII=");
         }
 
         @Override
-        public Region getSVGCard(Rank rank, Suit suit) {
+        public Region getSVGCard(final Rank rank, final Suit suit) {
             return new Region();
         }
 
         @Override
-        public Region getSVGFiche(Integer number) {
+        public Region getSVGFiche(final Integer number) {
             return new Region();
         }
 
         @Override
-        public Region svgHelperMethod(String svg) {
+        public Region svgHelperMethod(final String svg) {
             return new Region();
         }
     }

@@ -24,19 +24,6 @@ public abstract class SimpleFicheTheme implements FicheTheme {
     private String textColor;
 
     /**
-     * Constructs a {@link SimpleFicheTheme} and initializes the color mapping.
-     * <p>
-     * The constructor does not directly call {@link #initColori()} to avoid calling
-     * an overridable method
-     * during object construction. Instead, it sets up the state and relies on
-     * subclasses to
-     * initialize the colors properly after object creation.
-     * </p>
-     */
-    public SimpleFicheTheme() {
-    }
-
-    /**
      * Initializes the color mapping for the fiche values. This method must be
      * implemented
      * by subclasses to define the specific colors for each fiche value.
