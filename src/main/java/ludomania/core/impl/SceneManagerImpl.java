@@ -18,13 +18,13 @@ import ludomania.settings.impl.SettingsController;
  * the scenes of the application.
  * <p>
  * This class handles scene switching, stage settings, and bindings for
- * properties such as fullscreen, resolution, volume,
- * language, and cosmetic themes. It ensures that the application responds to
- * user settings and changes them dynamically
- * within the application.
+ * properties such as fullscreen, resolution, volume, language, and cosmetic
+ * themes. It ensures that the application responds to user settings and changes
+ * them dynamically within the application.
  * </p>
  */
 public final class SceneManagerImpl implements SceneManager {
+
     private final SettingsManager settingsManager;
     private final AudioManager audioManager;
     private final LanguageManager languageManager;
@@ -36,18 +36,19 @@ public final class SceneManagerImpl implements SceneManager {
     /**
      * Constructs a new {@link SceneManagerImpl}.
      * <p>
-     * Initializes the stage settings, creates the main scene, and sets it on the
-     * primary stage.
+     * Initializes the stage settings, creates the main scene, and sets it on
+     * the primary stage.
      * </p>
      *
-     * @param primaryStage    the main stage of the application
-     * @param settingsManager the settings manager to access application settings
-     * @param audioManager    the audio manager for handling audio settings
-     * @param languageManager the language manager for handling locale and language
-     *                        settings
-     * @param imageProvider   the image provider for managing themes and backgrounds
+     * @param primaryStage the main stage of the application
+     * @param settingsManager the settings manager to access application
+     * settings
+     * @param audioManager the audio manager for handling audio settings
+     * @param languageManager the language manager for handling locale and
+     * language settings
+     * @param imageProvider the image provider for managing themes and
+     * backgrounds
      */
-
     public SceneManagerImpl(final Stage primaryStage, final SettingsManager settingsManager,
             final AudioManager audioManager,
             final LanguageManager languageManager, final ImageProvider imageProvider) {
@@ -89,9 +90,9 @@ public final class SceneManagerImpl implements SceneManager {
     private void applyBackgroundToRoot(final Parent root) {
         final Color bgColor = imageProvider.getBackgroundColor();
         final String cssColor = String.format("#%02x%02x%02x",
-                bgColor.getRed() * 255,
-                bgColor.getGreen() * 255,
-                bgColor.getBlue() * 255);
+                Math.round(bgColor.getRed() * 255),
+                Math.round(bgColor.getGreen() * 255),
+                Math.round(bgColor.getBlue() * 255));
         root.setStyle("-fx-background-color: " + cssColor + ";");
     }
 
