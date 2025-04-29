@@ -97,7 +97,8 @@ public final class CosmeticMenuViewBuilder implements ViewBuilder {
                 eventHandler::handleFicheChange);
     }
 
-    private <T> Node createSelectionSection(final List<T> items,
+    @SuppressWarnings("unchecked")
+	private <T> Node createSelectionSection(final List<T> items,
             final CosmeticTheme selectedTheme,
             final Function<T, Node> graphicCreator,
             final Consumer<T> changeHandler) {
