@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ludomania.model.bet.api.TrenteEtQuaranteBetType;
 import ludomania.model.bet.impl.TrenteEtQuaranteBet;
+import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 
 public class TrenteEtQuaranteBetTest {
 

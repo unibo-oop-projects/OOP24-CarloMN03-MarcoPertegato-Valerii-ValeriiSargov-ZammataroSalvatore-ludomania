@@ -1,6 +1,6 @@
 package ludomania.model.game.impl;
 
-import ludomania.model.bet.api.TrenteEtQuaranteBetType;
+import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 import ludomania.model.game.api.CounterResult;
 import javafx.util.Pair;
 

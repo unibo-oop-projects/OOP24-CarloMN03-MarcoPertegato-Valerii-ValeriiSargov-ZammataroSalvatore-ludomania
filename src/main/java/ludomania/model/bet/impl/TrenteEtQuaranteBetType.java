@@ -1,4 +1,6 @@
-package ludomania.model.bet.api;
+package ludomania.model.bet.impl;
+
+import ludomania.model.bet.api.BetType;
 
 public enum TrenteEtQuaranteBetType implements BetType{
     ROUGE("Rouge", 1.0),
