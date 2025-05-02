@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import ludomania.model.bet.api.Bet;
 import ludomania.model.bet.api.BetType;
-import ludomania.model.bet.api.TrenteEtQuaranteBetType;
 import ludomania.model.bet.impl.TrenteEtQuaranteBet;
+import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 import ludomania.model.player.impl.TrenteEtQuarantePlayer;
 import ludomania.model.wallet.impl.WalletImpl;
 

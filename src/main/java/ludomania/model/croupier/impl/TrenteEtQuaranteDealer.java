@@ -16,9 +16,8 @@ public class TrenteEtQuaranteDealer<T> extends CardDealer<T> {
     }
 
     @Override
-    public Map checkBets(CounterResult result) {
+    public Map<Player, Double> checkBets(CounterResult<T> result) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'checkBets'");
-    }
-    
+    }    
 }

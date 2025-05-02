@@ -2,8 +2,8 @@ package ludomania.model.player.impl;
 
 import ludomania.model.bet.api.Bet;
 import ludomania.model.bet.api.BetType;
-import ludomania.model.bet.api.TrenteEtQuaranteBetType;
 import ludomania.model.bet.impl.TrenteEtQuaranteBet;
+import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 import ludomania.model.player.api.Player;
 import ludomania.model.wallet.api.Wallet;
 

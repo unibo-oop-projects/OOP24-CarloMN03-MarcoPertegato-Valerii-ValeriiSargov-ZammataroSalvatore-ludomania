@@ -1,7 +1,6 @@
 package ludomania.model.bet.impl;
 
 import ludomania.model.bet.api.Bet;
-import ludomania.model.bet.api.TrenteEtQuaranteBetType;
 
 public class TrenteEtQuaranteBet extends Bet{    
 
