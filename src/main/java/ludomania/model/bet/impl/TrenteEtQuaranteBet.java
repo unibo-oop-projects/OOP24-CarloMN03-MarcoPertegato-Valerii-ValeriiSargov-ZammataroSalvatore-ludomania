@@ -1,11 +1,13 @@
 package ludomania.model.bet.impl;
 
 import ludomania.model.bet.api.Bet;
+import ludomania.model.bet.api.TrenteEtQuaranteBetType;
 
-public class CouleurBet extends Bet {
+public class TrenteEtQuaranteBet extends Bet{    
+
     private final TrenteEtQuaranteBetType type;
-
-    public CouleurBet(int value, TrenteEtQuaranteBetType type) {
+    
+    public TrenteEtQuaranteBet(double value, TrenteEtQuaranteBetType type) {
         super(value);
         this.type = type;
     }

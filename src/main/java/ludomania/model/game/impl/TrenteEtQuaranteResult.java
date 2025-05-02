@@ -1,17 +1,16 @@
 package ludomania.model.game.impl;
 
-import ludomania.model.bet.impl.TrenteEtQuaranteBetColor;
-import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
+import ludomania.model.bet.api.TrenteEtQuaranteBetType;
 import ludomania.model.game.api.CounterResult;
 import javafx.util.Pair;
 
-public class TrenteEtQuaranteResult extends CounterResult<Pair<TrenteEtQuaranteBetColor,TrenteEtQuaranteBetType>>{
+public class TrenteEtQuaranteResult extends CounterResult<Pair<TrenteEtQuaranteBetType,TrenteEtQuaranteBetType>>{
 
-    public TrenteEtQuaranteResult(Pair<TrenteEtQuaranteBetColor, TrenteEtQuaranteBetType> result) {
+    public TrenteEtQuaranteResult(Pair<TrenteEtQuaranteBetType, TrenteEtQuaranteBetType> result) {
         super(result);
     }
 
-    public TrenteEtQuaranteBetColor getColor(){
+    public TrenteEtQuaranteBetType getColor(){
         return result.getKey();
     }
 
