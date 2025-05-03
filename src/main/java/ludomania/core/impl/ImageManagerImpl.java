@@ -48,7 +48,7 @@ public final class ImageManagerImpl implements ImageManager {
         uploadImage("game1.png", "game1");
         uploadImage("game2.png", "game2");
         uploadImage("game3.png", "game3");
-        uploadImage("shopping-cart.png", "shoppingCart");
+        uploadImage("cosmeticIcon.png", "cosmeticIcon");
     }
 
     void uploadImage(final String imageName, final String id) {
