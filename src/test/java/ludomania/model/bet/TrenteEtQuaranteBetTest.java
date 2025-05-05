@@ -35,7 +35,7 @@ public class TrenteEtQuaranteBetTest {
 
     @Test
     public void testEvaluate() {
-        assertEquals(ROUGE_AMOUNT * rBet.getType().getPayout(), rBet.evaluate());
-        assertEquals(ENVERSE_AMOUNT * cBet.getType().getPayout(), cBet.evaluate());
+        assertEquals(ROUGE_AMOUNT + (ROUGE_AMOUNT * rBet.getType().getPayout()), rBet.evaluate());
+        assertEquals(ENVERSE_AMOUNT + (ENVERSE_AMOUNT * cBet.getType().getPayout()), cBet.evaluate());
     }
 }
