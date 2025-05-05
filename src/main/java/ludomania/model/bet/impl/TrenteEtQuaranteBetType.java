@@ -6,7 +6,8 @@ public enum TrenteEtQuaranteBetType implements BetType{
     ROUGE("Rouge", 1.0),
     NOIR("Noir", 1.0),
     COULEUR("Couleur", 1.0),
-    ENVERSE("Enverse", 1.0);
+    ENVERSE("Enverse", 1.0),
+    DRAW("Draw", 0.0);
 
     private final String typeName;
     private final double payout;
