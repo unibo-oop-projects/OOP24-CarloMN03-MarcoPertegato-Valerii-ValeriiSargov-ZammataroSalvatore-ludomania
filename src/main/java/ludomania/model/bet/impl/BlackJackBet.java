@@ -4,15 +4,8 @@ import ludomania.model.bet.api.Bet;
 
 public class BlackJackBet extends Bet{
 
-    private final BlackJackBetType type;
-
     public BlackJackBet(double value, BlackJackBetType type) {
-        super(value);
-        this.type = type;
-    }
-
-    public BlackJackBetType getType() {
-        return type;
+        super(value, type);
     }
 
     @Override
