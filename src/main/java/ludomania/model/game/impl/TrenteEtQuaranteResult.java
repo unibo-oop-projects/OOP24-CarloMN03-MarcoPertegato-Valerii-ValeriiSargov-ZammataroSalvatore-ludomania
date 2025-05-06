@@ -14,7 +14,7 @@ public class TrenteEtQuaranteResult extends CounterResult<Pair<TrenteEtQuaranteB
         return result.getKey();
     }
 
-    public TrenteEtQuaranteBetType getType(){
+    public TrenteEtQuaranteBetType getKind(){
         return result.getValue();
     }
     
