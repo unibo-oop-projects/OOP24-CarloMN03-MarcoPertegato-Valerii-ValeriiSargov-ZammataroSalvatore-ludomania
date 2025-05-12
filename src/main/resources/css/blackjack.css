@@ -1,10 +1,10 @@
 .blackjack-title {
-    -fx-font-size: 24px;
+    -fx-font-size: 28px;
     -fx-font-weight: bold;
 }
 
 .payout-label {
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
 }
 
 .chip {

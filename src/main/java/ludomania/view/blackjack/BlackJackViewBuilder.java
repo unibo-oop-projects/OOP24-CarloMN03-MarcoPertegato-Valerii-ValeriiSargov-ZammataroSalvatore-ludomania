@@ -14,6 +14,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import ludomania.handler.BlackJackHandler;
 
 /**
@@ -22,7 +23,8 @@ import ludomania.handler.BlackJackHandler;
 public final class BlackJackViewBuilder {
 
     private static final int DEFAULT_SPACING = 10;
-    private static final int PADDING = 20;
+    private static final int PLAYER_SPACING = 80;
+    private static final int PADDING = 10;
 
     private final BlackJackHandler eventHandler;
     
@@ -51,9 +53,7 @@ public final class BlackJackViewBuilder {
 
         Label title = new Label("BLACKJACK");
         title.getStyleClass().add("blackjack-title");
-
-        Label payout = new Label("IL BJ PAGA 3 A 2");
-        payout.getStyleClass().add("payout-label");
+        title.setTextFill(Color.color(1, 0, 0));
 
         Button exitBtn = new Button("EXIT");
         exitBtn.setOnAction(e -> eventHandler.handleExit());
@@ -63,30 +63,30 @@ public final class BlackJackViewBuilder {
         HBox.setHgrow(spacer1, Priority.ALWAYS);
         HBox.setHgrow(spacer2, Priority.ALWAYS);
 
-        topBar.getChildren().addAll(title, spacer1, payout, spacer2, exitBtn);
+        topBar.getChildren().addAll(title, spacer1, spacer2, exitBtn);
         return topBar;
     }
 
     private Node createTable() {
         VBox table = new VBox(DEFAULT_SPACING);
-        table.setAlignment(Pos.CENTER);
+        table.setAlignment(Pos.TOP_CENTER);
 
         // Dealer Card Area
         HBox dealerBox = new HBox();
         dealerBox.setAlignment(Pos.CENTER);
-        dealerBox.getChildren().add(createCardPlaceholder());
+        dealerBox.getChildren().add(createDealerArea());
+        VBox.setMargin(dealerBox, new Insets(0, 0, 80, 0));
         table.getChildren().add(dealerBox);
 
         // Player Areas
-        HBox players = new HBox(DEFAULT_SPACING);
-        players.setAlignment(Pos.CENTER);
-        players.setPadding(new Insets(PADDING));
-
+        HBox players = new HBox(PLAYER_SPACING);
+        players.setAlignment(Pos.BOTTOM_CENTER);
+        
         players.getChildren().addAll(
-            createPlayerArea("SALVO", 10000),
-            createPlayerArea("CARLO", 500),
-            createPlayerArea("MARCO", 1999),
-            createPlayerArea("VALE", 7752)
+            createPlayerArea("player1", 0),
+            createPlayerArea("player2", 0),
+            createPlayerArea("player3", 0),
+            createPlayerArea("player4", 0)
         );
 
         table.getChildren().add(players);
@@ -128,8 +128,27 @@ public final class BlackJackViewBuilder {
         info.setAlignment(Pos.CENTER);
         info.setStyle("-fx-font-weight: bold");
 
-        playerBox.getChildren().addAll(avatar, cards, info);
+        playerBox.getChildren().addAll(cards, avatar, info);
         return playerBox;
+    }
+
+    private VBox createDealerArea() {
+        VBox dealerBox = new VBox(DEFAULT_SPACING);
+        dealerBox.setAlignment(Pos.CENTER);
+        dealerBox.setPadding( new Insets(PADDING));
+
+        Label info = new Label("BJ DEALER\n");
+        info.setAlignment(Pos.CENTER);
+        info.setStyle("-fx-font-weight: bold");
+
+        Label payout = new Label("IL BJ PAGA 3 A 2");
+        payout.getStyleClass().add("payout-label");
+
+        VBox cards = new VBox();
+        cards.getChildren().add(createCardPlaceholder());
+
+        dealerBox.getChildren().addAll(info, cards, payout);
+        return dealerBox;
     }
 
     private Node createCardPlaceholder() {
