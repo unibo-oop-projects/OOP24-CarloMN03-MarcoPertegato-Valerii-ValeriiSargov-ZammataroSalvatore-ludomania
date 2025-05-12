@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import ludomania.controller.api.Controller;
 import ludomania.controller.impl.CosmeticController;
 import ludomania.controller.impl.MainMenuController;
 import ludomania.core.api.AudioManager;
@@ -181,4 +182,12 @@ public final class SceneManagerImpl implements SceneManager {
     public ImageProvider getImageProvider() {
         return this.imageProvider;
     }
+
+    @Override
+    public void switchTo(final Controller controller) {
+        final Parent root = controller.getView();
+        applyBackgroundToRoot(root);
+        mainScene.setRoot(root);
+    }
+
 }

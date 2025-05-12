@@ -1,5 +1,7 @@
 package ludomania.core.api;
 
+import ludomania.controller.api.Controller;
+
 /**
  * Defines the interface for managing scene transitions within the application.
  * <p>
@@ -42,4 +44,6 @@ public interface SceneManager {
      * This method changes the visible view to the cosmetics screen.
      */
     void switchToCosmetics();
+
+    void switchTo(Controller controller);
 }

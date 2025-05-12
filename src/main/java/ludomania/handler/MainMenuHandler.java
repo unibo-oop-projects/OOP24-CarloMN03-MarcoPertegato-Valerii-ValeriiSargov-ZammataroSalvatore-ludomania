@@ -32,6 +32,8 @@ public interface MainMenuHandler {
      */
     void handleSettings();
 
+    void handleBlackJack();
+
     /**
      * Handles the action to exit the application.
      * <p>

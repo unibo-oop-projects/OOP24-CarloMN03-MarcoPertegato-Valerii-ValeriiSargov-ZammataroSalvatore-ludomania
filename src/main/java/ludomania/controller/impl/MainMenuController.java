@@ -46,7 +46,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     @Override
     public void handleStartGame() {
         switch (selectedGameId) {
-            case 1 -> handleSettings();
+            case 1 -> handleBlackJack();
             case 2 -> handleExit();
             case 3 -> {
                 audioManager.playSound("click");
@@ -77,6 +77,15 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     public void handleCosmetics() {
         audioManager.playSound("click");
         sceneManager.switchToCosmetics();
+    }
+
+    @Override
+    public void handleBlackJack() {
+        /*System.out.println("Avvio BlackJack..."); */
+
+        audioManager.playSound("click");
+        BlackJackController blackjackController = new BlackJackController(sceneManager, audioManager);
+        sceneManager.switchTo(blackjackController);
     }
 
 }
