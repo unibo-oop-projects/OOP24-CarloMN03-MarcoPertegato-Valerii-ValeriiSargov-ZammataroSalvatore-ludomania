@@ -1,0 +1,20 @@
+.blackjack-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.payout-label {
+    -fx-font-size: 12px;
+}
+
+.chip {
+    -fx-border-color: black;
+    -fx-border-radius: 20px;
+    -fx-padding: 5px 10px;
+    -fx-background-color: lightgray;
+    -fx-cursor: hand;
+}
+
+.chip:hover {
+    -fx-background-color: darkgray;
+}

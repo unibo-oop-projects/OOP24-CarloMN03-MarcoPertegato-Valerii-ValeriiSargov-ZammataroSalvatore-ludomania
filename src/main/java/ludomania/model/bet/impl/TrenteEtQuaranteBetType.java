@@ -1,20 +1,27 @@
 package ludomania.model.bet.impl;
 
-public enum TrenteEtQuaranteBetType {
-    COULEUR("Couleur", 1.0),
-    ENVERSE("Enverse", 1.0);
+import ludomania.model.bet.api.BetType;
 
-    private final TrenteEtQuaranteBetLogic logic;
+public enum TrenteEtQuaranteBetType implements BetType{
+    ROUGE("Rouge", 1.0),
+    NOIR("Noir", 1.0),
+    COULEUR("Couleur", 1.0),
+    ENVERSE("Enverse", 1.0),
+    DRAW("Draw", 0.0);
+
+    private final String typeName;
+    private final double payout;
 
     TrenteEtQuaranteBetType(String displayName, double payout) {
-        this.logic = new TrenteEtQuaranteBetLogic(displayName, payout);
+        this.typeName = displayName;
+        this.payout = payout;
     }
 
-    public String getDisplayName(){
-        return logic.getDisplayName();
+    public String getTypeName(){
+        return typeName;
     }
 
-    public double getPayout(){
-        return logic.getPayout();
+    public Double getPayout(){
+        return payout;
     }
 }

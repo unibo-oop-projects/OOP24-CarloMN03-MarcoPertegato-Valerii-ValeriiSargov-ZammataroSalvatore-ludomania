@@ -9,5 +9,6 @@
       "vmArgs": "--module-path ${env:PATH_TO_FX}/lib --add-modules javafx.controls,javafx.media"
     }
   ],
-  "java.compile.nullAnalysis.mode": "automatic"
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "disabled"
 }

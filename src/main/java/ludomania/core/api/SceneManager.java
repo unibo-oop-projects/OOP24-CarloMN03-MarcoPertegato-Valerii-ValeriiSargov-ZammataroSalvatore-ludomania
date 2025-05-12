@@ -1,5 +1,7 @@
 package ludomania.core.api;
 
+import ludomania.controller.api.Controller;
+
 /**
  * Defines the interface for managing scene transitions within the application.
  * <p>
@@ -26,4 +28,22 @@ public interface SceneManager {
      */
     LanguageManager getLanguageManager();
 
+    /**
+     * Retrieves the {@link ImageProvider} instance associated with this scene
+     * manager.
+     * It provides image resources like cards, backgrounds, and fiches for the
+     * current scene.
+     * 
+     * @return the ImageProvider instance used by this scene manager
+     */
+    ImageProvider getImageProvider();
+
+    /**
+     * Switches the current scene to the cosmetics screen, where users can adjust
+     * visual themes.
+     * This method changes the visible view to the cosmetics screen.
+     */
+    void switchToCosmetics();
+
+    void switchTo(Controller controller);
 }
