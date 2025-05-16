@@ -3,11 +3,15 @@ package database.schemas;
 import database.schemas.api.Entry;
 
 public class WalletEntry extends Entry {
-    public final double amount;
-    public final String username;
+    private final double amount;
+    private final String username;
 
-    public WalletEntry(final double amount, final String username) {
+    public WalletEntry(final String username, final double amount) {
         this.amount = amount;
         this.username = username;
     }    
+
+    public WalletEntry(final String username) {
+        this(username, 0);
+    }
 }

@@ -1,4 +1,4 @@
-package database.core;
+package database.core.api;
 
 import database.schemas.api.Entry;
 

@@ -9,25 +9,24 @@ public class Wallet implements DBModel{
 
     public Wallet(WalletEntry entry) {
         this.wallet = entry;
-    }
-
+    }json
     @Override
     public boolean insert() {
-        return LudomaniaDBManager.getManager().insert(wallet, "wallets.txt");
+        return LudomaniaDBManager.getManager().insert(wallet, "wallets.json");
     }
 
     @Override
     public boolean update() {
-        return LudomaniaDBManager.getManager().update(wallet, "wallets.txt");
+        return LudomaniaDBManager.getManager().update(wallet, "wallets.json");
     }
 
     @Override
     public boolean delete() {
-        return LudomaniaDBManager.getManager().delete(wallet, "wallets.txt");
+        return LudomaniaDBManager.getManager().delete(wallet, "wallets.json");
     }
 
     @Override
     public WalletEntry read() {
-        return LudomaniaDBManager.getManager().read(wallet, "wallets.txt");
+        return LudomaniaDBManager.getManager().read(wallet, "wallets.json");
     }
 }
