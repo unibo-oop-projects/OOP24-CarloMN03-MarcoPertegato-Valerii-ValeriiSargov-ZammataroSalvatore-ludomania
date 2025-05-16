@@ -9,7 +9,8 @@ public class Wallet implements DBModel{
 
     public Wallet(WalletEntry entry) {
         this.wallet = entry;
-    }json
+    }
+    
     @Override
     public boolean insert() {
         return LudomaniaDBManager.getManager().insert(wallet, "wallets.json");

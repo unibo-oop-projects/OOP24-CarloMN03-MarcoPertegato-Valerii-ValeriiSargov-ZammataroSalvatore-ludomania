@@ -3,6 +3,9 @@ package database.core;
 import java.io.File;
 import java.io.IOException;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import database.core.api.DBManager;
 import database.schemas.api.Entry;
 
@@ -15,12 +18,6 @@ public class LudomaniaDBManager implements DBManager {
     
     public static LudomaniaDBManager getManager() {
         return manager;
-    }
-    
-    private void foo() {
-        // public static final String FILE_NAME =
-        // "/ home / mirko / aula / oop / Prova . bin "; // non portabile !!
-        final String REPOSITORY = System.getProperty("user.dir") + SEP + "resources";
     }
     
     @Override
@@ -43,8 +40,24 @@ public class LudomaniaDBManager implements DBManager {
     
     @Override
     public <E> E read(E entry, String filename) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'read'");
+        File file = this.findDBFile(filename);
+        this.fooRead(file);
+
+
+        return null;
+    }
+
+    private void fooRead(File file) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(file);
+            String usr = jsonNode.get("username").asText();
+            String pwd = jsonNode.get("password").asText();
+            System.out.println("Name: " + usr);
+            System.out.println("Age: " + pwd);
+        } catch (IOException ioEx) {
+
+        }
     }
     
     private boolean unlockFile(File file) {
