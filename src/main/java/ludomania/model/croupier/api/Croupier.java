@@ -7,7 +7,7 @@ import ludomania.model.game.api.CounterResult;
 import ludomania.model.player.api.Player;
 
 public abstract class Croupier<T> {
-    private final Map<Player, Bet> roundBet;
+    protected final Map<Player, Bet> roundBet;
 
     public Croupier(Map<Player, Bet> roundBet) {
         this.roundBet = roundBet;

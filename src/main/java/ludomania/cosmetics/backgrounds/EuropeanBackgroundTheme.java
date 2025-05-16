@@ -3,7 +3,12 @@ package ludomania.cosmetics.backgrounds;
 import ludomania.cosmetics.BackgroundTheme;
 import ludomania.cosmetics.CosmeticTheme;
 
-public class EuropeanBackgroundTheme implements BackgroundTheme {
+/**
+ * The {@code EuropeanBackgroundTheme} class implements the
+ * {@link BackgroundTheme} interface,
+ * providing a background color associated with the European cosmetic theme.
+ */
+public final class EuropeanBackgroundTheme implements BackgroundTheme {
 
     @Override
     public String getCosmetic() {

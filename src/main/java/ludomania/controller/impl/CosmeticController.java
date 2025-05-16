@@ -26,15 +26,34 @@ import ludomania.handler.CosmeticMenuHandler;
 import ludomania.settings.api.SettingsManager;
 import ludomania.view.CosmeticMenuViewBuilder;
 
-public class CosmeticController implements Controller, CosmeticMenuHandler {
+/**
+ * Controller for managing the cosmetic menu of the application.
+ * <p>
+ * This controller allows the user to change cosmetic themes such as the fiche
+ * theme, card theme, and background theme.
+ * It interacts with the {@link SettingsManager} to update the selected themes,
+ * the {@link AudioManager} to play sounds,
+ * and the {@link SceneManager} to navigate between different scenes.
+ * </p>
+ */
+public final class CosmeticController implements Controller, CosmeticMenuHandler {
     private final SettingsManager settingsManager;
     private final Builder<Parent> viewBuilder;
     private final SceneManager sceneManager;
     private final AudioManager audioManager;
-    List<FicheTheme> ficheThemes;
-    List<CardTheme> cardThemes;
-    List<BackgroundTheme> backgroundThemes;
+    private final List<FicheTheme> ficheThemes;
+    private final List<CardTheme> cardThemes;
+    private final List<BackgroundTheme> backgroundThemes;
 
+    /**
+     * Constructs a {@link CosmeticController} with the specified
+     * {@link SettingsManager}, {@link SceneManager}, and {@link AudioManager}.
+     *
+     * @param settingsManager the {@link SettingsManager} used to manage the
+     *                        selected themes
+     * @param sceneManager    the {@link SceneManager} used for scene transitions
+     * @param audioManager    the {@link AudioManager} used to play sounds
+     */
     public CosmeticController(final SettingsManager settingsManager, final SceneManager sceneManager,
             final AudioManager audioManager) {
         this.settingsManager = settingsManager;
@@ -83,19 +102,19 @@ public class CosmeticController implements Controller, CosmeticMenuHandler {
     }
 
     @Override
-    public void handleFicheChange(FicheTheme theme) {
+    public void handleFicheChange(final FicheTheme theme) {
         audioManager.playSound("click");
         settingsManager.ficheThemeProperty().set(theme.getTheme());
     }
 
     @Override
-    public void handleCardChange(CardTheme theme) {
+    public void handleCardChange(final CardTheme theme) {
         audioManager.playSound("click");
         settingsManager.cardThemeProperty().set(theme.getTheme());
     }
 
     @Override
-    public void handleBackgroundChange(BackgroundTheme theme) {
+    public void handleBackgroundChange(final BackgroundTheme theme) {
         audioManager.playSound("click");
         settingsManager.backgroundThemeProperty().set(theme.getTheme());
     }

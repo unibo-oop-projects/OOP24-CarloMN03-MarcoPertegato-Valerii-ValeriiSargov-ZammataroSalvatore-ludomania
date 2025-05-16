@@ -6,9 +6,18 @@ import io.lyuda.jcards.Suit;
 import ludomania.cosmetics.CardTheme;
 import ludomania.cosmetics.CosmeticTheme;
 
-public class AmericanCardTheme implements CardTheme {
+/**
+ * The {@code AmericanCardTheme} class implements the {@link CardTheme}
+ * interface,
+ * providing a cosmetic style for cards inspired by American motifs.
+ * <p>
+ * This theme defines specific colors for each suit and generates a customized
+ * SVG representation for the cards.
+ * </p>
+ */
+public final class AmericanCardTheme implements CardTheme {
 
-    private String getColor(Suit suit) {
+    private String getColor(final Suit suit) {
         if (suit.equals(Suit.CLUBS) || suit.equals(Suit.SPADES)) {
             return "#800080";
         }
@@ -20,7 +29,7 @@ public class AmericanCardTheme implements CardTheme {
     }
 
     @Override
-    public String getCosmetic(Rank rank, Suit suit) {
+    public String getCosmetic(final Rank rank, final Suit suit) {
         String svg = CardImage.makeCard(suit.getPath(), rank.getPath(), getCard(), getColor(suit));
         svg = svg.replaceAll("href=\"(#[^\"]+)\"", "xlink:href=\"$1\"");
         if (!svg.contains("xmlns:xlink")) {

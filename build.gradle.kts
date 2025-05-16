@@ -29,7 +29,8 @@ val osName = when {
 }
 
 dependencies {
-    
+    // testfx
+    testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
     val slf4jVersion = "2.0.17"
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.17")
