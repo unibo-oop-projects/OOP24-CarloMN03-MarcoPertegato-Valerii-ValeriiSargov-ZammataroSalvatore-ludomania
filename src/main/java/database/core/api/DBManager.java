@@ -15,7 +15,7 @@ public interface DBManager {
      * @param filename the database file in which to store the entry
      * @return true if success
      */
-    public boolean insert(Entry entry, String filename);
+    boolean insert(Entry entry, String filename);
 
     /**
      * Updates a record in the database.
@@ -23,7 +23,7 @@ public interface DBManager {
      * @param filename the database file in which to update the entry
      * @return true if success
      */
-    public boolean update(Entry entry, String filename);
+    boolean update(Entry entry, String filename);
     
     /**
      * Removes a record from the database.
@@ -31,14 +31,14 @@ public interface DBManager {
      * @param filename the database file from which to remove the entry
      * @return true if success
      */
-    public boolean delete(Entry entry, String filename);
+    boolean delete(Entry entry, String filename);
 
     /**
-     * Reads a record from the database if present
+     * Reads a record from the database if present.
      * @param <E> type of the record
      * @param entry entry to read from the database
      * @param filename file in the database from which retriving the record
      * @return the record of type E if present
      */
-    public <E> E read(E entry, String filename);
+    <E> E read(E entry, String filename);
 }

@@ -15,7 +15,7 @@ public class UserEntry implements Entry {
 
     @Override
     public final JSONObject toJson() {
-        JSONObject j = new JSONObject();
+        final JSONObject j = new JSONObject();
         j.put("password", this.password);
         j.put("username", this.username);
 

@@ -12,7 +12,7 @@ public abstract class DatabaseController {
     protected DBModel model;
 
     /**
-     * Calls the DBModel insert method
+     * Calls the DBModel insert method.
      * @return true is success
      */
     public boolean insert() {
@@ -20,7 +20,7 @@ public abstract class DatabaseController {
     }
 
     /**
-     * Calls the DBModel update method
+     * Calls the DBModel update method.
      * @return true is success
      */
     public boolean update() {
@@ -28,7 +28,7 @@ public abstract class DatabaseController {
     }
 
     /**
-     * Calls the DBModel delete method
+     * Calls the DBModel delete method.
      * @return true is success
      */
     public boolean delete() {
@@ -36,7 +36,7 @@ public abstract class DatabaseController {
     }
 
     /**
-     * Calls the DBModel read method
+     * Calls the DBModel read method.
      * @return the database entry if present
      */
     public Entry read() {

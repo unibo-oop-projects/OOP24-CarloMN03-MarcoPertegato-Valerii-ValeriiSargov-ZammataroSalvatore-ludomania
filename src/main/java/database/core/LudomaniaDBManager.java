@@ -9,37 +9,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import database.core.api.DBManager;
 import database.schemas.api.Entry;
 
-public class LudomaniaDBManager implements DBManager {
+public final class LudomaniaDBManager implements DBManager {
     
     private static final String SEP = File.separator;
-    private static final LudomaniaDBManager manager = new LudomaniaDBManager();
+    private static final LudomaniaDBManager MANAGER = new LudomaniaDBManager();
     
     private LudomaniaDBManager() {}
     
     public static LudomaniaDBManager getManager() {
-        return manager;
+        return MANAGER;
     }
     
     @Override
-    public boolean insert(Entry entry, String filename) {
+    public boolean insert(Entry entry, final String filename) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'insert'");
     }
     
     @Override
-    public boolean update(Entry entry, String filename) {
+    public boolean update(Entry entry, final String filename) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
     
     @Override
-    public boolean delete(Entry entry, String filename) {
+    public boolean delete(Entry entry, final String filename) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
     
     @Override
-    public <E> E read(E entry, String filename) {
+    public <E> E read(E entry, final String filename) {
         File file = this.findDBFile(filename);
         this.fooRead(file);
 
@@ -60,15 +60,15 @@ public class LudomaniaDBManager implements DBManager {
         }
     }
     
-    private boolean unlockFile(File file) {
-        return file.setWritable(true);
-    }
+    // private boolean unlockFile(File file) {
+    //     return file.setWritable(true);
+    // }
     
-    private boolean lockFile(File file) {
-        return file.setWritable(false);
-    }
+    // private boolean lockFile(File file) {
+    //     return file.setWritable(false);
+    // }
     
-    private File findDBFile(String filename) {
+    private File findDBFile(final String filename) {
         final File currentDir = new File(System.getProperty("user.dir"));        
         File resources = new File(currentDir.getParent() + SEP + "resources");
         
@@ -87,7 +87,7 @@ public class LudomaniaDBManager implements DBManager {
         return this.findDBFile(filename);
     }
     
-    private boolean createDBFile(String filename, File directory) {
+    private boolean createDBFile(final String filename, File directory) {
         try {
             return new File(directory.getPath() + SEP + filename).createNewFile();
         } catch(IOException e) {

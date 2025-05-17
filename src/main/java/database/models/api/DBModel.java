@@ -13,20 +13,20 @@ public interface DBModel {
     /**
      * Inserts a new record in the database.
      */
-    public boolean insert();
+    boolean insert();
 
     /**
      * Updates an existing record in the database.
      */
-    public boolean update();
+    boolean update();
 
     /**
      * Removes an existing record from the database.
      */
-    public boolean delete();
+    boolean delete();
 
     /**
      * Reads a record from the database.
      */
-    public Entry read();
+    Entry read();
 }

@@ -7,11 +7,11 @@ import database.schemas.UserEntry;
 import database.schemas.WalletEntry;
 
 public class LudomaniaDBController extends DatabaseController {
-    public LudomaniaDBController(UserEntry entry) {
+    public LudomaniaDBController(final UserEntry entry) {
         this.model = new User(entry);
     }
 
-    public LudomaniaDBController(WalletEntry entry) {
+    public LudomaniaDBController(final WalletEntry entry) {
         this.model = new Wallet(entry);
     }
 }

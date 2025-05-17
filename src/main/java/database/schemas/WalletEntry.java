@@ -11,7 +11,7 @@ public class WalletEntry implements Entry {
     public WalletEntry(final String username, final double amount) {
         this.amount = amount;
         this.username = username;
-    }    
+    }
 
     public WalletEntry(final String username) {
         this(username, 0);
@@ -19,7 +19,7 @@ public class WalletEntry implements Entry {
 
     @Override
     public final JSONObject toJson() {
-        JSONObject j = new JSONObject();
+        final JSONObject j = new JSONObject();
         j.put("amount", this.amount);
         j.put("username", this.username);
 

@@ -12,5 +12,5 @@ public interface Entry {
      * Converts current entry into a JSONObject.
      * @return the corresponding JSONObject for the entry.
      */
-    public JSONObject toJson();
+    JSONObject toJson();
 }
