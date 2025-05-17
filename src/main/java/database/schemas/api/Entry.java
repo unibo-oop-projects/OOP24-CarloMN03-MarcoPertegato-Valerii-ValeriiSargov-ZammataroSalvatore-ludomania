@@ -2,8 +2,15 @@ package database.schemas.api;
 
 import org.json.JSONObject;
 
-public abstract class Entry {
-    public JSONObject toJson() {
-        return new JSONObject(this);
-    }
+/**
+ * Defines the database entry interface.
+ * <p>
+ * Represents a record in the database.
+ */
+public interface Entry {
+    /**
+     * Converts current entry into a JSONObject.
+     * @return the corresponding JSONObject for the entry.
+     */
+    public JSONObject toJson();
 }

@@ -4,7 +4,6 @@ import database.core.LudomaniaDBManager;
 import database.models.api.DBModel;
 import database.schemas.UserEntry;
 
-
 public class User implements DBModel {
     private final UserEntry user;
 
