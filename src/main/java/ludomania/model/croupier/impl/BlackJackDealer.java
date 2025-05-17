@@ -69,7 +69,7 @@ public class BlackJackDealer extends CardDealer<BlackJackBetType> {
         int aces = 0;
 
         for (Card card : hand.getCards()) {
-            int value = card.getRank().getValue();
+            int value = card.getRank().getValue(); // Assumendo getValue() esista
             if (value > 10) {
                 value = 10;
             } else if (value == 1) {
@@ -93,7 +93,7 @@ public class BlackJackDealer extends CardDealer<BlackJackBetType> {
             int score = calculateBestScore(entry.getValue());
             playerScores.put(entry.getKey(), score);
         }
-        return new BlackJackResult(playerScores, dealerTotal);
+        return new BlackJackResult(playerScores, getDealerTotal());
     }
 
     @Override
@@ -102,33 +102,31 @@ public class BlackJackDealer extends CardDealer<BlackJackBetType> {
             throw new IllegalArgumentException("Invalid result type for BlackJackDealer");
         }
 
-        Map<Player, Double> winners = new HashMap<>();
         BlackJackResult bjResult = (BlackJackResult) result;
+        Map<Player, Double> winners = new HashMap<>();
 
         for (Player player : roundBet.keySet()) {
             Bet bet = roundBet.get(player);
             BlackJackBetType betType = (BlackJackBetType) bet.getType();
             int playerScore = bjResult.getPlayerScores().getOrDefault(player, 0);
-            
+            int dealerScore = bjResult.getDealerScore();
+
             if (playerScore > BLACKJACK) {
-                // Player busts
-                winners.put(player, 0.0);
-            } else if (dealerTotal > BLACKJACK || playerScore > dealerTotal) {
-                // Player wins
+                winners.put(player, 0.0); // Player busts
+            } else if (dealerScore > BLACKJACK || playerScore > dealerScore) {
                 if (betType == BlackJackBetType.BLACKJACK && playerScore == BLACKJACK) {
                     winners.put(player, bet.getValue() * betType.getPayout());
                 } else {
                     winners.put(player, bet.evaluate());
                 }
-            } else if (playerScore == dealerTotal) {
-                // Push
-                winners.put(player, bet.getValue());
+            } else if (playerScore == dealerScore) {
+                winners.put(player, bet.getValue()); // Push
             } else {
-                // Player loses
-                winners.put(player, 0.0);
+                winners.put(player, 0.0); // Dealer wins
             }
         }
 
         return winners;
     }
 }
+

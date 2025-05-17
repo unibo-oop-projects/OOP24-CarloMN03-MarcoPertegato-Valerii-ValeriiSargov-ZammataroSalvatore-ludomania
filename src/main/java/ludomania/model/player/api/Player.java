@@ -19,5 +19,9 @@ public abstract class Player {
         return wallet.withdraw(amount);
     }
 
+    public double getAmount() {
+        return wallet.getMoney();
+    }
+
     abstract public Bet makeBet(Double amount, BetType type);
 }

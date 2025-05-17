@@ -1,30 +1,27 @@
 package ludomania.model.game.impl;
 
-//import ludomania.model.game.api.CounterResult;
+import java.util.Map;
+import ludomania.model.game.api.CounterResult;
+import ludomania.model.bet.impl.BlackJackBetType;
+import ludomania.model.player.api.Player;
 
-public class BlackJackResult /*extends CounterResult<Integer, Integer>*/{
+public class BlackJackResult extends CounterResult<BlackJackBetType> {
 
-    private final int playerScore;
+    private final Map<Player, Integer> playerScores;
     private final int dealerScore;
 
-    public BlackJackResult(int playerScore, int dealerScore) {
-        this.playerScore = playerScore;
+    public BlackJackResult(Map<Player, Integer> playerScores, int dealerScore) {
+        super(null);
+        this.playerScores = playerScores;
         this.dealerScore = dealerScore;
     }
-    
-    public int getPlayerScore() {
-        return playerScore;
+
+    public Map<Player, Integer> getPlayerScores() {
+        return playerScores;
     }
 
     public int getDealerScore() {
         return dealerScore;
     }
 
-    public Integer getResult() {
-        return getPlayerScore();
-    }
-
-    //boolean playerWin()
-
-    //boolean dealerWin()
 }

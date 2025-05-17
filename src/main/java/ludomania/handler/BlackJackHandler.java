@@ -18,7 +18,7 @@ public interface BlackJackHandler {
      * @param amount the amount of money the player wants to bet
      * @param playerId the identifier of the player placing the bet
      */
-    void handleBet(int amount, String playerId);
+    void handleBet(double amount, String playerId);
 
     /**
      * Handles the action to draw a card.
