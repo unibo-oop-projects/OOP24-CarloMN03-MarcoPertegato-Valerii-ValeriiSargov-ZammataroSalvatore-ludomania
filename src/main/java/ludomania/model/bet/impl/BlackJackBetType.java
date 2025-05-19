@@ -4,8 +4,9 @@ import ludomania.model.bet.api.BetType;
 
 public enum BlackJackBetType implements BetType {
     BASE("Base", 1.0),
-    DOUBLE("Double", 2.0),
-    BLACKJACK("BlackJack", 1.5);
+    BLACKJACK("BlackJack", 1.5),
+    PUSH("Push", 0.0),
+    LOSE("Lose", -1.0);
 
     private final String typeName;
     private final double payout;

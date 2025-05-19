@@ -13,7 +13,7 @@ import ludomania.model.game.api.CounterResult;
 import ludomania.model.game.api.Game;
 import ludomania.model.player.api.Player;
 
-public class BlackJackGame implements Game<BlackJackResult> {
+public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> {
 
     private final BlackJackDealer dealer;
     private final Map<Player, Bet> playerBets;
@@ -25,7 +25,7 @@ public class BlackJackGame implements Game<BlackJackResult> {
     }
 
     @Override
-    public CounterResult<BlackJackResult> runGame() {
+    public CounterResult<Map<Player, BlackJackOutcomeResult>> runGame() {
         dealer.reset();
 
         Map<Player, BlackJackOutcomeResult> results = new HashMap<>();
@@ -53,7 +53,7 @@ public class BlackJackGame implements Game<BlackJackResult> {
                 dealer.increaseDealerTot(playerCardValue(newCard));
                 if (dealerTot > 21) break;
             }
-
+            
             //Logica di pesca del player (!!!TEMPORANEA!!!)
             while(!dealer.isEnough(playerTot)) {
                 Card newCard = dealer.extractNewCard(playerHand);
@@ -64,22 +64,22 @@ public class BlackJackGame implements Game<BlackJackResult> {
 
             //Valutazione della vincita/perdita/pareggio
             if (playerTot > 21) {
-                results.put(player, new BlackJackOutcomeResult(BlackJackOutcome.LOSE, BlackJackBetType.BASE)); //DA CAMBIARE BASE CON LA PUNTATA SCELTA DAL PLAYER
+                results.put(player, new BlackJackOutcomeResult(BlackJackOutcome.LOSE, BlackJackBetType.LOSE));
             } else if (dealerTot > 21 || playerTot > dealerTot) {
                 if (playerTot == 21 && playerHand.size() == 2) {
-                    results.put(player, new BlackJackOutcomeResult(BlackJackOutcome.BLACKJACK, BlackJackBetType.BASE)); //DA CAMBIARE BASE CON LA PUNTATA SCELTA DAL PLAYER
+                    results.put(player, new BlackJackOutcomeResult(BlackJackOutcome.BLACKJACK, BlackJackBetType.BLACKJACK));
                 } else {
-                    results.put(player, new BlackJackOutcomeResult(BlackJackOutcome.WIN, BlackJackBetType.BASE)); //DA CAMBIARE BASE CON LA PUNTATA SCELTA DAL PLAYER
+                    results.put(player, new BlackJackOutcomeResult(BlackJackOutcome.WIN, BlackJackBetType.BASE)); 
                 } 
             } else if (playerTot == dealerTot) {
-                results.put(player, new BlackJackOutcomeResult(BlackJackOutcome.PUSH, BlackJackBetType.BASE)); //DA CAMBIARE BASE CON LA PUNTATA SCELTA DAL PLAYER
+                results.put(player, new BlackJackOutcomeResult(BlackJackOutcome.PUSH, BlackJackBetType.PUSH));
             } else {
-                results.put(player, new BlackJackOutcomeResult(BlackJackOutcome.LOSE, BlackJackBetType.BASE)); //DA CAMBIARE BASE CON LA PUNTATA SCELTA DAL PLAYER
+                results.put(player, new BlackJackOutcomeResult(BlackJackOutcome.LOSE, BlackJackBetType.LOSE));
             }
         }
 
         gameOver = true;
-        return null; //SISTEMARE
+        return new BlackJackResult(results); 
     }
 
     @Override
