@@ -25,4 +25,17 @@ public class WalletEntry implements Entry {
 
         return j;
     }
+
+    @Override
+    public final String getIdentifier() {
+        return this.username;
+    }
+
+    public double getAmount() {
+        return this.amount;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
 }

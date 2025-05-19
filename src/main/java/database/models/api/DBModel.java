@@ -1,5 +1,8 @@
 package database.models.api;
 
+import java.util.List;
+import java.util.Optional;
+
 import database.schemas.api.Entry;
 
 /**
@@ -16,11 +19,6 @@ public interface DBModel {
     boolean insert();
 
     /**
-     * Updates an existing record in the database.
-     */
-    boolean update();
-
-    /**
      * Removes an existing record from the database.
      */
     boolean delete();
@@ -28,5 +26,11 @@ public interface DBModel {
     /**
      * Reads a record from the database.
      */
-    Entry read();
+    <T extends Entry> Optional<T> read();
+
+    /**
+     * Reads all the records in the database
+     * @return an Optional of List of entries
+     */
+    <T extends Entry> Optional<List<T>> readAll();
 }

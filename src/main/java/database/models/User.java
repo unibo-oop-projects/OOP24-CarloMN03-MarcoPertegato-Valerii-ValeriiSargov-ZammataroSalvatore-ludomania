@@ -1,8 +1,13 @@
 package database.models;
 
+import java.util.List;
+import java.util.Optional;
+
 import database.core.LudomaniaDBManager;
 import database.models.api.DBModel;
 import database.schemas.UserEntry;
+import database.schemas.WalletEntry;
+import database.schemas.api.Entry;
 
 public class User implements DBModel {
     private final String dbFilename = "users.json";
@@ -14,12 +19,7 @@ public class User implements DBModel {
 
     @Override
     public boolean insert() {
-        return LudomaniaDBManager.getManager().insert(entry, this.dbFilename);
-    }
-
-    @Override
-    public boolean update() {
-        return LudomaniaDBManager.getManager().update(entry, this.dbFilename);
+        return LudomaniaDBManager.getManager().write(entry, this.dbFilename);
     }
 
     @Override
@@ -28,7 +28,12 @@ public class User implements DBModel {
     }
 
     @Override
-    public UserEntry read() {
-        return LudomaniaDBManager.getManager().read(entry, this.dbFilename);
+    public Optional<UserEntry> read() {
+        return (Optional<UserEntry>)LudomaniaDBManager.getManager().read(entry, this.dbFilename);
+    }
+
+    @Override
+    public Optional<List<UserEntry>> readAll() {
+        return LudomaniaDBManager.getManager().readAll(this.dbFilename);
     }
 }

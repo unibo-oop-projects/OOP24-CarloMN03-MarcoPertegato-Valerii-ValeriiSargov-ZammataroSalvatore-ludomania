@@ -2,8 +2,11 @@ package database.core;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import database.core.api.DBManager;
@@ -21,52 +24,120 @@ public final class LudomaniaDBManager implements DBManager {
     }
     
     @Override
-    public boolean insert(Entry entry, final String filename) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insert'");
-    }
-    
-    @Override
-    public boolean update(Entry entry, final String filename) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public <T extends Entry> boolean write(T entry, String filename) {
+        boolean result;
+        File file = this.findDBFile(filename);
+
+        try {
+            this.unlockFile(file);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            Optional<List<Entry>> list = this.readAll(filename);
+            List<Entry> entries = list.isEmpty() ? Arrays.asList() : list.get();
+
+            entries.removeIf(e -> e.getIdentifier() == entry.getIdentifier());
+            entries.add(entry);
+
+            objectMapper.writeValue(file, entries);
+
+            System.out.println("List of users written to " + filename);
+
+            result = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            result = false;
+        } finally {
+            this.lockFile(file);
+        }
+        
+        return result;
     }
     
     @Override
     public boolean delete(Entry entry, final String filename) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        boolean result;
+        File file = this.findDBFile(filename);
+
+        try {
+            this.unlockFile(file);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            Optional<List<Entry>> list = this.readAll(filename);
+            List<Entry> entries = list.isEmpty() ? Arrays.asList() : list.get();
+
+            entries.removeIf(null);
+
+            objectMapper.writeValue(file, entries);
+
+            System.out.println("List of users written to " + filename);
+
+            result = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            result = false;
+        } finally {
+            this.lockFile(file);
+        }
+        
+        return result;
     }
     
     @Override
-    public <E> E read(E entry, final String filename) {
-        File file = this.findDBFile(filename);
-        this.fooRead(file);
-
-
-        return null;
-    }
-
-    private void fooRead(File file) {
+    public <T extends Entry> Optional<T> read(T entry, final String filename) {
+        Optional<T> result = Optional.empty();
         try {
+            File file = this.findDBFile(filename);
             ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(file);
-            String usr = jsonNode.get("username").asText();
-            String pwd = jsonNode.get("password").asText();
-            System.out.println("Name: " + usr);
-            System.out.println("Age: " + pwd);
-        } catch (IOException ioEx) {
 
+            // Read the JSON array into a List of User objects
+            List<T> entries = objectMapper.readValue(file, new TypeReference<List<Entry>>() {});
+            
+            result = entries.stream().filter(u -> u.getIdentifier() == entry.getIdentifier()).findFirst();
+            if (result.isPresent()) {
+                System.out.println(result);
+            }
+
+            System.out.println("List of Users:");
+            for (Entry user : entries) {
+                System.out.println(user);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        return result;
+    }
+
+    @Override
+    public <T extends Entry> Optional<List<T>> readAll(String filename) {
+        Optional<List<T>> result = Optional.empty();
+        try {
+            File file = this.findDBFile(filename);
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            // Read the JSON array into a List of User objects
+            result = objectMapper.readValue(file, new TypeReference<List<T>>() {});            
+
+            System.out.println("List of Users:");
+            for (Entry user : result.get()) {
+                System.out.println(user);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
     
-    // private boolean unlockFile(File file) {
-    //     return file.setWritable(true);
-    // }
+    private boolean unlockFile(File file) {
+        return file.setWritable(true);
+    }
     
-    // private boolean lockFile(File file) {
-    //     return file.setWritable(false);
-    // }
+    private boolean lockFile(File file) {
+        return file.setWritable(false);
+    }
     
     private File findDBFile(final String filename) {
         final File currentDir = new File(System.getProperty("user.dir"));        

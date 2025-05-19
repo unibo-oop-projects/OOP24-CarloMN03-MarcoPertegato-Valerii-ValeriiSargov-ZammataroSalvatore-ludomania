@@ -13,4 +13,10 @@ public interface Entry {
      * @return the corresponding JSONObject for the entry.
      */
     JSONObject toJson();
+
+    /**
+     * Getter for the entry identifier
+     * @return a string identifier
+     */
+    String getIdentifier();
 }

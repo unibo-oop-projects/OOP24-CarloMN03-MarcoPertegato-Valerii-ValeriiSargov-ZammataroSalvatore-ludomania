@@ -21,4 +21,18 @@ public class UserEntry implements Entry {
 
         return j;
     }
+
+    @Override
+    public final String getIdentifier() {
+        return this.username;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+    
+    public String getPassword() {
+        return this.password;
+    }
+
 }

@@ -1,5 +1,10 @@
 package database.core.api;
 
+import java.util.List;
+import java.util.Optional;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+
 import database.schemas.api.Entry;
 
 /**
@@ -10,20 +15,12 @@ import database.schemas.api.Entry;
  */
 public interface DBManager {
     /**
-     * Stores a new record in the database.
+     * Stores or updates, if already present, a new record in the database.
      * @param entry the database entry to store
      * @param filename the database file in which to store the entry
      * @return true if success
      */
-    boolean insert(Entry entry, String filename);
-
-    /**
-     * Updates a record in the database.
-     * @param entry the database entry to update
-     * @param filename the database file in which to update the entry
-     * @return true if success
-     */
-    boolean update(Entry entry, String filename);
+    <T extends Entry> boolean write(T entry, String filename);
     
     /**
      * Removes a record from the database.
@@ -35,10 +32,16 @@ public interface DBManager {
 
     /**
      * Reads a record from the database if present.
-     * @param <E> type of the record
      * @param entry entry to read from the database
      * @param filename file in the database from which retriving the record
-     * @return the record of type E if present
+     * @return an optional of Entry
      */
-    <E> E read(E entry, String filename);
+    <T extends Entry> Optional<T> read(T entry, final String filename);
+
+    /**
+     * Read all the records from a database file.
+     * @param filename name of the database file from which to read
+     * @return a list of all the records
+     */
+    <T extends Entry> Optional<List<T>> readAll(String filename);
 }

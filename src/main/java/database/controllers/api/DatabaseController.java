@@ -1,5 +1,8 @@
 package database.controllers.api;
 
+import java.util.List;
+import java.util.Optional;
+
 import database.models.api.DBModel;
 import database.schemas.api.Entry;
 
@@ -20,14 +23,6 @@ public abstract class DatabaseController {
     }
 
     /**
-     * Calls the DBModel update method.
-     * @return true is success
-     */
-    public boolean update() {
-        return this.model.update();
-    }
-
-    /**
      * Calls the DBModel delete method.
      * @return true is success
      */
@@ -39,7 +34,15 @@ public abstract class DatabaseController {
      * Calls the DBModel read method.
      * @return the database entry if present
      */
-    public Entry read() {
+    public <T extends Entry> Optional<T> read() {
         return this.model.read();
+    }
+
+    /**
+     * Calls the DBModel readAll method.
+     * @return the database entries
+     */
+    public <T extends Entry> Optional<List<T>> readAll() {
+        return this.model.readAll();
     }
 }

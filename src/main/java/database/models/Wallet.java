@@ -1,5 +1,8 @@
 package database.models;
 
+import java.util.List;
+import java.util.Optional;
+
 import database.core.LudomaniaDBManager;
 import database.models.api.DBModel;
 import database.schemas.WalletEntry;
@@ -14,12 +17,7 @@ public class Wallet implements DBModel {
 
     @Override
     public boolean insert() {
-        return LudomaniaDBManager.getManager().insert(entry, this.dbFilename);
-    }
-
-    @Override
-    public boolean update() {
-        return LudomaniaDBManager.getManager().update(entry, this.dbFilename);
+        return LudomaniaDBManager.getManager().write(entry, this.dbFilename);
     }
 
     @Override
@@ -28,7 +26,13 @@ public class Wallet implements DBModel {
     }
 
     @Override
-    public WalletEntry read() {
-        return LudomaniaDBManager.getManager().read(entry, this.dbFilename);
+    public Optional<WalletEntry> read() {
+        return (Optional<WalletEntry>)LudomaniaDBManager.getManager().read(entry, this.dbFilename);
     }
+
+    @Override
+    public Optional<List<WalletEntry>> readAll() {
+        return LudomaniaDBManager.getManager().readAll(this.dbFilename);
+    }
+
 }
