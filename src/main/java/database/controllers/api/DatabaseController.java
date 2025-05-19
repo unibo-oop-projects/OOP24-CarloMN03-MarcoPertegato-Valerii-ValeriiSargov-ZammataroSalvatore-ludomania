@@ -15,8 +15,16 @@ public abstract class DatabaseController {
     protected DBModel model;
 
     /**
+     * Calls the DBModel exists method.
+     * @return true if present
+     */
+    public boolean exists() {
+        return this.model.exists();
+    }
+
+    /**
      * Calls the DBModel insert method.
-     * @return true is success
+     * @return true if success
      */
     public boolean insert() {
         return this.model.insert();
@@ -24,7 +32,7 @@ public abstract class DatabaseController {
 
     /**
      * Calls the DBModel delete method.
-     * @return true is success
+     * @return true if success
      */
     public boolean delete() {
         return this.model.delete();

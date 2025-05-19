@@ -6,8 +6,6 @@ import java.util.Optional;
 import database.core.LudomaniaDBManager;
 import database.models.api.DBModel;
 import database.schemas.UserEntry;
-import database.schemas.WalletEntry;
-import database.schemas.api.Entry;
 
 public class User implements DBModel {
     private final String dbFilename = "users.json";
@@ -15,6 +13,11 @@ public class User implements DBModel {
 
     public User(final UserEntry entry) {
         this.entry = entry;
+    }
+
+    @Override
+    public boolean exists() {
+        return LudomaniaDBManager.getManager().exists(entry, this.dbFilename);
     }
 
     @Override

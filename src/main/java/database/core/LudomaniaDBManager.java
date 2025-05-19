@@ -27,22 +27,22 @@ public final class LudomaniaDBManager implements DBManager {
     public <T extends Entry> boolean write(T entry, String filename) {
         boolean result;
         File file = this.findDBFile(filename);
-
+        
         try {
             this.unlockFile(file);
-
+            
             ObjectMapper objectMapper = new ObjectMapper();
-
+            
             Optional<List<Entry>> list = this.readAll(filename);
             List<Entry> entries = list.isEmpty() ? Arrays.asList() : list.get();
-
+            
             entries.removeIf(e -> e.getIdentifier() == entry.getIdentifier());
             entries.add(entry);
-
+            
             objectMapper.writeValue(file, entries);
-
+            
             System.out.println("List of users written to " + filename);
-
+            
             result = true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -58,21 +58,21 @@ public final class LudomaniaDBManager implements DBManager {
     public boolean delete(Entry entry, final String filename) {
         boolean result;
         File file = this.findDBFile(filename);
-
+        
         try {
             this.unlockFile(file);
-
+            
             ObjectMapper objectMapper = new ObjectMapper();
-
+            
             Optional<List<Entry>> list = this.readAll(filename);
             List<Entry> entries = list.isEmpty() ? Arrays.asList() : list.get();
-
+            
             entries.removeIf(null);
-
+            
             objectMapper.writeValue(file, entries);
-
+            
             System.out.println("List of users written to " + filename);
-
+            
             result = true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,7 +90,7 @@ public final class LudomaniaDBManager implements DBManager {
         try {
             File file = this.findDBFile(filename);
             ObjectMapper objectMapper = new ObjectMapper();
-
+            
             // Read the JSON array into a List of User objects
             List<T> entries = objectMapper.readValue(file, new TypeReference<List<Entry>>() {});
             
@@ -98,7 +98,7 @@ public final class LudomaniaDBManager implements DBManager {
             if (result.isPresent()) {
                 System.out.println(result);
             }
-
+            
             System.out.println("List of Users:");
             for (Entry user : entries) {
                 System.out.println(user);
@@ -106,26 +106,45 @@ public final class LudomaniaDBManager implements DBManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        
         return result;
     }
-
+    
     @Override
     public <T extends Entry> Optional<List<T>> readAll(String filename) {
         Optional<List<T>> result = Optional.empty();
         try {
             File file = this.findDBFile(filename);
             ObjectMapper objectMapper = new ObjectMapper();
-
+            
             // Read the JSON array into a List of User objects
             result = objectMapper.readValue(file, new TypeReference<List<T>>() {});            
-
+            
             System.out.println("List of Users:");
             for (Entry user : result.get()) {
                 System.out.println(user);
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        
+        return result;
+    }
+    
+    @Override
+    public boolean exists(Entry entry, String filename) {
+        boolean result = false;
+        try {
+            File file = this.findDBFile(filename);
+            ObjectMapper objectMapper = new ObjectMapper();
+            
+            // Read the JSON array into a List of User objects
+            List<Entry> entries = objectMapper.readValue(file, new TypeReference<List<Entry>>() {});
+            
+            result = entries.stream().anyMatch(e -> e.getIdentifier() == entry.getIdentifier());
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            result = false;
         }
 
         return result;
@@ -154,7 +173,7 @@ public final class LudomaniaDBManager implements DBManager {
         } else {
             this.createDBDirectory("resources", resources);
         }
-
+        
         return this.findDBFile(filename);
     }
     
@@ -175,6 +194,5 @@ public final class LudomaniaDBManager implements DBManager {
             System.err.println(e.getMessage());
             return false;
         }
-    }
-    
+    }    
 }

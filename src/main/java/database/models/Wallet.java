@@ -16,6 +16,11 @@ public class Wallet implements DBModel {
     }
 
     @Override
+    public boolean exists() {
+        return LudomaniaDBManager.getManager().exists(entry, this.dbFilename);
+    }
+
+    @Override
     public boolean insert() {
         return LudomaniaDBManager.getManager().write(entry, this.dbFilename);
     }
@@ -34,5 +39,4 @@ public class Wallet implements DBModel {
     public Optional<List<WalletEntry>> readAll() {
         return LudomaniaDBManager.getManager().readAll(this.dbFilename);
     }
-
 }

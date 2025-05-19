@@ -3,8 +3,6 @@ package database.core.api;
 import java.util.List;
 import java.util.Optional;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import database.schemas.api.Entry;
 
 /**
@@ -44,4 +42,12 @@ public interface DBManager {
      * @return a list of all the records
      */
     <T extends Entry> Optional<List<T>> readAll(String filename);
+
+    /**
+     * Tells if the given entry is stored in the database
+     * @param entry the entry to check if present
+     * @param filename the name of the database file in which to search
+     * @return true if the record is present in the database
+     */
+    boolean exists(Entry entry, String filename);
 }

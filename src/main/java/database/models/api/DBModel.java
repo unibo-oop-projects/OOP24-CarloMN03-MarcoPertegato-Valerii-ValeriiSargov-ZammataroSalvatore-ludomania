@@ -14,6 +14,11 @@ import database.schemas.api.Entry;
 public interface DBModel {
 
     /**
+     * Checks if a record is present in the database.
+     */
+    boolean exists();
+
+    /**
      * Inserts a new record in the database.
      */
     boolean insert();
