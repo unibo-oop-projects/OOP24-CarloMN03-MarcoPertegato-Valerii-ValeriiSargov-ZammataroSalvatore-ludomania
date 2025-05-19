@@ -1,17 +1,35 @@
 package ludomania.database;
 
-public class DatabaseTest {
-    // private static final String USERS_FILENAME = "users.json";
-    // private static final String WALLETS_FILENAME = "wallets.json";    
-    
-    // private DatabaseController usersController;
-    // private DatabaseController walletsController;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-    // @BeforeEach
-    // public void setUp() {
-    //     this.usersController = new LudomaniaDBController(new UserEntry("pippo", "ciaobello99"));
-    //     this.walletsController = new LudomaniaDBController(new WalletEntry("pippo", 0.0));
-    // }
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import database.controllers.LudomaniaDBController;
+import database.controllers.api.DatabaseController;
+import database.schemas.UserEntry;
+import database.schemas.WalletEntry;
+
+public class DatabaseTest {    
+    private DatabaseController usersController;
+    private DatabaseController walletsController;
+
+    @BeforeEach
+    public void setUp() {
+        this.usersController = new LudomaniaDBController(new UserEntry("pippo", "ciaobello99"));
+        this.walletsController = new LudomaniaDBController(new WalletEntry("pippo", 0.0));
+    }
+
+    @Test
+    public void testUserWrite() {
+        assertTrue(this.usersController.insert());
+    }
+
+    @Test
+    public void testWalletWrite() {
+        assertTrue(this.walletsController.insert());
+    }
+
 
     // @Test
     // public void testUserRead() {

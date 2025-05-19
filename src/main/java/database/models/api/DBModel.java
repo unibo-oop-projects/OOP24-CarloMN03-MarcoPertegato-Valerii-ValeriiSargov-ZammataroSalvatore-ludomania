@@ -21,7 +21,7 @@ public interface DBModel {
     /**
      * Inserts a new record in the database.
      */
-    boolean insert();
+    boolean write();
 
     /**
      * Removes an existing record from the database.

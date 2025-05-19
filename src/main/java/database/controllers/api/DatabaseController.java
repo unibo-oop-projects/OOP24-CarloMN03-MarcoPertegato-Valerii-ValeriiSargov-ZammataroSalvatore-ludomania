@@ -27,7 +27,7 @@ public abstract class DatabaseController {
      * @return true if success
      */
     public boolean insert() {
-        return this.model.insert();
+        return this.model.write();
     }
 
     /**

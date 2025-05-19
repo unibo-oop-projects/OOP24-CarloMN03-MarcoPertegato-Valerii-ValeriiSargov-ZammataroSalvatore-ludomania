@@ -21,7 +21,7 @@ public class Wallet implements DBModel {
     }
 
     @Override
-    public boolean insert() {
+    public boolean write() {
         return LudomaniaDBManager.getManager().write(entry, this.dbFilename);
     }
 

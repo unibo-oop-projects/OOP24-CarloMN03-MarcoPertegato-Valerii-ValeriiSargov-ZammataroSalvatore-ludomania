@@ -21,7 +21,7 @@ public class User implements DBModel {
     }
 
     @Override
-    public boolean insert() {
+    public boolean write() {
         return LudomaniaDBManager.getManager().write(entry, this.dbFilename);
     }
 

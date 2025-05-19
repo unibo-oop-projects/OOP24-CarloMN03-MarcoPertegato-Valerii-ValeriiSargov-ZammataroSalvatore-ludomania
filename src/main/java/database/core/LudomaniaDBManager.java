@@ -15,6 +15,7 @@ import database.schemas.api.Entry;
 public final class LudomaniaDBManager implements DBManager {
     
     private static final String SEP = File.separator;
+    private static final String DB_DIRECTORY_NAME = "resources";
     private static final LudomaniaDBManager MANAGER = new LudomaniaDBManager();
     
     private LudomaniaDBManager() {}
@@ -26,10 +27,9 @@ public final class LudomaniaDBManager implements DBManager {
     @Override
     public <T extends Entry> boolean write(T entry, String filename) {
         boolean result;
-        File file = this.findDBFile(filename);
         
         try {
-            this.unlockFile(file);
+            File file = this.findDBFile(filename);
             
             ObjectMapper objectMapper = new ObjectMapper();
             
@@ -44,11 +44,9 @@ public final class LudomaniaDBManager implements DBManager {
             System.out.println("List of users written to " + filename);
             
             result = true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
             result = false;
-        } finally {
-            this.lockFile(file);
         }
         
         return result;
@@ -56,11 +54,10 @@ public final class LudomaniaDBManager implements DBManager {
     
     @Override
     public boolean delete(Entry entry, final String filename) {
-        boolean result;
-        File file = this.findDBFile(filename);
-        
+        boolean result;        
+        File file;
         try {
-            this.unlockFile(file);
+            file = this.findDBFile(filename);
             
             ObjectMapper objectMapper = new ObjectMapper();
             
@@ -74,11 +71,9 @@ public final class LudomaniaDBManager implements DBManager {
             System.out.println("List of users written to " + filename);
             
             result = true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
             result = false;
-        } finally {
-            this.lockFile(file);
         }
         
         return result;
@@ -103,8 +98,8 @@ public final class LudomaniaDBManager implements DBManager {
             for (Entry user : entries) {
                 System.out.println(user);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
         
         return result;
@@ -124,8 +119,8 @@ public final class LudomaniaDBManager implements DBManager {
             for (Entry user : result.get()) {
                 System.out.println(user);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
         
         return result;
@@ -142,7 +137,7 @@ public final class LudomaniaDBManager implements DBManager {
             List<Entry> entries = objectMapper.readValue(file, new TypeReference<List<Entry>>() {});
             
             result = entries.stream().anyMatch(e -> e.getIdentifier() == entry.getIdentifier());
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             result = false;
         }
@@ -150,17 +145,9 @@ public final class LudomaniaDBManager implements DBManager {
         return result;
     }
     
-    private boolean unlockFile(File file) {
-        return file.setWritable(true);
-    }
-    
-    private boolean lockFile(File file) {
-        return file.setWritable(false);
-    }
-    
-    private File findDBFile(final String filename) {
+    private File findDBFile(final String filename) throws Exception {
         final File currentDir = new File(System.getProperty("user.dir"));        
-        File resources = new File(currentDir.getParent() + SEP + "resources");
+        File resources = new File(currentDir.getParent() + SEP + DB_DIRECTORY_NAME);
         
         if (resources.isDirectory()) {
             File dbFile = new File(resources.getPath() + SEP + filename);
@@ -168,10 +155,14 @@ public final class LudomaniaDBManager implements DBManager {
             if (dbFile.exists()) {
                 return dbFile;
             } else {
-                this.createDBFile(filename, dbFile);
+                if (!this.createDBFile(filename, dbFile)) {
+                    throw new Exception("cannot create db file:" + filename);
+                }
             }
         } else {
-            this.createDBDirectory("resources", resources);
+            if (!this.createDBDirectory(DB_DIRECTORY_NAME, resources)) {
+                throw new Exception("cannot create db directory");
+            }
         }
         
         return this.findDBFile(filename);
@@ -189,7 +180,7 @@ public final class LudomaniaDBManager implements DBManager {
     private boolean createDBDirectory(String dbDirectoryName, File directory) {
         try {
             final File currentDir = new File(System.getProperty("user.dir"));
-            return new File(currentDir.getParent() + SEP + "resources").mkdir();
+            return new File(currentDir.getParent() + SEP + DB_DIRECTORY_NAME).mkdir();
         } catch(SecurityException e) {
             System.err.println(e.getMessage());
             return false;
