@@ -33,8 +33,8 @@ public final class LudomaniaDBManager implements DBManager {
             
             ObjectMapper objectMapper = new ObjectMapper();
             
-            Optional<List<Entry>> list = this.readAll(filename);
-            List<Entry> entries = list.isEmpty() ? Arrays.asList() : list.get();
+            Optional<List<T>> list = this.readAll(filename);
+            List<T> entries = list.isEmpty() ? Arrays.asList() : list.get();
             
             entries.removeIf(e -> e.getIdentifier() == entry.getIdentifier());
             entries.add(entry);
@@ -86,8 +86,9 @@ public final class LudomaniaDBManager implements DBManager {
             File file = this.findDBFile(filename);
             ObjectMapper objectMapper = new ObjectMapper();
             
+            System.out.println(result.getClass());
             // Read the JSON array into a List of User objects
-            List<T> entries = objectMapper.readValue(file, new TypeReference<List<Entry>>() {});
+            List<T> entries = objectMapper.readValue(file, new TypeReference<List<T>>() {});
             
             result = entries.stream().filter(u -> u.getIdentifier() == entry.getIdentifier()).findFirst();
             if (result.isPresent()) {
@@ -147,7 +148,7 @@ public final class LudomaniaDBManager implements DBManager {
     
     private File findDBFile(final String filename) throws Exception {
         final File currentDir = new File(System.getProperty("user.dir"));        
-        File resources = new File(currentDir.getParent() + SEP + DB_DIRECTORY_NAME);
+        File resources = new File(currentDir.getPath() + SEP + "src" + SEP + "main" + SEP + "java" + SEP + "database" + SEP + DB_DIRECTORY_NAME);
         
         if (resources.isDirectory()) {
             File dbFile = new File(resources.getPath() + SEP + filename);
