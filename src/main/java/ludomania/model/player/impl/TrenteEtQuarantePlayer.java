@@ -9,8 +9,8 @@ import ludomania.model.wallet.api.Wallet;
 
 public class TrenteEtQuarantePlayer extends Player {
 
-    public TrenteEtQuarantePlayer(final Wallet wallet) {
-        super(wallet);
+    public TrenteEtQuarantePlayer(final Wallet wallet, final String username) {
+        super(wallet, username);
     }
 
     @Override

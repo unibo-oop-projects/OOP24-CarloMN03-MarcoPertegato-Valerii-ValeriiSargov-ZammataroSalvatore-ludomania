@@ -1,8 +1,8 @@
 package ludomania.model.game.impl;
 
+import ludomania.model.Pair;
 import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 import ludomania.model.game.api.CounterResult;
-import javafx.util.Pair;
 
 public final class TrenteEtQuaranteResult extends CounterResult<Pair<TrenteEtQuaranteBetType, TrenteEtQuaranteBetType>> {
 

@@ -12,7 +12,6 @@ import ludomania.model.table.api.Table;
 public class TableImpl<T> implements Table {
     private final Game<T> game;
     private final Croupier<T> croupier;
-    private boolean playAgainFlag;
 
     public TableImpl(Game<T> game, Croupier<T> croupier) {
         this.game = game;

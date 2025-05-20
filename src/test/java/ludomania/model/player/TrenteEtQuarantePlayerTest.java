@@ -25,7 +25,7 @@ public final class TrenteEtQuarantePlayerTest {
     @BeforeEach
     void setUp() {
         wallet = new WalletImpl(INITIAL_MONEY);
-        player = new TrenteEtQuarantePlayer(wallet);
+        player = new TrenteEtQuarantePlayer(wallet, "Player1");
     }
 
     @Test

@@ -6,7 +6,7 @@ import java.util.Map;
 import io.lyuda.jcards.Card;
 import io.lyuda.jcards.DeckFactory;
 import io.lyuda.jcards.Hand;
-import javafx.util.Pair;
+import ludomania.model.Pair;
 import ludomania.model.bet.api.Bet;
 import ludomania.model.bet.api.BetType;
 import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
@@ -20,18 +20,15 @@ public class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaranteBetT
     private static final String RED = "#f00";
     private static final String BLACK = "#000";
     private static final int MAX_HAND_VALUE = 31;
-    //private static final int FACE_CARDS_VALUE = 10;
+    private static final int FACE_CARDS_VALUE = 10;
+    private Map<Hand, Integer> hands = new HashMap<>();
     private Hand rouge;
     private Hand noir;
-    private int rougeTotal;
-    private int noirTotal;
 
     public TrenteEtQuaranteDealer(final Map<Player, Bet> roundBet, final DeckFactory decks) {
         super(roundBet, decks);
-        this.rouge = new Hand();
-        this.noir = new Hand();
-        this.rougeTotal = 0;
-        this.noirTotal = 0;
+        hands.put(noir, 0);
+        hands.put(rouge, 0);
     }
 
     @Override
@@ -57,10 +54,9 @@ public class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaranteBetT
     }
 
     public void reset() {
-        rouge = new Hand();
-        noir = new Hand();
-        rougeTotal = 0;
-        noirTotal = 0;
+        hands.clear();
+        hands.put(noir, 0);
+        hands.put(rouge, 0);
         clearRound();
     }
 
@@ -72,43 +68,35 @@ public class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaranteBetT
         return noir;
     }
 
-    public int getRougeTotal() {
-        return rougeTotal;
+    public int getHandTotal(final Hand hand) {
+        return hands.get(hand);
     }
 
-    public int getNoirTotal() {
-        return noirTotal;
-    }
-
-    public void increaseRougeTotal(final int amount) {
-        rougeTotal += amount;
-    }
-
-    public void increaseNoirTotal(final int amount) {
-        noirTotal += amount;
+    public void increaseHandTotal(final Hand hand, final int amount) {
+        hands.put(hand, hands.get(hand) + amount);
     }
     
     public Card extractNewCard(final Hand hand) {
         final Card extractedCard = drawCard();
-        hand.addCard(extractedCard);        
+        hand.addCard(extractedCard);
+        increaseHandTotal(hand, tureCardValue(extractedCard));        
         return extractedCard;
-        //The CardValue is added from Game who knows which hand it is gonna get added
     }
-
-    //Is gonna get moved inside Game
-    /*
-    private int tureCardValue(Card cards){
+    
+    public int tureCardValue(Card cards){
         if(cards.getRank().getValue()>FACE_CARDS_VALUE){
             return FACE_CARDS_VALUE;
         }
         return cards.getRank().getValue();
     }
-    */
-    public boolean isEnough(final int handTotal) {
-        return handTotal >= MAX_HAND_VALUE;
+    
+    public boolean isEnough(Hand hand) {
+        return getHandTotal(hand) >= MAX_HAND_VALUE;
     }
 
     private TrenteEtQuaranteBetType evaluateWinningColor() {
+        final int rougeTotal = getHandTotal(rouge);
+        final int noirTotal = getHandTotal(noir);
         if (rougeTotal == noirTotal) {
             return TrenteEtQuaranteBetType.DRAW;
         }        
