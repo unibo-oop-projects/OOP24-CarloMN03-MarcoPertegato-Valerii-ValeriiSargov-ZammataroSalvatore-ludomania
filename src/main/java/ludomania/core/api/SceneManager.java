@@ -19,6 +19,11 @@ public interface SceneManager {
     void switchToSettings();
 
     /**
+     * Switches the current scene to the TrenteEtQuarante screen.
+     */
+    void switchToTrenteEtQuarante();
+
+    /**
      * Returns the {@link LanguageManager} associated with the scene manager,
      * used for localized UI updates.
      *

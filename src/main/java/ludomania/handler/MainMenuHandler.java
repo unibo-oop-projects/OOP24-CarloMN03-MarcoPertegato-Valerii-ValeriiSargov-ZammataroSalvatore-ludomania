@@ -28,5 +28,13 @@ public interface MainMenuHandler {
      */
     void handleCosmetics();
 
+    /**
+     * Handles the game selection.
+     */
     void selectGame(int gameId);
+
+    /**
+     * Handles the action to open the TrenteEtQUarante screen.
+     */
+    void handleTrenteEtQuarante();
 }

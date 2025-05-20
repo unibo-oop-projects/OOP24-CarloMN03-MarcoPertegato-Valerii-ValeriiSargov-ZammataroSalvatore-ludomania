@@ -31,9 +31,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
         switch (selectedGameId) {
             case 1 -> handleSettings();
             case 2 -> handleExit();
-            case 3 -> {
-                audioManager.playSound("click");
-            }
+            case 3 -> handleTrenteEtQuarante();
             default -> {
             }
 
@@ -61,5 +59,11 @@ public final class MainMenuController implements Controller, MainMenuHandler {
         audioManager.playSound("click");
         sceneManager.switchToCosmetics();
     }
+
+    @Override
+    public void handleTrenteEtQuarante() {
+        audioManager.playSound("click");
+        sceneManager.switchToTrenteEtQuarante();
+    }    
 
 }
