@@ -14,6 +14,16 @@ import javafx.beans.property.SimpleObjectProperty;
 import ludomania.cosmetics.CosmeticTheme;
 import ludomania.settings.api.SettingsManager;
 
+/**
+ * Default implementation of the {@link SettingsManager} interface.
+ * <p>
+ * Manages user preferences such as language, audio volume, fullscreen mode,
+ * screen resolution, and cosmetic themes.
+ * <p>
+ * Settings are persisted using Java's {@link java.util.prefs.Preferences} API
+ * and are automatically loaded upon instantiation.
+ */
+
 public final class SettingsManagerImpl implements SettingsManager {
     private static final String PREFS_NODE = "ludomania.settings";
     private static final double DEFAULT_AUDIO_VALUE = 0.8;
@@ -29,6 +39,11 @@ public final class SettingsManagerImpl implements SettingsManager {
     private final ObjectProperty<CosmeticTheme> ficheTheme = new SimpleObjectProperty<>();
     private final ObjectProperty<CosmeticTheme> backgroundTheme = new SimpleObjectProperty<>();
 
+    /**
+     * Constructs a SettingsManagerImpl and loads user preferences from storage.
+     * <p>
+     * If no saved preferences are found, default values are used.
+     */
     public SettingsManagerImpl() {
         load();
     }

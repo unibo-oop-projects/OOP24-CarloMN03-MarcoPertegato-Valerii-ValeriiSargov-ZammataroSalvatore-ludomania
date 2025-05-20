@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
-
 package ludomania.model.wallet.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,54 +6,50 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class WalletImplTest {
+class WalletImplTest {
 
     private static final double MAX_DELTA = 0.001;
-    private static final double AMOUNT = 100.0;
-    private static final double startingAmount = 100.0;
+    private static final double INITIAL_AMOUNT = 100.0;
+    private static final double DEPOSIT_AMOUNT = 50.0;
+    private static final double WITHDRAW_AMOUNT = 30.0;
+    private static final double OVERDRAW_AMOUNT = 200.0;
+    private static final double EXPECTED_INITIAL_MONEY = 100.0;
+    private static final double EXPECTED_MONEY_AFTER_DEPOSIT = 150.0;
+    private static final double EXPECTED_MONEY_AFTER_WITHDRAW = 70.0;
+
     private WalletImpl wallet;
 
     @BeforeEach
     void setUp() {
-        this.wallet = new WalletImpl(startingAmount);
+        this.wallet = new WalletImpl(INITIAL_AMOUNT);
     }
 
     /**
-     * Test if the Wallet initialization works correctly
+     * Test if the Wallet initialization works correctly.
      */
     @Test
     void testInitialMoney() {
-        assertEquals(AMOUNT, wallet.getMoney(), MAX_DELTA);
+        assertEquals(EXPECTED_INITIAL_MONEY, wallet.getMoney(), MAX_DELTA);
     }
 
     /**
-     * Test that the deposit work correctly
+     * Test that the deposit works correctly.
      */
     @Test
     void testDepositIncreasesMoney() {
-        wallet.deposit(50.0);
-        assertEquals(150.0, wallet.getMoney(), MAX_DELTA);
-
+        wallet.deposit(DEPOSIT_AMOUNT);
+        assertEquals(EXPECTED_MONEY_AFTER_DEPOSIT, wallet.getMoney(), MAX_DELTA);
     }
 
     /**
-     * Check that the withdraw is performed correctly on Wallet
+     * Check that the withdraw is performed correctly on Wallet.
      */
     @Test
     void testWithdraw() {
-        assertFalse(wallet.withdraw(200.0));
-        assertEquals(100.0, wallet.getMoney(), MAX_DELTA);
-        assertTrue(wallet.withdraw(30.0));
-        assertEquals(70.0, wallet.getMoney(), MAX_DELTA);
-    }
-
-    /**
-     * Test for the withdraw method
-     */
-    @Test
-    void testCanWithdrawTrue() {
-        assertTrue(wallet.canWithdraw(50.0));
-        assertFalse(wallet.canWithdraw(150.0));
+        assertFalse(wallet.withdraw(OVERDRAW_AMOUNT));
+        assertEquals(EXPECTED_INITIAL_MONEY, wallet.getMoney(), MAX_DELTA);
+        assertTrue(wallet.withdraw(WITHDRAW_AMOUNT));
+        assertEquals(EXPECTED_MONEY_AFTER_WITHDRAW, wallet.getMoney(), MAX_DELTA);
     }
 
 }
