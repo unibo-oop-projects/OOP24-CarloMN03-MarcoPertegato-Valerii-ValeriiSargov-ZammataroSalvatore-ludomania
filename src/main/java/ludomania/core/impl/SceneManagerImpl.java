@@ -72,7 +72,7 @@ public final class SceneManagerImpl implements SceneManager {
 
     @Override
     public void switchToMainMenu() {
-        audioManager.playMusic("furinaTheme");
+        audioManager.playMusic("devilTrigger");
         Parent root = new MainMenuController(this, audioManager).getView();
         applyBackgroundToRoot(root);
         mainScene.setRoot(root);
