@@ -8,17 +8,16 @@ import org.junit.jupiter.api.Test;
 import ludomania.model.bet.impl.TrenteEtQuaranteBet;
 import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 
-public class TrenteEtQuaranteBetTest {
+public final class TrenteEtQuaranteBetTest {
 
     private static final int ROUGE_AMOUNT = 100;
-    private static final int ENVERSE_AMOUNT = 55;    
-    
+    private static final int ENVERSE_AMOUNT = 55;
     private TrenteEtQuaranteBet rBet;
     private TrenteEtQuaranteBet cBet;
 
     @BeforeEach
-    public void setUp(){
-        rBet = new TrenteEtQuaranteBet(ROUGE_AMOUNT, TrenteEtQuaranteBetType.ROUGE);        
+    public void setUp() {
+        rBet = new TrenteEtQuaranteBet(ROUGE_AMOUNT, TrenteEtQuaranteBetType.ROUGE);
         cBet = new TrenteEtQuaranteBet(ENVERSE_AMOUNT, TrenteEtQuaranteBetType.ENVERSE);
     }
 
@@ -28,7 +27,7 @@ public class TrenteEtQuaranteBetTest {
         assertEquals(TrenteEtQuaranteBetType.ROUGE, rBet.getType());
         assertEquals("Rouge", rBet.getType().getTypeName());
 
-        assertEquals(ENVERSE_AMOUNT, cBet.getValue());        
+        assertEquals(ENVERSE_AMOUNT, cBet.getValue());
         assertEquals(TrenteEtQuaranteBetType.ENVERSE, cBet.getType());
         assertEquals("Enverse", cBet.getType().getTypeName());
     }

@@ -23,8 +23,10 @@ import ludomania.model.player.api.Player;
 import ludomania.model.player.impl.TrenteEtQuarantePlayer;
 import ludomania.model.wallet.impl.WalletImpl;
 
-public class TrenteEtQuaranteDealerTest {
+public final class TrenteEtQuaranteDealerTest {
 
+    private static final int NOIR_VALUE = 15;
+    private static final int ROUGE_VALUE = 10;
     private static final int DECK_NUM = 6;
     private static final double BET_VALUE = 20.0;
     private static final double INITIAL_MONEY = 100.0;
@@ -33,7 +35,7 @@ public class TrenteEtQuaranteDealerTest {
     private TrenteEtQuarantePlayer player;
     private TrenteEtQuaranteBet bet;
     private WalletImpl wallet;
-    private Map<Player, Bet> roundBet;    
+    private Map<Player, Bet> roundBet;
     private DeckFactory deckFactory;
     private Card card;
 
@@ -43,7 +45,7 @@ public class TrenteEtQuaranteDealerTest {
         player = new TrenteEtQuarantePlayer(wallet);
         bet = new TrenteEtQuaranteBet(BET_VALUE, TrenteEtQuaranteBetType.ROUGE);
         roundBet = new HashMap<Player, Bet>();
-        roundBet.put(player, bet);        
+        roundBet.put(player, bet);
         deckFactory = new DeckFactory();
         dealer = new TrenteEtQuaranteDealer(roundBet, deckFactory);
         dealer.initDeck(DECK_NUM);
@@ -53,38 +55,40 @@ public class TrenteEtQuaranteDealerTest {
 
     @Test
     void testCheckBetsWithDraw() {
-        TrenteEtQuaranteResult result = new TrenteEtQuaranteResult(new Pair<TrenteEtQuaranteBetType,TrenteEtQuaranteBetType>(TrenteEtQuaranteBetType.DRAW, TrenteEtQuaranteBetType.DRAW));
-        Map<Player, Double> winners = dealer.checkBets(result);
+        final TrenteEtQuaranteResult result = new TrenteEtQuaranteResult(
+            new Pair<>(TrenteEtQuaranteBetType.DRAW, TrenteEtQuaranteBetType.DRAW));
+        final Map<Player, Double> winners = dealer.checkBets(result);
         assertTrue(winners.containsKey(player), "Player should be a winner in a draw");
         assertEquals(BET_VALUE, winners.get(player), "Bet evaluation should return the correct amount for DRAW");
     }
 
     @Test
     void testCheckBetsWithRougeAndCouleur() {
-        TrenteEtQuaranteResult result = new TrenteEtQuaranteResult(new Pair<TrenteEtQuaranteBetType,TrenteEtQuaranteBetType>(TrenteEtQuaranteBetType.ROUGE, TrenteEtQuaranteBetType.COULEUR));
-        Map<Player, Double> winners = dealer.checkBets(result);        
+        final TrenteEtQuaranteResult result = new TrenteEtQuaranteResult(
+            new Pair<>(TrenteEtQuaranteBetType.ROUGE, TrenteEtQuaranteBetType.COULEUR));
+        final Map<Player, Double> winners = dealer.checkBets(result);
         assertTrue(winners.containsKey(player), "Player should be a winner on ROUGE");
         assertEquals(bet.evaluate(), winners.get(player), "Bet evaluation should return the correct amount for ROUGE");
     }
 
     @Test
     void testReset() {
-        dealer.increaseRougeTotal(10);
-        dealer.increaseNoirTotal(15);
-        assertEquals(10, dealer.getRougeTotal());
-        assertEquals(15, dealer.getNoirTotal());
+        dealer.increaseRougeTotal(ROUGE_VALUE);
+        dealer.increaseNoirTotal(NOIR_VALUE);
+        assertEquals(ROUGE_VALUE, dealer.getRougeTotal());
+        assertEquals(NOIR_VALUE, dealer.getNoirTotal());
         dealer.reset();
         assertEquals(0, dealer.getRougeTotal());
         assertEquals(0, dealer.getNoirTotal());
     }
-    
+
     @Test
     void testDeclareResult() {
         dealer.getNoir().addCard(card);
         dealer.increaseNoirTotal(card.getRank().getValue());
         assertEquals(card.getRank().getValue(), dealer.getNoirTotal());
         assertEquals(0, dealer.getRougeTotal());
-        TrenteEtQuaranteResult result = dealer.declareResult();
+        final TrenteEtQuaranteResult result = dealer.declareResult();
         assertEquals(TrenteEtQuaranteBetType.ROUGE, result.getColor());
         assertEquals(TrenteEtQuaranteBetType.ENVERSE, result.getKind());
     }

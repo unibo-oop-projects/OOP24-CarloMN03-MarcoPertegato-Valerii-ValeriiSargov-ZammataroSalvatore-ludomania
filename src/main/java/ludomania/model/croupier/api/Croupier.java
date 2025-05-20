@@ -7,18 +7,22 @@ import ludomania.model.game.api.CounterResult;
 import ludomania.model.player.api.Player;
 
 public abstract class Croupier<T> {
-    protected final Map<Player, Bet> roundBet;
+    private final Map<Player, Bet> roundBet;
 
-    public Croupier(Map<Player, Bet> roundBet) {
+    public Croupier(final Map<Player, Bet> roundBet) {
         this.roundBet = roundBet;
     }
 
-    public void addBet(Player player, Bet bet) {
+    public void addBet(final Player player, final Bet bet) {
         roundBet.put(player, bet);
     }
 
     public void clearRound() {
         roundBet.clear();
+    }
+
+    public Map<Player, Bet> getRoundBet() {
+        return roundBet;
     }
 
     public abstract Map<Player, Double> checkBets(CounterResult<T> result);

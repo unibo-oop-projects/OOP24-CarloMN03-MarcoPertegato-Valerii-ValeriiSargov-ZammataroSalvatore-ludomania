@@ -2,8 +2,8 @@ package ludomania.model.bet.api;
 
 public interface BetType {
 
-    public String getTypeName();
+    String getTypeName();
 
-    public Double getPayout();
+    Double getPayout();
 
 }

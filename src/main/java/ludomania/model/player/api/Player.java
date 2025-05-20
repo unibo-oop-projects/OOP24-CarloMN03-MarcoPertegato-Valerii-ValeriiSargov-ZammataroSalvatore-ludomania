@@ -7,17 +7,17 @@ import ludomania.model.wallet.api.Wallet;
 public abstract class Player {
     private final Wallet wallet;
 
-    public Player(Wallet wallet) {
+    public Player(final Wallet wallet) {
         this.wallet = wallet;
     }
 
-    public boolean deposit(Double amount) {
+    public boolean deposit(final Double amount) {
         return wallet.deposit(amount);
     }
 
-    public boolean withdraw(Double amount) {
+    public boolean withdraw(final Double amount) {
         return wallet.withdraw(amount);
     }
 
-    abstract public Bet makeBet(Double amount, BetType type);
+    public abstract Bet makeBet(Double amount, BetType type);
 }

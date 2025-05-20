@@ -12,7 +12,7 @@ public abstract class CardDealer<T> extends Croupier<T> {
     private static final int MIN_DECK_NUM = 3;
     private final DeckFactory decks;
 
-    public CardDealer(Map<Player, Bet> roundBet, DeckFactory decks) {
+    public CardDealer(final Map<Player, Bet> roundBet, final DeckFactory decks) {
         super(roundBet);
         this.decks = decks;
     }
@@ -24,8 +24,8 @@ public abstract class CardDealer<T> extends Croupier<T> {
     public void shuffleAll() {
         decks.shuffleAllDecks();
     }
-    
-    public void initDeck(int amount) {
+
+    public void initDeck(final int amount) {
         decks.clearDecks();
         for (int i = 0; i < amount; i++) {
             decks.createDeck();
@@ -33,9 +33,9 @@ public abstract class CardDealer<T> extends Croupier<T> {
     }
 
     public Card drawCard() {
-        Random rand = new Random();
+        final Random rand = new Random();
         int index = rand.nextInt(getDeckCount());
-        while(decks.getDeck(index).getCards().isEmpty()) {
+        while (decks.getDeck(index).getCards().isEmpty()) {
             decks.removeDeck(index);
             index = rand.nextInt(getDeckCount());
         }

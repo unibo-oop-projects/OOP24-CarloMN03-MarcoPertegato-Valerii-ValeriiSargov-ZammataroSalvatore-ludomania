@@ -2,7 +2,7 @@ package ludomania.model.bet.impl;
 
 import ludomania.model.bet.api.BetType;
 
-public enum TrenteEtQuaranteBetType implements BetType{
+public enum TrenteEtQuaranteBetType implements BetType {
     ROUGE("Rouge", 1.0),
     NOIR("Noir", 1.0),
     COULEUR("Couleur", 1.0),
@@ -12,16 +12,16 @@ public enum TrenteEtQuaranteBetType implements BetType{
     private final String typeName;
     private final double payout;
 
-    TrenteEtQuaranteBetType(String displayName, double payout) {
+    TrenteEtQuaranteBetType(final String displayName, final double payout) {
         this.typeName = displayName;
         this.payout = payout;
     }
 
-    public String getTypeName(){
+    public String getTypeName() {
         return typeName;
     }
 
-    public Double getPayout(){
+    public Double getPayout() {
         return payout;
     }
 }

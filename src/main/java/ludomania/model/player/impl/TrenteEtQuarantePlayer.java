@@ -9,12 +9,12 @@ import ludomania.model.wallet.api.Wallet;
 
 public class TrenteEtQuarantePlayer extends Player {
 
-    public TrenteEtQuarantePlayer(Wallet wallet) {
+    public TrenteEtQuarantePlayer(final Wallet wallet) {
         super(wallet);
     }
 
     @Override
-    public Bet makeBet(Double amount, BetType type) {
+    public Bet makeBet(final Double amount, final BetType type) {
         if (!(type instanceof TrenteEtQuaranteBetType)) {
             throw new IllegalArgumentException("Invalid bet type for Trente et Quarante.");
         }
