@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Ludomania",
+            "request": "launch",
+            "mainClass": "ludomania.core.Ludomania",
+            "projectName": "ludomania-OOP24-ludomania"
+        },
+        {
             "type": "jdk",
             "request": "launch",
             "name": "Launch Java App"

@@ -23,4 +23,8 @@ public class BlackJackPlayer extends Player{
         }
         return new BlackJackBet(amount, (BlackJackBetType) type);
     }
+
+    public double getBalance() {
+        return wallet.getMoney();
+    }
 }
