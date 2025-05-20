@@ -4,7 +4,7 @@ public interface BlackJackHandler {
     
     void handleHit();
 
-    void handStand();
+    void handleStand();
 
     void handleNewRound();
 
@@ -13,4 +13,5 @@ public interface BlackJackHandler {
     void handlePlaceBet(int amount);
 
     void handleClearBets();
+    
 }
