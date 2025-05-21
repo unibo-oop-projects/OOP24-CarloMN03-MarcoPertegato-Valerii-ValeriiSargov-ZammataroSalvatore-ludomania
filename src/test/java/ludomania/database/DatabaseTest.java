@@ -15,7 +15,7 @@ public class DatabaseTest {
     private DatabaseController walletsController;
 
     @BeforeEach
-    public void setUp() {
+    private void setUp() {
         this.usersController = new LudomaniaDBController(new UserEntry("pippo", "ciaobello99"));
         this.walletsController = new LudomaniaDBController(new WalletEntry("pippo", 0.0));
     }
