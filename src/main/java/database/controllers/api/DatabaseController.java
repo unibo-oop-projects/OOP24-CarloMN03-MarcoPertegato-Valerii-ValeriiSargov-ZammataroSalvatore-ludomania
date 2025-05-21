@@ -50,7 +50,7 @@ public abstract class DatabaseController {
      * Calls the DBModel readAll method.
      * @return the database entries
      */
-    public <T extends Entry> Optional<List<T>> readAll() {
+    public <T extends Entry> Optional<List<T>> readAll() throws Exception {
         return this.model.readAll();
     }
 }

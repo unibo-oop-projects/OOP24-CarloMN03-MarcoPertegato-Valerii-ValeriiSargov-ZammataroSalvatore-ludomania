@@ -1,6 +1,7 @@
 package database.schemas;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import database.schemas.api.Entry;
 
@@ -8,22 +9,14 @@ public class UserEntry implements Entry {
     private final String username;
     private final String password;
 
-    public UserEntry(final String username, final String password) {
+    @JsonCreator
+    public UserEntry(@JsonProperty("username") final String username, @JsonProperty("password") final String password) {
         this.username = username;
         this.password = password;
     }
 
     @Override
-    public final JSONObject toJson() {
-        final JSONObject j = new JSONObject();
-        j.put("password", this.password);
-        j.put("username", this.username);
-
-        return j;
-    }
-
-    @Override
-    public final String getIdentifier() {
+    public final String identifier() {
         return this.username;
     }
 

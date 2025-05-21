@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import database.models.api.DBModel;
@@ -43,7 +44,7 @@ public final class Wallet implements DBModel {
     }
     
     @Override
-    public Optional<List<WalletEntry>> readAll() {
+    public Optional<List<WalletEntry>> readAll() throws Exception {
         return Manager.getManager().readAll(this.dbFilename);
     }
 
@@ -72,7 +73,7 @@ public final class Wallet implements DBModel {
                 Optional<List<WalletEntry>> list = this.readAll(filename);
                 ArrayList<WalletEntry> entries = list.isEmpty() ? new ArrayList<>() : new ArrayList<>(list.get());
 
-                entries.removeIf(e -> e.getIdentifier() == entry.getIdentifier());
+                entries.removeIf(e -> e.identifier().equals(entry.identifier()));
                 entries.add(entry);
                 
                 objectMapper.writeValue(file, entries);
@@ -123,7 +124,7 @@ public final class Wallet implements DBModel {
                 // Read the JSON array into a List of User objects
                 List<WalletEntry> entries = objectMapper.readValue(file, new TypeReference<List<WalletEntry>>() {});
                 
-                result = entries.stream().filter(u -> u.getIdentifier() == entry.getIdentifier()).findFirst();
+                result = entries.stream().filter(u -> u.identifier() == entry.identifier()).findFirst();
                 if (result.isPresent()) {
                     System.out.println(result);
                 }
@@ -139,8 +140,8 @@ public final class Wallet implements DBModel {
             return result;
         }
         
-        private Optional<List<WalletEntry>> readAll(final String filename) {
-            Optional<List<WalletEntry>> result = Optional.empty();
+        private Optional<List<WalletEntry>> readAll(final String filename) throws Exception {
+            List<WalletEntry> result = new ArrayList<>();
             try {
                 File file = this.findDBFile(filename);
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -149,14 +150,15 @@ public final class Wallet implements DBModel {
                 result = objectMapper.readValue(file, new TypeReference<List<WalletEntry>>() {});            
                 
                 System.out.println("List of Users:");
-                for (Entry user : result.get()) {
+                for (Entry user : result) {
                     System.out.println(user);
                 }
-            } catch (Exception e) {
+            } catch (final JsonMappingException e) {
                 System.err.println(e.getMessage());
+                result = new ArrayList<>();
             }
             
-            return result;
+            return Optional.of(result);
         }
         
         private boolean exists(final Entry entry, final String filename) {
@@ -168,7 +170,7 @@ public final class Wallet implements DBModel {
                 // Read the JSON array into a List of User objects
                 List<WalletEntry> entries = objectMapper.readValue(file, new TypeReference<List<WalletEntry>>() {});
                 
-                result = entries.stream().anyMatch(e -> e.getIdentifier() == entry.getIdentifier());
+                result = entries.stream().anyMatch(e -> e.identifier() == entry.identifier());
             } catch (Exception e) {
                 System.err.println(e.getMessage());
                 result = false;
@@ -178,20 +180,20 @@ public final class Wallet implements DBModel {
         }
         
         private File findDBFile(final String filename) throws Exception {       
-            File resources = new File(DB_DIRECTORY_PATH);
+            File dbDirectory = new File(DB_DIRECTORY_PATH);
             
-            if (resources.isDirectory()) {
-                File dbFile = new File(resources.getPath() + SEP + filename);
+            if (dbDirectory.isDirectory()) {
+                File dbFile = new File(dbDirectory.getPath() + SEP + filename);
                 
                 if (dbFile.exists()) {
                     return dbFile;
                 } else {
-                    if (!this.createDBFile(filename, dbFile)) {
+                    if (!this.createDBFile(filename, dbDirectory)) {
                         throw new Exception("cannot create db file:" + filename);
                     }
                 }
             } else {
-                if (!this.createDBDirectory(DB_DIRECTORY_NAME, resources)) {
+                if (!this.createDBDirectory(dbDirectory)) {
                     throw new Exception("cannot create db directory");
                 }
             }
@@ -208,7 +210,7 @@ public final class Wallet implements DBModel {
             }
         }
         
-        private boolean createDBDirectory(final String dbDirectoryName, File directory) {
+        private boolean createDBDirectory(File directory) {
             try {
                 return new File(DB_DIRECTORY_PATH).mkdir();
             } catch(SecurityException e) {

@@ -37,5 +37,5 @@ public interface DBModel {
      * Reads all the records in the database
      * @return an Optional of List of entries
      */
-    <T extends Entry> Optional<List<T>> readAll();
+    <T extends Entry> Optional<List<T>> readAll() throws Exception;
 }

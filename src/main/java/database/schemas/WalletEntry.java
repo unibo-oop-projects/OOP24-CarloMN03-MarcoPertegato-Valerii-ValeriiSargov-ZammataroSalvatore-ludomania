@@ -1,6 +1,7 @@
 package database.schemas;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import database.schemas.api.Entry;
 
@@ -8,7 +9,8 @@ public class WalletEntry implements Entry {
     private final double amount;
     private final String username;
 
-    public WalletEntry(final String username, final double amount) {
+    @JsonCreator
+    public WalletEntry(@JsonProperty("username") final String username, @JsonProperty("amount") final double amount) {
         this.amount = amount;
         this.username = username;
     }
@@ -18,16 +20,7 @@ public class WalletEntry implements Entry {
     }
 
     @Override
-    public final JSONObject toJson() {
-        final JSONObject j = new JSONObject();
-        j.put("amount", this.amount);
-        j.put("username", this.username);
-
-        return j;
-    }
-
-    @Override
-    public final String getIdentifier() {
+    public final String identifier() {
         return this.username;
     }
 

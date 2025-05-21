@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import database.schemas.api.Entry;
@@ -45,16 +46,16 @@ public final class User implements DBModel {
     }
     
     @Override
-    public Optional<List<UserEntry>> readAll() {
+    public Optional<List<UserEntry>> readAll() throws Exception {
         return Manager.getManager().readAll(this.dbFilename);
     }
-
-
+    
+    
     private final static class Manager {
         private static final String SEP = File.separator;
         private static final String DB_DIRECTORY_NAME = "resources";
         private static final String DB_DIRECTORY_PATH = 
-            new File(System.getProperty("user.dir")).getPath() + SEP + "src" + SEP + "main" + SEP + "java" + SEP + "database" + SEP + DB_DIRECTORY_NAME;
+        new File(System.getProperty("user.dir")).getPath() + SEP + "src" + SEP + "main" + SEP + "java" + SEP + "database" + SEP + DB_DIRECTORY_NAME;
         
         private static final Manager MANAGER = new Manager();
         
@@ -63,10 +64,10 @@ public final class User implements DBModel {
         private static Manager getManager() {
             return MANAGER;
         }    
-
+        
         private boolean write(UserEntry entry, String filename) {
             boolean result;
-
+            
             try {
                 File file = this.findDBFile(filename);
                 
@@ -75,8 +76,8 @@ public final class User implements DBModel {
                 Optional<List<UserEntry>> list = this.readAll(filename);
                 ArrayList<UserEntry> entries = list.isEmpty() ? new ArrayList<>() : new ArrayList<>(list.get());
                 
-                entries.removeIf(e -> e.getIdentifier() == entry.getIdentifier());
-                entries.add(new UserEntry("pippo", "ciaoLol"));
+                entries.removeIf(e -> e.identifier().equals(entry.identifier()));
+                entries.add(entry);
                 
                 objectMapper.writeValue(file, entries);
                 
@@ -90,7 +91,7 @@ public final class User implements DBModel {
             
             return result;
         }
-
+        
         private boolean delete(UserEntry entry, final String filename) {
             boolean result;        
             File file;
@@ -116,7 +117,7 @@ public final class User implements DBModel {
             
             return result;
         }
-
+        
         private Optional<UserEntry> read(UserEntry entry, final String filename) {
             Optional<UserEntry> result = Optional.empty();
             try {
@@ -126,7 +127,7 @@ public final class User implements DBModel {
                 // Read the JSON array into a List of User objects
                 List<UserEntry> entries = objectMapper.readValue(file, new TypeReference<List<UserEntry>>() {});
                 
-                result = entries.stream().filter(u -> u.getIdentifier() == entry.getIdentifier()).findFirst();
+                result = entries.stream().filter(u -> u.identifier() == entry.identifier()).findFirst();
                 if (result.isPresent()) {
                     System.out.println(result);
                 }
@@ -141,27 +142,23 @@ public final class User implements DBModel {
             
             return result;
         }
-
-        private Optional<List<UserEntry>> readAll(String filename) {
-            Optional<List<UserEntry>> result = Optional.empty();
+        
+        private Optional<List<UserEntry>> readAll(String filename) throws Exception {
+            List<UserEntry> result = new ArrayList<>();
             try {
                 File file = this.findDBFile(filename);
                 ObjectMapper objectMapper = new ObjectMapper();
                 
                 // Read the JSON array into a List of User objects
-                result = objectMapper.readValue(file, new TypeReference<List<UserEntry>>() {});            
-                
-                System.out.println("List of Users:");
-                for (Entry user : result.get()) {
-                    System.out.println(user);
-                }
-            } catch (Exception e) {
+                result = objectMapper.readValue(file, new TypeReference<List<UserEntry>>() {});                      
+            } catch (final JsonMappingException e) {
                 System.err.println(e.getMessage());
+                result = new ArrayList<>();
             }
             
-            return result;
+            return Optional.of(result);
         }
-
+        
         private boolean exists(Entry entry, String filename) {
             boolean result = false;
             try {
@@ -171,7 +168,7 @@ public final class User implements DBModel {
                 // Read the JSON array into a List of User objects
                 List<UserEntry> entries = objectMapper.readValue(file, new TypeReference<List<UserEntry>>() {});
                 
-                result = entries.stream().anyMatch(e -> e.getIdentifier() == entry.getIdentifier());
+                result = entries.stream().anyMatch(e -> e.identifier() == entry.identifier());
             } catch (Exception e) {
                 System.err.println(e.getMessage());
                 result = false;
@@ -179,29 +176,29 @@ public final class User implements DBModel {
             
             return result;
         }
-
+        
         private File findDBFile(final String filename) throws Exception {       
-            File resources = new File(DB_DIRECTORY_PATH);
+            File dbDirectory = new File(DB_DIRECTORY_PATH);
             
-            if (resources.isDirectory()) {
-                File dbFile = new File(resources.getPath() + SEP + filename);
+            if (dbDirectory.isDirectory()) {
+                File dbFile = new File(dbDirectory.getPath() + SEP + filename);
                 
                 if (dbFile.exists()) {
                     return dbFile;
                 } else {
-                    if (!this.createDBFile(filename, dbFile)) {
+                    if (!this.createDBFile(filename, dbDirectory)) {
                         throw new Exception("cannot create db file:" + filename);
                     }
                 }
             } else {
-                if (!this.createDBDirectory(DB_DIRECTORY_NAME, resources)) {
+                if (!this.createDBDirectory(dbDirectory)) {
                     throw new Exception("cannot create db directory");
                 }
             }
             
             return this.findDBFile(filename);
         }
-
+        
         private boolean createDBFile(final String filename, File directory) {
             try {
                 return new File(directory.getPath() + SEP + filename).createNewFile();
@@ -210,8 +207,8 @@ public final class User implements DBModel {
                 return false;
             }
         }
-
-        private boolean createDBDirectory(String dbDirectoryName, final File directory) {
+        
+        private boolean createDBDirectory(final File directory) {
             try {
                 return new File(DB_DIRECTORY_PATH).mkdir();
             } catch (final SecurityException e) {
@@ -220,5 +217,5 @@ public final class User implements DBModel {
             }
         }
     }
-
+    
 }
