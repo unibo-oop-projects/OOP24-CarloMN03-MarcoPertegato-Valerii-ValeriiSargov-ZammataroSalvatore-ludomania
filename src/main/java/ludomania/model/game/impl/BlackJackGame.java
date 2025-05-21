@@ -148,7 +148,7 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
                     aceCount++;
                 }
                 case "K", "Q", "J" -> total += 10;
-                default -> total += Integer.parseInt(rank);
+                default -> total += card.getRank().getValue();
             }
         }
 

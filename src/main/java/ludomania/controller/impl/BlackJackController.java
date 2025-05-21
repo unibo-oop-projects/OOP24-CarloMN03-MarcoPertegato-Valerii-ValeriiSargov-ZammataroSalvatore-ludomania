@@ -131,6 +131,15 @@ public final class BlackJackController implements Controller, BlackJackHandler {
          return game.getDealerHand();
     }   
 
-    
+    @Override
+    public int getPlayerTotal() {
+        return game.getPlayerTotal();
+    }
+
+    @Override
+    public int getDealerTotal() {
+        return game.getDealerTotal();
+    }
+
 }
 

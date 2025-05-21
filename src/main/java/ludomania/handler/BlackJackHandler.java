@@ -26,4 +26,8 @@ public interface BlackJackHandler {
 
     Hand getDealerHand();
 
+    int getPlayerTotal();
+
+    int getDealerTotal();
+
 }

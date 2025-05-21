@@ -2,27 +2,26 @@ package ludomania.view.blackjack;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.lyuda.jcards.Card;
 import io.lyuda.jcards.Hand;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
 import ludomania.handler.BlackJackHandler;
@@ -33,6 +32,17 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
     private final BlackJackHandler handler;
     private final LanguageManager languageManager;
     private final ImageProvider imageProvider;
+
+    private Label statusLabel;
+    private Label statusLabelPuntate;
+    private Label dealerLabel;
+    private Label playerLabel;
+
+    private VBox dealerBox;
+    private VBox playerBox;
+
+    private HBox dealerCards;
+    private HBox playerCards;
 
     public BlackJackMenuViewBuilder(final BlackJackHandler eventHandler, 
             final LanguageManager languageManager,
@@ -53,8 +63,9 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         topBar.setAlignment(Pos.CENTER);
         Label title = new Label("BLACKJACK");
         title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-        Button exitButton = new Button("Exit");
-        exitButton.setOnAction(e -> showExitConfirmation());
+        Button exitButton = new Button();
+        setText(exitButton, "exit");
+        exitButton.setOnAction(e -> handler.handleExitToMenu());
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         topBar.getChildren().addAll(title, spacer, exitButton);
@@ -68,40 +79,51 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         root.setCenter(cardBox);
 
         // Bottom section
-        VBox bottomArea = new VBox(10);
+        VBox bottomArea = new VBox(5);
         bottomArea.setAlignment(Pos.CENTER);
         bottomArea.setPadding(new Insets(10));
 
         // Fiches
-        HBox ficheBar = new HBox(10);
+        HBox ficheBar = new HBox(2);
+        statusLabelPuntate = new Label();
         ficheBar.setAlignment(Pos.CENTER);
-        int[] ficheValues = {10, 50, 100, 500};
-        for (int value : ficheValues) {
-            ImageView ficheImg = new ImageView();
-            ficheImg.setFitHeight(50);
-            ficheImg.setPreserveRatio(true);
+        IntegerProperty puntata = new SimpleIntegerProperty(0);
+        for (Map.Entry<Region, Integer> entry : getFiches().entrySet()) {
+            Region ficheImg = entry.getKey();
+            Integer ficheValue = entry.getValue();
+
+            // Usa il valore come testo del bottone e l'immagine come graphic
             Button ficheButton = new Button("", ficheImg);
+
             ficheButton.setOnAction(e -> {
-                handler.handlePlaceBet(value);
-                updateStatusLabel(statusLabel);
+                puntata.set(puntata.get() + ficheValue);
+                updateStatusPuntateLabel(statusLabelPuntate, puntata);
             });
+            if (puntata.get() != 0) {
+                handler.handlePlaceBet(ficheValue);
+            }
             ficheBar.getChildren().add(ficheButton);
         }
+        ficheBar.getChildren().add(statusLabelPuntate);
 
         // Azione
-        HBox actionButtons = new HBox(10);
+        HBox actionButtons = new HBox(15);
         actionButtons.setAlignment(Pos.CENTER);
-        Button startBtn = new Button("Inizia Partita");
+        Button startBtn = new Button();
+        setText(startBtn, "start");
         startBtn.setOnAction(e -> {
+            handler.handlePlaceBet(puntata.get());
             handler.handleStartGame();
             updateCardDisplay(cardBox);
             updateStatusLabel(statusLabel);
         });
 
-        Button cancelBtn = new Button("Annulla Puntata");
+        Button cancelBtn = new Button();
+        setText(cancelBtn, "cancel");
         cancelBtn.setOnAction(e -> {
-            handler.handleCancelBet();
+            puntata.set(0);
             updateStatusLabel(statusLabel);
+            updateStatusPuntateLabel(statusLabelPuntate, new SimpleIntegerProperty(0));
         });
 
         Button hitButton = new Button();
@@ -109,14 +131,15 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         hitButton.setOnAction(e -> {
             handler.handleHit();
             updateCardDisplay(cardBox);
-            updateStatusLabel(statusLabel);
         });
 
-        Button standButton = new Button("Stai");
+        Button standButton = new Button();
+        setText(standButton, "stand");
         standButton.setOnAction(e -> {
             handler.handleStand();
             updateCardDisplay(cardBox);
-            updateStatusLabel(statusLabel);
+            updateStatusCardDealerFinalLabel(dealerLabel);
+            updateDealerBox(dealerCards, true);
         });
 
         actionButtons.getChildren().addAll(hitButton, standButton);
@@ -136,56 +159,92 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         return root;
     }
 
-    private Label statusLabel;
-
     private void updateCardDisplay(HBox cardBox) {
         cardBox.getChildren().clear();
+        cardBox.setAlignment(Pos.CENTER);
 
-        VBox dealerBox = new VBox(5);
-        dealerBox.setAlignment(Pos.CENTER);
-        Label dealerLabel = new Label("Dealer");
-        HBox dealerCards = new HBox(5);
-        for (Region img : getDealerHandImages()) {
-            img.setMaxSize(60, 100);
-            dealerCards.getChildren().add(img);
-        }
+        VBox mainBox = new VBox(20); // Spazio verticale tra dealer e player
+        mainBox.setAlignment(Pos.CENTER);
+
+        // Dealer
+        dealerBox = new VBox(5);
+        dealerBox.setAlignment(Pos.TOP_CENTER);
+        dealerLabel = new Label("Dealer  ");
+        dealerCards = new HBox(); // Carte più vicine tra loro
+        dealerCards.setAlignment(Pos.CENTER);
+        updateDealerBox(dealerCards, false);
         dealerBox.getChildren().addAll(dealerLabel, dealerCards);
 
-        VBox playerBox = new VBox(5);
-        playerBox.setAlignment(Pos.CENTER);
-        Label playerLabel = new Label("Tu");
-        HBox playerCards = new HBox(5);
-        for (Region img : getPlayerHandImages()) {
+        // Player
+        playerBox = new VBox(5);
+        playerBox.setAlignment(Pos.BOTTOM_CENTER);
+        playerLabel = new Label("Player  ");
+        playerCards = new HBox(2); // Carte più vicine tra loro
+        playerCards.setAlignment(Pos.CENTER);
+        updatePlayerBox(playerCards);
+        playerBox.getChildren().addAll(playerLabel, playerCards);
+
+        // Aggiunge tutto al contenitore verticale
+        mainBox.getChildren().addAll(dealerBox, playerBox);
+
+        // Inserisce mainBox nel contenitore orizzontale originale
+        cardBox.getChildren().add(mainBox);
+    }
+
+
+    private void updateStatusLabel(Label label) {
+        label.setText("User: " + handler.getPlayerName()
+                + " | Money: $" + String.format("%.2f", handler.getPlayerBalance()));
+    }
+
+    private void updateStatusPuntateLabel(Label label, IntegerProperty puntata) {
+        label.textProperty().bind(Bindings.createStringBinding(
+            () -> "Bet: " + String.format("%.2f", (double) puntata.get()),
+            puntata
+        ));
+    }
+
+    private void updateStatusCardDealerPreLabel(Label label) {
+        List<Card> dealerCardsList = handler.getDealerHand().getCards();
+        if (dealerCardsList.isEmpty()) {
+            label.setText("Dealer");
+            return;
+        }
+        int total = handler.getDealerTotal();
+        int hiddenValue = dealerCardsList.get(0).getRank().getValue();
+        label.setText("Dealer  " + (total - hiddenValue));
+    }
+
+    private void updateStatusCardDealerFinalLabel(Label label) {
+        label.setText("Dealer  " + String.format("%d", handler.getDealerTotal()));
+    }
+
+    private void updateStatusCardPlayerLabel(Label label) {
+        label.setText("Player  " + String.format("%d", handler.getPlayerTotal()));
+    }
+
+    private void updateDealerBox(HBox dealerCards, boolean showFullHand) {
+        dealerCards.getChildren().clear();
+        List<Region> dealerImages = showFullHand ? getDealerHandImages() : getDealerHandFirstImages();
+
+        for (Region img : dealerImages) {
             img.setMaxSize(60, 100);
             dealerCards.getChildren().add(img);
         }
-        playerBox.getChildren().addAll(playerLabel, playerCards);
 
-        cardBox.getChildren().addAll(dealerBox, playerBox);
+        if (showFullHand) {
+            updateStatusCardDealerFinalLabel(dealerLabel);
+        } else {
+            updateStatusCardDealerPreLabel(dealerLabel);
+        }
     }
 
-    private void updateStatusLabel(Label label) {
-        label.setText("Utente: " + handler.getPlayerName()
-                + " | Saldo: €" + String.format("%.2f", handler.getPlayerBalance()));
-    }
-
-    private void showExitConfirmation() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        Window stage = new Stage();
-        alert.initOwner(stage);
-        alert.setTitle("Conferma uscita");
-        alert.setHeaderText("Vuoi davvero uscire?");
-        alert.setContentText("Tornerai al menu principale.");
-
-        ButtonType yes = new ButtonType("Sì");
-        ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        alert.getButtonTypes().setAll(yes, no);
-        alert.showAndWait().ifPresent(type -> {
-            if (type == yes) {
-                handler.handleExitToMenu();
-            }
-        });
+    private void updatePlayerBox(HBox playerCards) {
+        for (Region img : getPlayerHandImages()) {
+            img.setMaxSize(60, 100);
+            playerCards.getChildren().add(img);
+            updateStatusCardPlayerLabel(playerLabel);
+        }
     }
 
     public List<Region> getPlayerHandImages() {
@@ -196,6 +255,22 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         return getImagesFromHand(handler.getDealerHand());
     }
 
+    public List<Region> getDealerHandFirstImages() {
+        List<Region> images = new ArrayList<>();
+        List<Card> dealerHand = handler.getDealerHand().getCards();
+
+        for (int i = 0; i < dealerHand.size(); i++) {
+            if (i == 0) {
+                // Prima carta: dorso
+                images.add(createBackCard());
+            } else {
+                // Altre carte: normali
+                images.add(imageProvider.getSVGCard(dealerHand.get(i).getRank(), dealerHand.get(i).getSuit()));
+            }
+        }
+        return images;
+    }
+
     private List<Region> getImagesFromHand(Hand hand) {
         if (hand == null || hand.getCards() == null) {
             return Collections.emptyList();
@@ -203,8 +278,6 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
 
         List<Region> images = new ArrayList<>();
         for (Card card : hand.getCards()) {
-            // Supponendo che card abbia un metodo getId() che restituisce int
-            
             Region img = imageProvider.getSVGCard(card.getRank(), card.getSuit());
             if (img != null) {
                 images.add(img);
@@ -213,7 +286,37 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         return images;
     }
 
+    private Map<Region, Integer> getFiches() {
+        Map<Region, Integer> fiches = new HashMap<>();
+        int[] ficheValues = {1, 5, 10, 25, 100};
+        for (int value : ficheValues) {
+            Region img = imageProvider.getSVGFiche(value);
+            if (img != null) {
+                fiches.put(img, value);
+            }
+        }
+        return fiches;
+    }
+
     private void setText(final Labeled target, final String property) {
         target.textProperty().bind(languageManager.bind(property));
     }
+
+    private Region createBackCard() {
+        Region back = new Region();
+        back.setPrefSize(60, 100);
+        back.setStyle("-fx-background-color: navy; -fx-border-color: white; -fx-border-width: 2;");
+        return back;
+    }
+
+    /*
+    private void reset() {
+        statusLabel = new Label();
+        statusLabelPuntate = new Label();
+        dealerBox = new VBox();
+        playerBox = new VBox();
+        dealerCards = new HBox();
+        playerCards = new HBox();
+    }
+    */
 }
