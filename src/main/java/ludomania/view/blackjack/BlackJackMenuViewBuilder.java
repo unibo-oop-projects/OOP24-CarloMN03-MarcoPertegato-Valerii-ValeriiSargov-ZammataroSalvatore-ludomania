@@ -2,9 +2,11 @@ package ludomania.view.blackjack;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import io.lyuda.jcards.Card;
 import io.lyuda.jcards.Hand;
@@ -14,7 +16,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.BorderPane;
@@ -66,7 +71,19 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
         Button exitButton = new Button();
         setText(exitButton, "exit");
-        exitButton.setOnAction(e -> handler.handleExitToMenu());
+        exitButton.setOnAction(e -> {
+            Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmDialog.setTitle("Conferma Uscita");
+            confirmDialog.setHeaderText("Vuoi davvero tornare al menu principale?");
+            confirmDialog.setContentText("Tutti i progressi del round attuale andranno persi.");
+            ButtonType buttonYes = new ButtonType("Sì");
+            ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+            confirmDialog.getButtonTypes().setAll(buttonYes, buttonNo);
+            Optional<ButtonType> result = confirmDialog.showAndWait();
+            if (result.isPresent() && result.get() == buttonYes) {
+                handler.handleExitToMenu();
+            }
+        });
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         topBar.getChildren().addAll(title, spacer, exitButton);
@@ -74,11 +91,13 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
 
         // Center cards
         VBox centerBox = new VBox();
+        centerBox.setAlignment(Pos.CENTER);
         HBox cardBox = new HBox(40);
         cardBox.setAlignment(Pos.CENTER);
         cardBox.setPadding(new Insets(20));
         updateCardDisplay(cardBox);
         winLabel = new Label();
+        winLabel.setStyle("-fx-font-size: 18px;");
         centerBox.getChildren().addAll(winLabel, cardBox);
         root.setCenter(centerBox);
 
@@ -89,25 +108,28 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
 
         // Fiches
         HBox ficheBar = new HBox(2);
-        statusLabelPuntate = new Label();
         ficheBar.setAlignment(Pos.CENTER);
+        statusLabelPuntate = new Label();
         IntegerProperty puntata = new SimpleIntegerProperty(0);
-        for (Map.Entry<Region, Integer> entry : getFiches().entrySet()) {
+        
+        getFiches().entrySet().stream()
+        .sorted(Comparator.comparingInt(Map.Entry::getValue))
+        .forEach(entry -> {
             Region ficheImg = entry.getKey();
             Integer ficheValue = entry.getValue();
 
-            // Usa il valore come testo del bottone e l'immagine come graphic
-            Button ficheButton = new Button("", ficheImg);
+            ficheImg.setPrefSize(50, 50);
 
-            ficheButton.setOnAction(e -> {
+            ficheImg.setOnMouseClicked(e -> {
                 puntata.set(puntata.get() + ficheValue);
                 updateStatusPuntateLabel(statusLabelPuntate, puntata);
             });
             if (puntata.get() != 0) {
                 handler.handlePlaceBet(ficheValue);
             }
-            ficheBar.getChildren().add(ficheButton);
-        }
+
+            ficheBar.getChildren().add(ficheImg);
+        });
         ficheBar.getChildren().add(statusLabelPuntate);
 
         // Azione
@@ -132,8 +154,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
                 handler.handlePlaceBet(puntata.get());
                 handler.handleStartGame();
                 updateCardDisplay(cardBox);
-                updateStatusLabel(statusLabel);
-                updateWinLabel(winLabel);
+                updateViewAfterGame();
 
                 // Passa alla fase di gioco (card/stand)
                 setText(startBtn, "card");
@@ -147,9 +168,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
                     if (handler.isGameOver()) {
                         updateStatusCardDealerFinalLabel(dealerLabel);
                         updateDealerBox(dealerCards, true);
-
-                        updateWinLabel(winLabel);
-                        updateStatusLabel(statusLabel); // <-- qui!
+                        updateViewAfterGame();
 
                         resetButtons[0].run();
                     }
@@ -160,17 +179,15 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
                     updateCardDisplay(cardBox);
                     updateStatusCardDealerFinalLabel(dealerLabel);
                     updateDealerBox(dealerCards, true);
-                    updateWinLabel(winLabel);
-                    updateStatusLabel(statusLabel);
+                    updateViewAfterGame();
                     resetButtons[0].run();
                 });
             });
 
             cancelBtn.setOnAction(e -> {
                 puntata.set(0);
-                updateStatusLabel(statusLabel);
                 updateStatusPuntateLabel(statusLabelPuntate, new SimpleIntegerProperty(0));
-                updateWinLabel(winLabel);
+                updateViewAfterGame();
             });
         };
 
@@ -223,6 +240,11 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
 
         // Inserisce mainBox nel contenitore orizzontale originale
         cardBox.getChildren().add(mainBox);
+    }
+
+    private void updateViewAfterGame() {
+        updateStatusLabel(statusLabel);
+        updateWinLabel(winLabel);
     }
 
     private void updateWinLabel(Label label) {

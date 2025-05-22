@@ -56,7 +56,7 @@ public final class BlackJackController implements Controller, BlackJackHandler {
     @Override
     public void handleCancelBet() {
         audioManager.playSound("cancel");
-        game.playAgain(); // Resetta il round
+        game.playAgain(); 
     }
 
     @Override
@@ -92,9 +92,13 @@ public final class BlackJackController implements Controller, BlackJackHandler {
     }
 
     @Override
-    public void handlePlaceBet(int amount) {
+    public void handlePlaceBet(double amount) {
         audioManager.playSound("bet");
-        game.placeBet(amount);
+        try {
+            game.placeBet(amount);
+        } catch (IllegalArgumentException e) {
+            sceneManager.switchToMainMenu();
+        }
     }
 
     @Override

@@ -32,7 +32,8 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
 
     public void placeBet(double amount) {
         player.makeBet(amount, BlackJackBetType.BASE);
-        dealer.getRoundBet().put(player, player.getPlacedBet());
+        Bet bet = player.getPlacedBet();
+        dealer.getRoundBet().put(player, bet);
     }
 
     public void startNewRound() {
@@ -94,12 +95,11 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         gameOver = true;
         Map<Player, BlackJackOutcomeResult> outcomes = new HashMap<>();
         outcomes.put(player, new BlackJackOutcomeResult(outcome, type));
+        BlackJackResult result = new BlackJackResult(outcomes);
 
-        // Costruisci il risultato finale passando i risultati a checkBets
-        dealer.checkBets(new BlackJackResult(outcomes));
+        dealer.checkBets(result);
 
-        // Restituisci il risultato originale come CounterResult
-        return new BlackJackResult(outcomes);
+        return result;
     }
 
     public Hand getPlayerHand() {

@@ -41,28 +41,34 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
 
         for (Map.Entry<Player, BlackJackOutcomeResult> entry : outcomes.entrySet()) {
             Player currentPlayer = entry.getKey();
+            System.out.println("Saldo PRIMA: " + currentPlayer.wallet.getMoney());
             BlackJackOutcomeResult outcomeResult = entry.getValue();
+            
+            if (!roundBet.containsKey(currentPlayer)) {
+                System.out.println("Nessuna bet trovata per il player: " + currentPlayer);
+                continue;
+            }
             Bet bet = roundBet.get(currentPlayer);
-            if (bet == null) continue;
+            
 
             switch (outcomeResult.getOutcome()) {
                 case WIN -> {
                     winners.put(currentPlayer, bet.evaluate());
-                    currentPlayer.wallet.deposit(bet.evaluate());
+                    currentPlayer.deposit(bet.evaluate());
                 }
                 case BLACKJACK -> {
                     winners.put(currentPlayer, bet.evaluate());
-                    currentPlayer.wallet.deposit(bet.evaluate());
+                    currentPlayer.deposit(bet.evaluate());
                 }
                 case PUSH -> {
                     winners.put(currentPlayer, bet.getValue());
-                    currentPlayer.wallet.deposit(bet.evaluate());
+                    currentPlayer.deposit(bet.evaluate());
                 }
                 case LOSE -> currentPlayer.withdraw(bet.evaluate());
                 default -> currentPlayer.withdraw(bet.evaluate());
             }
         }
-
+        
         return winners;
     }
 

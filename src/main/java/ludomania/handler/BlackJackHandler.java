@@ -8,7 +8,7 @@ public interface BlackJackHandler {
 
     void handleStand();
 
-    void handlePlaceBet(int amount);
+    void handlePlaceBet(double amount);
 
     void handleStartGame();
 
