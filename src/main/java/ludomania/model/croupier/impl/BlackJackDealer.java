@@ -46,18 +46,20 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
             if (bet == null) continue;
 
             switch (outcomeResult.getOutcome()) {
-                case WIN:
+                case WIN -> {
                     winners.put(currentPlayer, bet.evaluate());
-                    break;
-                case BLACKJACK:
+                    currentPlayer.wallet.deposit(bet.evaluate());
+                }
+                case BLACKJACK -> {
                     winners.put(currentPlayer, bet.evaluate());
-                    break;
-                case PUSH:
+                    currentPlayer.wallet.deposit(bet.evaluate());
+                }
+                case PUSH -> {
                     winners.put(currentPlayer, bet.getValue());
-                    break;
-                case LOSE:
-                default:
-                    break;
+                    currentPlayer.wallet.deposit(bet.evaluate());
+                }
+                case LOSE -> currentPlayer.withdraw(bet.evaluate());
+                default -> currentPlayer.withdraw(bet.evaluate());
             }
         }
 
@@ -86,6 +88,10 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
 
     public int getDealerTot() {
         return dealerTot;
+    }
+
+    public Map<Player, Bet> getRoundBet() {
+        return this.roundBet;
     }
 
     public void increaseDealerTot(int amount) {

@@ -37,6 +37,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
     private Label statusLabelPuntate;
     private Label dealerLabel;
     private Label playerLabel;
+    private Label winLabel;
 
     private VBox dealerBox;
     private VBox playerBox;
@@ -72,11 +73,14 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         root.setTop(topBar);
 
         // Center cards
+        VBox centerBox = new VBox();
         HBox cardBox = new HBox(40);
         cardBox.setAlignment(Pos.CENTER);
         cardBox.setPadding(new Insets(20));
         updateCardDisplay(cardBox);
-        root.setCenter(cardBox);
+        winLabel = new Label();
+        centerBox.getChildren().addAll(winLabel, cardBox);
+        root.setCenter(centerBox);
 
         // Bottom section
         VBox bottomArea = new VBox(5);
@@ -109,40 +113,70 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         // Azione
         HBox actionButtons = new HBox(15);
         actionButtons.setAlignment(Pos.CENTER);
+
         Button startBtn = new Button();
         setText(startBtn, "start");
-        startBtn.setOnAction(e -> {
-            handler.handlePlaceBet(puntata.get());
-            handler.handleStartGame();
-            updateCardDisplay(cardBox);
-            updateStatusLabel(statusLabel);
-        });
 
         Button cancelBtn = new Button();
         setText(cancelBtn, "cancel");
-        cancelBtn.setOnAction(e -> {
-            puntata.set(0);
-            updateStatusLabel(statusLabel);
-            updateStatusPuntateLabel(statusLabelPuntate, new SimpleIntegerProperty(0));
-        });
 
-        Button hitButton = new Button();
-        setText(hitButton, "card");
-        hitButton.setOnAction(e -> {
-            handler.handleHit();
-            updateCardDisplay(cardBox);
-        });
+        final Runnable[] resetButtons = new Runnable[1];
 
-        Button standButton = new Button();
-        setText(standButton, "stand");
-        standButton.setOnAction(e -> {
-            handler.handleStand();
-            updateCardDisplay(cardBox);
-            updateStatusCardDealerFinalLabel(dealerLabel);
-            updateDealerBox(dealerCards, true);
-        });
+        // Metodo per resettare i pulsanti allo stato iniziale
+        resetButtons[0] = () -> {
+            setText(startBtn, "start");
+            setText(cancelBtn, "cancel");
 
-        actionButtons.getChildren().addAll(hitButton, standButton);
+            // Reimposta handler iniziali
+            startBtn.setOnAction(e -> {
+                handler.handlePlaceBet(puntata.get());
+                handler.handleStartGame();
+                updateCardDisplay(cardBox);
+                updateStatusLabel(statusLabel);
+                updateWinLabel(winLabel);
+
+                // Passa alla fase di gioco (card/stand)
+                setText(startBtn, "card");
+                setText(cancelBtn, "stand");
+
+                startBtn.setOnAction(ev -> {
+                    handler.handleHit();
+                    updateCardDisplay(cardBox);
+                    updateStatusLabel(statusLabel);
+
+                    if (handler.isGameOver()) {
+                        updateStatusCardDealerFinalLabel(dealerLabel);
+                        updateDealerBox(dealerCards, true);
+
+                        updateWinLabel(winLabel);
+                        updateStatusLabel(statusLabel); // <-- qui!
+
+                        resetButtons[0].run();
+                    }
+                });
+
+                cancelBtn.setOnAction(ev2 -> {
+                    handler.handleStand(); 
+                    updateCardDisplay(cardBox);
+                    updateStatusCardDealerFinalLabel(dealerLabel);
+                    updateDealerBox(dealerCards, true);
+                    updateWinLabel(winLabel);
+                    updateStatusLabel(statusLabel);
+                    resetButtons[0].run();
+                });
+            });
+
+            cancelBtn.setOnAction(e -> {
+                puntata.set(0);
+                updateStatusLabel(statusLabel);
+                updateStatusPuntateLabel(statusLabelPuntate, new SimpleIntegerProperty(0));
+                updateWinLabel(winLabel);
+            });
+        };
+
+        // Inizializza gli handler iniziali
+        resetButtons[0].run();
+
         actionButtons.getChildren().addAll(startBtn, cancelBtn);
 
         // Stato in basso a destra
@@ -191,6 +225,9 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         cardBox.getChildren().add(mainBox);
     }
 
+    private void updateWinLabel(Label label) {
+        label.setText(handler.getGameOutcomeMessage());
+    }
 
     private void updateStatusLabel(Label label) {
         label.setText("User: " + handler.getPlayerName()
@@ -309,14 +346,4 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         return back;
     }
 
-    /*
-    private void reset() {
-        statusLabel = new Label();
-        statusLabelPuntate = new Label();
-        dealerBox = new VBox();
-        playerBox = new VBox();
-        dealerCards = new HBox();
-        playerCards = new HBox();
-    }
-    */
 }

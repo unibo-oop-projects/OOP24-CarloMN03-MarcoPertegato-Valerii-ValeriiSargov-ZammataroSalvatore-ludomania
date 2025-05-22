@@ -7,7 +7,9 @@ import io.lyuda.jcards.Card;
 import io.lyuda.jcards.Deck;
 import io.lyuda.jcards.DeckFactory;
 import io.lyuda.jcards.Hand;
+import ludomania.model.bet.api.Bet;
 import ludomania.model.bet.impl.BlackJackBetType;
+import ludomania.model.croupier.impl.BlackJackDealer;
 import ludomania.model.game.api.CounterResult;
 import ludomania.model.game.api.Game;
 import ludomania.model.player.api.Player;
@@ -15,48 +17,46 @@ import ludomania.model.player.impl.BlackJackPlayer;
 
 public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> {
 
+    private final BlackJackDealer dealer;
     private final BlackJackPlayer player;
-    private final Deck deck;
-    private Hand playerHand;
-    private Hand dealerHand;
     private boolean gameOver;
     
-
     public BlackJackGame(BlackJackPlayer player) {
-        this.deck = new DeckFactory().createDeck(); 
-        this.playerHand = new Hand();
-        this.dealerHand = new Hand();
-        this.gameOver = false;
         this.player = player;
+        Map<Player, Bet> roundBet = new HashMap<>();
+        DeckFactory deckFactory = createMultiDeck(6);
+        deckFactory.shuffleAllDecks();
+        this.dealer = new BlackJackDealer(roundBet, deckFactory);
+        this.gameOver = false;
     }
 
     public void placeBet(double amount) {
         player.makeBet(amount, BlackJackBetType.BASE);
+        dealer.getRoundBet().put(player, player.getPlacedBet());
     }
 
     public void startNewRound() {
-        playerHand = new Hand();
-        dealerHand = new Hand();
+        dealer.reset();
         gameOver = false;
     }
 
     public void dealInitialCards() {
-        playerHand.addCard(deck.deal());
-        playerHand.addCard(deck.deal());
-        dealerHand.addCard(deck.deal());
-        dealerHand.addCard(deck.deal());
+        dealer.extractNewCard(dealer.getPlayer());
+        dealer.extractNewCard(dealer.getPlayer());
+        dealer.extractNewCard(dealer.getDealer());
+        dealer.extractNewCard(dealer.getDealer());
     }
 
     public void hit() {
-        playerHand.addCard(deck.deal());
+        dealer.extractNewCard(dealer.getPlayer());
         if (getPlayerTotal() > 21) {
             gameOver = true;
         }
     }
 
     public void stand() {
-        while (getDealerTotal() < 17) {
-            dealerHand.addCard(deck.deal());
+        while (!dealer.isEnough(getDealerTotal())) {
+            dealer.extractNewCard(dealer.getDealer());
         }
         gameOver = true;
     }
@@ -76,44 +76,46 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
             outcome = BlackJackOutcome.LOSE;
             type = BlackJackBetType.LOSE;
         } else if (dealerTot > 21 || playerTot > dealerTot) {
-            if (playerTot == 21 && playerHand.size() == 2) {
+            if (playerTot == 21 && dealer.getPlayer().size() == 2) {
                 outcome = BlackJackOutcome.BLACKJACK;
                 type = BlackJackBetType.BLACKJACK;
-                player.deposit(type.getPayout());
             } else {
                 outcome = BlackJackOutcome.WIN;
                 type = BlackJackBetType.BASE;
-                player.deposit(type.getPayout());
             }
         } else if (playerTot == dealerTot) {
             outcome = BlackJackOutcome.PUSH;
             type = BlackJackBetType.PUSH;
-            player.deposit(type.getPayout()); // restituisce la puntata
         } else {
             outcome = BlackJackOutcome.LOSE;
             type = BlackJackBetType.LOSE;
         }
 
         gameOver = true;
-        Map<Player, BlackJackOutcomeResult> result = new HashMap<>();
-        result.put(player, new BlackJackOutcomeResult(outcome, type));
-        return new BlackJackResult(result);
+        Map<Player, BlackJackOutcomeResult> outcomes = new HashMap<>();
+        outcomes.put(player, new BlackJackOutcomeResult(outcome, type));
+
+        // Costruisci il risultato finale passando i risultati a checkBets
+        dealer.checkBets(new BlackJackResult(outcomes));
+
+        // Restituisci il risultato originale come CounterResult
+        return new BlackJackResult(outcomes);
     }
 
     public Hand getPlayerHand() {
-        return playerHand;
+        return dealer.getPlayer();
     }
 
     public Hand getDealerHand() {
-        return dealerHand;
+        return dealer.getDealer();
     }
 
     public int getPlayerTotalCards() {
-        return playerHand.size();
+        return dealer.getPlayer().size();
     }
 
     public int getDealerTotalCards() {
-        return dealerHand.size();
+        return dealer.getDealer().size();
     }
 
     @Override
@@ -128,11 +130,11 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
     }
 
     public int getPlayerTotal() {
-        return calculateTotal(playerHand);
+        return calculateTotal(dealer.getPlayer());
     }
 
     public int getDealerTotal() {
-        return calculateTotal(dealerHand);
+        return calculateTotal(dealer.getDealer());
     }
 
     // Metodo di supporto per ottenere il valore di una carta
@@ -161,4 +163,17 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         return total;
     }
 
+    private DeckFactory createMultiDeck(int numDecks) {
+        DeckFactory factory = new DeckFactory();
+        for (int i = 0; i < numDecks; i++) {
+            Deck tmp = new Deck();
+            factory.addDeck(tmp);
+        }
+
+        return factory;
+    }
+
+    public Double getPlayerFinance() {
+        return player.getBalance();
+    }
 }

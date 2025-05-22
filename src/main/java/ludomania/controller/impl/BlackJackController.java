@@ -72,7 +72,7 @@ public final class BlackJackController implements Controller, BlackJackHandler {
 
     @Override
     public double getPlayerBalance() {
-        return player.getBalance();
+        return game.getPlayerFinance();
     }
 
     @Override
@@ -139,6 +139,11 @@ public final class BlackJackController implements Controller, BlackJackHandler {
     @Override
     public int getDealerTotal() {
         return game.getDealerTotal();
+    }
+
+    @Override
+    public Boolean isGameOver() {
+        return game.isOver();
     }
 
 }

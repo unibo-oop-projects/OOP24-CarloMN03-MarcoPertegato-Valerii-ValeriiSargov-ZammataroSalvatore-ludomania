@@ -30,4 +30,6 @@ public interface BlackJackHandler {
 
     int getDealerTotal();
 
+    Boolean isGameOver();
+
 }

@@ -9,6 +9,8 @@ import ludomania.model.wallet.api.Wallet;
 
 public class BlackJackPlayer extends Player{
 
+    private Bet currentBet;
+
     public BlackJackPlayer(Wallet wallet) {
         super(wallet);
     }
@@ -21,10 +23,15 @@ public class BlackJackPlayer extends Player{
         if (!withdraw(amount)) {
             throw new IllegalArgumentException("Not enough money to place a bet.");
         }
-        return new BlackJackBet(amount, (BlackJackBetType) type);
+        this.currentBet = new BlackJackBet(amount, (BlackJackBetType) type);
+        return this.currentBet;
     }
 
     public double getBalance() {
         return wallet.getMoney();
+    }
+
+    public Bet getPlacedBet() {
+        return this.currentBet;
     }
 }
