@@ -7,6 +7,8 @@ import io.lyuda.jcards.Card;
 import io.lyuda.jcards.DeckFactory;
 import io.lyuda.jcards.Hand;
 import ludomania.model.bet.api.Bet;
+import ludomania.model.bet.impl.BlackJackBet;
+import ludomania.model.bet.impl.BlackJackBetType;
 import ludomania.model.croupier.api.CardDealer;
 import ludomania.model.game.api.CounterResult;
 import ludomania.model.game.impl.BlackJackOutcomeResult;
@@ -16,6 +18,7 @@ import ludomania.model.player.api.Player;
 public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResult>> {
 
     private static final int MAX_HAND_VALUE = 17;
+    private static final int NUMBER_OF_DEKS = 6;
 
     private Hand dealer;
     private Hand player;
@@ -41,35 +44,38 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
 
         for (Map.Entry<Player, BlackJackOutcomeResult> entry : outcomes.entrySet()) {
             Player currentPlayer = entry.getKey();
-            System.out.println("Saldo PRIMA: " + currentPlayer.wallet.getMoney());
             BlackJackOutcomeResult outcomeResult = entry.getValue();
             
             if (!roundBet.containsKey(currentPlayer)) {
                 System.out.println("Nessuna bet trovata per il player: " + currentPlayer);
                 continue;
             }
-            Bet bet = roundBet.get(currentPlayer);
-            
+            Bet bet = new BlackJackBet(roundBet.get(currentPlayer).getValue(), (BlackJackBetType) roundBet.get(currentPlayer).getType());
 
             switch (outcomeResult.getOutcome()) {
                 case WIN -> {
                     winners.put(currentPlayer, bet.evaluate());
-                    currentPlayer.deposit(bet.evaluate());
+                    deposit(currentPlayer, bet.evaluate());
                 }
                 case BLACKJACK -> {
-                    winners.put(currentPlayer, bet.evaluate());
-                    currentPlayer.deposit(bet.evaluate());
+                    double blackjackWin = bet.getValue() * BlackJackBetType.BLACKJACK.getPayout();
+                    winners.put(currentPlayer, blackjackWin);
+                    deposit(currentPlayer, blackjackWin);
                 }
                 case PUSH -> {
                     winners.put(currentPlayer, bet.getValue());
-                    currentPlayer.deposit(bet.evaluate());
+                    deposit(currentPlayer, bet.getValue());
                 }
-                case LOSE -> currentPlayer.withdraw(bet.evaluate());
-                default -> currentPlayer.withdraw(bet.evaluate());
+                case LOSE -> deposit(currentPlayer, 0.0);
+                default -> deposit(currentPlayer, 0.0);
             }
         }
-        
+        clearRound();
         return winners;
+    }
+
+    private void deposit(Player player, Double value) {
+        player.deposit(value);
     }
 
     public void reset() {
@@ -77,7 +83,6 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
         player = new Hand();
         dealerTot = 0;
         playerTot = 0;
-        clearRound();
     }
 
     public Hand getPlayer() {
@@ -97,7 +102,7 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
     }
 
     public Map<Player, Bet> getRoundBet() {
-        return this.roundBet;
+        return roundBet;
     }
 
     public void increaseDealerTot(int amount) {
@@ -109,6 +114,9 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
     }
 
     public Card extractNewCard(Hand hand) {
+        if(super.needToResetAllDecks()) {
+            initDeck(NUMBER_OF_DEKS);
+        }
         Card extractedCard = drawCard();
         hand.addCard(extractedCard);
         return extractedCard;

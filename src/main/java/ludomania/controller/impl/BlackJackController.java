@@ -49,7 +49,7 @@ public final class BlackJackController implements Controller, BlackJackHandler {
     @Override
     public void handleStartGame() {
         audioManager.playSound("start");
-        game.startNewRound();
+        game.startNewRound();  
         game.dealInitialCards();
     }
 

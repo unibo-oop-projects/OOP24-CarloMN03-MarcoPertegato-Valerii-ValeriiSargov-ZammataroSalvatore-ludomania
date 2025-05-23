@@ -151,10 +151,25 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
 
             // Reimposta handler iniziali
             startBtn.setOnAction(e -> {
-                handler.handlePlaceBet(puntata.get());
-                handler.handleStartGame();
-                updateCardDisplay(cardBox);
-                updateViewAfterGame();
+                if (handler.getPlayerBalance() == 0 || handler.getPlayerBalance() < puntata.get()) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Puntata non valida");
+                    alert.setHeaderText("Saldo insufficiente");
+                    alert.setContentText("Non hai abbastanza saldo per effettuare la puntata.");
+                    alert.showAndWait();
+                    return;
+                } else if (puntata.get() == 0) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Puntata non valida");
+                    alert.setHeaderText("Nessuna puntata effettuata");
+                    alert.showAndWait();
+                    return;
+                } else {
+                    handler.handlePlaceBet(puntata.get());
+                    handler.handleStartGame();
+                    updateCardDisplay(cardBox);
+                    updateViewAfterGame();
+                }
 
                 // Passa alla fase di gioco (card/stand)
                 setText(startBtn, "card");

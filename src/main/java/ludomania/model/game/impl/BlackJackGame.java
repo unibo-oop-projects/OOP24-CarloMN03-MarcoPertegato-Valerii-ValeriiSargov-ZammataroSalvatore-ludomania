@@ -67,17 +67,17 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         if (!gameOver) {
             stand();
         }
-
+        
         int playerTot = getPlayerTotal();
         int dealerTot = getDealerTotal();
         BlackJackOutcome outcome;
         BlackJackBetType type;
 
-        if (playerTot > 21) {
+        if (playerTot > 21 || isBlackjack(getDealerHand())) {
             outcome = BlackJackOutcome.LOSE;
             type = BlackJackBetType.LOSE;
         } else if (dealerTot > 21 || playerTot > dealerTot) {
-            if (playerTot == 21 && dealer.getPlayer().size() == 2) {
+            if (isBlackjack(getPlayerHand())) {
                 outcome = BlackJackOutcome.BLACKJACK;
                 type = BlackJackBetType.BLACKJACK;
             } else {
@@ -145,11 +145,11 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         for (Card card : hand.getCards()) {
             String rank = card.getRank().toString();
             switch (rank) {
-                case "A" -> {
+                case "ACE" -> {
                     total += 11;
                     aceCount++;
                 }
-                case "K", "Q", "J" -> total += 10;
+                case "KING", "QUEEN", "JACK" -> total += 10;
                 default -> total += card.getRank().getValue();
             }
         }
@@ -161,6 +161,10 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         }
 
         return total;
+    }
+
+    private boolean isBlackjack(Hand hand) {
+        return hand.getCards().size() == 2 && calculateTotal(hand) == 21;
     }
 
     private DeckFactory createMultiDeck(int numDecks) {
