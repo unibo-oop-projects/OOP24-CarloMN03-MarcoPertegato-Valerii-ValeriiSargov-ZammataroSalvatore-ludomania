@@ -15,12 +15,17 @@ import ludomania.model.game.api.Game;
 import ludomania.model.player.api.Player;
 import ludomania.model.player.impl.BlackJackPlayer;
 
+/**
+ * Central class of the model, it manages the blackjack game by making 
+ * the dealer and player interact together and therefore managing an entire game.
+ */
 public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> {
 
     private final BlackJackDealer dealer;
     private final BlackJackPlayer player;
     private boolean gameOver;
     
+    // Blackjack Game Builder
     public BlackJackGame(BlackJackPlayer player) {
         this.player = player;
         Map<Player, Bet> roundBet = new HashMap<>();
@@ -30,17 +35,20 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         this.gameOver = false;
     }
 
+    // Method to add a bet to the player
     public void placeBet(double amount) {
         player.makeBet(amount, BlackJackBetType.BASE);
         Bet bet = player.getPlacedBet();
         dealer.getRoundBet().put(player, bet);
     }
 
+    // Method to reset the game
     public void startNewRound() {
         dealer.reset();
         gameOver = false;
     }
 
+    // Method for the initial distribution of cards to dealers and players
     public void dealInitialCards() {
         dealer.extractNewCard(dealer.getPlayer());
         dealer.extractNewCard(dealer.getPlayer());
@@ -48,6 +56,7 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         dealer.extractNewCard(dealer.getDealer());
     }
 
+    // Method for drawing a player card
     public void hit() {
         dealer.extractNewCard(dealer.getPlayer());
         if (getPlayerTotal() > 21) {
@@ -55,6 +64,7 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         }
     }
 
+    // Method that manages the dealer's card draw
     public void stand() {
         while (!dealer.isEnough(getDealerTotal())) {
             dealer.extractNewCard(dealer.getDealer());
@@ -102,20 +112,44 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         return result;
     }
 
+    // Returns the player's hand
     public Hand getPlayerHand() {
         return dealer.getPlayer();
     }
 
+    // Returns the dealer's hand
     public Hand getDealerHand() {
         return dealer.getDealer();
     }
 
+    // Returns the number of cards the player has
     public int getPlayerTotalCards() {
         return dealer.getPlayer().size();
     }
 
+    // Returns the number of cards the dealer has
     public int getDealerTotalCards() {
         return dealer.getDealer().size();
+    }
+
+    // Returns the total value of the cards in the player's hand
+    public int getPlayerTotal() {
+        return calculateTotal(dealer.getPlayer());
+    }
+
+    //Returns the total value of the cards in the dealer's hand
+    public int getDealerTotal() {
+        return calculateTotal(dealer.getDealer());
+    }
+
+    // Returns the player's balance
+    public Double getPlayerFinance() {
+        return player.getBalance();
+    }
+
+    // Returns if the hand contains a blackjack
+    private boolean isBlackjack(Hand hand) {
+        return hand.getCards().size() == 2 && calculateTotal(hand) == 21;
     }
 
     @Override
@@ -129,15 +163,7 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         return true;    
     }
 
-    public int getPlayerTotal() {
-        return calculateTotal(dealer.getPlayer());
-    }
-
-    public int getDealerTotal() {
-        return calculateTotal(dealer.getDealer());
-    }
-
-    // Metodo di supporto per ottenere il valore di una carta
+    // Support method to get the total value of the hand
     private int calculateTotal(Hand hand) {
         int total = 0;
         int aceCount = 0;
@@ -154,7 +180,7 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
             }
         }
 
-        // Adatta gli assi da 11 a 1 se sforiamo
+        // Adjust axes from 11 to 1 if we go over
         while (total > 21 && aceCount > 0) {
             total -= 10;
             aceCount--;
@@ -163,10 +189,10 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         return total;
     }
 
-    private boolean isBlackjack(Hand hand) {
-        return hand.getCards().size() == 2 && calculateTotal(hand) == 21;
-    }
-
+    /*
+     * Method that creates a multiple deck with 
+     * the value of the decks passed as parameter.
+     */
     private DeckFactory createMultiDeck(int numDecks) {
         DeckFactory factory = new DeckFactory();
         for (int i = 0; i < numDecks; i++) {
@@ -175,9 +201,5 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         }
 
         return factory;
-    }
-
-    public Double getPlayerFinance() {
-        return player.getBalance();
-    }
+    }    
 }

@@ -32,6 +32,9 @@ import ludomania.core.api.LanguageManager;
 import ludomania.handler.BlackJackHandler;
 import ludomania.view.ViewBuilder;
 
+/**
+ * Class that creates and manages the blackjack screen.
+ */
 public class BlackJackMenuViewBuilder implements ViewBuilder {
 
     private final BlackJackHandler handler;
@@ -50,6 +53,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
     private HBox dealerCards;
     private HBox playerCards;
 
+    // Blackjack View Builder
     public BlackJackMenuViewBuilder(final BlackJackHandler eventHandler, 
             final LanguageManager languageManager,
             final ImageProvider imageProvider) {
@@ -111,7 +115,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         ficheBar.setAlignment(Pos.CENTER);
         statusLabelPuntate = new Label();
         IntegerProperty puntata = new SimpleIntegerProperty(0);
-        
+
         getFiches().entrySet().stream()
         .sorted(Comparator.comparingInt(Map.Entry::getValue))
         .forEach(entry -> {
@@ -132,7 +136,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         });
         ficheBar.getChildren().add(statusLabelPuntate);
 
-        // Azione
+        // Action
         HBox actionButtons = new HBox(15);
         actionButtons.setAlignment(Pos.CENTER);
 
@@ -144,12 +148,12 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
 
         final Runnable[] resetButtons = new Runnable[1];
 
-        // Metodo per resettare i pulsanti allo stato iniziale
+        // Method to reset buttons to initial state
         resetButtons[0] = () -> {
             setText(startBtn, "start");
             setText(cancelBtn, "cancel");
 
-            // Reimposta handler iniziali
+            // Reset initial handlers
             startBtn.setOnAction(e -> {
                 if (handler.getPlayerBalance() == 0 || handler.getPlayerBalance() < puntata.get()) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -171,7 +175,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
                     updateViewAfterGame();
                 }
 
-                // Passa alla fase di gioco (card/stand)
+                // Go to the game phase (card/stand)
                 setText(startBtn, "card");
                 setText(cancelBtn, "stand");
 
@@ -206,12 +210,12 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
             });
         };
 
-        // Inizializza gli handler iniziali
+        // Initialize the initial handlers
         resetButtons[0].run();
 
         actionButtons.getChildren().addAll(startBtn, cancelBtn);
 
-        // Stato in basso a destra
+        // Status bottom right
         HBox statusBar = new HBox();
         statusBar.setPadding(new Insets(5, 20, 0, 0));
         statusBar.setAlignment(Pos.CENTER_RIGHT);
@@ -225,11 +229,16 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         return root;
     }
 
+    /*
+     * Method that updates the dealer and player cards 
+     * every time it is called by passing it a cardBox.
+     */
     private void updateCardDisplay(HBox cardBox) {
         cardBox.getChildren().clear();
         cardBox.setAlignment(Pos.CENTER);
 
-        VBox mainBox = new VBox(20); // Spazio verticale tra dealer e player
+        // Vertical space between dealer and player
+        VBox mainBox = new VBox(20); 
         mainBox.setAlignment(Pos.CENTER);
 
         // Dealer
@@ -245,39 +254,56 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         playerBox = new VBox(5);
         playerBox.setAlignment(Pos.BOTTOM_CENTER);
         playerLabel = new Label("Player  ");
-        playerCards = new HBox(2); // Carte più vicine tra loro
+        playerCards = new HBox(2); 
         playerCards.setAlignment(Pos.CENTER);
         updatePlayerBox(playerCards);
         playerBox.getChildren().addAll(playerLabel, playerCards);
 
-        // Aggiunge tutto al contenitore verticale
+        // Add everything to the vertical container
         mainBox.getChildren().addAll(dealerBox, playerBox);
 
-        // Inserisce mainBox nel contenitore orizzontale originale
+        // Inserts mainBox into the original horizontal container
         cardBox.getChildren().add(mainBox);
     }
 
+    // Method that updates the statusLabel and winLabel
     private void updateViewAfterGame() {
         updateStatusLabel(statusLabel);
         updateWinLabel(winLabel);
     }
 
+    /*
+     * Method that updates the winLabel, 
+     * inserting the text based on the outcome of the match.
+     */
     private void updateWinLabel(Label label) {
         label.setText(handler.getGameOutcomeMessage());
     }
 
+    /*
+     * Method that updates the StatusLabel, inserting the updated 
+     * information of the player, username and wallet.
+     */
     private void updateStatusLabel(Label label) {
         label.setText("User: " + handler.getPlayerName()
                 + " | Money: $" + String.format("%.2f", handler.getPlayerBalance()));
     }
 
+    /*
+     * Method that updates the PuntateLabel, inserting the updated 
+     * information of the bet selected by the player.
+     */
     private void updateStatusPuntateLabel(Label label, IntegerProperty puntata) {
         label.textProperty().bind(Bindings.createStringBinding(
             () -> "Bet: " + String.format("%.2f", (double) puntata.get()),
             puntata
         ));
     }
-
+    
+    /*
+     * Method that updates the CardDealerPreLabel, inserting the value 
+     * of the exposed card next to the dealer writing.
+     */
     private void updateStatusCardDealerPreLabel(Label label) {
         List<Card> dealerCardsList = handler.getDealerHand().getCards();
         if (dealerCardsList.isEmpty()) {
@@ -289,14 +315,20 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         label.setText("Dealer  " + (total - hiddenValue));
     }
 
+    // Method that updates the dealer's card total
     private void updateStatusCardDealerFinalLabel(Label label) {
         label.setText("Dealer  " + String.format("%d", handler.getDealerTotal()));
     }
 
+    // Method that updates the player's card total
     private void updateStatusCardPlayerLabel(Label label) {
         label.setText("Player  " + String.format("%d", handler.getPlayerTotal()));
     }
 
+    /*
+     * Method that updates the dealer's card box, showing a face-down 
+     * card before the player finishes making his play.
+     */
     private void updateDealerBox(HBox dealerCards, boolean showFullHand) {
         dealerCards.getChildren().clear();
         List<Region> dealerImages = showFullHand ? getDealerHandImages() : getDealerHandFirstImages();
@@ -313,6 +345,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         }
     }
 
+    // Method that updates the player's card box
     private void updatePlayerBox(HBox playerCards) {
         for (Region img : getPlayerHandImages()) {
             img.setMaxSize(60, 100);
@@ -321,30 +354,35 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         }
     }
 
+    // Returns the list of cards in the player's hand
     public List<Region> getPlayerHandImages() {
         return getImagesFromHand(handler.getPlayerHand());
     }
 
+    // Returns the list of cards in the dealer's hand
     public List<Region> getDealerHandImages() {
         return getImagesFromHand(handler.getDealerHand());
     }
 
+    // Returns the list of cards in the dealer's hand, but with the top card hidden.
     public List<Region> getDealerHandFirstImages() {
         List<Region> images = new ArrayList<>();
         List<Card> dealerHand = handler.getDealerHand().getCards();
 
         for (int i = 0; i < dealerHand.size(); i++) {
             if (i == 0) {
-                // Prima carta: dorso
+                // First card: back
                 images.add(createBackCard());
             } else {
-                // Altre carte: normali
-                images.add(imageProvider.getSVGCard(dealerHand.get(i).getRank(), dealerHand.get(i).getSuit()));
+                // Other cards: normal
+                images.add(imageProvider.getSVGCard(dealerHand.get(i).getRank(), 
+                        dealerHand.get(i).getSuit()));
             }
         }
         return images;
     }
 
+    // Returns the list of images of the cards in the hand
     private List<Region> getImagesFromHand(Hand hand) {
         if (hand == null || hand.getCards() == null) {
             return Collections.emptyList();
@@ -360,6 +398,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         return images;
     }
 
+    // Returns the image and value map of the chips
     private Map<Region, Integer> getFiches() {
         Map<Region, Integer> fiches = new HashMap<>();
         int[] ficheValues = {1, 5, 10, 25, 100};
@@ -372,10 +411,12 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         return fiches;
     }
 
+    // Method that sets the label text according to the language selected in the settings
     private void setText(final Labeled target, final String property) {
         target.textProperty().bind(languageManager.bind(property));
     }
 
+    // Creates and returns a card back
     private Region createBackCard() {
         Region back = new Region();
         back.setPrefSize(60, 100);

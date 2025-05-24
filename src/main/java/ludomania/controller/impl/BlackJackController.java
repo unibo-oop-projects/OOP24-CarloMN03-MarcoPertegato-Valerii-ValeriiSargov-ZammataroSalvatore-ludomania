@@ -14,8 +14,8 @@ import ludomania.model.wallet.impl.WalletImpl;
 import ludomania.view.blackjack.BlackJackMenuViewBuilder;
 
 /**
- * Controller per il gioco del Blackjack. Gestisce le interazioni dell'utente
- * e il flusso di gioco tra il model e la view.
+ * Controller for the Blackjack game. It manages user interactions 
+ * and game flow between the model and the view.
  */
 public final class BlackJackController implements Controller, BlackJackHandler {
 
@@ -26,15 +26,15 @@ public final class BlackJackController implements Controller, BlackJackHandler {
     private final BlackJackGame game;
 
     /**
-     * Crea un nuovo controller per Blackjack.
+     * Create a new controller for Blackjack.
      *
-     * @param sceneManager gestore delle scene
-     * @param audioManager gestore dei suoni
+     * @param sceneManager manages the scenes
+     * @param audioManager manages sounds
      */
     public BlackJackController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.sceneManager = sceneManager;
         this.audioManager = audioManager;
-        Wallet wallet = new WalletImpl(1000.0);
+        Wallet wallet = new WalletImpl(1000.0); //Saldo 
         this.player = new BlackJackPlayer(wallet);
         this.game = new BlackJackGame(player);
         viewBuilder = new BlackJackMenuViewBuilder(this,
@@ -80,7 +80,7 @@ public final class BlackJackController implements Controller, BlackJackHandler {
         audioManager.playSound("card");
         game.hit();
         if (game.isOver()) {
-            game.runGame(); // Valuta esito e aggiorna saldo
+            game.runGame(); // Evaluate outcome and update balance
         }
     }
 
@@ -88,7 +88,7 @@ public final class BlackJackController implements Controller, BlackJackHandler {
     public void handleStand() {
         audioManager.playSound("stand");
         game.stand();
-        game.runGame(); // Valuta esito e aggiorna saldo
+        game.runGame(); // Evaluate outcome and update balance
     }
 
     @Override
