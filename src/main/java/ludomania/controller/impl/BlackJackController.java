@@ -35,7 +35,7 @@ public final class BlackJackController implements Controller, BlackJackHandler {
         this.sceneManager = sceneManager;
         this.audioManager = audioManager;
         Wallet wallet = new WalletImpl(1000.0); //Saldo 
-        this.player = new BlackJackPlayer(wallet);
+        this.player = new BlackJackPlayer(wallet, "Pippo");
         this.game = new BlackJackGame(player);
         viewBuilder = new BlackJackMenuViewBuilder(this,
                 sceneManager.getLanguageManager(), sceneManager.getImageProvider());
@@ -67,7 +67,7 @@ public final class BlackJackController implements Controller, BlackJackHandler {
 
     @Override
     public String getPlayerName() {
-        return player.toString();
+        return player.getUsername();
     }
 
     @Override

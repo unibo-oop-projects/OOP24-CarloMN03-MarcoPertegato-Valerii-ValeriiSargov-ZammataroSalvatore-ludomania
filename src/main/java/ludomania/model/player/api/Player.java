@@ -5,7 +5,7 @@ import ludomania.model.bet.api.BetType;
 import ludomania.model.wallet.api.Wallet;
 
 public abstract class Player {
-    private final Wallet wallet;
+    public final Wallet wallet;
     private final String username;
 
     public Player(final Wallet wallet, final String username) {

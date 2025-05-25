@@ -63,11 +63,11 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
             Player currentPlayer = entry.getKey();
             BlackJackOutcomeResult outcomeResult = entry.getValue();
             
-            if (!roundBet.containsKey(currentPlayer)) {
+            if (!getRoundBet().containsKey(currentPlayer)) {
                 System.out.println("Nessuna bet trovata per il player: " + currentPlayer);
                 continue;
             }
-            Bet bet = new BlackJackBet(roundBet.get(currentPlayer).getValue(), (BlackJackBetType) roundBet.get(currentPlayer).getType());
+            Bet bet = new BlackJackBet(getRoundBet().get(currentPlayer).getValue(), (BlackJackBetType) getRoundBet().get(currentPlayer).getType());
 
             // Evaluate winnings based on the outcome
             switch (outcomeResult.getOutcome()) {
@@ -121,10 +121,6 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
 
     public int getDealerTot() {
         return dealerTot;
-    }
-
-    public Map<Player, Bet> getRoundBet() {
-        return roundBet;
     }
 
     // === Totals Management ===

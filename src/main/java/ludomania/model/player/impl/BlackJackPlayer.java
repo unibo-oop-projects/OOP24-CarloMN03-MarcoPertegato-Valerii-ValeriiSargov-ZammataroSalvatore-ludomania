@@ -24,8 +24,8 @@ public class BlackJackPlayer extends Player{
      *
      * @param wallet the player's wallet used for betting and deposits
      */
-    public BlackJackPlayer(Wallet wallet) {
-        super(wallet);
+    public BlackJackPlayer(Wallet wallet, String username) {
+        super(wallet, username);
     }
 
     /**
