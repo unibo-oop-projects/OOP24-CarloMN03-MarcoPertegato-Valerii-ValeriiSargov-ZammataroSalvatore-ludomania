@@ -77,10 +77,10 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         setText(exitButton, "exit");
         exitButton.setOnAction(e -> {
             Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmDialog.setTitle("Conferma Uscita");
-            confirmDialog.setHeaderText("Vuoi davvero tornare al menu principale?");
-            confirmDialog.setContentText("Tutti i progressi del round attuale andranno persi.");
-            ButtonType buttonYes = new ButtonType("Sì");
+            confirmDialog.setTitle("Confirm exit");
+            confirmDialog.setHeaderText("Do you really want to go back to the main menu?");
+            confirmDialog.setContentText("All progress from the current round will be lost.");
+            ButtonType buttonYes = new ButtonType("Yes");
             ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
             confirmDialog.getButtonTypes().setAll(buttonYes, buttonNo);
             Optional<ButtonType> result = confirmDialog.showAndWait();
@@ -157,15 +157,15 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
             startBtn.setOnAction(e -> {
                 if (handler.getPlayerBalance() == 0 || handler.getPlayerBalance() < puntata.get()) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Puntata non valida");
-                    alert.setHeaderText("Saldo insufficiente");
-                    alert.setContentText("Non hai abbastanza saldo per effettuare la puntata.");
+                    alert.setTitle("Invalid bet");
+                    alert.setHeaderText("Insufficient balance");
+                    alert.setContentText("You do not have enough balance to place the bet.");
                     alert.showAndWait();
                     return;
                 } else if (puntata.get() == 0) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Puntata non valida");
-                    alert.setHeaderText("Nessuna puntata effettuata");
+                    alert.setTitle("Invalid bet");
+                    alert.setHeaderText("No bets placed");
                     alert.showAndWait();
                     return;
                 } else {
