@@ -46,7 +46,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     @Override
     public void handleStartGame() {
         switch (selectedGameId) {
-            case 1 -> handleSettings();
+            case 1 -> sceneManager.switchToBlackJackMenu();
             case 2 -> handleExit();
             case 3 -> handleTrenteEtQuarante();
             default -> {

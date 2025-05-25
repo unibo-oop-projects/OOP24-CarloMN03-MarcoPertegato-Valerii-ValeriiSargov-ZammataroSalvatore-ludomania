@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import ludomania.controller.impl.BlackJackController;
 import ludomania.controller.impl.CosmeticController;
 import ludomania.controller.impl.MainMenuController;
 import ludomania.controller.impl.TrenteEtQuaranteController;
@@ -188,5 +189,13 @@ public final class SceneManagerImpl implements SceneManager {
     @Override
     public ImageProvider getImageProvider() {
         return this.imageProvider;
+    }
+
+    @Override
+    public void switchToBlackJackMenu() {
+        audioManager.playMusic("devilTrigger");
+        final Parent root = new BlackJackController(this, audioManager).getView();
+        applyBackgroundToRoot(root);
+        mainScene.setRoot(root);
     }
 }

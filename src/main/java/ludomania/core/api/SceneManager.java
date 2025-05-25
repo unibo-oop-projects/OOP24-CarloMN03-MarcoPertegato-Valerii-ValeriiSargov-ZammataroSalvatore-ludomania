@@ -47,4 +47,6 @@ public interface SceneManager {
      * This method changes the visible view to the cosmetics screen.
      */
     void switchToCosmetics();
+
+    void switchToBlackJackMenu();
 }
