@@ -48,11 +48,6 @@ public class BlackJackPlayer extends Player{
         return currentBet;
     }
 
-    // Returns the player's current balance
-    public double getBalance() {
-        return wallet.getMoney();
-    }
-
     // Returns the player's most recent placed bet
     public Bet getPlacedBet() {
         return this.currentBet;

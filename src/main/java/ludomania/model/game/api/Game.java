@@ -14,18 +14,4 @@ public interface Game<T> {
      * @return the result of the game
      */
     CounterResult<T> runGame();
-
-    /**
-     * Checks if the game is over.
-     *
-     * @return true if the game is over, false otherwise
-     */
-    Boolean isOver();
-
-    /**
-     * Asks the user whether they want to play the game again.
-     *
-     * @return true if the player chooses to play again, false otherwise
-     */
-    Boolean playAgain();
 }

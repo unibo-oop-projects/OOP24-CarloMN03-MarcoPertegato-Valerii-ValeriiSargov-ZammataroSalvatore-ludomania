@@ -24,6 +24,10 @@ public abstract class Player {
     public String getUsername(){
         return username;
     }
+
+    public Double getBalance(){
+        return wallet.getMoney();
+    }
     
     public abstract Bet makeBet(Double amount, BetType type);
 }

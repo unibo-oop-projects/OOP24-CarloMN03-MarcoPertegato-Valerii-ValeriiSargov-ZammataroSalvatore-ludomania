@@ -152,12 +152,10 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
         return hand.getCards().size() == 2 && calculateTotal(hand) == 21;
     }
 
-    @Override
     public Boolean isOver() {
         return gameOver;
     }
 
-    @Override
     public Boolean playAgain() {
         gameOver = false;
         return true;    

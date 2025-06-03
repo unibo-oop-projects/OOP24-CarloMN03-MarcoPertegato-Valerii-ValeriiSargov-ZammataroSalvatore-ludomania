@@ -69,7 +69,7 @@ public final class TrenteEtQuaranteDealerTest {
     @Test
     void testDeclareResult() {
         final Card extractedCard = dealer.extractNewCard(dealer.getNoir());
-        assertEquals(dealer.tureCardValue(extractedCard), dealer.getHandTotal(dealer.getNoir()));
+        assertEquals(dealer.trueCardValue(extractedCard), dealer.getHandTotal(dealer.getNoir()));
         assertEquals(0, dealer.getHandTotal(dealer.getRouge()));
         final TrenteEtQuaranteResult result = dealer.declareResult();
         assertEquals(TrenteEtQuaranteBetType.ROUGE, result.getColor());

@@ -79,11 +79,11 @@ public class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaranteBetT
     public Card extractNewCard(final Hand hand) {
         final Card extractedCard = drawCard();
         hand.addCard(extractedCard);
-        increaseHandTotal(hand, tureCardValue(extractedCard));        
+        increaseHandTotal(hand, trueCardValue(extractedCard));        
         return extractedCard;
     }
     
-    public int tureCardValue(Card cards){
+    public int trueCardValue(Card cards){
         if(cards.getRank().getValue()>FACE_CARDS_VALUE){
             return FACE_CARDS_VALUE;
         }
