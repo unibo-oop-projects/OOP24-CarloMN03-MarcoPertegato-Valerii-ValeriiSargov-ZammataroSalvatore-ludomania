@@ -43,6 +43,7 @@ public final class AudioManagerImpl implements AudioManager {
     private void load() {
         loadSoundEffect("click", "/audio/sfx/click.wav");
         loadBackgroundTrack("devilTrigger", "/audio/music/deviltrigger.mp3");
+        loadBackgroundTrack("furinaTheme", "/audio/music/furinaTheme.mp3");        
     }
 
     @Override

@@ -4,8 +4,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import ludomania.controller.impl.BlackJackController;
 import ludomania.controller.impl.CosmeticController;
 import ludomania.controller.impl.MainMenuController;
+import ludomania.controller.impl.TrenteEtQuaranteController;
 import ludomania.core.api.AudioManager;
 import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
@@ -118,6 +120,13 @@ public final class SceneManagerImpl implements SceneManager {
         mainScene.setRoot(root);
     }
 
+    public void switchToTrenteEtQuarante() {
+        audioManager.playMusic("furinaTheme");
+        Parent root = new TrenteEtQuaranteController(this, audioManager).getView();
+        applyBackgroundToRoot(root);
+        mainScene.setRoot(root);
+    }
+
     private void bindFullscreenToStage() {
         settingsManager.fullscreenProperty().addListener((obs, oldVal, newVal) -> {
             primaryStage.setFullScreen(newVal);
@@ -180,5 +189,13 @@ public final class SceneManagerImpl implements SceneManager {
     @Override
     public ImageProvider getImageProvider() {
         return this.imageProvider;
+    }
+
+    @Override
+    public void switchToBlackJackMenu() {
+        audioManager.playMusic("devilTrigger");
+        final Parent root = new BlackJackController(this, audioManager).getView();
+        applyBackgroundToRoot(root);
+        mainScene.setRoot(root);
     }
 }

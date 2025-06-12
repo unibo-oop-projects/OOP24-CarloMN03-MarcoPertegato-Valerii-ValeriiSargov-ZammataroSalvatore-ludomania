@@ -5,19 +5,29 @@ import ludomania.model.bet.api.BetType;
 import ludomania.model.wallet.api.Wallet;
 
 public abstract class Player {
-    private final Wallet wallet;
+    public final Wallet wallet;
+    private final String username;
 
-    public Player(Wallet wallet) {
+    public Player(final Wallet wallet, final String username) {
         this.wallet = wallet;
+        this.username = username;
     }
 
-    public boolean deposit(Double amount) {
+    public boolean deposit(final Double amount) {
         return wallet.deposit(amount);
     }
 
-    public boolean withdraw(Double amount) {
+    public boolean withdraw(final Double amount) {
         return wallet.withdraw(amount);
     }
 
-    abstract public Bet makeBet(Double amount, BetType type);
+    public String getUsername(){
+        return username;
+    }
+
+    public Double getBalance(){
+        return wallet.getMoney();
+    }
+    
+    public abstract Bet makeBet(Double amount, BetType type);
 }

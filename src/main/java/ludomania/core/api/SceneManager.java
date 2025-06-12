@@ -19,6 +19,11 @@ public interface SceneManager {
     void switchToSettings();
 
     /**
+     * Switches the current scene to the TrenteEtQuarante screen.
+     */
+    void switchToTrenteEtQuarante();
+
+    /**
      * Returns the {@link LanguageManager} associated with the scene manager,
      * used for localized UI updates.
      *
@@ -42,4 +47,6 @@ public interface SceneManager {
      * This method changes the visible view to the cosmetics screen.
      */
     void switchToCosmetics();
+
+    void switchToBlackJackMenu();
 }

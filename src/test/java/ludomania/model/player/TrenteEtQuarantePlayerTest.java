@@ -14,7 +14,7 @@ import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 import ludomania.model.player.impl.TrenteEtQuarantePlayer;
 import ludomania.model.wallet.impl.WalletImpl;
 
-public class TrenteEtQuarantePlayerTest {
+public final class TrenteEtQuarantePlayerTest {
     private static final double EXCESSIVE_AMOUNT = 150.0;
     private static final double BET_VALUE = 20.0;
     private static final double INITIAL_MONEY = 100.0;
@@ -25,22 +25,22 @@ public class TrenteEtQuarantePlayerTest {
     @BeforeEach
     void setUp() {
         wallet = new WalletImpl(INITIAL_MONEY);
-        player = new TrenteEtQuarantePlayer(wallet);
+        player = new TrenteEtQuarantePlayer(wallet, "Player1");
     }
 
     @Test
     void testMakeBetWithValidType() {
-        BetType betType = TrenteEtQuaranteBetType.ROUGE;
-        Bet bet = player.makeBet(BET_VALUE, betType);
+        final BetType betType = TrenteEtQuaranteBetType.ROUGE;
+        final Bet bet = player.makeBet(BET_VALUE, betType);
         assertNotNull(bet);
         assertEquals(BET_VALUE, bet.getValue());
         assertEquals(betType, ((TrenteEtQuaranteBet) bet).getType());
-        assertEquals(INITIAL_MONEY-BET_VALUE, wallet.getMoney());
+        assertEquals(INITIAL_MONEY - BET_VALUE, wallet.getMoney());
     }
 
     @Test
     void testMakeBetWithInvalidType() {
-        BetType invalidType = new BetType() {
+        final BetType invalidType = new BetType() {
             @Override
             public String getTypeName() {
                 return "Invalid";
@@ -52,7 +52,7 @@ public class TrenteEtQuarantePlayerTest {
             }
         };
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        final Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             player.makeBet(BET_VALUE, invalidType);
         });
 
@@ -62,9 +62,9 @@ public class TrenteEtQuarantePlayerTest {
 
     @Test
     void testMakeBetWithInsufficientFunds() {
-        BetType betType = TrenteEtQuaranteBetType.NOIR;
+        final BetType betType = TrenteEtQuaranteBetType.NOIR;
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        final Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             player.makeBet(EXCESSIVE_AMOUNT, betType);
         });
 
