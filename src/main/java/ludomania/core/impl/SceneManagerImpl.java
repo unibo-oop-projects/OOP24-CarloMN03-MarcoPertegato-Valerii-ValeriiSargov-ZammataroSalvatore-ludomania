@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import ludomania.controller.RouletteController;
 import ludomania.controller.impl.BlackJackController;
 import ludomania.controller.impl.CosmeticController;
 import ludomania.controller.impl.MainMenuController;
@@ -120,9 +121,18 @@ public final class SceneManagerImpl implements SceneManager {
         mainScene.setRoot(root);
     }
 
+    @Override
     public void switchToTrenteEtQuarante() {
         audioManager.playMusic("furinaTheme");
         Parent root = new TrenteEtQuaranteController(this, audioManager).getView();
+        applyBackgroundToRoot(root);
+        mainScene.setRoot(root);
+    }
+
+    @Override
+    public void switchToRoulette() {
+        audioManager.playMusic("furinaTheme");
+        Parent root = new RouletteController(this, audioManager).getView();
         applyBackgroundToRoot(root);
         mainScene.setRoot(root);
     }

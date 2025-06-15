@@ -23,6 +23,11 @@ public interface SceneManager {
      */
     void switchToTrenteEtQuarante();
 
+        /**
+     * Switches the current scene to the Roulette screen.
+     */
+    void switchToRoulette();
+
     /**
      * Returns the {@link LanguageManager} associated with the scene manager,
      * used for localized UI updates.
