@@ -49,306 +49,270 @@
             <Insets />
          </opaqueInsets>
          <children>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="68.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="124.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="180.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="236.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="292.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="348.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="404.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="460.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="516.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="572.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="629.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="12" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="N_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="116.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="60.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="60.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="60.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="60.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="60.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="172.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="172.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="172.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="228.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="228.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="228.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="284.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="284.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="284.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="340.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="340.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="340.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="396.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="396.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="396.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="452.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="452.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="452.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="508.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="508.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="508.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="565.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="565.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="565.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="621.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="621.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
-            <Separator layoutX="621.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="H_RESIZE" />
-               </cursor>
-            </Separator>
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="68.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="68.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="124.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="124.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="180.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="180.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="236.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="236.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="292.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="292.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="348.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="348.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="404.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="404.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="460.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="460.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="516.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="516.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="572.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="572.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane layoutX="629.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+               </children>
+            </StackPane>
             <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="3" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -765,270 +729,306 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="68.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="68.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="124.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="124.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="180.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="180.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="236.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="236.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="292.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="292.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="348.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="348.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="404.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="404.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="460.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="460.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="516.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="516.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="572.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="572.0" layoutY="191.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
-            <StackPane layoutX="629.0" layoutY="112.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2">
-               <children>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="CROSSHAIR" />
-                     </cursor>
-                  </Button>
-               </children>
-            </StackPane>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="68.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="124.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="180.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="236.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="292.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="348.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="404.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="460.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="516.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="572.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="629.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="12" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="N_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="116.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="60.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="60.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="60.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="60.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="60.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="172.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="172.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="172.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="228.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="228.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="228.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="284.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="284.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="284.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="340.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="340.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="340.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="396.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="396.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="396.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="452.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="452.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="452.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="508.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="508.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="508.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="565.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="565.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="565.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="621.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="621.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
+            <Separator layoutX="621.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="H_RESIZE" />
+               </cursor>
+            </Separator>
          </children>
       </GridPane>
    </center>
