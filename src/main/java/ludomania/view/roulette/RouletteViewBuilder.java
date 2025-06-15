@@ -51,10 +51,9 @@ public class RouletteViewBuilder implements ViewBuilder {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(new URI(FXML_FILE_PATH).toURL());
-            VBox vbox = loader.<VBox>load();
+            BorderPane vbox = loader.<BorderPane>load();
 
-            root.setTop(vbox);
-            
+            root.setTop(vbox);            
         } catch(Exception e) {
             
         }
