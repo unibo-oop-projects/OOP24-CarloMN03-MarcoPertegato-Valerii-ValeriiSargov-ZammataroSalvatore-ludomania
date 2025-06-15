@@ -51,7 +51,6 @@ public final class MainMenuController implements Controller, MainMenuHandler {
             case 3 -> handleTrenteEtQuarante();
             default -> {
             }
-
         }
     }
 
