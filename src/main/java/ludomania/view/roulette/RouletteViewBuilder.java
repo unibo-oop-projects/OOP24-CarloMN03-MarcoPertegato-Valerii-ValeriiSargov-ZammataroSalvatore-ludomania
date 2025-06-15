@@ -1,5 +1,8 @@
 package ludomania.view.roulette;
 
+import java.io.File;
+import java.net.URI;
+import java.net.URL;
 import java.util.Optional;
 
 import javafx.geometry.Insets;
@@ -23,6 +26,10 @@ import ludomania.handler.BlackJackHandler;
 import ludomania.view.ViewBuilder;
 
 public class RouletteViewBuilder implements ViewBuilder {
+    private static final String SEP = File.separator;
+    private static final String FXML_FILE_NAME = "RouletteViewTemplate.fxml";
+    private static final String FXML_FILE_PATH = 
+    new File(System.getProperty("user.dir")).getPath() + SEP + "src" + SEP + "main" + SEP + "java" + SEP + "view" + SEP + FXML_FILE_NAME;
     
     private final BlackJackHandler handler;
     private final LanguageManager languageManager;
@@ -40,11 +47,18 @@ public class RouletteViewBuilder implements ViewBuilder {
     
     @Override
     public Parent build() {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(new URL("file:///C:/data/hello-world.fxml"));
-        VBox vbox = loader.<VBox>load();
+        BorderPane root = new BorderPane();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(new URI(FXML_FILE_PATH).toURL());
+            VBox vbox = loader.<VBox>load();
 
-        return vbox;
+            root.setTop(vbox);
+            
+        } catch(Exception e) {
+            
+        }
+        return root;
     }
     
     // Method that sets the label text according to the language selected in the settings
