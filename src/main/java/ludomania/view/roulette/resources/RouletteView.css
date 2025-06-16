@@ -15,3 +15,21 @@
     -fx-border-color: yellow;
     -fx-border-width: 4;
 }
+
+#betAmount {
+    -fx-border-radius: 5;
+    -fx-border-style: dotted;
+    -fx-border-width: 2;
+    -fx-border-color: #07ff00;
+}
+
+.button:hover {
+    -fx-effect: innershadow(gaussian, #00eeff, 20, 0.5, 0, 0),
+                dropshadow(gaussian, #00eeff, 30, 0.7, 0, 0); 
+
+    -fx-border-color: red;
+    -fx-border-width: 2;
+    -fx-border-radius: 100%
+
+    -fx-scale: 1.05;
+}
