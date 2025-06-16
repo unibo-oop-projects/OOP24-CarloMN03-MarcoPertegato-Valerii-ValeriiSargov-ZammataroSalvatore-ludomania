@@ -40,7 +40,6 @@ public final class NeonFicheTheme extends SimpleFicheTheme {
         colori.put(FicheValue.CINQUE, "#800000");
         colori.put(FicheValue.DIECI, "#000080");
         colori.put(FicheValue.VENTICINQUE, "#008000");
-        colori.put(FicheValue.CINQUANTA, "#FFD700");
         colori.put(FicheValue.CENTO, "#808080");
         colori.put(FicheValue.CINQUECENTO, "#800080");
     }

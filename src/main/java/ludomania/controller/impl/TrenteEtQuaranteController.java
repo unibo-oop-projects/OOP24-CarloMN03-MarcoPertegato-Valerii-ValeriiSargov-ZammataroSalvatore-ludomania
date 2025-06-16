@@ -56,8 +56,8 @@ public class TrenteEtQuaranteController implements Controller, TrenteEtQuaranteH
 
     @Override
     public void handleReturnHome() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handleReturnHome'");
+        audioManager.playSound("click");
+        sceneManager.switchToMainMenu();
     }
     
 }

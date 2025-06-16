@@ -110,7 +110,7 @@ public final class SettingsViewBuilder implements ViewBuilder {
 
     private ChoiceBox<String> createResolutionChoiceBox() {
         final ChoiceBox<String> choiceBox = new ChoiceBox<>();
-        choiceBox.getItems().addAll("800x600", "1280x720", "1920x1080", "2560x1440");
+        choiceBox.getItems().addAll("1280x720", "1920x1080", "2560x1440");
         choiceBox.getSelectionModel().selectedItemProperty()
                 .addListener((obs, oldVal, newVal) -> eventHandler.resolutionHandler(newVal));
         return choiceBox;
