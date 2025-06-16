@@ -1,7 +1,6 @@
 package ludomania.view.roulette;
 
 import java.io.File;
-import java.net.URI;
 
 import javafx.scene.Parent;
 import javafx.scene.control.Labeled;
@@ -15,10 +14,13 @@ import ludomania.view.ViewBuilder;
 public class RouletteViewBuilder implements ViewBuilder {
     private static final String SEP = File.separator;
     private static final String FXML_FILE_NAME = "RouletteViewTemplate.fxml";
+    private static final String FXML_STYLE_FILE_NAME = "RouletteView.css";
     private static final String FXML_FILE_PATH = 
-    new File(System.getProperty("user.dir")).getPath() + SEP + "src" + SEP + "main" + SEP + "java" + SEP + "ludomania" + SEP + "view"+ SEP + "roulette" + SEP + FXML_FILE_NAME;
+    new File(System.getProperty("user.dir")).getPath() + SEP + "src" + SEP + "main" + SEP + "java" + SEP + "ludomania" + SEP + "view"+ SEP + "roulette" + SEP + "resources" + SEP + FXML_FILE_NAME;
+    private static final String FXML_STYLE_FILE_PATH = 
+    new File(System.getProperty("user.dir")).getPath() + SEP + "src" + SEP + "main" + SEP + "java" + SEP + "ludomania" + SEP + "view"+ SEP + "roulette" + SEP + "resources" + SEP + FXML_STYLE_FILE_NAME;
     
-    private final RouletteController handler;
+    private final RouletteController controller;
     private final LanguageManager languageManager;
     private final ImageProvider imageProvider;
     
@@ -27,7 +29,7 @@ public class RouletteViewBuilder implements ViewBuilder {
     final LanguageManager languageManager,
     final ImageProvider imageProvider
     ) {
-        this.handler = handler;
+        this.controller = handler;
         this.languageManager = languageManager;
         this.imageProvider = imageProvider;
     }
@@ -35,19 +37,21 @@ public class RouletteViewBuilder implements ViewBuilder {
     @Override
     public Parent build() {
         Parent root;
+
         try {
             File dbDirectory = new File(FXML_FILE_PATH);
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(dbDirectory.toURL());
-            BorderPane bPane = loader.<BorderPane>load();
+            loader.setController(controller);
+            loader.setLocation(dbDirectory.toURI().toURL());
 
-            root = bPane;            
-        } catch(Exception e) {
-            
+            root = loader.<BorderPane>load();
+            root.getStylesheets().add(FXML_STYLE_FILE_PATH);
+        } catch(Exception e) {            
             System.err.println(e.getMessage());
             root = new BorderPane();
         }
+
         return root;
     }
     

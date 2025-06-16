@@ -10,14 +10,15 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="RouletteRoot" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="RouletteRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@RouletteView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <GridPane id="Board" alignment="CENTER" hgap="10.0" maxHeight="431.0" maxWidth="782.0" minHeight="200.0" minWidth="200.0" prefHeight="431.0" prefWidth="782.0" style="-fx-background-color: green; -fx-border-color: yellow; -fx-border-width: 2;" vgap="10.0" BorderPane.alignment="CENTER">
+      <GridPane id="Board" alignment="CENTER" hgap="10.0" prefHeight="431.0" prefWidth="782.0" vgap="10.0" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="222.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="222.0" />
@@ -49,6 +50,24 @@
             <Insets />
          </opaqueInsets>
          <children>
+            <Separator prefWidth="200.0" GridPane.columnSpan="13" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+            <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="13" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+            <Separator layoutX="12.0" layoutY="252.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="13" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+            <Separator prefWidth="200.0" GridPane.columnSpan="13" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="12.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="73.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="81.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="150.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="219.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="288.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="357.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="426.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="495.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="565.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="635.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="705.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
+            <Separator layoutX="775.0" layoutY="145.0" orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="12" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <children>
                   <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: transparent;" text="+" textAlignment="CENTER" textFill="YELLOW" StackPane.alignment="CENTER">
@@ -313,7 +332,7 @@
                   </Button>
                </children>
             </StackPane>
-            <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="3" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="3" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -321,7 +340,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="6" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="6" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -329,7 +348,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="9" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="9" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -337,7 +356,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="12" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="12" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -345,7 +364,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="15" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="15" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -353,7 +372,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="18" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="18" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -361,7 +380,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="21" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="21" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -369,7 +388,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="404.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="24" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="404.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="24" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -377,7 +396,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="460.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="27" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="460.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="27" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -385,7 +404,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="516.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="30" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="516.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="30" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -393,7 +412,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="572.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="33" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="572.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="33" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -401,7 +420,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="629.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="36" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="629.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="36" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -409,7 +428,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="2" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="2" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -417,7 +436,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="5" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="5" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -425,7 +444,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="8" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="8" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -433,7 +452,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="11" textAlignment="CENTER" textFill="YELLOW" wrapText="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="11" textAlignment="CENTER" textFill="YELLOW" wrapText="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -441,7 +460,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="14" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="14" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -449,7 +468,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="17" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="17" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -457,7 +476,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="404.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="20" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="404.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="20" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -465,7 +484,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="460.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="23" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="460.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="23" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -473,7 +492,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="516.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="26" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="516.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="26" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -481,7 +500,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="572.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="29" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="572.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="29" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -489,7 +508,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="629.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="32" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="629.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="32" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -497,7 +516,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="686.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="35" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="686.0" layoutY="124.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="35" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -505,7 +524,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="1" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="1" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -513,7 +532,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="4" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="4" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -521,7 +540,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="7" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="7" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -529,7 +548,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="10" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="10" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -537,7 +556,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="13" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="13" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -545,7 +564,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="16" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="16" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -553,7 +572,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="404.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="19" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="404.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="19" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -561,7 +580,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="460.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="22" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="460.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="22" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -569,7 +588,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="516.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="25" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="516.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="25" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -577,7 +596,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="572.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="28" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="572.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="28" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -585,7 +604,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="629.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="31" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="629.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="31" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -593,7 +612,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="686.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="34" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="686.0" layoutY="204.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" text="34" textAlignment="CENTER" textFill="#bf0000" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -601,7 +620,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="206.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="0" textAlignment="CENTER" textFill="YELLOW" GridPane.rowIndex="3" GridPane.rowSpan="3">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="206.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#buttonClicked" prefHeight="39.0" prefWidth="105.0" rotate="270.0" text="0" textAlignment="CENTER" textFill="YELLOW" GridPane.rowIndex="3" GridPane.rowSpan="3">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -609,7 +628,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="286.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="P" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="286.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-border-color: yellow;" text="P" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="TOP">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -617,7 +636,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="394.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="M" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="394.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-border-color: yellow;" text="M" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="TOP">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -625,7 +644,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="367.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="D" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="367.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-border-color: yellow;" text="D" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -633,7 +652,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="394.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="P" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="394.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-border-color: yellow;" text="P" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -641,7 +660,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="367.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="M" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="367.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-border-color: yellow;" text="M" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -649,7 +668,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="339.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-background-color: transparent;" text="D" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="339.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" rotate="270.0" style="-fx-border-color: yellow;" text="D" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -657,7 +676,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" layoutX="68.0" layoutY="30.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" rotate="180.0" style="-fx-background-color: TRANSPARENT; -fx-border-color: YELLOW; -fx-border-width: 2;" text="IMPAIR" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="5" GridPane.columnSpan="4" GridPane.rowSpan="3">
+            <Button alignment="CENTER" layoutX="68.0" layoutY="30.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" rotate="180.0" styleClass="bigBoardBtn" text="IMPAIR" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="5" GridPane.columnSpan="4" GridPane.rowSpan="3">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -665,7 +684,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" layoutX="292.0" layoutY="30.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" style="-fx-background-color: TRANSPARENT; -fx-border-color: YELLOW; -fx-border-width: 2;" text="PAIR" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="5" GridPane.columnSpan="4" GridPane.rowIndex="6" GridPane.rowSpan="3">
+            <Button alignment="CENTER" layoutX="292.0" layoutY="30.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" styleClass="bigBoardBtn" text="PAIR" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="5" GridPane.columnSpan="4" GridPane.rowIndex="6" GridPane.rowSpan="3">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -673,7 +692,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" layoutX="292.0" layoutY="30.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" rotate="180.0" style="-fx-background-color: TRANSPARENT; -fx-border-color: YELLOW; -fx-border-width: 2;" text="ROUGE" textAlignment="CENTER" textFill="RED" GridPane.columnIndex="9" GridPane.columnSpan="4" GridPane.rowSpan="3">
+            <Button alignment="CENTER" layoutX="292.0" layoutY="30.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" rotate="180.0" styleClass="bigBoardBtn" text="ROUGE" textAlignment="CENTER" textFill="RED" GridPane.columnIndex="9" GridPane.columnSpan="4" GridPane.rowSpan="3">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -681,7 +700,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" layoutX="516.0" layoutY="30.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" style="-fx-background-color: TRANSPARENT; -fx-border-color: YELLOW; -fx-border-width: 2;" text="NOIR" textAlignment="CENTER" GridPane.columnIndex="9" GridPane.columnSpan="4" GridPane.rowIndex="6" GridPane.rowSpan="3">
+            <Button alignment="CENTER" layoutX="516.0" layoutY="30.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" styleClass="bigBoardBtn" text="NOIR" textAlignment="CENTER" GridPane.columnIndex="9" GridPane.columnSpan="4" GridPane.rowIndex="6" GridPane.rowSpan="3">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -689,7 +708,18 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" rotate="180.0" style="-fx-background-color: TRANSPARENT; -fx-border-color: YELLOW; -fx-border-width: 2;" text="MANQUE 1 - 18" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowSpan="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" rotate="180.0" styleClass="bigBoardBtn" text="MANQUE 1 - 18" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowSpan="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Button>
+            <Button alignment="CENTER" layoutX="292.0" layoutY="350.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" styleClass="bigBoardBtn" text="PASSE 19 - 36" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="6" GridPane.rowSpan="3">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -697,15 +727,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" layoutX="292.0" layoutY="350.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="216.0" style="-fx-background-color: TRANSPARENT; -fx-border-color: YELLOW; -fx-border-width: 2;" text="PASSE 19 - 36" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="6" GridPane.rowSpan="3">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="686.0" layoutY="206.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: transparent;" text="&lt;-" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.rowIndex="3">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="686.0" layoutY="206.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="bottomBoardBtn" text="&lt;-" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -713,7 +735,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="127.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: transparent;" text="&lt;-" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.rowIndex="4">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="127.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="bottomBoardBtn" text="&lt;-" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -721,7 +743,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="206.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: transparent;" text="&lt;-" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.rowIndex="5">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="206.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="bottomBoardBtn" text="&lt;-" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -729,302 +751,302 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="68.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="68.0" layoutY="185.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="124.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="124.0" layoutY="185.0" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="180.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="180.0" layoutY="185.0" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="236.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="236.0" layoutY="185.0" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="292.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="292.0" layoutY="185.0" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="348.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="348.0" layoutY="185.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="404.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="404.0" layoutY="185.0" GridPane.columnIndex="8" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="460.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="460.0" layoutY="185.0" GridPane.columnIndex="9" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="516.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="516.0" layoutY="185.0" GridPane.columnIndex="10" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="572.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="572.0" layoutY="185.0" GridPane.columnIndex="11" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="629.0" layoutY="185.0" style="-fx-background-color: yellow;" GridPane.columnIndex="12" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator layoutX="629.0" layoutY="185.0" GridPane.columnIndex="12" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator style="-fx-background-color: yellow;" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <Separator GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="N_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="116.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="116.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="60.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="60.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="60.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="60.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="60.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="60.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="60.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="60.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="60.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="60.0" layoutY="271.0" orientation="VERTICAL" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator orientation="VERTICAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator orientation="VERTICAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator orientation="VERTICAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="172.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="172.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="172.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="172.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="172.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="172.0" layoutY="271.0" orientation="VERTICAL" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="228.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="228.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="228.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="228.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="228.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="228.0" layoutY="271.0" orientation="VERTICAL" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="284.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="284.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="284.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="284.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="284.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="284.0" layoutY="271.0" orientation="VERTICAL" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="340.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="340.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="340.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="340.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="340.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="340.0" layoutY="271.0" orientation="VERTICAL" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="396.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="396.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="396.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="396.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="396.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="396.0" layoutY="271.0" orientation="VERTICAL" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="452.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="452.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="452.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="452.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="452.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="452.0" layoutY="271.0" orientation="VERTICAL" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="508.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="508.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="508.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="508.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="508.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="508.0" layoutY="271.0" orientation="VERTICAL" GridPane.columnIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="565.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="565.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="565.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="565.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="565.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="565.0" layoutY="271.0" orientation="VERTICAL" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="621.0" layoutY="112.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Separator layoutX="621.0" layoutY="112.0" orientation="VERTICAL" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="621.0" layoutY="191.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Separator layoutX="621.0" layoutY="191.0" orientation="VERTICAL" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
             </Separator>
-            <Separator layoutX="621.0" layoutY="271.0" orientation="VERTICAL" style="-fx-background-color: yellow;" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Separator layoutX="621.0" layoutY="271.0" orientation="VERTICAL" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="H_RESIZE" />
                </cursor>
@@ -1036,7 +1058,7 @@
       <Cursor fx:constant="DEFAULT" />
    </cursor>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@RouletteView.css" BorderPane.alignment="CENTER">
          <children>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Bet: $$$">
                <font>
@@ -1052,11 +1074,17 @@
    <left>
       <ImageView fitHeight="193.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@../../../../../../../../../Users/zamma/Downloads/Roulette_Wheel.png" />
+            <Image url="@Roulette_Wheel.png" />
          </image>
          <BorderPane.margin>
             <Insets left="10.0" right="10.0" />
          </BorderPane.margin>
       </ImageView>
    </left>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
