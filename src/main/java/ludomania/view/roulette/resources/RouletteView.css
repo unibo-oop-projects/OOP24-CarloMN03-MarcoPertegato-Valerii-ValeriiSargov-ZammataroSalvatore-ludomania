@@ -11,11 +11,6 @@
     -fx-border-radius: 10px;
 }
 
-.grid-pane {
-    padding: 50px;
-    -fx-background-color: transparent;
-}
-
 .bottomBoardBtn {
     -fx-border-color: yellow;
     -fx-border-width: 4;
