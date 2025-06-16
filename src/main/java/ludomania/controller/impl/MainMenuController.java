@@ -23,7 +23,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     private final Builder<Parent> viewBuilder;
     private final SceneManager sceneManager;
     private final AudioManager audioManager;
-    private int selectedGameId = 1;
+    private int selectedGameId = 0;
 
     /**
      * Constructs a {@link MainMenuController} with the specified

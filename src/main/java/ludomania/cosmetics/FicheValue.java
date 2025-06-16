@@ -17,8 +17,6 @@ public enum FicheValue {
     DIECI(10),
     /** Fiche value of 25. */
     VENTICINQUE(25),
-    /** Fiche value of 50. */
-    CINQUANTA(50),
     /** Fiche value of 100. */
     CENTO(100),
     /** Fiche value of 500. */

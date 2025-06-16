@@ -36,7 +36,7 @@ import ludomania.handler.CosmeticMenuHandler;
  */
 
 public final class CosmeticMenuViewBuilder implements ViewBuilder {
-    private static final int FICHE_VALUE = 50;
+    private static final int FICHE_VALUE = 25;
     private final CosmeticMenuHandler eventHandler;
     private final LanguageManager languageManager;
     private final ImageProvider imageProvider;
