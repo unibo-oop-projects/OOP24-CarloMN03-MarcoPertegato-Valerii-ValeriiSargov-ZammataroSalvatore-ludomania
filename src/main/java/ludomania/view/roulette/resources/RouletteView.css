@@ -13,13 +13,13 @@
 
 .bottomBoardBtn {
     -fx-border-color: yellow;
-    -fx-border-width: 4;
+    -fx-border-width: 4px;
 }
 
 #betAmount {
-    -fx-border-radius: 5;
+    -fx-border-radius: 5px;
     -fx-border-style: dotted;
-    -fx-border-width: 2;
+    -fx-border-width: 2px;
     -fx-border-color: #07ff00;
 }
 
@@ -27,9 +27,11 @@
     -fx-effect: innershadow(gaussian, #00eeff, 20, 0.5, 0, 0),
                 dropshadow(gaussian, #00eeff, 30, 0.7, 0, 0); 
 
-    -fx-border-color: red;
-    -fx-border-width: 2;
-    -fx-border-radius: 100%
+    -fx-border-width: 2px;
 
     -fx-scale: 1.05;
+}
+
+.board-btn:hover {
+    -fx-border-radius: 100%;
 }
