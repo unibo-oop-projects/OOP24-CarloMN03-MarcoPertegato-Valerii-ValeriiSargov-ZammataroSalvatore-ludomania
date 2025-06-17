@@ -1,8 +1,5 @@
 package ludomania.controller.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import javafx.scene.Parent;
 import javafx.util.Builder;
 import ludomania.controller.api.Controller;
