@@ -48,5 +48,8 @@ public interface SceneManager {
      */
     void switchToCosmetics();
 
+    /**
+     * Switches the current scene to the BlackJackMenu screen.
+     */
     void switchToBlackJackMenu();
 }
