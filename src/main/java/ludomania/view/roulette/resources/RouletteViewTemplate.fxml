@@ -13,10 +13,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="RouletteRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@RouletteView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="RouletteRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: green;" stylesheets="@RouletteView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <GridPane id="Board" alignment="CENTER" hgap="10.0" prefHeight="431.0" prefWidth="782.0" vgap="10.0" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -621,7 +620,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="0" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="206.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#pleinBet" prefHeight="39.0" prefWidth="105.0" rotate="270.0" styleClass="board-btn" text="0" textAlignment="CENTER" textFill="YELLOW" GridPane.rowIndex="3" GridPane.rowSpan="3">
+            <Button id="0" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="68.0" layoutY="206.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#pleinBet" prefHeight="39.0" prefWidth="105.0" rotate="270.0" styleClass="board-btn" text="0" textAlignment="CENTER" textFill="YELLOW" GridPane.rowIndex="3" GridPane.rowSpan="3">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -1053,30 +1052,16 @@
                </cursor>
             </Separator>
          </children>
+         <BorderPane.margin>
+            <Insets right="20.0" />
+         </BorderPane.margin>
       </GridPane>
    </center>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
-   <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@RouletteView.css" BorderPane.alignment="CENTER">
-         <children>
-            <Label id="betAmount" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Bet: $$$" textAlignment="CENTER" textFill="#07ff00">
-               <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="NONE" />
-               </cursor>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-      </VBox>
-   </right>
    <left>
-      <ImageView fitHeight="193.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="193.0" fitWidth="291.0" onMouseClicked="#spinWheel" onMouseEntered="#highlightWheel" onMouseExited="#unhighlightWheel" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@Roulette_Wheel.png" />
          </image>
@@ -1086,9 +1071,83 @@
       </ImageView>
    </left>
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#quitGame" style="-fx-background-color: white;" text="Exit" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="20.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></HBox>
    </top>
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="F1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#selectAmount" style="-fx-border-radius: 100%; -fx-border-width: 5; -fx-border-color: red; -fx-background-color: white;" text="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button id="F5" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#selectAmount" style="-fx-border-radius: 100%; -fx-border-width: 5; -fx-border-color: red; -fx-background-color: white;" text="5">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button id="F10" layoutX="55.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#selectAmount" style="-fx-border-radius: 100%; -fx-border-width: 5; -fx-border-color: red; -fx-background-color: white;" text="10">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button id="F25" layoutX="100.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#selectAmount" style="-fx-border-radius: 100%; -fx-border-width: 5; -fx-border-color: red; -fx-background-color: white;" text="25">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button id="F100" layoutX="145.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#selectAmount" style="-fx-border-radius: 100%; -fx-border-width: 5; -fx-border-color: red; -fx-background-color: white;" text="100">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Label style="-fx-border-style: dotted; -fx-border-width: 3; -fx-border-color: red; -fx-border-radius: 5;" text="Total: $$$" textFill="RED">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label id="betAmount" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Bet: $$$" textAlignment="CENTER" textFill="#07ff00">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="NONE" />
+               </cursor>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+         </children></HBox>
    </bottom>
 </BorderPane>

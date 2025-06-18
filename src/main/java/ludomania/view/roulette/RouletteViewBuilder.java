@@ -3,6 +3,7 @@ package ludomania.view.roulette;
 import java.io.File;
 
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
@@ -25,18 +26,18 @@ public class RouletteViewBuilder implements ViewBuilder {
     private final ImageProvider imageProvider;
     
     public RouletteViewBuilder(
-    final RouletteController handler,
+    final RouletteController controller,
     final LanguageManager languageManager,
     final ImageProvider imageProvider
     ) {
-        this.controller = handler;
+        this.controller = controller;
         this.languageManager = languageManager;
         this.imageProvider = imageProvider;
     }
     
     @Override
     public Parent build() {
-        Parent root;
+        BorderPane root;
 
         try {
             File dbDirectory = new File(FXML_FILE_PATH);
@@ -50,6 +51,7 @@ public class RouletteViewBuilder implements ViewBuilder {
         } catch(Exception e) {            
             System.err.println(e.getMessage());
             root = new BorderPane();
+            root.setCenter(new Label("ERRORE DURANTE IL CARICAMENTO DELLA VIEW"));
         }
 
         return root;

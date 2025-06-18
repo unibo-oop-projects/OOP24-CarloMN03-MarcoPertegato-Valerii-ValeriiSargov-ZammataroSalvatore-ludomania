@@ -1,10 +1,7 @@
 package ludomania.controller.roulette;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Builder;
 import ludomania.controller.api.Controller;
@@ -40,67 +37,92 @@ public class RouletteController implements Controller {
     }
     
     @FXML
-    public void pleinBet(MouseEvent event) {
+    private void pleinBet(MouseEvent event) {
         this.gameController.pleinBet(event);
     }
     
     @FXML
-    public void chevalBet(MouseEvent event) {
+    private void chevalBet(MouseEvent event) {
         this.gameController.chevalBet(event);
     }
     
     @FXML
-    public void carreBet(MouseEvent event) {
+    private void carreBet(MouseEvent event) {
         this.gameController.carreBet(event);
     }
     
     @FXML
-    public void colonneBet(MouseEvent event) {
+    private void colonneBet(MouseEvent event) {
         this.gameController.colonneBet(event);
     }
     
     @FXML
-    public void noirBet(MouseEvent event) {
+    private void noirBet(MouseEvent event) {
         this.gameController.noirBet(event);
     }
     
     @FXML
-    public void rougeBet(MouseEvent event) {
+    private void rougeBet(MouseEvent event) {
         this.gameController.rougeBet(event);
     }
     
     @FXML
-    public void pairBet(MouseEvent event) {
+    private void pairBet(MouseEvent event) {
         this.gameController.pairBet(event);
     }
     
     @FXML
-    public void impairBet(MouseEvent event) {
+    private void impairBet(MouseEvent event) {
         this.gameController.impairBet(event);
     }
     
     @FXML
-    public void passeBet(MouseEvent event) {
+    private void passeBet(MouseEvent event) {
         this.gameController.passeBet(event);
     }
     
     @FXML
-    public void manqueBet(MouseEvent event) {
+    private void manqueBet(MouseEvent event) {
         this.gameController.manqueBet(event);
     }
     
     @FXML
-    public void douzineBet(MouseEvent event) {
+    private void douzineBet(MouseEvent event) {
         this.gameController.douzineBet(event);
     }
     
     @FXML
-    void highlightCarre(MouseEvent event) {
-        this.appereanceController.highlightCarre(event);
+    private void spinWheel(MouseEvent event) {
+        this.gameController.douzineBet(event);
     }
     
     @FXML
-    void unhighlightCarre(MouseEvent event) {
+    private void highlightCarre(MouseEvent event) {
+        this.appereanceController.highlightCarre(event);
+    }
+        
+    @FXML
+    private void unhighlightCarre(MouseEvent event) {
         this.appereanceController.unhighlightCarre(event);
+    }
+
+    @FXML
+    private void highlightWheel(MouseEvent event) {
+        this.appereanceController.glowWheel(event);
+    }
+    
+    @FXML
+    private void unhighlightWheel(MouseEvent event) {
+        this.appereanceController.unglowWheel(event);
+    }
+
+    @FXML
+    private void quitGame(MouseEvent event) {
+        this.gameController.quitGame();
+    }
+
+    @FXML
+    private void selectAmount(MouseEvent event) {
+        this.gameController.selectAmount(event);
     }
 }
