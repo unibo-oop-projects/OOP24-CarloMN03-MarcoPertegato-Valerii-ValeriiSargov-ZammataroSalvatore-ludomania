@@ -401,7 +401,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
     // Returns the image and value map of the chips
     private Map<Region, Integer> getFiches() {
         Map<Region, Integer> fiches = new HashMap<>();
-        int[] ficheValues = {1, 5, 10, 25, 100};
+        int[] ficheValues = {1, 5, 10, 25, 100, 500};
         for (int value : ficheValues) {
             Region img = imageProvider.getSVGFiche(value);
             if (img != null) {
