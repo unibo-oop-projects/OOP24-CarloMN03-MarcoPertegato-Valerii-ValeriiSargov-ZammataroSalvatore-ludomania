@@ -1,4 +1,6 @@
 package ludomania.view;
+import java.util.Arrays;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -64,7 +66,7 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
 
         root.setRight(createDoneButton());
 
-        root.setCenter(createCardRows());
+        root.setCenter(createCenter());
 
         return root;
     }
@@ -120,7 +122,7 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         ficheBar.setAlignment(Pos.CENTER_LEFT);
         ficheBar.setPadding(new Insets(10));
 
-        java.util.Arrays.stream(FicheValue.values())
+        Arrays.stream(FicheValue.values())
         .sorted((a, b) -> Integer.compare(b.getValue(), a.getValue()))
         .forEach(ficheValue -> {
             final ToggleButton button = new ToggleButton();
@@ -130,13 +132,6 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
             button.setToggleGroup(ficheToggleGroup);
             ficheBar.getChildren().add(button);
         });
-         /*
-        group.selectedToggleProperty().addListener((obs, old, selected) -> {
-            if (selected != null) {
-                final FicheValue value = (FicheValue) selected.getUserData();
-                //onFicheSelected.accept(value);
-            }
-        });*/
 
         ficheToggleGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
             if (oldToggle != null) {
@@ -188,6 +183,17 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         return rightBox;
     }
 
+    private Node createCenter(){
+        VBox centerBox = new VBox(10);
+        centerBox.setAlignment(Pos.CENTER);
+        centerBox.setPadding(new Insets(10));
+        VBox.setVgrow(centerBox, Priority.ALWAYS);
+
+        centerBox.getChildren().addAll(createCardRows(), createBetZones());
+
+        return centerBox;
+    }
+
     private Node createCardRows() {
         VBox cardRows = new VBox(10);
         cardRows.setPadding(new Insets(10));
@@ -237,6 +243,31 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         row.setAlignment(Pos.CENTER_LEFT);
         HBox.setHgrow(scrollPane, Priority.ALWAYS);
         return row;
+    }
+
+    private Node createBetZones() {
+        HBox zonesBox = new HBox();
+        zonesBox.setSpacing(0);
+        zonesBox.setPadding(new Insets(5));
+        zonesBox.setAlignment(Pos.CENTER);
+        
+        String[] zoneNames = {"Noir", "Rouge", "Couleur", "Enverse"};
+        
+        for (String name : zoneNames) {
+            Label zone = new Label(name);
+            zone.setTextFill(Color.WHITE);
+            zone.setAlignment(Pos.CENTER);
+            zone.setPrefHeight(50);
+            zone.setPrefWidth(120);
+            zone.setStyle("-fx-border-color: white; -fx-border-width: 1 1 1 1;");
+            zone.setStyle(zone.getStyle() + "-fx-background-color: transparent;");
+            zone.setOnMouseClicked(e -> {
+                System.out.println("Zona puntata cliccata: " + name);
+            });            
+            zonesBox.getChildren().add(zone);
+        }
+        
+        return zonesBox;
     }
 
     public void setNoirTotal(int total) {

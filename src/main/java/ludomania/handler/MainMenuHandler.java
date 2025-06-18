@@ -52,7 +52,6 @@ public interface MainMenuHandler {
      */
     void handleCosmetics();
 
-    
     /**
      * Handles the action to open the TrenteEtQUarante screen.
      */

@@ -9,7 +9,7 @@ import ludomania.handler.TrenteEtQuaranteHandler;
 import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 import ludomania.view.TrenteEtQuaranteViewBuilder;
 
-public class TrenteEtQuaranteController implements Controller, TrenteEtQuaranteHandler{
+public class TrenteEtQuaranteController implements Controller, TrenteEtQuaranteHandler {
     private final Builder<Parent> viewBuilder;
     private final SceneManager sceneManager;
     private final AudioManager audioManager;

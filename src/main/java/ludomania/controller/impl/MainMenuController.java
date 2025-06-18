@@ -23,7 +23,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     private final Builder<Parent> viewBuilder;
     private final SceneManager sceneManager;
     private final AudioManager audioManager;
-    private int selectedGameId = 0;
+    private int selectedGameId;
 
     /**
      * Constructs a {@link MainMenuController} with the specified
@@ -81,6 +81,6 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     public void handleTrenteEtQuarante() {
         audioManager.playSound("click");
         sceneManager.switchToTrenteEtQuarante();
-    }    
+    }
 
 }
