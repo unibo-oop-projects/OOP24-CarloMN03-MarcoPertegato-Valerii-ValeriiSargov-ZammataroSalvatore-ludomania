@@ -107,12 +107,12 @@ public class RouletteController implements Controller {
     }
 
     @FXML
-    private void highlightWheel(MouseEvent event) {
+    private void glowWheel(MouseEvent event) {
         this.appereanceController.glowWheel(event);
     }
     
     @FXML
-    private void unhighlightWheel(MouseEvent event) {
+    private void unglowWheel(MouseEvent event) {
         this.appereanceController.unglowWheel(event);
     }
 
