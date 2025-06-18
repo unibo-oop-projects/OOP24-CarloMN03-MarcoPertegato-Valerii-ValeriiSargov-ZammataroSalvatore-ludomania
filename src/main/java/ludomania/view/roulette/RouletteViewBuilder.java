@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
-import ludomania.controller.RouletteController;
+import ludomania.controller.roulette.RouletteController;
 import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
 import ludomania.view.ViewBuilder;
