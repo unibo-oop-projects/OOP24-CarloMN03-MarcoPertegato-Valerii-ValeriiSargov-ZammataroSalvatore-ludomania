@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="RouletteRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: green;" stylesheets="@RouletteView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="RouletteRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@RouletteView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <GridPane id="Board" alignment="CENTER" hgap="10.0" prefHeight="431.0" prefWidth="782.0" vgap="10.0" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -620,7 +620,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="0" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="68.0" layoutY="206.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#pleinBet" prefHeight="39.0" prefWidth="105.0" rotate="270.0" styleClass="board-btn" text="0" textAlignment="CENTER" textFill="YELLOW" GridPane.rowIndex="3" GridPane.rowSpan="3">
+            <Button id="0" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="206.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#pleinBet" prefHeight="39.0" prefWidth="105.0" rotate="270.0" styleClass="board-btn" text="0" textAlignment="CENTER" textFill="YELLOW" GridPane.rowIndex="3" GridPane.rowSpan="3">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -1061,7 +1061,7 @@
       <Cursor fx:constant="DEFAULT" />
    </cursor>
    <left>
-      <ImageView fitHeight="193.0" fitWidth="291.0" onMouseClicked="#spinWheel" onMouseEntered="#highlightWheel" onMouseExited="#unhighlightWheel" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="193.0" fitWidth="291.0" onMouseClicked="#spinWheel" onMouseEntered="#glowWheel" onMouseExited="#unglowWheel" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@Roulette_Wheel.png" />
          </image>
