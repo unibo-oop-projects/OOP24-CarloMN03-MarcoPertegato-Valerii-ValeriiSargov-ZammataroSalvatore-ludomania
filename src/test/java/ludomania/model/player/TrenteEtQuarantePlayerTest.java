@@ -14,7 +14,7 @@ import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 import ludomania.model.player.impl.TrenteEtQuarantePlayer;
 import ludomania.model.wallet.impl.WalletImpl;
 
-public final class TrenteEtQuarantePlayerTest {
+final class TrenteEtQuarantePlayerTest {
     private static final double EXCESSIVE_AMOUNT = 150.0;
     private static final double BET_VALUE = 20.0;
     private static final double INITIAL_MONEY = 100.0;

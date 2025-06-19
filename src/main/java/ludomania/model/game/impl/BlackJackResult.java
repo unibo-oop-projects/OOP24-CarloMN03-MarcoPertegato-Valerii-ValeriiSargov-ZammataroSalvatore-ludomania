@@ -29,7 +29,7 @@ public class BlackJackResult extends CounterResult<Map<Player, BlackJackOutcomeR
      */
     @Override
     public Map<Player, BlackJackOutcomeResult> getResult() {
-        return result;
+        return getResult();
     }
 }
 

@@ -1,4 +1,6 @@
 package ludomania.view;
+import java.util.Arrays;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -29,7 +31,11 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
     private final ToggleGroup ficheToggleGroup;
     private final Label usernameLabel;
     private final Label balanceLabel;
+    private final Label noirTotalLabel;
+    private final Label rougeTotalLabel;
     private final VBox betList;
+    private HBox noirCardsBox;
+    private HBox rougeCardsBox;
 
     public TrenteEtQuaranteViewBuilder(final TrenteEtQuaranteHandler eventHandler,
             final LanguageManager languageManager,
@@ -40,6 +46,8 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         this.ficheToggleGroup = new ToggleGroup();
         this.usernameLabel = new Label();
         this.balanceLabel = new Label();
+        this.noirTotalLabel = new Label();
+        this.rougeTotalLabel = new Label();
         this.betList = new VBox(10);
     }
 
@@ -57,6 +65,8 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         root.setLeft(createBetList());
 
         root.setRight(createDoneButton());
+
+        root.setCenter(createCenter());
 
         return root;
     }
@@ -112,7 +122,7 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         ficheBar.setAlignment(Pos.CENTER_LEFT);
         ficheBar.setPadding(new Insets(10));
 
-        java.util.Arrays.stream(FicheValue.values())
+        Arrays.stream(FicheValue.values())
         .sorted((a, b) -> Integer.compare(b.getValue(), a.getValue()))
         .forEach(ficheValue -> {
             final ToggleButton button = new ToggleButton();
@@ -122,14 +132,15 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
             button.setToggleGroup(ficheToggleGroup);
             ficheBar.getChildren().add(button);
         });
-         /*
-        group.selectedToggleProperty().addListener((obs, old, selected) -> {
-            if (selected != null) {
-                final FicheValue value = (FicheValue) selected.getUserData();
-                //onFicheSelected.accept(value);
-            }
-        });*/
 
+        ficheToggleGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
+            if (oldToggle != null) {
+                ((ToggleButton) oldToggle).setStyle("-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;");
+            }
+            if (newToggle != null) {
+                ((ToggleButton) newToggle).setStyle("-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0; -fx-border-color: white; -fx-border-width: 2;");
+            }
+        });
         return ficheBar;
     }
 
@@ -144,6 +155,7 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
             betLabel.setWrapText(true);
             betList.getChildren().add(betLabel);
         }
+        //End Example
 
         ScrollPane scrollPane = new ScrollPane(betList);
         scrollPane.setFitToWidth(true);
@@ -169,5 +181,142 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         rightBox.getChildren().add(doneButton);
 
         return rightBox;
+    }
+
+    private Node createCenter(){
+        VBox centerBox = new VBox(10);
+        centerBox.setAlignment(Pos.CENTER);
+        centerBox.setPadding(new Insets(10));
+        VBox.setVgrow(centerBox, Priority.ALWAYS);
+
+        centerBox.getChildren().addAll(createCardRows(), createBetZones());
+
+        return centerBox;
+    }
+
+    private Node createCardRows() {
+        VBox cardRows = new VBox(10);
+        cardRows.setPadding(new Insets(10));
+
+        this.noirCardsBox = createCardBox();
+        ScrollPane noirScrollPane = createCardScrollPane(noirCardsBox);
+        HBox noirRow = createSingleRow("Noir", noirScrollPane, noirTotalLabel);
+
+        this.rougeCardsBox = createCardBox();
+        ScrollPane rougeScrollPane = createCardScrollPane(rougeCardsBox);
+        HBox rougeRow = createSingleRow("Rouge", rougeScrollPane, rougeTotalLabel);
+
+        cardRows.getChildren().addAll(noirRow, rougeRow);
+
+        return cardRows;
+    }
+
+    private HBox createCardBox() {
+        HBox cardBox = new HBox(5);
+        cardBox.setMinHeight(160);
+        cardBox.setStyle("-fx-border-color: white; -fx-border-width: 1;");
+        cardBox.setAlignment(Pos.CENTER_LEFT);
+        return cardBox;
+    }
+
+    private ScrollPane createCardScrollPane(HBox cardBox) {
+        ScrollPane scrollPane = new ScrollPane(cardBox);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setPrefHeight(160);
+        scrollPane.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+        return scrollPane;
+    }
+
+    private HBox createSingleRow(String labelText, ScrollPane scrollPane, Label totalLabel) {
+        Label rowLabel = new Label(labelText);
+        rowLabel.setTextFill(Color.WHITE);
+        rowLabel.setFont(Font.font(16));
+        rowLabel.setMinWidth(60);
+
+        totalLabel.setText("Total: 0");
+        totalLabel.setTextFill(Color.WHITE);
+        totalLabel.setFont(Font.font(16));
+
+        HBox row = new HBox(10, rowLabel, scrollPane, totalLabel);
+        row.setAlignment(Pos.CENTER_LEFT);
+        HBox.setHgrow(scrollPane, Priority.ALWAYS);
+        return row;
+    }
+
+    private Node createBetZones() {
+        HBox zonesBox = new HBox();
+        zonesBox.setSpacing(0);
+        zonesBox.setPadding(new Insets(5));
+        zonesBox.setAlignment(Pos.CENTER);
+        
+        String[] zoneNames = {"Noir", "Rouge", "Couleur", "Enverse"};
+        
+        for (String name : zoneNames) {
+            Label zone = new Label(name);
+            zone.setTextFill(Color.WHITE);
+            zone.setAlignment(Pos.CENTER);
+            zone.setPrefHeight(50);
+            zone.setPrefWidth(120);
+            zone.setStyle("-fx-border-color: white; -fx-border-width: 1 1 1 1;");
+            zone.setStyle(zone.getStyle() + "-fx-background-color: transparent;");
+            zone.setOnMouseClicked(e -> {
+                System.out.println("Zona puntata cliccata: " + name);
+            });            
+            zonesBox.getChildren().add(zone);
+        }
+        
+        return zonesBox;
+    }
+
+    public void setNoirTotal(int total) {
+        noirTotalLabel.setText("Total: " + total);
+    }
+
+    public void setRougeTotal(int total) {
+        rougeTotalLabel.setText("Total: " + total);
+    }
+
+    public void setUsername(String username) {
+        usernameLabel.setText(username);
+    }
+
+    public void setBalance(int balance) {
+        balanceLabel.setText("Balance: "+ balance+ " $");
+    }
+
+    public void addBet(String betDescrizione) {
+        Label betLabel = new Label(betDescrizione);
+        betLabel.setWrapText(true);
+        betList.getChildren().add(betLabel);
+    }
+
+    public void clearBets() {
+        betList.getChildren().clear();
+    }
+
+    public FicheValue getSelectedFiche() {
+        ToggleButton selectedToggle = (ToggleButton) ficheToggleGroup.getSelectedToggle();
+        if (selectedToggle != null) {
+            return (FicheValue) selectedToggle.getUserData();
+        }
+        return null;
+    }
+
+    public void addCardToNoir(Node cardNode) {
+        noirCardsBox.getChildren().add(cardNode);
+    }
+
+    public void addCardToRouge(Node cardNode) {
+        rougeCardsBox.getChildren().add(cardNode);
+    }
+
+    public void clearNoirCards() {
+        noirCardsBox.getChildren().clear();
+    }
+
+    public void clearRougeCards() {
+        rougeCardsBox.getChildren().clear();
     }
 }

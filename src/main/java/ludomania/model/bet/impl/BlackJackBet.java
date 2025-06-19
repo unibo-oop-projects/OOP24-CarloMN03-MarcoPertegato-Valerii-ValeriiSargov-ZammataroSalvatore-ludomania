@@ -29,11 +29,11 @@ public class BlackJackBet extends Bet {
      */
     @Override
     public Double evaluate() {
-        return switch (type) {
-            case BASE -> value * BASE.getPayout();
-            case BLACKJACK -> value * BLACKJACK.getPayout(); 
-            case PUSH -> value * PUSH.getPayout();
-            case LOSE -> value * LOSE.getPayout();
+        return switch (getType()) {
+            case BASE -> getValue() * BASE.getPayout();
+            case BLACKJACK -> getValue() * BLACKJACK.getPayout(); 
+            case PUSH -> getValue() * PUSH.getPayout();
+            case LOSE -> getValue() * LOSE.getPayout();
             default -> 0.0;
         };
     }

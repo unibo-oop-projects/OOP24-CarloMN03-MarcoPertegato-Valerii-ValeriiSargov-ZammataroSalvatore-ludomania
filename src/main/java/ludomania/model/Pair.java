@@ -1,38 +1,42 @@
 package ludomania.model;
 
-import java.util.Objects;
-
-/*
- * A standard generic Pair<E1,E2>, with getters, hashCode, equals, and toString well implemented. 
+/**
+ * A generic immutable pair of two elements.
+ *
+ * @param <E1> the type of the first element (key)
+ * @param <E2> the type of the second element (value)
  */
+public class Pair<E1, E2> {
+    private final E1 e1;
+    private final E2 e2;
 
-public class Pair<E1,E2> {
-	
-	private final E1 e1;
-	private final E2 e2;
-	
-	public Pair(E1 x, E2 y) {
-		super();
-		this.e1 = x;
-		this.e2 = y;
-	}
+    /**
+     * Constructs a new pair with the given elements.
+     *
+     * @param x the first element (key)
+     * @param y the second element (value)
+     */
+    public Pair(final E1 x, final E2 y) {
+        super();
+        this.e1 = x;
+        this.e2 = y;
+    }
 
-	public E1 getKey() {
-		return e1;
-	}
+    /**
+     * Returns the first element of the pair (key).
+     *
+     * @return the key
+     */
+    public E1 getKey() {
+        return e1;
+    }
 
-	public E2 getValue() {
-		return e2;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(e1, e2);
-	}
-
-	@Override
-	public String toString() {
-		return "Pair [e1=" + e1 + ", e2=" + e2 + "]";
-	}	
-
+    /**
+     * Returns the second element of the pair (value).
+     *
+     * @return the value
+     */
+    public E2 getValue() {
+        return e2;
+    }
 }

@@ -121,13 +121,6 @@ public final class SceneManagerImpl implements SceneManager {
         mainScene.setRoot(root);
     }
 
-    @Override
-    public void switchToTrenteEtQuarante() {
-        audioManager.playMusic("furinaTheme");
-        Parent root = new TrenteEtQuaranteController(this, audioManager).getView();
-        applyBackgroundToRoot(root);
-        mainScene.setRoot(root);
-    }
 
     @Override
     public void switchToRoulette() {
@@ -205,6 +198,14 @@ public final class SceneManagerImpl implements SceneManager {
     public void switchToBlackJackMenu() {
         audioManager.playMusic("devilTrigger");
         final Parent root = new BlackJackController(this, audioManager).getView();
+        applyBackgroundToRoot(root);
+        mainScene.setRoot(root);
+    }
+
+    @Override
+    public void switchToTrenteEtQuarante() {
+        audioManager.playMusic("furinaTheme");
+        final Parent root = new TrenteEtQuaranteController(this, audioManager).getView();
         applyBackgroundToRoot(root);
         mainScene.setRoot(root);
     }
