@@ -8,7 +8,6 @@ import ludomania.model.Pair;
 import ludomania.model.bet.impl.TrenteEtQuaranteBet;
 import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 import ludomania.model.croupier.impl.TrenteEtQuaranteDealer;
-import ludomania.model.game.api.CounterResult;
 import ludomania.model.game.api.Game;
 import ludomania.model.player.api.Player;
 import ludomania.model.player.impl.TrenteEtQuarantePlayer;
@@ -19,12 +18,12 @@ import ludomania.model.player.impl.TrenteEtQuarantePlayer;
  * Handles the main game flow, including managing players, handling bets,
  * drawing cards, and determining winners.
  */
-public class TrenteEtQuaranteGame implements Game<Pair<TrenteEtQuaranteBetType, TrenteEtQuaranteBetType>> {
-    private TrenteEtQuaranteDealer dealer;
-    private List<TrenteEtQuarantePlayer> players;
+public final class TrenteEtQuaranteGame implements Game<Pair<TrenteEtQuaranteBetType, TrenteEtQuaranteBetType>> {
+    private final TrenteEtQuaranteDealer dealer;
+    private final List<TrenteEtQuarantePlayer> players;
     private String currentUser;
     private int userNumber;
-    private int deckNumber;
+    private final int deckNumber;
 
     /**
      * Constructs a new TrenteEtQuaranteGame.
@@ -42,11 +41,6 @@ public class TrenteEtQuaranteGame implements Game<Pair<TrenteEtQuaranteBetType, 
         userNumber = 1;
     }
 
-    /**
-     * Executes a round of the game by drawing cards and determining the result.
-     *
-     * @return the result of the round
-     */
     @Override
     public CounterResult<Pair<TrenteEtQuaranteBetType, TrenteEtQuaranteBetType>> runGame() {
         while (!dealer.isEnough(dealer.getNoir())) {

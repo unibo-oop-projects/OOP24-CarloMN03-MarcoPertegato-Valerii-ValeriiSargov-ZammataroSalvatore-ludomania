@@ -13,7 +13,6 @@ import ludomania.model.Pair;
 import ludomania.model.bet.api.Bet;
 import ludomania.model.bet.impl.BlackJackBetType;
 import ludomania.model.croupier.impl.BlackJackDealer;
-import ludomania.model.game.api.CounterResult;
 import ludomania.model.game.api.Game;
 import ludomania.model.player.api.Player;
 import ludomania.model.player.impl.BlackJackPlayer;

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import ludomania.model.Pair;
 import ludomania.model.bet.api.Bet;
-import ludomania.model.game.api.CounterResult;
+import ludomania.model.game.impl.CounterResult;
 import ludomania.model.player.api.Player;
 
 /**

@@ -2,7 +2,6 @@ package ludomania.model.game.impl;
 
 import ludomania.model.Pair;
 import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
-import ludomania.model.game.api.CounterResult;
 
 /**
  * Represents the result of a Trente et Quarante game.

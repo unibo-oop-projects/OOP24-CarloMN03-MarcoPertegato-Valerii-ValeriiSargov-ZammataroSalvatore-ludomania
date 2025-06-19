@@ -28,12 +28,6 @@ public class TrenteEtQuaranteController implements Controller, TrenteEtQuaranteH
     }
 
     @Override
-    public void handleBetValueSelection(int value) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handleBetValueSelection'");
-    }
-
-    @Override
     public void handleBetPlacement(TrenteEtQuaranteBetType type) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handleBetPlacement'");

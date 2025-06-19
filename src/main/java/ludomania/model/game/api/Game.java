@@ -1,5 +1,7 @@
 package ludomania.model.game.api;
 
+import ludomania.model.game.impl.CounterResult;
+
 /**
  * Interface representing a game that can be run.
  * <p>

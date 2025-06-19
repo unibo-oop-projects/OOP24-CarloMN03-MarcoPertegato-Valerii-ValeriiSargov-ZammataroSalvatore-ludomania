@@ -12,7 +12,7 @@ import ludomania.model.wallet.api.Wallet;
  * <p>
  * Handles the creation of valid bets for this specific game.
  */
-public class TrenteEtQuarantePlayer extends Player {
+public final class TrenteEtQuarantePlayer extends Player {
 
     /**
      * Constructs a TrenteEtQuarantePlayer with the given wallet and username.
@@ -24,14 +24,6 @@ public class TrenteEtQuarantePlayer extends Player {
         super(wallet, username);
     }
 
-    /**
-     * Creates a Trente et Quarante bet after checking the type and available balance.
-     *
-     * @param amount the amount to bet
-     * @param type the type of bet (must be {@link TrenteEtQuaranteBetType})
-     * @return the created {@link TrenteEtQuaranteBet}
-     * @throws IllegalArgumentException if the bet type is invalid or the balance is insufficient
-     */
     @Override
     public Bet makeBet(final Double amount, final BetType type) {
         if (!(type instanceof TrenteEtQuaranteBetType)) {
