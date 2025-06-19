@@ -1,8 +1,12 @@
 package ludomania.model.game.roulette;
 
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.effect.Glow;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import ludomania.core.api.AudioManager;
 import ludomania.core.api.LanguageManager;
 import ludomania.core.api.SceneManager;
@@ -32,6 +36,45 @@ public class RouletteSceneManager {
         if (result.isPresent() && result.get() == buttonYes) {
             audioManager.playSound("click");
             sceneManager.switchToMainMenu();
+        }
+    }
+
+    public void highlightCarre(MouseEvent event) {
+        Object source = event.getSource();
+
+        if (source instanceof Node) {
+            Node clickedButton = (Node) source;
+            clickedButton.getParent().setStyle("-fx-border-color: #00eeff; -fx-border-width: 3px;");
+        }
+    }
+
+    public void unhighlightCarre(MouseEvent event) {
+        Object source = event.getSource();
+
+        if (source instanceof Node) {
+            Node clickedButton = (Node) source;
+            clickedButton.getParent().setStyle("-fx-border-color: trasparent; -fx-border-width: 1px;");
+        }
+    }
+
+    public void glowWheel(MouseEvent event) {
+        Object source = event.getSource();
+
+        if (source instanceof ImageView) {
+            ImageView node = (ImageView) source;
+            Glow glow = new Glow();
+
+            glow.setLevel(0.7);
+            node.setEffect(glow);
+        }
+    }
+
+    public void unglowWheel(MouseEvent event) {
+        Object source = event.getSource();
+
+        if (source instanceof ImageView) {
+            ImageView node = (ImageView) source;
+            node.setEffect(null);
         }
     }
 }

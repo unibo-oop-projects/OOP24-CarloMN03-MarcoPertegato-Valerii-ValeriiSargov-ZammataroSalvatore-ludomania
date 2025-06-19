@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -16,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="RouletteRoot" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: green;" stylesheets="@RouletteView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="RouletteRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: green;" stylesheets="@RouletteView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <GridPane id="Board" alignment="CENTER" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" vgap="10.0" BorderPane.alignment="CENTER">
+      <GridPane id="Board" alignment="CENTER" hgap="10.0" prefHeight="500.0" prefWidth="900.0" vgap="10.0" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="222.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="222.0" />
@@ -629,7 +630,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="pBottomBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="286.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" style="-fx-border-color: yellow;" text="P" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="TOP">
+            <Button id="pBottomBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="286.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" text="P" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="TOP">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -637,7 +638,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="mBottomBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="394.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" style="-fx-border-color: yellow;" text="M" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="TOP">
+            <Button id="mBottomBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="394.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" text="M" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="TOP">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -645,7 +646,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="dBottomBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="367.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" style="-fx-border-color: yellow;" text="D" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
+            <Button id="dBottomBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="367.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" text="D" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -653,7 +654,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="pTopBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="394.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" style="-fx-border-color: yellow;" text="P" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <Button id="pTopBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="394.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" text="P" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -661,7 +662,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="mTopBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="367.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" style="-fx-border-color: yellow;" text="M" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
+            <Button id="mTopBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="367.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" text="M" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -669,7 +670,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="dTopBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="339.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" style="-fx-border-color: yellow;" text="D" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Button id="dTopBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="743.0" layoutY="339.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#douzineBet" rotate="270.0" text="D" textAlignment="CENTER" textFill="YELLOW" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -1147,6 +1148,12 @@
                <image>
                   <Image url="@Roulette_Wheel.png" />
                </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
             </ImageView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -1170,7 +1177,7 @@
             <Insets />
          </opaqueInsets>
          <BorderPane.margin>
-            <Insets right="20.0" />
+            <Insets left="20.0" right="20.0" />
          </BorderPane.margin>
       </VBox>
    </left>

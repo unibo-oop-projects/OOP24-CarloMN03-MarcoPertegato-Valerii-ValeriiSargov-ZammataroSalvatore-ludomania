@@ -1,5 +1,9 @@
 package ludomania.controller.roulette;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -30,12 +34,30 @@ public class RouletteController implements Controller {
 
     @FXML
     private ImageView wheel;
-    
+
+    private final BooleanProperty submitDisabled = new SimpleBooleanProperty(true);
+    private final StringProperty result = new SimpleStringProperty();
+    private final StringProperty total = new SimpleStringProperty();
+    private final StringProperty bet = new SimpleStringProperty();
+
     public RouletteController(
     final SceneManager sceneManager,
     final AudioManager audioManager
     ) {
         this.game = new RouletteGame(this, sceneManager, audioManager);
+    }
+
+    @FXML
+    public void initialize() {
+        this.okBtn.disableProperty().bind(this.submitDisabled);
+        this.resultLabel.textProperty().bind(this.result);
+        this.totalLabel.textProperty().bind(this.total);
+        this.betAmount.textProperty().bind(this.bet);
+        this.wheel.disableProperty().bind(this.submitDisabled.not());
+
+        this.resultLabel.textProperty().addListener((observable, oldValue, newValue) -> {
+            submitDisabled.set(newValue.trim().isEmpty());
+        });
     }
     
     @Override
@@ -100,8 +122,10 @@ public class RouletteController implements Controller {
     
     @FXML
     private void spinWheel(MouseEvent event) {
-        this.okBtn.setDisable(false);
         Pair<Integer, RouletteColor> result = this.game.runGame().getResult();
+        this.result.set(result.getKey().toString());
+        String colorStyle = "-fx-text-fill: " + this.resultColor(result.getValue()) + ";";
+        this.resultLabel.setStyle(colorStyle);
     }
     
     @FXML
@@ -131,12 +155,21 @@ public class RouletteController implements Controller {
 
     @FXML
     private void selectAmount(MouseEvent event) {
-        this.game.selectAmount(event);
+        this.bet.set("Bet: " + this.game.selectAmount(event) + " $");
     }
 
     @FXML
     private void evaluateRound(MouseEvent event) {
+        this.result.set("");
         this.game.evaluateRound(event);
-        this.okBtn.setDisable(true);
+    }
+
+    private String resultColor(RouletteColor color) {
+        return switch (color.name()) {
+            case "NOIR" -> "black";
+            case "ROUGE" -> "red";
+            case "GREEN" -> "green";
+            default -> "white";
+        };
     }
 }
