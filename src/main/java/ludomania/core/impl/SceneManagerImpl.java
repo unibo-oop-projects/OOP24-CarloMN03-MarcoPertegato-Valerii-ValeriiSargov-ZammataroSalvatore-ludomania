@@ -8,6 +8,7 @@ import ludomania.controller.impl.BlackJackController;
 import ludomania.controller.impl.CosmeticController;
 import ludomania.controller.impl.MainMenuController;
 import ludomania.controller.impl.TrenteEtQuaranteController;
+import ludomania.controller.roulette.RouletteController;
 import ludomania.core.api.AudioManager;
 import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
@@ -116,6 +117,15 @@ public final class SceneManagerImpl implements SceneManager {
     @Override
     public void switchToCosmetics() {
         final Parent root = new CosmeticController(settingsManager, this, audioManager).getView();
+        applyBackgroundToRoot(root);
+        mainScene.setRoot(root);
+    }
+
+
+    @Override
+    public void switchToRoulette() {
+        audioManager.playMusic("furinaTheme");
+        Parent root = new RouletteController(this, audioManager).getView();
         applyBackgroundToRoot(root);
         mainScene.setRoot(root);
     }

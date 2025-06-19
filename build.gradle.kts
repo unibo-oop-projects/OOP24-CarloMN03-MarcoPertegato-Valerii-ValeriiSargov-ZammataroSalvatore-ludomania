@@ -3,8 +3,9 @@ plugins {
     application
     id("com.gradleup.shadow") version "8.3.6"
     id("org.danilopianini.gradle-java-qa") version "1.96.0"
-    id("org.openjfx.javafxplugin") version "0.1.0"
+    //id("org.openjfx.javafxplugin") version "0.1.0"
 }
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
@@ -17,10 +18,20 @@ repositories { // Where to search for dependencies
     maven("https://jitpack.io")
 }
 
-javafx {
-    version = "21"
-    modules("javafx.controls", "javafx.media")
-}
+val javaFXModules = listOf(
+    "base",
+    "controls",
+    "fxml",
+    "swing",
+    "graphics"
+)
+
+val supportedPlatforms = listOf("linux", "mac", "win") 
+
+// javafx {
+//     version = "21"
+//     modules("javafx.controls", "javafx.media", "javafx.fxml")
+// }
 
 val osName = when {
     org.gradle.internal.os.OperatingSystem.current().isWindows -> "win"
@@ -56,6 +67,14 @@ dependencies {
     implementation("org.apache.xmlgraphics:batik-codec:1.17")
     implementation("org.apache.xmlgraphics:batik-svg-dom:1.17")
     implementation("xml-apis:xml-apis:1.4.01")
+
+    val javaFxVersion = "23.0.2"
+    implementation("org.openjfx:javafx:$javaFxVersion")
+    for (platform in supportedPlatforms) {
+        for (module in javaFXModules) {
+            implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
+        }
+    }
 }
 
 application {

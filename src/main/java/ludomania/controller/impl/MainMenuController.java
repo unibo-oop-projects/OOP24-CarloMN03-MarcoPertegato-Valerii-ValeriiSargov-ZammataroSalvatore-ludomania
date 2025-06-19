@@ -47,11 +47,10 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     public void handleStartGame() {
         switch (selectedGameId) {
             case 1 -> sceneManager.switchToBlackJackMenu();
-            case 2 -> handleExit();
+            case 2 -> handleRoulette();
             case 3 -> handleTrenteEtQuarante();
             default -> {
             }
-
         }
     }
 
@@ -81,6 +80,11 @@ public final class MainMenuController implements Controller, MainMenuHandler {
     public void handleTrenteEtQuarante() {
         audioManager.playSound("click");
         sceneManager.switchToTrenteEtQuarante();
+    }
+    
+    public void handleRoulette() {
+        audioManager.playSound("click");
+        sceneManager.switchToRoulette();
     }
 
 }
