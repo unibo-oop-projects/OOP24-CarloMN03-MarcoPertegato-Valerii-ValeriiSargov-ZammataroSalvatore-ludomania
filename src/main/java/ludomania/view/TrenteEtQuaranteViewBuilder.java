@@ -1,10 +1,13 @@
 package ludomania.view;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -17,6 +20,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
 import ludomania.cosmetics.FicheValue;
@@ -33,6 +38,7 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
     private final Label balanceLabel;
     private final Label noirTotalLabel;
     private final Label rougeTotalLabel;
+    private List<Label> betZonesLabels;
     private final VBox betList;
     private HBox noirCardsBox;
     private HBox rougeCardsBox;
@@ -49,6 +55,7 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         this.noirTotalLabel = new Label();
         this.rougeTotalLabel = new Label();
         this.betList = new VBox(10);
+        this.betZonesLabels = new ArrayList<>();
     }
 
     @Override
@@ -88,15 +95,43 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         final Button homeBtn = new Button(languageManager.getString("go_back_button"));
         homeBtn.setOnMouseClicked(e -> eventHandler.handleReturnHome());
         
+        final Button rulesBtn = new Button(languageManager.getString("rule_button"));
+        rulesBtn.setOnAction(e -> showRulesDialog());
+        
         Region leftSpacer = new Region();
         HBox.setHgrow(leftSpacer, Priority.ALWAYS);
 
         Region rightSpacer = new Region();
         HBox.setHgrow(rightSpacer, Priority.ALWAYS);
 
-        topBar.getChildren().addAll(usernameLabel, leftSpacer, title, rightSpacer, homeBtn);
+        topBar.getChildren().addAll(usernameLabel, leftSpacer, title, rightSpacer, rulesBtn, homeBtn);
 
         return topBar;
+    }
+
+    private void showRulesDialog() {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setTitle("Trente et Quarante");       
+
+        Label rulesLabel = new Label(languageManager.getString("tq_rules_text"));
+        rulesLabel.setWrapText(true);
+
+        ScrollPane scrollPane = new ScrollPane(rulesLabel);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefHeight(300);
+        scrollPane.setStyle("-fx-background: white;");
+
+        Button okBtn = new Button(languageManager.getString("exit"));
+        okBtn.setOnAction(e -> dialog.close());
+
+        VBox dialogVBox = new VBox(10, scrollPane, okBtn);
+        dialogVBox.setPadding(new Insets(20));
+        dialogVBox.setAlignment(Pos.CENTER);
+
+        Scene dialogScene = new Scene(dialogVBox, 450, 450);
+        dialog.setScene(dialogScene);
+        dialog.showAndWait();
     }
 
     private Node createBottomBar(){
@@ -108,7 +143,7 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        balanceLabel.setText("Bilancio: xxx €");
+        balanceLabel.setText(languageManager.getString("money")+": xxx €");
         balanceLabel.setTextFill(Color.WHITE);
         balanceLabel.setFont(Font.font(16));
 
@@ -149,14 +184,6 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         betList.setStyle("-fx-background-color: white;");
         betList.setPrefWidth(200);
 
-        //Example
-        for (int i = 1; i <= 20; i++) {
-            Label betLabel = new Label("Bet #" + i + ": 100€ on Rouge");
-            betLabel.setWrapText(true);
-            betList.getChildren().add(betLabel);
-        }
-        //End Example
-
         ScrollPane scrollPane = new ScrollPane(betList);
         scrollPane.setFitToWidth(true);
         scrollPane.setPrefHeight(300);
@@ -172,7 +199,7 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         rightBox.setAlignment(Pos.CENTER_RIGHT);
         rightBox.setPadding(new Insets(10));
 
-        Button doneButton = new Button("Done");
+        Button doneButton = new Button(languageManager.getString("done"));
         doneButton.setPrefWidth(100);
         doneButton.setOnAction(e -> {
             System.out.println("Done clicked");
@@ -252,6 +279,7 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         zonesBox.setAlignment(Pos.CENTER);
         
         String[] zoneNames = {"Noir", "Rouge", "Couleur", "Enverse"};
+        betZonesLabels.clear();
         
         for (String name : zoneNames) {
             Label zone = new Label(name);
@@ -259,12 +287,34 @@ public class TrenteEtQuaranteViewBuilder implements ViewBuilder {
             zone.setAlignment(Pos.CENTER);
             zone.setPrefHeight(50);
             zone.setPrefWidth(120);
-            zone.setStyle("-fx-border-color: white; -fx-border-width: 1 1 1 1;");
-            zone.setStyle(zone.getStyle() + "-fx-background-color: transparent;");
+            zone.setStyle("-fx-border-color: white; -fx-border-width: 1; -fx-background-color: transparent;");
             zone.setOnMouseClicked(e -> {
-                System.out.println("Zona puntata cliccata: " + name);
-            });            
+                if (!zone.isDisable()) {
+                   System.out.println("Zona puntata cliccata: " + name); 
+                }                
+            });
+            
+            betZonesLabels.add(zone);
             zonesBox.getChildren().add(zone);
+        }
+
+        ficheToggleGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
+        boolean enabled = (newToggle != null);
+        for (Label zoneLabel : betZonesLabels) {
+                zoneLabel.setDisable(!enabled);
+                if (enabled) {
+                    zoneLabel.setStyle("-fx-border-color: white; -fx-border-width: 1; -fx-background-color: transparent;");
+                } else {
+                    zoneLabel.setStyle("-fx-border-color: gray; -fx-border-width: 1; -fx-background-color: #333333;");
+                }
+            }
+        });
+        
+        if (getSelectedFiche() == null) {
+            for (Label zoneLabel : betZonesLabels) {
+                zoneLabel.setDisable(true);
+                zoneLabel.setStyle("-fx-border-color: gray; -fx-border-width: 1; -fx-background-color: #333333;");
+            }
         }
         
         return zonesBox;
