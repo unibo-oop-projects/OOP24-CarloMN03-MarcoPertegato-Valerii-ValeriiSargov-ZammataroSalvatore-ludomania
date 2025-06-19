@@ -5,20 +5,32 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import ludomania.controller.api.Controller;
 import ludomania.core.api.AudioManager;
+import ludomania.core.api.ImageProvider;
 import ludomania.core.api.SceneManager;
+import ludomania.cosmetics.FicheValue;
 import ludomania.model.Pair;
 import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.game.roulette.RouletteGame;
 
+import java.util.Arrays;
+
 public class RouletteController implements Controller {
-    private final RouletteGame game;
 
     @FXML
     private Button okBtn;
@@ -34,6 +46,13 @@ public class RouletteController implements Controller {
 
     @FXML
     private ImageView wheel;
+
+    @FXML
+    private HBox ficheBox;
+
+    private final int OFFSET = 10;
+    private final RouletteGame game;
+
 
     private final BooleanProperty submitDisabled = new SimpleBooleanProperty(true);
     private final StringProperty result = new SimpleStringProperty();
@@ -58,6 +77,8 @@ public class RouletteController implements Controller {
         this.resultLabel.textProperty().addListener((observable, oldValue, newValue) -> {
             submitDisabled.set(newValue.trim().isEmpty());
         });
+
+        this.attachFiches(this.ficheBox);
     }
     
     @Override
@@ -164,6 +185,11 @@ public class RouletteController implements Controller {
         this.game.evaluateRound(event);
     }
 
+    @FXML
+    private void showRules() {
+        this.game.showRules();
+    }
+
     private String resultColor(RouletteColor color) {
         return switch (color.name()) {
             case "NOIR" -> "black";
@@ -171,5 +197,9 @@ public class RouletteController implements Controller {
             case "GREEN" -> "green";
             default -> "white";
         };
+    }
+
+    private void attachFiches(Pane pane) {
+        this.game.attachFiches(pane);
     }
 }

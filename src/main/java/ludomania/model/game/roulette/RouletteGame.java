@@ -2,6 +2,7 @@ package ludomania.model.game.roulette;
 
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import ludomania.controller.roulette.RouletteController;
 import ludomania.core.api.AudioManager;
 import ludomania.core.api.SceneManager;
@@ -111,5 +112,13 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
 
     public void evaluateRound(MouseEvent event) {
         //this.rouletteCroupier.checkBets();
+    }
+
+    public void attachFiches(Pane pane) {
+        this.sceneManager.attachFiches(pane);
+    }
+
+    public void showRules() {
+        this.sceneManager.showRules();
     }
 }
