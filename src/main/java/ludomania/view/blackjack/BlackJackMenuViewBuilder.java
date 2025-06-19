@@ -16,17 +16,21 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
 import ludomania.handler.BlackJackHandler;
@@ -73,24 +77,14 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         topBar.setAlignment(Pos.CENTER);
         Label title = new Label("BLACKJACK");
         title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-        Button exitButton = new Button();
+        final Button rulesBtn = new Button(languageManager.getString("rule_button"));
+        rulesBtn.setOnAction(e -> showRulesDialog());
+        final Button exitButton = new Button();
         setText(exitButton, "exit");
-        exitButton.setOnAction(e -> {
-            Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmDialog.setTitle("Confirm exit");
-            confirmDialog.setHeaderText("Do you really want to go back to the main menu?");
-            confirmDialog.setContentText("All progress from the current round will be lost.");
-            ButtonType buttonYes = new ButtonType("Yes");
-            ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
-            confirmDialog.getButtonTypes().setAll(buttonYes, buttonNo);
-            Optional<ButtonType> result = confirmDialog.showAndWait();
-            if (result.isPresent() && result.get() == buttonYes) {
-                handler.handleExitToMenu();
-            }
-        });
+        exitButton.setOnAction(e -> showExitConfirmation());
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-        topBar.getChildren().addAll(title, spacer, exitButton);
+        topBar.getChildren().addAll(title, spacer, rulesBtn, exitButton);
         root.setTop(topBar);
 
         // Center cards
@@ -227,6 +221,58 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         root.setBottom(bottomArea);
 
         return root;
+    }
+
+    /**
+     * Displays a confirmation dialog to the user when they attempt to exit the current game/screen
+     * and return to the main menu. It prompts the user with a message indicating that all unsaved
+     * progress will be lost and asks for confirmation to proceed. If the user confirms ("Yes"),
+     * it triggers the handler to navigate back to the main menu.
+     */
+    private void showExitConfirmation() {
+        Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmDialog.setTitle(languageManager.getString("confirm_exit"));
+            confirmDialog.setHeaderText(languageManager.getString("back_to_menu"));
+            confirmDialog.setContentText(languageManager.getString("all_progress_lost"));
+            ButtonType buttonYes = new ButtonType(languageManager.getString("yes"));
+            ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+            confirmDialog.getButtonTypes().setAll(buttonYes, buttonNo);
+            Optional<ButtonType> result = confirmDialog.showAndWait();
+            if (result.isPresent() && result.get() == buttonYes) {
+                handler.handleExitToMenu();
+            }
+    }
+
+    /**
+     * Displays a modal dialog window containing the rules of the Blackjack game.
+     * The rules text is retrieved from the `languageManager` and displayed within a scrollable
+     * area to accommodate longer descriptions. The dialog also includes an "OK" button
+     * which, when clicked, closes the dialog window. The dialog is application-modal,
+     * meaning it blocks interaction with other application windows until it is closed.
+     */
+    private void showRulesDialog() {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setTitle("BlackJack");       
+
+        Label rulesLabel = new Label(languageManager.getString("bj_rules_text"));
+        rulesLabel.setWrapText(true);
+
+        ScrollPane scrollPane = new ScrollPane(rulesLabel);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefHeight(300);
+        scrollPane.setStyle("-fx-background: white;");
+
+        Button okBtn = new Button(languageManager.getString("exit"));
+        okBtn.setOnAction(e -> dialog.close());
+
+        VBox dialogVBox = new VBox(10, scrollPane, okBtn);
+        dialogVBox.setPadding(new Insets(20));
+        dialogVBox.setAlignment(Pos.CENTER);
+
+        Scene dialogScene = new Scene(dialogVBox, 450, 450);
+        dialog.setScene(dialogScene);
+        dialog.showAndWait();
     }
 
     /*
