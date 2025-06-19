@@ -12,7 +12,7 @@ import ludomania.model.bet.api.Bet;
 import ludomania.model.bet.api.BetType;
 import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 import ludomania.model.croupier.api.CardDealer;
-import ludomania.model.game.api.CounterResult;
+import ludomania.model.game.impl.CounterResult;
 import ludomania.model.game.impl.TrenteEtQuaranteResult;
 import ludomania.model.player.api.Player;
 
@@ -27,15 +27,15 @@ import ludomania.model.player.api.Player;
  * determines the type of win, and checks bets accordingly.
  * </p>
  */
-public class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaranteBetType, TrenteEtQuaranteBetType>> {
+public final class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaranteBetType, TrenteEtQuaranteBetType>> {
 
     private static final String RED = "#f00";
     private static final String BLACK = "#000";
     private static final int MAX_HAND_VALUE = 31;
     private static final int FACE_CARDS_VALUE = 10;
-    private Map<Hand, Integer> hands = new HashMap<>();
-    private Hand rouge;
-    private Hand noir;
+    private final Map<Hand, Integer> hands = new HashMap<>();
+    private final Hand rouge;
+    private final Hand noir;
 
     /**
      * Constructs a new TrenteEtQuaranteDealer with given player bets and deck manager.
@@ -51,18 +51,12 @@ public class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaranteBetT
         hands.put(rouge, 0);
     }
 
-    /**
-     * Checks all player bets against the game result and returns the winners with their payouts.
-     *
-     * @param result the outcome of the game
-     * @return a map of winning players to their corresponding payout amounts
-     */
     @Override
     public Map<Player, Double> checkBets(final CounterResult<Pair<TrenteEtQuaranteBetType, TrenteEtQuaranteBetType>> result) {
         if (!(result instanceof TrenteEtQuaranteResult)) {
             throw new IllegalArgumentException("Invalid result type for TrenteEtQuaranteDealer");
         }
-        final Map<Player, Double> winners = new HashMap<Player, Double>();
+        final Map<Player, Double> winners = new HashMap<>();
         final TrenteEtQuaranteResult trqResult = (TrenteEtQuaranteResult) result;
         getRoundBet().forEach(pair -> {
             final Player player = pair.getKey();
@@ -187,8 +181,8 @@ public class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaranteBetT
             return TrenteEtQuaranteBetType.DRAW;
         }
         final String firstCardColor = noir.getCards().getFirst().getSuit().getColor();
-        if (winningColor == TrenteEtQuaranteBetType.ROUGE && firstCardColor.equals(RED) 
-        || winningColor == TrenteEtQuaranteBetType.NOIR && firstCardColor.equals(BLACK)) {
+        if (winningColor == TrenteEtQuaranteBetType.ROUGE && RED.equals(firstCardColor) 
+        || winningColor == TrenteEtQuaranteBetType.NOIR && BLACK.equals(firstCardColor)) {
             return TrenteEtQuaranteBetType.COULEUR;
         }
         return TrenteEtQuaranteBetType.ENVERSE;
@@ -202,7 +196,7 @@ public class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaranteBetT
     public TrenteEtQuaranteResult declareResult() {
         final TrenteEtQuaranteBetType color = evaluateWinningColor();
         final TrenteEtQuaranteBetType kind = evaluateWinningKind(color);
-        return new TrenteEtQuaranteResult(new Pair<TrenteEtQuaranteBetType, TrenteEtQuaranteBetType>(color, kind));
+        return new TrenteEtQuaranteResult(new Pair<>(color, kind));
     }
 
 }

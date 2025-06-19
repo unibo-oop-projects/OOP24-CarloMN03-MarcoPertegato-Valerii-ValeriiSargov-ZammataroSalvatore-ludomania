@@ -3,12 +3,12 @@ package ludomania.model;
 /**
  * A generic immutable pair of two elements.
  *
- * @param <E1> the type of the first element (key)
- * @param <E2> the type of the second element (value)
+ * @param <E> the type of the first element (key)
+ * @param <G> the type of the second element (value)
  */
-public class Pair<E1, E2> {
-    private final E1 e1;
-    private final E2 e2;
+public class Pair<E, G> {
+    private final E e;
+    private final G g;
 
     /**
      * Constructs a new pair with the given elements.
@@ -16,10 +16,10 @@ public class Pair<E1, E2> {
      * @param x the first element (key)
      * @param y the second element (value)
      */
-    public Pair(final E1 x, final E2 y) {
+    public Pair(final E x, final G y) {
         super();
-        this.e1 = x;
-        this.e2 = y;
+        this.e = x;
+        this.g = y;
     }
 
     /**
@@ -27,8 +27,8 @@ public class Pair<E1, E2> {
      *
      * @return the key
      */
-    public E1 getKey() {
-        return e1;
+    public E getKey() {
+        return e;
     }
 
     /**
@@ -36,7 +36,7 @@ public class Pair<E1, E2> {
      *
      * @return the value
      */
-    public E2 getValue() {
-        return e2;
+    public G getValue() {
+        return g;
     }
 }

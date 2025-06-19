@@ -2,7 +2,6 @@ package ludomania.model.game.impl;
 
 import java.util.Map;
 
-import ludomania.model.game.api.CounterResult;
 import ludomania.model.player.api.Player;
 
 /**

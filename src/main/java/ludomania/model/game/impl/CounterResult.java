@@ -1,4 +1,4 @@
-package ludomania.model.game.api;
+package ludomania.model.game.impl;
 
 /**
  * Abstract class representing the result of the house (dealer) in a casino game.
@@ -8,7 +8,7 @@ package ludomania.model.game.api;
  *
  * @param <T> the type of the result represented.
  */
-public abstract class CounterResult<T> {
+public class CounterResult<T> {
     private final T result;
 
      /**
