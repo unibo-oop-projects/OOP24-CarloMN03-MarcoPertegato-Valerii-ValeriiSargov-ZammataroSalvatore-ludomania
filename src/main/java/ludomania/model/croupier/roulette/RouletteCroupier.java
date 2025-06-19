@@ -7,6 +7,7 @@ import ludomania.model.croupier.api.Croupier;
 import ludomania.model.game.api.CounterResult;
 import ludomania.model.player.api.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,7 @@ public class RouletteCroupier extends Croupier<Pair<Integer, RouletteColor>> {
     }
 
     public RouletteCroupier() {
-        super(List.of());
+        super(new ArrayList<>());
     }
 
     @Override

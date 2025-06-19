@@ -2,39 +2,40 @@ package ludomania.controller.roulette;
 
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Builder;
 import ludomania.controller.api.Controller;
-import ludomania.controller.roulette.core.RouletteAppereanceController;
-import ludomania.controller.roulette.core.RouletteGameController;
 import ludomania.core.api.AudioManager;
 import ludomania.core.api.SceneManager;
-import ludomania.model.game.api.Game;
+import ludomania.model.Pair;
+import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.game.roulette.RouletteGame;
-import ludomania.view.roulette.RouletteViewBuilder;
 
 public class RouletteController implements Controller {
-    private final Builder<Parent> viewBuilder;
-    private final SceneManager sceneManager;
-    private final AudioManager audioManager;
-
     private final RouletteGame game;
 
-    private final RouletteAppereanceController appereanceController;
-    private final RouletteGameController gameController;
+    @FXML
+    private Button okBtn;
+
+    @FXML
+    private Label resultLabel;
+
+    @FXML
+    private Label totalLabel;
+
+    @FXML
+    private Label betAmount;
+
+    @FXML
+    private ImageView wheel;
     
     public RouletteController(
     final SceneManager sceneManager,
     final AudioManager audioManager
     ) {
-        this.game = new RouletteGame(this, sceneManager);
-
-        this.appereanceController = new RouletteAppereanceController();
-        this.gameController = new RouletteGameController();
-        this.viewBuilder = new RouletteViewBuilder(this, sceneManager.getLanguageManager(), sceneManager.getImageProvider());
-        
-        this.sceneManager = sceneManager;
-        this.audioManager = audioManager;
+        this.game = new RouletteGame(this, sceneManager, audioManager);
     }
     
     @Override
@@ -99,7 +100,8 @@ public class RouletteController implements Controller {
     
     @FXML
     private void spinWheel(MouseEvent event) {
-        this.game.douzineBet(event);
+        this.okBtn.setDisable(false);
+        Pair<Integer, RouletteColor> result = this.game.runGame().getResult();
     }
     
     @FXML
@@ -130,5 +132,11 @@ public class RouletteController implements Controller {
     @FXML
     private void selectAmount(MouseEvent event) {
         this.game.selectAmount(event);
+    }
+
+    @FXML
+    private void evaluateRound(MouseEvent event) {
+        this.game.evaluateRound(event);
+        this.okBtn.setDisable(true);
     }
 }

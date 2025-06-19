@@ -26,9 +26,9 @@ public class RouletteViewBuilder implements ViewBuilder {
     private final ImageProvider imageProvider;
     
     public RouletteViewBuilder(
-    final RouletteController controller,
-    final LanguageManager languageManager,
-    final ImageProvider imageProvider
+        final RouletteController controller,
+        final LanguageManager languageManager,
+        final ImageProvider imageProvider
     ) {
         this.controller = controller;
         this.languageManager = languageManager;

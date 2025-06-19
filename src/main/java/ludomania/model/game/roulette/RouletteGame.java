@@ -1,6 +1,5 @@
 package ludomania.model.game.roulette;
 
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -8,7 +7,9 @@ import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import ludomania.controller.roulette.RouletteController;
+import ludomania.core.api.AudioManager;
 import ludomania.core.api.SceneManager;
+import ludomania.model.Pair;
 import ludomania.model.bet.RouletteBetType;
 import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.croupier.roulette.RouletteCroupier;
@@ -21,26 +22,28 @@ import ludomania.view.ViewBuilder;
 import ludomania.view.roulette.RouletteViewBuilder;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RouletteGame implements Game {
 
+    private final RouletteSceneManager sceneManager;
     private final ViewBuilder viewBuilder;
     private final RouletteCroupier rouletteCroupier;
     private final RoulettePlayer player;
 
-    public RouletteGame(RouletteController controller, final SceneManager sceneManager) {
+    public RouletteGame(RouletteController controller, final SceneManager sceneManager, final AudioManager audioManager) {
         this.viewBuilder = new RouletteViewBuilder(
                 controller, sceneManager.getLanguageManager(), sceneManager.getImageProvider());
 
         this.rouletteCroupier = new RouletteCroupier();
         this.player = new RoulettePlayer(new WalletImpl(10000.0), "RoulettePlayer");
+
+        this.sceneManager = new RouletteSceneManager(sceneManager, audioManager);
     }
 
     @Override
-    public CounterResult<Integer> runGame() {
+    public CounterResult<Pair<Integer, RouletteColor>> runGame() {
         return null;
     }
 
@@ -191,10 +194,6 @@ public class RouletteGame implements Game {
         }
     }
 
-    public void spinWheel(MouseEvent event) {
-        throw new UnsupportedOperationException();
-    }
-
     public void highlightCarre(MouseEvent event) {
         Object source = event.getSource();
 
@@ -235,10 +234,14 @@ public class RouletteGame implements Game {
     }
 
     public void quitGame() {
-        throw new UnsupportedOperationException();
+        this.sceneManager.quitGame();
     }
 
     public void selectAmount(MouseEvent event) {
         throw new UnsupportedOperationException();
+    }
+
+    public void evaluateRound(MouseEvent event) {
+        //this.rouletteCroupier.checkBets();
     }
 }
