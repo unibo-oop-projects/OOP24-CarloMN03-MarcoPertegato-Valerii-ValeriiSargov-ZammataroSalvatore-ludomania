@@ -1,8 +1,11 @@
 package ludomania.model.game.roulette;
 
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Glow;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import ludomania.controller.roulette.RouletteController;
 import ludomania.core.api.SceneManager;
@@ -193,19 +196,42 @@ public class RouletteGame implements Game {
     }
 
     public void highlightCarre(MouseEvent event) {
-        throw new UnsupportedOperationException();
+        Object source = event.getSource();
+
+        if (source instanceof Node) {
+            Node clickedButton = (Node) source;
+            clickedButton.getParent().setStyle("-fx-border-color: #00eeff; -fx-border-width: 3px;");
+        }
     }
 
     public void unhighlightCarre(MouseEvent event) {
-        throw new UnsupportedOperationException();
+        Object source = event.getSource();
+
+        if (source instanceof Node) {
+            Node clickedButton = (Node) source;
+            clickedButton.getParent().setStyle("-fx-border-color: trasparent; -fx-border-width: 1px;");
+        }
     }
 
     public void glowWheel(MouseEvent event) {
-        throw new UnsupportedOperationException();
+        Object source = event.getSource();
+
+        if (source instanceof ImageView) {
+            ImageView node = (ImageView) source;
+            Glow glow = new Glow();
+
+            glow.setLevel(0.7);
+            node.setEffect(glow);
+        }
     }
 
     public void unglowWheel(MouseEvent event) {
-        throw new UnsupportedOperationException();
+        Object source = event.getSource();
+
+        if (source instanceof ImageView) {
+            ImageView node = (ImageView) source;
+            node.setEffect(null);
+        }
     }
 
     public void quitGame() {
