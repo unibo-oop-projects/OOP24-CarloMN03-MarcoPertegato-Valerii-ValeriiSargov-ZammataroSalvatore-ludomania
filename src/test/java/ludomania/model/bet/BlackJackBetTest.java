@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import ludomania.model.bet.impl.BlackJackBetType;
 
 public class BlackJackBetTest {
-    
     @Test
     public void TestTypeNameAndPayout() {
         // Test BASE

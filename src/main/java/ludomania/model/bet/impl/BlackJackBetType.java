@@ -8,9 +8,24 @@ import ludomania.model.bet.api.BetType;
  */
 public enum BlackJackBetType implements BetType {
 
+    /**
+     * Standard win bet. Pays 2x the amount.
+     */
     BASE("Base", 2.0),
+
+    /**
+     * Blackjack win (Ace + 10). Pays 2.5x the amount.
+     */
     BLACKJACK("BlackJack", 2.5),
+
+    /**
+     * Push — no winner, no loser. Returns the original bet (1x).
+     */
     PUSH("Push", 1.0),
+
+    /**
+     * Player loses the bet. Pays 0.
+     */
     LOSE("Lose", 0.0);
 
     private final String typeName;
@@ -22,7 +37,7 @@ public enum BlackJackBetType implements BetType {
      * @param displayName the human-readable name of the bet type
      * @param payout the multiplier used to calculate the payout
      */
-    BlackJackBetType(String displayName, double payout) {
+    BlackJackBetType(final String displayName, final double payout) {
         this.typeName = displayName;
         this.payout = payout;
     }

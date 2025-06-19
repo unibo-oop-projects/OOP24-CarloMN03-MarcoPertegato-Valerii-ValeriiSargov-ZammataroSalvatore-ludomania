@@ -19,6 +19,8 @@ import ludomania.view.blackjack.BlackJackMenuViewBuilder;
  */
 public final class BlackJackController implements Controller, BlackJackHandler {
 
+    private static final int MAXVALUEBJ = 21;
+
     private final Builder<Parent> viewBuilder;
     private final SceneManager sceneManager;
     private final AudioManager audioManager;
@@ -34,7 +36,7 @@ public final class BlackJackController implements Controller, BlackJackHandler {
     public BlackJackController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.sceneManager = sceneManager;
         this.audioManager = audioManager;
-        Wallet wallet = new WalletImpl(1000.0); //Saldo 
+        final Wallet wallet = new WalletImpl(1000.0); //Saldo 
         this.player = new BlackJackPlayer(wallet, "Pippo");
         this.game = new BlackJackGame(player);
         viewBuilder = new BlackJackMenuViewBuilder(this,
@@ -49,7 +51,7 @@ public final class BlackJackController implements Controller, BlackJackHandler {
     @Override
     public void handleStartGame() {
         audioManager.playSound("start");
-        game.startNewRound();  
+        game.startNewRound();
         game.dealInitialCards();
     }
 
@@ -92,11 +94,11 @@ public final class BlackJackController implements Controller, BlackJackHandler {
     }
 
     @Override
-    public void handlePlaceBet(double amount) {
+    public void handlePlaceBet(final double amount) {
         audioManager.playSound("bet");
         try {
             game.placeBet(amount);
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             sceneManager.switchToMainMenu();
         }
     }
@@ -107,16 +109,16 @@ public final class BlackJackController implements Controller, BlackJackHandler {
             return "";
         }
 
-        int playerTotal = game.getPlayerTotal();
-        int dealerTotal = game.getDealerTotal();
+        final int playerTotal = game.getPlayerTotal();
+        final int dealerTotal = game.getDealerTotal();
 
-        if (playerTotal > 21) {
+        if (playerTotal > getMaxValueBj()) {
             return "Hai sballato! 😢";
-        } else if (dealerTotal > 21) {
+        } else if (dealerTotal > getMaxValueBj()) {
             return "Il banco ha sballato! Hai vinto! 🎉";
         } else if (playerTotal == dealerTotal) {
             return "Pareggio! 😐";
-        } else if (playerTotal == 21 && game.getPlayerTotalCards() == 2) {
+        } else if (playerTotal == getMaxValueBj() && game.getPlayerTotalCards() == 2) {
             return "Blackjack! 💥";
         } else if (playerTotal > dealerTotal) {
             return "Hai vinto! 🎉";
@@ -132,8 +134,8 @@ public final class BlackJackController implements Controller, BlackJackHandler {
 
     @Override
     public Hand getDealerHand() {
-         return game.getDealerHand();
-    }   
+        return game.getDealerHand();
+    }
 
     @Override
     public int getPlayerTotal() {
@@ -150,5 +152,13 @@ public final class BlackJackController implements Controller, BlackJackHandler {
         return game.isOver();
     }
 
+    /**
+     * Returns the maximum allowed hand value in Blackjack.
+     *
+     * @return max Blackjack value (21).
+     */
+    public static int getMaxValueBj() {
+        return MAXVALUEBJ;
+    }
 }
 

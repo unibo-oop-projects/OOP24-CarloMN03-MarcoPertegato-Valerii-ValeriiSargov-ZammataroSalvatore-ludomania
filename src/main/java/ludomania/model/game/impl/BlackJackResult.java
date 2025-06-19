@@ -17,7 +17,7 @@ public class BlackJackResult extends CounterResult<Map<Player, BlackJackOutcomeR
      *
      * @param results a map associating each player with their blackjack outcome result
      */
-    public BlackJackResult(Map<Player, BlackJackOutcomeResult> results) {
+    public BlackJackResult(final Map<Player, BlackJackOutcomeResult> results) {
         super(results);
     }
 

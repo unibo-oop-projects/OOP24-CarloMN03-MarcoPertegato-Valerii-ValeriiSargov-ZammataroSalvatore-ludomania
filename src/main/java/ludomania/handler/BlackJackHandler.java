@@ -8,7 +8,6 @@ import io.lyuda.jcards.Hand;
  * and game state retrieval.
  */
 public interface BlackJackHandler {
-    
     /**
      * Handles the "Hit" action where the player requests an additional card.
      */
@@ -97,5 +96,4 @@ public interface BlackJackHandler {
      * @return true if the game is over, false otherwise
      */
     Boolean isGameOver();
-    
 }

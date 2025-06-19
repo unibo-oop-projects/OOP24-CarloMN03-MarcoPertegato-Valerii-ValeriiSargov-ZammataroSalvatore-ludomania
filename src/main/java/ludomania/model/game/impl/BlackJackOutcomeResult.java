@@ -16,17 +16,25 @@ public class BlackJackOutcomeResult {
      * @param outcome the result of the blackjack game
      * @param betType the type of bet that was placed
      */
-    public BlackJackOutcomeResult(BlackJackOutcome outcome, BlackJackBetType betType) {
+    public BlackJackOutcomeResult(final BlackJackOutcome outcome, final BlackJackBetType betType) {
         this.outcome = outcome;
         this.betType = betType;
     }
 
-    // Returns the outcome of the blackjack game
+    /**
+     * Returns the outcome of the Blackjack game.
+     *
+     * @return the {@link BlackJackOutcome} representing the result of the game
+     */
     public BlackJackOutcome getOutcome() {
         return outcome;
     }
 
-    // Returns the type of bet placed in the blackjack game
+    /**
+     * Returns the type of bet placed in the Blackjack game.
+     *
+     * @return the {@link BlackJackBetType} used for this round
+     */
     public BlackJackBetType getBetType() {
         return betType;
     }

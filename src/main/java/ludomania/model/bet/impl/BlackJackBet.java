@@ -11,14 +11,13 @@ import static ludomania.model.bet.impl.BlackJackBetType.PUSH;
  * Extends the generic {@link Bet} class and evaluates payout based on the bet type.
  */
 public class BlackJackBet extends Bet {
-     
-    /**
+     /**
      * Constructs a new BlackJackBet with a specified value and type.
      *
      * @param value the amount of the bet
      * @param type the type of blackjack bet (e.g., BASE, BLACKJACK, PUSH, LOSE)
      */
-    public BlackJackBet(double value, BlackJackBetType type) {
+    public BlackJackBet(final double value, final BlackJackBetType type) {
         super(value, type);
     }
 

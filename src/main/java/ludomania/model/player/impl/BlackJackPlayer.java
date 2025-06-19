@@ -14,31 +14,33 @@ import ludomania.model.wallet.api.Wallet;
  * Represents a player in a Blackjack game.
  * Manages the player's identity, wallet, and betting actions.
  */
-public class BlackJackPlayer extends Player{
+public class BlackJackPlayer extends Player {
 
     private final UUID id = UUID.randomUUID();
     private Bet currentBet;
 
     /**
-     * Constructs a new BlackJackPlayer with an associated wallet.
+     * Constructs a new BlackJackPlayer with the provided wallet and username.
      *
-     * @param wallet the player's wallet used for betting and deposits
+     * @param wallet   the player's wallet used for storing balance and handling bets
+     * @param username the player's display name
      */
-    public BlackJackPlayer(Wallet wallet, String username) {
+    public BlackJackPlayer(final Wallet wallet, final String username) {
         super(wallet, username);
     }
 
     /**
-     * Places a bet for this player in a Blackjack game.
+     * Places a Blackjack-specific bet for the player.
+     * The method checks that the bet type is compatible with Blackjack and that the player has sufficient funds.
      *
-     * @param amount the amount to bet
-     * @param type the type of bet (must be of type BlackJackBetType)
-     * @return the created bet
-     * @throws IllegalArgumentException if the bet type is not Blackjack or balance is insufficient
+     * @param amount the amount of money to bet
+     * @param type   the type of the bet (must be an instance of {@link BlackJackBetType})
+     * @return the bet created and stored as the current bet
+     * @throws IllegalArgumentException if the bet type is invalid or if the player has insufficient funds
      */
     @Override
-    public Bet makeBet(Double amount, BetType type) {
-        if(!(type instanceof BlackJackBetType)) {
+    public Bet makeBet(final Double amount, final BetType type) {
+        if (!(type instanceof BlackJackBetType)) {
             throw new IllegalArgumentException("Invalid bet type for BlackJack");
         }
         if (!withdraw(amount)) {
@@ -48,12 +50,20 @@ public class BlackJackPlayer extends Player{
         return currentBet;
     }
 
-    // Returns the player's most recent placed bet
+    /**
+     * Returns the most recent bet placed by the player.
+     *
+     * @return the current {@link Bet} placed, or {@code null} if none has been placed
+     */
     public Bet getPlacedBet() {
         return this.currentBet;
     }
 
-    // Returns the unique identifier of the player
+    /**
+     * Returns the unique identifier of this player.
+     *
+     * @return the UUID representing this player
+     */
     public UUID getId() {
         return this.id;
     }
@@ -65,10 +75,14 @@ public class BlackJackPlayer extends Player{
      * @return true if the other object is a BlackJackPlayer with the same ID
      */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof BlackJackPlayer)) return false;
-        BlackJackPlayer that = (BlackJackPlayer) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof BlackJackPlayer)) {
+            return false;
+        }
+        final BlackJackPlayer that = (BlackJackPlayer) o;
         return Objects.equals(id, that.id);
     }
 
