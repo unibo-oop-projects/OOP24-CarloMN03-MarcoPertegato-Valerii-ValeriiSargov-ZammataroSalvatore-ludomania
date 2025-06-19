@@ -1,11 +1,14 @@
 package ludomania.model.croupier.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import io.lyuda.jcards.Card;
 import io.lyuda.jcards.DeckFactory;
 import io.lyuda.jcards.Hand;
+import ludomania.model.Pair;
 import ludomania.model.bet.api.Bet;
 import ludomania.model.bet.impl.BlackJackBet;
 import ludomania.model.bet.impl.BlackJackBetType;
@@ -29,6 +32,7 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
     private Hand player;
     private int dealerTot;
     private int playerTot;
+    private final Map<Player, Bet> bjRoundBet;
 
     /**
      * Constructs a new BlackJackDealer with bets for the current round and deck source.
@@ -36,8 +40,9 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
      * @param roundBet map of players and their associated bets
      * @param decks factory used to create and shuffle card decks
      */
-    public BlackJackDealer(Map<Player, Bet> roundBet, DeckFactory decks) {
+    public BlackJackDealer(List<Pair<Player, Bet>> roundBet, DeckFactory decks) {
         super(roundBet, decks);
+        this.bjRoundBet = roundBet.stream().collect(Collectors.toMap(Pair::getKey, Pair::getValue));
         this.dealer = new Hand();
         this.player = new Hand();
         this.dealerTot = 0;
@@ -63,11 +68,11 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
             Player currentPlayer = entry.getKey();
             BlackJackOutcomeResult outcomeResult = entry.getValue();
             
-            if (!getRoundBet().containsKey(currentPlayer)) {
+            if (!bjRoundBet.containsKey(currentPlayer)) {
                 System.out.println("Nessuna bet trovata per il player: " + currentPlayer);
                 continue;
             }
-            Bet bet = new BlackJackBet(getRoundBet().get(currentPlayer).getValue(), (BlackJackBetType) getRoundBet().get(currentPlayer).getType());
+            Bet bet = new BlackJackBet(bjRoundBet.get(currentPlayer).getValue(), (BlackJackBetType) bjRoundBet.get(currentPlayer).getType());
 
             // Evaluate winnings based on the outcome
             switch (outcomeResult.getOutcome()) {
@@ -90,6 +95,10 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
         }
         clearRound();
         return winners;
+    }
+
+    public Map<Player, Bet> getBjRoundBet() {
+        return this.bjRoundBet;
     }
 
     // Deposits the specified value to the player's account

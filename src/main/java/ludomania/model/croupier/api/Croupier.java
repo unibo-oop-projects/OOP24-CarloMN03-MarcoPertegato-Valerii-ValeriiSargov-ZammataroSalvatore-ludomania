@@ -35,7 +35,7 @@ public abstract class Croupier<T> {
      * @param bet    the bet placed by the player
      */
     public void addBet(final Player player, final Bet bet) {
-        roundBet.add(new Pair<Player, Bet>(player, bet));
+        roundBet.add(new Pair<>(player, bet));
     }
 
     /**

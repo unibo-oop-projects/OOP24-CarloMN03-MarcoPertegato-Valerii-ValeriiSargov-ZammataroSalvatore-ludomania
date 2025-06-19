@@ -1,12 +1,15 @@
 package ludomania.model.game.impl;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import io.lyuda.jcards.Card;
 import io.lyuda.jcards.Deck;
 import io.lyuda.jcards.DeckFactory;
 import io.lyuda.jcards.Hand;
+import ludomania.model.Pair;
 import ludomania.model.bet.api.Bet;
 import ludomania.model.bet.impl.BlackJackBetType;
 import ludomania.model.croupier.impl.BlackJackDealer;
@@ -28,7 +31,7 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
     // Blackjack Game Builder
     public BlackJackGame(BlackJackPlayer player) {
         this.player = player;
-        Map<Player, Bet> roundBet = new HashMap<>();
+        List<Pair<Player, Bet>> roundBet = new LinkedList<>();
         DeckFactory deckFactory = createMultiDeck(6);
         deckFactory.shuffleAllDecks();
         this.dealer = new BlackJackDealer(roundBet, deckFactory);
@@ -39,7 +42,7 @@ public class BlackJackGame implements Game<Map<Player, BlackJackOutcomeResult>> 
     public void placeBet(double amount) {
         player.makeBet(amount, BlackJackBetType.BASE);
         Bet bet = player.getPlacedBet();
-        dealer.getRoundBet().put(player, bet);
+        dealer.getBjRoundBet().put(player, bet);
     }
 
     // Method to reset the game
