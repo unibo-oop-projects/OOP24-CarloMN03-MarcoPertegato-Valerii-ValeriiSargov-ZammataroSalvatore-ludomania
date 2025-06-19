@@ -21,16 +21,6 @@ public class BlackJackResult extends CounterResult<Map<Player, BlackJackOutcomeR
         super(results);
     }
 
-    /**
-     * Returns the result of the blackjack game.
-     * This is a map of players and their corresponding outcome results.
-     *
-     * @return a map where each key is a player and the value is their outcome result
-     */
-    @Override
-    public Map<Player, BlackJackOutcomeResult> getResult() {
-        return getResult();
-    }
 }
 
 
