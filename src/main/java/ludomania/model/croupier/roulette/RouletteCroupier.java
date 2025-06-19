@@ -16,13 +16,16 @@ public class RouletteCroupier extends Croupier<Pair<Integer, RouletteColor>> {
         super(roundBet);
     }
 
+    public RouletteCroupier() {
+        super(List.of());
+    }
+
     @Override
     public Map<Player, Double> checkBets(CounterResult<Pair<Integer, RouletteColor>> result) throws IllegalArgumentException {
         Map<Player, Double> winningBets = new HashMap<>();
 
         this.getRoundBet().forEach(bet -> {
-            if (bet.getValue() instanceof RouletteBet) {
-                RouletteBet rouletteBet = (RouletteBet)((RouletteBet) bet.getValue());
+            if (bet.getValue() instanceof RouletteBet rouletteBet) {
                 if (rouletteBet.success.apply(result.getResult(), rouletteBet.getChoice())) {
                     if (winningBets.containsKey(bet.getKey())) {
                         winningBets.put(bet.getKey(), winningBets.get(bet.getKey()) + rouletteBet.evaluate());
