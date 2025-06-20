@@ -195,7 +195,7 @@ public final class SceneManagerImpl implements SceneManager {
     @Override
     public void switchToTrenteEtQuarante() {
         audioManager.playMusic("furinaTheme");
-        final Parent root = new TrenteEtQuaranteController(this, audioManager).getView();
+        final Parent root = new TrenteEtQuaranteController(this).getView();
         applyBackgroundToRoot(root);
         mainScene.setRoot(root);
     }

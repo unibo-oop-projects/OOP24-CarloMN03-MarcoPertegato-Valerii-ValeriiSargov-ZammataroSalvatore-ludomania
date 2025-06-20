@@ -1,5 +1,6 @@
 package ludomania.model.game.impl;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +35,8 @@ public final class TrenteEtQuaranteGame implements Game<Pair<TrenteEtQuaranteBet
      */
     public TrenteEtQuaranteGame(final TrenteEtQuaranteDealer dealer,
      final List<TrenteEtQuarantePlayer> players, final int deckNumber) {
-        this.dealer = dealer;
-        this.players = players;
+        this.dealer = dealer.copy();
+        this.players = new LinkedList<>(players);
         this.deckNumber = deckNumber;
         currentUser = players.getFirst().getUsername();
         userNumber = 1;

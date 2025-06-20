@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
 import javafx.geometry.Insets;
@@ -70,6 +71,10 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
      * @param languageManager the language manager for localization
      * @param imageProvider   the provider for chip images
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to languageManager and imageProvider are shared intentionally"
+    )
     public TrenteEtQuaranteViewBuilder(final TrenteEtQuaranteHandler eventHandler,
             final LanguageManager languageManager,
             final ImageProvider imageProvider) {

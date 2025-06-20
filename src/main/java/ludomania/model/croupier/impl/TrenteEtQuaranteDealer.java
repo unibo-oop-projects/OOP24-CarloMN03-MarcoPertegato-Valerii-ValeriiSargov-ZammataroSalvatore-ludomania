@@ -1,9 +1,11 @@
 package ludomania.model.croupier.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.lyuda.jcards.Card;
 import io.lyuda.jcards.DeckFactory;
 import io.lyuda.jcards.Hand;
@@ -88,6 +90,10 @@ public final class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaran
     /**
      * @return the rouge (red) hand
      */
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Access to rouge is intentionally allowed."
+    )
     public Hand getRouge() {
         return rouge;
     }
@@ -95,6 +101,10 @@ public final class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaran
     /**
      * @return the noir (black) hand
      */
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Access to noir is intentionally allowed."
+    )
     public Hand getNoir() {
         return noir;
     }
@@ -199,6 +209,37 @@ public final class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaran
         final TrenteEtQuaranteBetType color = evaluateWinningColor();
         final TrenteEtQuaranteBetType kind = evaluateWinningKind(color);
         return new TrenteEtQuaranteResult(new Pair<>(color, kind));
+    }
+
+    /**
+     * Creates and returns a copy of this {@link TrenteEtQuaranteDealer} instance.
+     * <p>
+     * The copy includes:
+     * <ul>
+     *   <li>A copy of the current round bets.</li>
+     *   <li>The same {@link DeckFactory} instance.</li>
+     *   <li>Copies of the cards in the rouge and noir hands.</li>
+     *   <li>The hand values associated with each hand.</li>
+     * </ul>
+     *
+     * @return a new {@link TrenteEtQuaranteDealer} object with the same state as this one
+     */
+    public TrenteEtQuaranteDealer copy() {
+        final List<Pair<Player, Bet>> roundBetCopy = new ArrayList<>(getRoundBet());
+        final TrenteEtQuaranteDealer copy = new TrenteEtQuaranteDealer(roundBetCopy, getDeckFactory());
+
+        for (final Card c : this.rouge.getCards()) {
+            copy.rouge.addCard(c);
+        }
+
+        for (final Card c : this.noir.getCards()) {
+            copy.noir.addCard(c);
+        }
+
+        copy.hands.put(copy.rouge, this.hands.get(this.rouge));
+        copy.hands.put(copy.noir, this.hands.get(this.noir));
+
+        return copy;
     }
 
 }

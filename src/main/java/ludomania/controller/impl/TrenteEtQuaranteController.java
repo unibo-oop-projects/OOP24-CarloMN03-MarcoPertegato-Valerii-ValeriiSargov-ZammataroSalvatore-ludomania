@@ -7,7 +7,6 @@ import io.lyuda.jcards.Card;
 import io.lyuda.jcards.DeckFactory;
 import javafx.scene.Parent;
 import ludomania.controller.api.Controller;
-import ludomania.core.api.AudioManager;
 import ludomania.core.api.SceneManager;
 import ludomania.handler.TrenteEtQuaranteHandler;
 import ludomania.model.Pair;
@@ -34,7 +33,6 @@ public final class TrenteEtQuaranteController implements Controller, TrenteEtQua
     private static final String TURN_BET_SEPARETOR = "------";
     private final TrenteEtQuaranteViewBuilder viewBuilder;
     private final SceneManager sceneManager;
-    private final AudioManager audioManager;
     private final TrenteEtQuaranteGame game;
     private int turn;
 
@@ -42,12 +40,9 @@ public final class TrenteEtQuaranteController implements Controller, TrenteEtQua
      * Constructs a new TrenteEtQuaranteController.
      *
      * @param sceneManager the manager for switching scenes
-     * @param audioManager the manager for playing sounds
      */
-    public TrenteEtQuaranteController(final SceneManager sceneManager,
-            final AudioManager audioManager) {
+    public TrenteEtQuaranteController(final SceneManager sceneManager) {
         this.sceneManager = sceneManager;
-        this.audioManager = audioManager;
         viewBuilder = new TrenteEtQuaranteViewBuilder(this, sceneManager.getLanguageManager(),
         sceneManager.getImageProvider());
         final List<Pair<Player, Bet>> roundBet = new LinkedList<>();
@@ -134,7 +129,6 @@ public final class TrenteEtQuaranteController implements Controller, TrenteEtQua
 
     @Override
     public void handleReturnHome() {
-        audioManager.playSound("click");
         sceneManager.switchToMainMenu();
     }
 }
