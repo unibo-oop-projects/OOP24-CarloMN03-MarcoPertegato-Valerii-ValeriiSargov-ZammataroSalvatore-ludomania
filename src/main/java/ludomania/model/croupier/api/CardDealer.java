@@ -21,6 +21,7 @@ public abstract class CardDealer<T> extends Croupier<T> {
 
     private static final int MIN_DECK_NUM = 3;
     private final DeckFactory decks;
+    private final Random rand = new Random();
 
     /**
      * Constructs a CardDealer with a list of bets and a deck factory.
@@ -69,7 +70,6 @@ public abstract class CardDealer<T> extends Croupier<T> {
      * @return a card from one of the available decks
      */
     public Card drawCard() {
-        final Random rand = new Random();
         int index = rand.nextInt(getDeckCount());
         while (decks.getDeck(index).getCards().isEmpty()) {
             decks.removeDeck(index);

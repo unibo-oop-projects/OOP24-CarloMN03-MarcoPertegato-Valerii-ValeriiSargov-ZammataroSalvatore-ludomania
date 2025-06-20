@@ -78,6 +78,8 @@ public final class TrenteEtQuaranteDealer extends CardDealer<Pair<TrenteEtQuaran
      */
     public void reset() {
         hands.clear();
+        noir.getCards().clear();
+        rouge.getCards().clear();
         hands.put(noir, 0);
         hands.put(rouge, 0);
         clearRound();

@@ -40,6 +40,7 @@ public final class TrenteEtQuaranteGame implements Game<Pair<TrenteEtQuaranteBet
         currentUser = players.getFirst().getUsername();
         userNumber = 1;
         dealer.initDeck(deckNumber);
+        dealer.shuffleAll();
     }
 
     @Override

@@ -58,9 +58,10 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
     private final Label noirTotalLabel;
     private final Label rougeTotalLabel;
     private final List<Label> betZonesLabels;
-    private final VBox betList;
+    private final VBox betLog;
     private HBox noirCardsBox;
     private HBox rougeCardsBox;
+    private double currentBalance;
 
     /**
      * Constructs the Trente et Quarante game view builder.
@@ -80,7 +81,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         this.balanceLabel = new Label();
         this.noirTotalLabel = new Label();
         this.rougeTotalLabel = new Label();
-        this.betList = new VBox(OFFSET);
+        this.betLog = new VBox(OFFSET);
         this.betZonesLabels = new ArrayList<>();
     }
 
@@ -93,7 +94,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
 
         root.setBottom(createBottomBar());
 
-        root.setLeft(createBetList());
+        root.setLeft(createBetLog());
 
         root.setRight(createDoneButton());
 
@@ -219,12 +220,12 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         return ficheBar;
     }
 
-    private Node createBetList() {
-        betList.setPadding(new Insets(OFFSET));
-        betList.setStyle("-fx-background-color: white;");
-        betList.setPrefWidth(BET_LIST_WIDTH);
+    private Node createBetLog() {
+        betLog.setPadding(new Insets(OFFSET));
+        betLog.setStyle("-fx-background-color: white;");
+        betLog.setPrefWidth(BET_LIST_WIDTH);
 
-        final ScrollPane scrollPane = new ScrollPane(betList);
+        final ScrollPane scrollPane = new ScrollPane(betLog);
         scrollPane.setFitToWidth(true);
         scrollPane.setPrefHeight(SCROLL_BAR_HEIGHT);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
@@ -307,9 +308,10 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         rowLabel.setFont(Font.font(FONT_SIZE));
         rowLabel.setMinWidth(ROW_LABEL_WIDTH);
 
-        totalLabel.setText("Total: 0");
+        totalLabel.setText("Tot: 0");
         totalLabel.setTextFill(Color.WHITE);
         totalLabel.setFont(Font.font(FONT_SIZE));
+        totalLabel.setMinWidth(BET_LABEL_WIDTH / 2);
 
         final HBox row = new HBox(OFFSET, rowLabel, scrollPane, totalLabel);
         row.setAlignment(Pos.CENTER_LEFT);
@@ -343,7 +345,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         }
 
         ficheToggleGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
-        final boolean enabled = newToggle != null;
+        final boolean enabled = newToggle != null && ((FicheValue) newToggle.getUserData()).getValue() <= currentBalance;
         for (final Label zoneLabel : betZonesLabels) {
                 zoneLabel.setDisable(!enabled);
                 if (enabled) {
@@ -409,25 +411,37 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
      * @param balance the user's balance in chips
      */
     public void setBalance(final double balance) {
+        currentBalance = balance;
         balanceLabel.setText(languageManager.getString("money") + " " + balance + " $");
     }
 
     /**
-     * Adds a textual description of a placed bet to the list.
+     * Adds a textual description of a placed bet to the bet log.
      *
-     * @param betDescription a string describing the bet
+     * @param betDescription a string describing the bet to be displayed
      */
     public void addBet(final String betDescription) {
         final Label betLabel = new Label(betDescription);
         betLabel.setWrapText(true);
-        betList.getChildren().add(betLabel);
+        betLog.getChildren().add(betLabel);
+    }
+
+    /**
+     * Displays the current turn number in the bet log.
+     *
+     * @param turn the current turn number to display
+     */
+    public void setTurn(final int turn) {
+        final Label betLabel = new Label(languageManager.getString("turn") + turn);
+        betLabel.setWrapText(true);
+        betLog.getChildren().add(betLabel);
     }
 
     /**
      * Clears all displayed bets from the list.
      */
     public void clearBets() {
-        betList.getChildren().clear();
+        betLog.getChildren().clear();
     }
 
     /**
@@ -460,7 +474,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
      * @param suit the suit of the card (e.g., HEARTS, SPADES)
      */
     public void addCardToRouge(final Rank rank, final Suit suit) {
-        noirCardsBox.getChildren().add(imageProvider.getSVGCard(rank, suit));
+        rougeCardsBox.getChildren().add(imageProvider.getSVGCard(rank, suit));
     }
 
     /**
