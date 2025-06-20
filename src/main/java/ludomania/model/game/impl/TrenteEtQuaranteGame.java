@@ -1,5 +1,6 @@
 package ludomania.model.game.impl;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,11 +35,13 @@ public final class TrenteEtQuaranteGame implements Game<Pair<TrenteEtQuaranteBet
      */
     public TrenteEtQuaranteGame(final TrenteEtQuaranteDealer dealer,
      final List<TrenteEtQuarantePlayer> players, final int deckNumber) {
-        this.dealer = dealer;
-        this.players = players;
+        this.dealer = dealer.copy();
+        this.players = new LinkedList<>(players);
         this.deckNumber = deckNumber;
         currentUser = players.getFirst().getUsername();
         userNumber = 1;
+        dealer.initDeck(deckNumber);
+        dealer.shuffleAll();
     }
 
     @Override
@@ -66,7 +69,9 @@ public final class TrenteEtQuaranteGame implements Game<Pair<TrenteEtQuaranteBet
      * @param bet the bet placed
      */
     public void playerMakesBet(final TrenteEtQuaranteBet bet) {
-        dealer.addBet(players.get(userNumber), bet);
+        final TrenteEtQuarantePlayer currentPlayer = players.get(userNumber - 1);
+        currentPlayer.makeBet(bet.getValue(), bet.getType());
+        dealer.addBet(currentPlayer, bet);
     }
 
     /**
@@ -75,7 +80,7 @@ public final class TrenteEtQuaranteGame implements Game<Pair<TrenteEtQuaranteBet
      * @return true if another player is available, false otherwise
      */
     public Boolean nextPlayer() {
-        if (userNumber == players.size()) {
+        if (userNumber >= players.size()) {
             return false;
         }
         currentUser = players.get(userNumber).getUsername();

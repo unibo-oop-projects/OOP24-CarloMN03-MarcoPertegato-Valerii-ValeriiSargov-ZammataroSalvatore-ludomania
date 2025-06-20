@@ -1,7 +1,5 @@
 package ludomania.handler;
 
-import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
-
 /**
  * Interface for handling user actions in the Trente et Quarante game.
  * <p>
@@ -10,11 +8,17 @@ import ludomania.model.bet.impl.TrenteEtQuaranteBetType;
 public interface TrenteEtQuaranteHandler {
 
     /**
+     * Handles the action to start the game.
+     * It initializes game resources, prepares the interface, and transitions to the main game screen.
+     */
+    void handleStartGame();
+
+    /**
      * Handles the event when a player places a bet of the specified type.
      *
      * @param type the type of bet placed
      */
-    void handleBetPlacement(TrenteEtQuaranteBetType type);
+    void handleBetPlacement(String type);
 
     /**
      * Handles the transition to the next player's turn.

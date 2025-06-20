@@ -1,5 +1,6 @@
 package ludomania.model.croupier.api;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public abstract class Croupier<T> {
      * @param roundBet the list of player-bet pairs for the current round
      */
     public Croupier(final List<Pair<Player, Bet>> roundBet) {
-        this.roundBet = roundBet;
+        this.roundBet = new LinkedList<>(roundBet);
     }
 
      /**
@@ -52,7 +53,7 @@ public abstract class Croupier<T> {
      * @return a list of player-bet pairs
      */
     public List<Pair<Player, Bet>> getRoundBet() {
-        return roundBet;
+        return new LinkedList<>(roundBet);
     }
 
     /**

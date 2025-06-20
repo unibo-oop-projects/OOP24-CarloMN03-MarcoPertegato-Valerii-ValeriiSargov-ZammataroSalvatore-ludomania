@@ -16,7 +16,7 @@ final class TrenteEtQuaranteBetTest {
     private TrenteEtQuaranteBet cBet;
 
     @BeforeEach
-    void setUp() {
+    void setUpTQBets() {
         rBet = new TrenteEtQuaranteBet(ROUGE_AMOUNT, TrenteEtQuaranteBetType.ROUGE);
         cBet = new TrenteEtQuaranteBet(ENVERSE_AMOUNT, TrenteEtQuaranteBetType.ENVERSE);
     }
