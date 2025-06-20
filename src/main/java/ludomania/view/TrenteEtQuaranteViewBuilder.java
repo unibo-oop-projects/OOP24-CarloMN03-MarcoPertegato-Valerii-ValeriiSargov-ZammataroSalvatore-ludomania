@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import io.lyuda.jcards.Rank;
+import io.lyuda.jcards.Suit;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -97,6 +99,8 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
 
         root.setCenter(createCenter());
 
+        eventHandler.handleStartGame();
+
         return root;
     }
 
@@ -165,7 +169,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         final Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        balanceLabel.setText(languageManager.getString("money") + ": xxx €");
+        balanceLabel.setText(languageManager.getString("money") + " : xxx €");
         balanceLabel.setTextFill(Color.WHITE);
         balanceLabel.setFont(Font.font(FONT_SIZE));
 
@@ -237,7 +241,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
 
         final Button doneButton = new Button(languageManager.getString("done"));
         doneButton.setOnAction(e -> {
-            //TODO
+            eventHandler.handleNewRound();
         });
 
         rightBox.getChildren().add(doneButton);
@@ -319,7 +323,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         zonesBox.setPadding(new Insets(OFFSET / 2));
         zonesBox.setAlignment(Pos.CENTER);
 
-        for (final String name : List.of("Noir", "Rouge", "Couleru", "Enverse")) {
+        for (final String name : List.of("Noir", "Rouge", "Couleur", "Enverse")) {
             final Label zone = new Label(name);
             zone.setTextFill(Color.WHITE);
             zone.setAlignment(Pos.CENTER);
@@ -331,9 +335,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
                 + TRANSPARENT_BACKGROUND
             );
             zone.setOnMouseClicked(e -> {
-                /*if (!zone.isDisable()) {
-                     
-                }*/
+                eventHandler.handleBetPlacement(name);
             });
 
             betZonesLabels.add(zone);
@@ -380,7 +382,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
      * @param total the card total to display
      */
     public void setNoirTotal(final int total) {
-        noirTotalLabel.setText("Total: " + total);
+        noirTotalLabel.setText("Tot: " + total);
     }
 
     /**
@@ -389,7 +391,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
      * @param total the card total to display
      */
     public void setRougeTotal(final int total) {
-        rougeTotalLabel.setText("Total: " + total);
+        rougeTotalLabel.setText("Tot: " + total);
     }
 
     /**
@@ -406,8 +408,8 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
      *
      * @param balance the user's balance in chips
      */
-    public void setBalance(final int balance) {
-        balanceLabel.setText("Balance: " + balance + " $");
+    public void setBalance(final double balance) {
+        balanceLabel.setText(languageManager.getString("money") + " " + balance + " $");
     }
 
     /**
@@ -442,21 +444,23 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
     }
 
     /**
-     * Adds a card visual node to the Noir row.
+     * Adds a card to the Noir row using its rank and suit.
      *
-     * @param cardNode the node representing a card
+     * @param rank the rank of the card (e.g., ACE, KING, TEN)
+     * @param suit the suit of the card (e.g., HEARTS, SPADES)
      */
-    public void addCardToNoir(final Node cardNode) {
-        noirCardsBox.getChildren().add(cardNode);
+    public void addCardToNoir(final Rank rank, final Suit suit) {
+        noirCardsBox.getChildren().add(imageProvider.getSVGCard(rank, suit));
     }
 
-     /**
-     * Adds a card visual node to the Rouge row.
+    /**
+     * Adds a card to the Rouge row using its rank and suit.
      *
-     * @param cardNode the node representing a card
+     * @param rank the rank of the card (e.g., ACE, KING, TEN)
+     * @param suit the suit of the card (e.g., HEARTS, SPADES)
      */
-    public void addCardToRouge(final Node cardNode) {
-        rougeCardsBox.getChildren().add(cardNode);
+    public void addCardToRouge(final Rank rank, final Suit suit) {
+        noirCardsBox.getChildren().add(imageProvider.getSVGCard(rank, suit));
     }
 
     /**

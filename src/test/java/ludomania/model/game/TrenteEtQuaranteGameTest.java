@@ -1,0 +1,48 @@
+package ludomania.model.game;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import io.lyuda.jcards.DeckFactory;
+import ludomania.model.Pair;
+import ludomania.model.bet.api.Bet;
+import ludomania.model.croupier.impl.TrenteEtQuaranteDealer;
+import ludomania.model.player.api.Player;
+import ludomania.model.player.impl.TrenteEtQuarantePlayer;
+import ludomania.model.wallet.impl.WalletImpl;
+import ludomania.model.game.impl.TrenteEtQuaranteGame;
+
+public class TrenteEtQuaranteGameTest {
+    
+    private static final double INITIAL_MONEY = 1000.0;
+    private static final int DECK_NUM = 6;
+    private TrenteEtQuaranteGame game = null;
+
+    @BeforeEach
+    public void setup() {
+        final List<Pair<Player, Bet>> roundBet = new LinkedList<>();
+        final TrenteEtQuaranteDealer dealer = new TrenteEtQuaranteDealer(roundBet, new DeckFactory());
+        final WalletImpl wallet = new WalletImpl(INITIAL_MONEY);
+        final List<TrenteEtQuarantePlayer> players = new LinkedList<>(List.of(new TrenteEtQuarantePlayer(wallet, "Player1")));
+        this.game = new TrenteEtQuaranteGame(dealer, players, DECK_NUM);
+    }
+
+    @Test
+    public void testRunGameFillsHands() {
+        // All'inizio le mani sono vuote
+        assertEquals(0, game.getNoir().size());
+        assertEquals(0, game.getRouge().size());
+
+        // Eseguo la partita (runGame)
+        game.runGame();
+
+        // Dopo runGame le mani noir e rouge dovrebbero contenere carte
+        assertTrue(game.getNoir().size() > 0, "La mano Noir dovrebbe contenere carte dopo runGame");
+        assertTrue(game.getRouge().size() > 0, "La mano Rouge dovrebbe contenere carte dopo runGame");
+    }
+}
