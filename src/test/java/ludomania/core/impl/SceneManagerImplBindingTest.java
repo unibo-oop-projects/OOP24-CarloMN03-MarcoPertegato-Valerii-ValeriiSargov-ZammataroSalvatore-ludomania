@@ -181,12 +181,6 @@ class SceneManagerImplBindingTest extends ApplicationTest {
         @Override
         public void stopAllMusic() {
         }
-
-		@Override
-		public AudioManager copy() {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'copy'");
-		}
     }
 
     class TestLanguageManager implements LanguageManager {
@@ -221,12 +215,6 @@ class SceneManagerImplBindingTest extends ApplicationTest {
         public ObjectProperty<ResourceBundle> bundleProperty() {
             return new SimpleObjectProperty<>(ResourceBundle.getBundle("dummy"));
         }
-
-		@Override
-		public LanguageManager copy() {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'copy'");
-		}
     }
 
     class TestImageProvider implements ImageProvider {
@@ -280,11 +268,5 @@ class SceneManagerImplBindingTest extends ApplicationTest {
         public Region svgHelperMethod(final String svg) {
             return new Region();
         }
-
-		@Override
-		public ImageProvider copy() {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'copy'");
-		}
     }
 }
