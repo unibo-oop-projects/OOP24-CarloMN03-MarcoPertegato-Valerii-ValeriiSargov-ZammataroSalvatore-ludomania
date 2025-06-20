@@ -1084,7 +1084,7 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="152.0">
                <children>
-                  <Label id="betAmount" fx:id="betAmount" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Bet: $$$" textAlignment="CENTER" textFill="#07ff00">
+                  <Label id="betAmountLabel" fx:id="betAmountLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: #07ff00; -fx-border-style: dotted; -fx-border-width: 3; -fx-border-radius: 5;" text="Bet: $$$" textAlignment="CENTER" textFill="#07ff00">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
@@ -1095,7 +1095,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label id="totalLabel" fx:id="totalLabel" maxWidth="1.7976931348623157E308" style="-fx-border-style: dotted; -fx-border-width: 2; -fx-border-color: red; -fx-border-radius: 5;" text="Total: $$$" textFill="RED">
+                  <Label id="totalLabel" fx:id="totalLabel" maxWidth="1.7976931348623157E308" style="-fx-border-style: dotted; -fx-border-width: 3; -fx-border-color: red; -fx-border-radius: 5;" text="Total: $$$" textAlignment="CENTER" textFill="RED">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>

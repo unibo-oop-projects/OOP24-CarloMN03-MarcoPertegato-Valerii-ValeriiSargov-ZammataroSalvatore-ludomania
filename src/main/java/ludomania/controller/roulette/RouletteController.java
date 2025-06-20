@@ -1,34 +1,19 @@
 package ludomania.controller.roulette;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import ludomania.controller.api.Controller;
 import ludomania.core.api.AudioManager;
-import ludomania.core.api.ImageProvider;
 import ludomania.core.api.SceneManager;
-import ludomania.cosmetics.FicheValue;
 import ludomania.model.Pair;
 import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.game.roulette.RouletteGame;
-
-import java.util.Arrays;
 
 public class RouletteController implements Controller {
 
@@ -42,7 +27,7 @@ public class RouletteController implements Controller {
     private Label totalLabel;
 
     @FXML
-    private Label betAmount;
+    private Label betAmountLabel;
 
     @FXML
     private ImageView wheel;
@@ -50,35 +35,37 @@ public class RouletteController implements Controller {
     @FXML
     private HBox ficheBox;
 
-    private final int OFFSET = 10;
     private final RouletteGame game;
 
-
-    private final BooleanProperty submitDisabled = new SimpleBooleanProperty(true);
+    private final BooleanProperty okBtnDisabled = new SimpleBooleanProperty(true);
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty total = new SimpleStringProperty();
     private final StringProperty bet = new SimpleStringProperty();
+    private final IntegerProperty betAmount = new SimpleIntegerProperty();
 
-    public RouletteController(
-    final SceneManager sceneManager,
-    final AudioManager audioManager
-    ) {
+    public RouletteController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.game = new RouletteGame(this, sceneManager, audioManager);
     }
 
     @FXML
     public void initialize() {
-        this.okBtn.disableProperty().bind(this.submitDisabled);
+        this.okBtn.disableProperty().bind(this.okBtnDisabled);
         this.resultLabel.textProperty().bind(this.result);
         this.totalLabel.textProperty().bind(this.total);
-        this.betAmount.textProperty().bind(this.bet);
-        this.wheel.disableProperty().bind(this.submitDisabled.not());
+        this.betAmountLabel.textProperty().bind(this.bet);
+        this.wheel.disableProperty().bind(this.okBtnDisabled.not());
 
         this.resultLabel.textProperty().addListener((observable, oldValue, newValue) -> {
-            submitDisabled.set(newValue.trim().isEmpty());
+            okBtnDisabled.set(newValue.trim().isEmpty());
         });
 
-        this.attachFiches(this.ficheBox);
+        this.attachFiches(this.ficheBox, this.betAmount);
+
+        this.betAmount.addListener((observable, oldValue, newValue) -> {
+            Double betAmount = this.selectAmount(newValue.intValue());
+            this.bet.set(betAmount.intValue() + " $");
+            this.total.set(this.getBalance().intValue() + " $");
+        });
     }
     
     @Override
@@ -175,8 +162,8 @@ public class RouletteController implements Controller {
     }
 
     @FXML
-    private void selectAmount(MouseEvent event) {
-        this.bet.set("Bet: " + this.game.selectAmount(event) + " $");
+    private Double selectAmount(Integer amount) {
+        return this.game.addBetAmount(amount);
     }
 
     @FXML
@@ -199,7 +186,11 @@ public class RouletteController implements Controller {
         };
     }
 
-    private void attachFiches(Pane pane) {
-        this.game.attachFiches(pane);
+    private void attachFiches(Pane pane, IntegerProperty controlProperty) {
+        this.game.attachFiches(pane, controlProperty);
+    }
+
+    private Double getBalance() {
+        return this.game.getBalance();
     }
 }

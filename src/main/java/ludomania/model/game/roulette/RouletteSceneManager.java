@@ -1,5 +1,6 @@
 package ludomania.model.game.roulette;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -98,7 +99,7 @@ public class RouletteSceneManager {
         }
     }
 
-    public void attachFiches(Pane node) {
+    public void attachFiches(Pane node, IntegerProperty controlProperty) {
         Arrays.stream(FicheValue.values())
                 .sorted((a, b) -> Integer.compare(b.getValue(), a.getValue()))
                 .forEach(ficheValue -> {
@@ -121,6 +122,10 @@ public class RouletteSceneManager {
                 Glow glow = new Glow();
                 glow.setLevel(0.7);
                 ((ToggleButton) newToggle).setEffect(glow);
+            }
+
+            if (newToggle != null) {
+                controlProperty.setValue(((FicheValue)newToggle.getUserData()).getValue());
             }
         });
     }

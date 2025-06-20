@@ -27,7 +27,8 @@ public class RouletteGameManager {
 
         if (source instanceof Button clickedButton) {
             int id = Integer.parseInt(clickedButton.getId());
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.PLEIN, Set.of(id)));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.PLEIN, Set.of(id)));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
@@ -39,7 +40,8 @@ public class RouletteGameManager {
         if (source instanceof Separator separator) {
             String id = separator.getId();
             Set<Object> choices = Arrays.stream(id.split("-")).map(Integer::parseInt).collect(Collectors.toSet());
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.CHEVAL, choices));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.CHEVAL, choices));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
@@ -51,7 +53,8 @@ public class RouletteGameManager {
         if (source instanceof Button clickedButton) {
             String id = clickedButton.getId();
             Set<Object> choices = Arrays.stream(id.split("-")).map(Integer::parseInt).collect(Collectors.toSet());
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.CARRE, choices));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.CARRE, choices));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
@@ -69,7 +72,8 @@ public class RouletteGameManager {
                 case 't' -> choices = RouletteWheel.thirdColonne();
                 default -> throw new IllegalArgumentException("Wrong column name: " + id.charAt(0));
             }
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.COLONNE, choices));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.COLONNE, choices));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
@@ -79,7 +83,8 @@ public class RouletteGameManager {
         Object source = event.getSource();
 
         if (source instanceof Button) {
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.NOIR, Set.of(RouletteColor.NOIR)));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.NOIR, Set.of(RouletteColor.NOIR)));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
@@ -89,7 +94,8 @@ public class RouletteGameManager {
         Object source = event.getSource();
 
         if (source instanceof Button) {
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.ROUGE, Set.of(RouletteColor.ROUGE)));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.ROUGE, Set.of(RouletteColor.ROUGE)));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
@@ -99,7 +105,8 @@ public class RouletteGameManager {
         Object source = event.getSource();
 
         if (source instanceof Button) {
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.PAIR, Set.of()));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.PAIR, Set.of()));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
@@ -109,7 +116,8 @@ public class RouletteGameManager {
         Object source = event.getSource();
 
         if (source instanceof Button) {
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.IMPAIR, Set.of()));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.IMPAIR, Set.of()));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
@@ -119,7 +127,8 @@ public class RouletteGameManager {
         Object source = event.getSource();
 
         if (source instanceof Button) {
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.PASSE, Set.of()));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.PASSE, Set.of()));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
@@ -129,7 +138,8 @@ public class RouletteGameManager {
         Object source = event.getSource();
 
         if (source instanceof Button) {
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.MANQUE, Set.of()));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.MANQUE, Set.of()));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
@@ -147,9 +157,21 @@ public class RouletteGameManager {
                 case 'd' -> choices = RouletteWheel.thirdDouzaine();
                 default -> throw new IllegalArgumentException("Button is not clicked");
             }
-            this.rouletteCroupier.addBet(this.player, this.player.makeBet(1.0, RouletteBetType.DOUZAINE, choices));
+            this.rouletteCroupier.addBet(this.player, this.player.makeBet(this.player.getBetAmount(), RouletteBetType.DOUZAINE, choices));
+            this.player.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
         }
+    }
+
+    public Double addBetAmount(Integer amount) {
+        if (this.player.withdraw(Double.valueOf(amount))) {
+            this.player.addBetAmount(Double.valueOf(amount));
+        }
+        return this.player.getBetAmount();
+    }
+
+    public Double getPlayerBalance() {
+        return this.player.getBalance();
     }
 }

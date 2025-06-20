@@ -1,5 +1,6 @@
 package ludomania.model.game.roulette;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -106,16 +107,20 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         this.sceneManager.quitGame();
     }
 
-    public double selectAmount(MouseEvent event) {
-        return 99.0;
+    public Double addBetAmount(Integer amount) {
+        return this.gameManager.addBetAmount(amount);
+    }
+
+    public Double getBalance() {
+        return this.gameManager.getPlayerBalance();
     }
 
     public void evaluateRound(MouseEvent event) {
         //this.rouletteCroupier.checkBets();
     }
 
-    public void attachFiches(Pane pane) {
-        this.sceneManager.attachFiches(pane);
+    public void attachFiches(Pane pane, IntegerProperty controlProperty) {
+        this.sceneManager.attachFiches(pane, controlProperty);
     }
 
     public void showRules() {
