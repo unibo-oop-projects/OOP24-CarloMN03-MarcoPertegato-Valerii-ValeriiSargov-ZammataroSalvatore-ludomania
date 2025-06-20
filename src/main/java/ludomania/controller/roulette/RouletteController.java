@@ -104,23 +104,23 @@ public class RouletteController implements Controller {
     }
     
     @FXML
-    private void pairBet(MouseEvent event) {
-        this.game.pairBet(event);
+    private void pairBet() {
+        this.game.pairBet();
     }
     
     @FXML
-    private void impairBet(MouseEvent event) {
-        this.game.impairBet(event);
+    private void impairBet() {
+        this.game.impairBet();
     }
     
     @FXML
-    private void passeBet(MouseEvent event) {
-        this.game.passeBet(event);
+    private void passeBet() {
+        this.game.passeBet();
     }
     
     @FXML
-    private void manqueBet(MouseEvent event) {
-        this.game.manqueBet(event);
+    private void manqueBet() {
+        this.game.manqueBet();
     }
     
     @FXML
@@ -129,7 +129,7 @@ public class RouletteController implements Controller {
     }
     
     @FXML
-    private void spinWheel(MouseEvent event) {
+    private void spinWheel() {
         Pair<Integer, RouletteColor> result = this.game.runGame().getResult();
         this.result.set(result.getKey().toString());
         String colorStyle = "-fx-text-fill: " + this.resultColor(result.getValue()) + ";";
@@ -157,7 +157,7 @@ public class RouletteController implements Controller {
     }
 
     @FXML
-    private void quitGame(MouseEvent event) {
+    private void quitGame() {
         this.game.quitGame();
     }
 

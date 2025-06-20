@@ -8,7 +8,12 @@ import java.util.stream.IntStream;
 
 public class RouletteWheel {
     private static final Integer MAX = 36;
-    private static final Integer MIN = 0;
+    private static final Integer FIRST_DOUZAINE_BOTTOM_BUOND = 1;
+    private static final Integer FIRST_DOUZAINE_UP_BUOND = 12;
+    private static final Integer SECOND_DOUZAINE_UP_BUOND = 24;
+    private static final Integer THIRD_DOUZAINE_UP_BUOND = 36;
+    private static final Integer FIRST_HALF_UP_BOUND = 18;
+    private static final Integer FIRST_HALF_BOTTOM_BOUND = 1;
 
     public static final Map<Integer, RouletteColor> rouletteNumbers = Map.ofEntries(
             Map.entry(0, RouletteColor.GREEN),
@@ -50,7 +55,7 @@ public class RouletteWheel {
             Map.entry(36, RouletteColor.ROUGE));
 
     public static Pair<Integer, RouletteColor> random() {
-        Integer number = new Random().nextInt(MAX - MIN) + MIN;
+        Integer number = new Random().nextInt(MAX + 1);
         return new Pair<>(number, rouletteNumbers.get(number));
     }
 
@@ -60,19 +65,19 @@ public class RouletteWheel {
 
     public static Set<Object> firstDouzaine() {
         return rouletteNumbers.keySet().stream()
-                .filter(key -> key >= 1 && key <= 12)
+                .filter(key -> key >= FIRST_DOUZAINE_BOTTOM_BUOND && key <= FIRST_DOUZAINE_UP_BUOND)
                 .collect(Collectors.toSet());
     }
 
     public static Set<Object> secondDouzaine() {
         return rouletteNumbers.keySet().stream()
-                .filter(key -> key >= 13 && key <= 24)
+                .filter(key -> key >= (FIRST_DOUZAINE_UP_BUOND + 1) && key <= SECOND_DOUZAINE_UP_BUOND)
                 .collect(Collectors.toSet());
     }
 
     public static Set<Object> thirdDouzaine() {
         return rouletteNumbers.keySet().stream()
-                .filter(key -> key >= 25 && key <= 36)
+                .filter(key -> key >= (SECOND_DOUZAINE_UP_BUOND + 1) && key <= THIRD_DOUZAINE_UP_BUOND)
                 .collect(Collectors.toSet());
     }
 
@@ -89,11 +94,11 @@ public class RouletteWheel {
     }
 
     public static Set<Object> manque() {
-        return IntStream.rangeClosed(1, 18).boxed().collect(Collectors.toSet());
+        return IntStream.rangeClosed(FIRST_HALF_BOTTOM_BOUND, FIRST_HALF_UP_BOUND).boxed().collect(Collectors.toSet());
     }
 
     public static Set<Object> passe() {
-        return IntStream.rangeClosed(19, MAX).boxed().collect(Collectors.toSet());
+        return IntStream.rangeClosed(FIRST_HALF_UP_BOUND + 1, MAX).boxed().collect(Collectors.toSet());
     }
 
 }

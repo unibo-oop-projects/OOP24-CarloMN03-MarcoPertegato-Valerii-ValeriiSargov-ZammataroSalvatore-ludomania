@@ -67,20 +67,20 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         this.gameManager.rougeBet(event);
     }
 
-    public void pairBet(MouseEvent event) {
-        this.gameManager.pairBet(event);
+    public void pairBet() {
+        this.gameManager.pairBet();
     }
 
-    public void impairBet(MouseEvent event) {
-        this.gameManager.impairBet(event);
+    public void impairBet() {
+        this.gameManager.impairBet();
     }
 
-    public void passeBet(MouseEvent event) {
-        this.gameManager.passeBet(event);
+    public void passeBet() {
+        this.gameManager.passeBet();
     }
 
-    public void manqueBet(MouseEvent event) {
-        this.gameManager.manqueBet(event);
+    public void manqueBet() {
+        this.gameManager.manqueBet();
     }
 
     public void douzineBet(MouseEvent event) {

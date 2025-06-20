@@ -61,28 +61,19 @@ public class RouletteSceneManager {
     }
 
     public void highlightCarre(MouseEvent event) {
-        Object source = event.getSource();
-
-        if (source instanceof Node) {
-            Node clickedButton = (Node) source;
+        if (event.getSource() instanceof Node clickedButton) {
             clickedButton.getParent().setStyle("-fx-border-color: #00eeff; -fx-border-width: 3px;");
         }
     }
 
     public void unhighlightCarre(MouseEvent event) {
-        Object source = event.getSource();
-
-        if (source instanceof Node) {
-            Node clickedButton = (Node) source;
+        if (event.getSource() instanceof Node clickedButton) {
             clickedButton.getParent().setStyle("-fx-border-color: trasparent; -fx-border-width: 1px;");
         }
     }
 
     public void glowWheel(MouseEvent event) {
-        Object source = event.getSource();
-
-        if (source instanceof ImageView) {
-            ImageView node = (ImageView) source;
+        if (event.getSource() instanceof ImageView node) {
             Glow glow = new Glow();
 
             glow.setLevel(0.7);
@@ -91,10 +82,7 @@ public class RouletteSceneManager {
     }
 
     public void unglowWheel(MouseEvent event) {
-        Object source = event.getSource();
-
-        if (source instanceof ImageView) {
-            ImageView node = (ImageView) source;
+        if (event.getSource() instanceof ImageView node) {
             node.setEffect(null);
         }
     }
