@@ -82,4 +82,9 @@ public final class CosmeticSetImpl implements CosmeticSet {
         return fiche.getCosmetic(number);
     }
 
+    @Override
+    public CosmeticSet copy() {
+        return new CosmeticSetImpl(card.getTheme(), fiche.getTheme(), background.getTheme());
+    }
+
 }

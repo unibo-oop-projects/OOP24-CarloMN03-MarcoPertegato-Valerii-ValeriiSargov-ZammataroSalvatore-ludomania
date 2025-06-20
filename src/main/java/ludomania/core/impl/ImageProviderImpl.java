@@ -3,6 +3,7 @@ package ludomania.core.impl;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
+import java.util.Objects;
 
 import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderInput;
@@ -48,8 +49,8 @@ public final class ImageProviderImpl implements ImageProvider {
      *                     (card, background, fiche)
      */
     public ImageProviderImpl(final ImageManager imageManager, final CosmeticSet cosmeticSet) {
-        this.imageManager = imageManager;
-        currentTheme = cosmeticSet;
+        this.imageManager = Objects.requireNonNull(imageManager);
+        currentTheme = cosmeticSet.copy();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ludomania.core.impl;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javafx.scene.image.Image;
@@ -26,7 +27,7 @@ public final class ImageManagerImpl implements ImageManager {
      * @param images a map where images are stored by their identifiers
      */
     public ImageManagerImpl(final Map<String, Image> images) {
-        this.images = images;
+        this.images = new HashMap<>(images);
         this.pathToImages = DEFAULT_LOCATION;
     }
 
@@ -38,7 +39,7 @@ public final class ImageManagerImpl implements ImageManager {
      * @param pathToImages the custom path to the images directory
      */
     public ImageManagerImpl(final Map<String, Image> images, final String pathToImages) {
-        this.images = images;
+        this.images = new HashMap<>(images);
         this.pathToImages = pathToImages;
     }
 

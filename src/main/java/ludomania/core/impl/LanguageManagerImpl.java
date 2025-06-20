@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
@@ -57,7 +58,10 @@ public final class LanguageManagerImpl implements LanguageManager {
         }
         return "Nessun testo disponibile";
     }
-
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "References to the resource bundle are shared intentionally as they are immutable or managed externally."
+    )
     @Override
     public ObjectProperty<ResourceBundle> bundleProperty() {
         return bundleProperty;

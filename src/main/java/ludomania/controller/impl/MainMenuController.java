@@ -1,5 +1,8 @@
 package ludomania.controller.impl;
 
+import java.util.Objects;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.util.Builder;
@@ -32,9 +35,13 @@ public final class MainMenuController implements Controller, MainMenuHandler {
      * @param sceneManager the {@link SceneManager} used for scene transitions
      * @param audioManager the {@link AudioManager} used to play sounds
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to languageManager and audiomanager are shared intentionally"
+    )
     public MainMenuController(final SceneManager sceneManager, final AudioManager audioManager) {
-        this.sceneManager = sceneManager;
-        this.audioManager = audioManager;
+        this.sceneManager = Objects.requireNonNull(sceneManager);
+        this.audioManager = Objects.requireNonNull(audioManager);
         viewBuilder = new MainMenuViewBuilder(this, sceneManager.getLanguageManager(), sceneManager.getImageProvider());
     }
 
@@ -45,6 +52,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
 
     @Override
     public void handleStartGame() {
+        click();
         switch (selectedGameId) {
             case 1 -> sceneManager.switchToBlackJackMenu();
             case 2 -> handleRoulette();
@@ -56,7 +64,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
 
     @Override
     public void handleSettings() {
-        audioManager.playSound("click");
+        click();
         sceneManager.switchToSettings();
     }
 
@@ -72,19 +80,21 @@ public final class MainMenuController implements Controller, MainMenuHandler {
 
     @Override
     public void handleCosmetics() {
-        audioManager.playSound("click");
+        click();
         sceneManager.switchToCosmetics();
     }
 
     @Override
     public void handleTrenteEtQuarante() {
-        audioManager.playSound("click");
+        click();
         sceneManager.switchToTrenteEtQuarante();
     }
     
     public void handleRoulette() {
-        audioManager.playSound("click");
+        click();
         sceneManager.switchToRoulette();
     }
-
+    private void click(){
+        audioManager.playSound("click");
+    }
 }

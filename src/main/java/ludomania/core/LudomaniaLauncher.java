@@ -18,7 +18,8 @@ import ludomania.core.impl.SceneManagerImpl;
 import ludomania.settings.api.SettingsManager;
 import ludomania.settings.impl.SettingsManagerImpl;
 
-public class LudomaniaLauncher extends Application {
+public final class LudomaniaLauncher extends Application {
+
     /**
      * Called by JavaFX to initialize the graphical user interface.
      * <p>
@@ -30,6 +31,7 @@ public class LudomaniaLauncher extends Application {
      *
      * @param primaryStage the main {@link Stage} of the application
      */
+
     @Override
     public void start(final Stage primaryStage) {
         final SettingsManager settingsManager = new SettingsManagerImpl();
