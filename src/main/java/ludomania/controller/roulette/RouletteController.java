@@ -1,11 +1,13 @@
 package ludomania.controller.roulette;
 
+import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import ludomania.controller.api.Controller;
 import ludomania.core.api.AudioManager;
 import ludomania.core.api.SceneManager;
@@ -14,7 +16,6 @@ import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.game.roulette.RouletteGame;
 
 public class RouletteController implements Controller {
-    private final RouletteGame game;
 
     @FXML
     private Button okBtn;
@@ -26,16 +27,45 @@ public class RouletteController implements Controller {
     private Label totalLabel;
 
     @FXML
-    private Label betAmount;
+    private Label betAmountLabel;
 
     @FXML
     private ImageView wheel;
-    
-    public RouletteController(
-    final SceneManager sceneManager,
-    final AudioManager audioManager
-    ) {
+
+    @FXML
+    private HBox ficheBox;
+
+    private final RouletteGame game;
+
+    private final BooleanProperty okBtnDisabled = new SimpleBooleanProperty(true);
+    private final StringProperty result = new SimpleStringProperty();
+    private final StringProperty total = new SimpleStringProperty();
+    private final StringProperty bet = new SimpleStringProperty();
+    private final IntegerProperty betAmount = new SimpleIntegerProperty();
+
+    public RouletteController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.game = new RouletteGame(this, sceneManager, audioManager);
+    }
+
+    @FXML
+    public void initialize() {
+        this.okBtn.disableProperty().bind(this.okBtnDisabled);
+        this.resultLabel.textProperty().bind(this.result);
+        this.totalLabel.textProperty().bind(this.total);
+        this.betAmountLabel.textProperty().bind(this.bet);
+        this.wheel.disableProperty().bind(this.okBtnDisabled.not());
+
+        this.resultLabel.textProperty().addListener((observable, oldValue, newValue) -> {
+            okBtnDisabled.set(newValue.trim().isEmpty());
+        });
+
+        this.attachFiches(this.ficheBox, this.betAmount);
+
+        this.betAmount.addListener((observable, oldValue, newValue) -> {
+            Double betAmount = this.selectAmount(newValue.intValue());
+            this.bet.set(betAmount.intValue() + " $");
+            this.total.set(this.getBalance().intValue() + " $");
+        });
     }
     
     @Override
@@ -100,8 +130,10 @@ public class RouletteController implements Controller {
     
     @FXML
     private void spinWheel(MouseEvent event) {
-        this.okBtn.setDisable(false);
         Pair<Integer, RouletteColor> result = this.game.runGame().getResult();
+        this.result.set(result.getKey().toString());
+        String colorStyle = "-fx-text-fill: " + this.resultColor(result.getValue()) + ";";
+        this.resultLabel.setStyle(colorStyle);
     }
     
     @FXML
@@ -130,13 +162,35 @@ public class RouletteController implements Controller {
     }
 
     @FXML
-    private void selectAmount(MouseEvent event) {
-        this.game.selectAmount(event);
+    private Double selectAmount(Integer amount) {
+        return this.game.addBetAmount(amount);
     }
 
     @FXML
     private void evaluateRound(MouseEvent event) {
+        this.result.set("");
         this.game.evaluateRound(event);
-        this.okBtn.setDisable(true);
+    }
+
+    @FXML
+    private void showRules() {
+        this.game.showRules();
+    }
+
+    private String resultColor(RouletteColor color) {
+        return switch (color.name()) {
+            case "NOIR" -> "black";
+            case "ROUGE" -> "red";
+            case "GREEN" -> "green";
+            default -> "white";
+        };
+    }
+
+    private void attachFiches(Pane pane, IntegerProperty controlProperty) {
+        this.game.attachFiches(pane, controlProperty);
+    }
+
+    private Double getBalance() {
+        return this.game.getBalance();
     }
 }

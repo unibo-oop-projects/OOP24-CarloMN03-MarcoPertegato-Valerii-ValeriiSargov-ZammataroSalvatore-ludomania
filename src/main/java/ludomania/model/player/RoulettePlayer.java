@@ -9,9 +9,22 @@ import ludomania.model.wallet.api.Wallet;
 import java.util.Set;
 
 public class RoulettePlayer extends Player {
+    private Double betAmount = 0.0;
 
     public RoulettePlayer(final Wallet wallet, final String username) {
         super(wallet, username);
+    }
+
+    public Double getBetAmount() {
+        return this.betAmount;
+    }
+
+    public void addBetAmount(Double amount) {
+        this.betAmount += amount;
+    }
+
+    public void resetBetAmount() {
+        this.betAmount = 0.0;
     }
 
     @Override
