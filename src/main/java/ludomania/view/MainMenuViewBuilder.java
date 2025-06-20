@@ -56,7 +56,7 @@ public final class MainMenuViewBuilder implements ViewBuilder {
      */
     @SuppressFBWarnings(
         value = "EI2",
-        justification = "References to languageManager and imageProvider are shared intentionally as they are immutable or managed externally."
+        justification = "References to languageManager and imageProvider are shared intentionally"
     )
     public MainMenuViewBuilder(final MainMenuHandler eventHandler,
             final LanguageManager languageManager,

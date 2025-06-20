@@ -75,7 +75,7 @@ public final class SettingsManagerImpl implements SettingsManager {
         prefs.put("ficheThemeId", ficheTheme.get().name());
         prefs.put("backgroundThemeId", backgroundTheme.get().name());
     }
-    
+
     @SuppressFBWarnings(
         value = "EI",
         justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."

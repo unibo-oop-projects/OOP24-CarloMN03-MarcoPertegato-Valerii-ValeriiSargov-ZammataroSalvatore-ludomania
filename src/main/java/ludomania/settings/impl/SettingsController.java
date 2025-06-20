@@ -42,7 +42,7 @@ public final class SettingsController implements SettingsHandler, Controller {
      */
     @SuppressFBWarnings(
         value = "EI2",
-        justification = "References to languageManager and imageProvider are shared intentionally as they are immutable or managed externally."
+        justification = "References to languageManager and imageProvider are shared intentionally"
     )
     public SettingsController(final SettingsManager settingsManager, final SceneManager sceneManager,
             final AudioManager audioManager) {

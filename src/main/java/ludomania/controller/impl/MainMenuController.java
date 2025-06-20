@@ -37,7 +37,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
      */
     @SuppressFBWarnings(
         value = "EI2",
-        justification = "References to languageManager and audiomanager are shared intentionally as they are immutable or managed externally."
+        justification = "References to languageManager and audiomanager are shared intentionally"
     )
     public MainMenuController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.sceneManager = Objects.requireNonNull(sceneManager);
@@ -52,6 +52,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
 
     @Override
     public void handleStartGame() {
+        click();
         switch (selectedGameId) {
             case 1 -> sceneManager.switchToBlackJackMenu();
             case 2 -> handleRoulette();
@@ -63,7 +64,7 @@ public final class MainMenuController implements Controller, MainMenuHandler {
 
     @Override
     public void handleSettings() {
-        audioManager.playSound("click");
+        click();
         sceneManager.switchToSettings();
     }
 
@@ -79,19 +80,21 @@ public final class MainMenuController implements Controller, MainMenuHandler {
 
     @Override
     public void handleCosmetics() {
-        audioManager.playSound("click");
+        click();
         sceneManager.switchToCosmetics();
     }
 
     @Override
     public void handleTrenteEtQuarante() {
-        audioManager.playSound("click");
+        click();
         sceneManager.switchToTrenteEtQuarante();
     }
     
     public void handleRoulette() {
-        audioManager.playSound("click");
+        click();
         sceneManager.switchToRoulette();
     }
-
+    private void click(){
+        audioManager.playSound("click");
+    }
 }

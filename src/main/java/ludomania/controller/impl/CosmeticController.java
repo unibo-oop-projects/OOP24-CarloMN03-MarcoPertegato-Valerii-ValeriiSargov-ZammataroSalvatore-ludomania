@@ -58,7 +58,7 @@ public final class CosmeticController implements Controller, CosmeticMenuHandler
      */
     @SuppressFBWarnings(
         value = "EI2",
-        justification = "References to languageManager and audioManager are shared intentionally as they are immutable or managed externally."
+        justification = "References to languageManager and audioManager are shared intentionally"
     )
     public CosmeticController(final SettingsManager settingsManager, final SceneManager sceneManager,
             final AudioManager audioManager) {

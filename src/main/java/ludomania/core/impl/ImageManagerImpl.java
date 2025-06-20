@@ -2,7 +2,6 @@ package ludomania.core.impl;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import javafx.scene.image.Image;
 import ludomania.core.api.ImageManager;

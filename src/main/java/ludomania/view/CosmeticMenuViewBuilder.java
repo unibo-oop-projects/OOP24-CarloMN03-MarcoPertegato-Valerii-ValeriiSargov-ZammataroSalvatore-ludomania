@@ -42,7 +42,6 @@ public final class CosmeticMenuViewBuilder implements ViewBuilder {
     private final CosmeticMenuHandler eventHandler;
     private final LanguageManager languageManager;
     private final ImageProvider imageProvider;
-    
     /**
      * Constructs a CosmeticMenuViewBuilder with the necessary dependencies.
      *
@@ -53,7 +52,7 @@ public final class CosmeticMenuViewBuilder implements ViewBuilder {
      */
     @SuppressFBWarnings(
         value = "EI2",
-        justification = "References to languageManager and imageProvider are shared intentionally as they are immutable or managed externally."
+        justification = "References to languageManager and imageProvider are shared intentionally"
     )
     public CosmeticMenuViewBuilder(final CosmeticMenuHandler eventHandler,
             final LanguageManager languageManager,

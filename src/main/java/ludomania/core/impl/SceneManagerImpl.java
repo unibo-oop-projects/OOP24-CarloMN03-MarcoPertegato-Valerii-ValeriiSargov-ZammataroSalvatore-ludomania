@@ -57,7 +57,7 @@ public final class SceneManagerImpl implements SceneManager {
      */
     @SuppressFBWarnings(
         value = "EI2",
-        justification = "References to languageManager and imageProvider are shared intentionally as they are immutable or managed externally."
+        justification = "References to languageManager and imageProvider are shared intentionally"
     )
     public SceneManagerImpl(final Stage primaryStage, final SettingsManager settingsManager,
             final AudioManager audioManager,
@@ -132,13 +132,13 @@ public final class SceneManagerImpl implements SceneManager {
     @Override
     public void switchToRoulette() {
         audioManager.playMusic("furinaTheme");
-        Parent root = new RouletteController(this, audioManager).getView();
+        final Parent root = new RouletteController(this, audioManager).getView();
         applyBackgroundToRoot(root);
         mainScene.setRoot(root);
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = "Binding to the manager are shared intentionally"
     )
     private void bindFullscreenToStage() {
         settingsManager.fullscreenProperty().addListener((obs, oldVal, newVal) -> {
@@ -147,7 +147,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = "Binding to the manager are shared intentionally"
     )
     private void bindResolutionToStage() {
         settingsManager.resolutionWidthProperty().addListener((obs, oldVal, newVal) -> {
@@ -160,7 +160,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = "Binding to the manager are shared intentionally"
     )
     private void bindLanguageToManager() {
         settingsManager.currentLocaleProperty().addListener((obs, oldLocale, newLocale) -> {
@@ -171,7 +171,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = "Binding to the manager are shared intentionally"
     )
     private void bindVolumeToManager() {
         settingsManager.volumeProperty().addListener((obs, oldValue, newValue) -> {
@@ -181,7 +181,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = "Binding to the manager are shared intentionally"
     )
     private void bindCosmeticToProvider() {
         settingsManager.cardThemeProperty().addListener((obs, oldValue, newValue) -> {
@@ -207,7 +207,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = "Binding to the manager are shared intentionally"
     )
     @Override
     public LanguageManager getLanguageManager() {
@@ -216,7 +216,7 @@ public final class SceneManagerImpl implements SceneManager {
 
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = "Binding to the manager are shared intentionally"
     )
     @Override
     public ImageProvider getImageProvider() {

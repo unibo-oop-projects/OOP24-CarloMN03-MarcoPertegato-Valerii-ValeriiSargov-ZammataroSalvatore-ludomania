@@ -84,7 +84,7 @@ public final class CosmeticSetImpl implements CosmeticSet {
 
     @Override
     public CosmeticSet copy() {
-        return new CosmeticSetImpl(card.getTheme(),fiche.getTheme(),background.getTheme());
+        return new CosmeticSetImpl(card.getTheme(), fiche.getTheme(), background.getTheme());
     }
 
 }
