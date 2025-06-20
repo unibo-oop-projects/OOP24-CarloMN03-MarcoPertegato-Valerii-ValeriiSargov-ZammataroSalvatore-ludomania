@@ -3,8 +3,6 @@ package ludomania.core.impl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import io.lyuda.jcards.Rank;
@@ -46,7 +44,7 @@ class SceneManagerImplBindingTest extends ApplicationTest {
     private TestAudioManager audioManager;
     private TestLanguageManager languageManager;
     private Stage stage;
-    @BeforeEach
+
     @Override
     public void start(final Stage stage) {
         this.stage = stage;

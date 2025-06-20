@@ -1,7 +1,6 @@
 package ludomania.settings.impl;
 
 import java.util.Locale;
-import java.util.Objects;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
@@ -42,9 +41,9 @@ public final class SettingsController implements SettingsHandler, Controller {
 
     public SettingsController(final SettingsManager settingsManager, final SceneManager sceneManager,
             final AudioManager audioManager) {
-        this.settingsManager = Objects.requireNonNull(settingsManager);
-        this.sceneManager = Objects.requireNonNull(sceneManager);
-        this.audioManager = Objects.requireNonNull(audioManager);
+        this.settingsManager = settingsManager;
+        this.sceneManager = sceneManager;
+        this.audioManager = audioManager;
         viewBuilder = new SettingsViewBuilder(this, sceneManager.getLanguageManager());
     }
 

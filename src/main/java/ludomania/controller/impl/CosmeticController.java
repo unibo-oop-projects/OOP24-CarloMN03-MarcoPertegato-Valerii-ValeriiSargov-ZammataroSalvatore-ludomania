@@ -3,7 +3,6 @@ package ludomania.controller.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import javafx.scene.Parent;
 import javafx.util.Builder;
@@ -55,12 +54,11 @@ public final class CosmeticController implements Controller, CosmeticMenuHandler
      * @param sceneManager    the {@link SceneManager} used for scene transitions
      * @param audioManager    the {@link AudioManager} used to play sounds
      */
-    @SuppressWarnings("EI2")
     public CosmeticController(final SettingsManager settingsManager, final SceneManager sceneManager,
             final AudioManager audioManager) {
-        this.settingsManager = Objects.requireNonNull(settingsManager);
-        this.sceneManager = Objects.requireNonNull(sceneManager);
-        this.audioManager = Objects.requireNonNull(audioManager);
+        this.settingsManager = settingsManager;
+        this.sceneManager = sceneManager;
+        this.audioManager = audioManager;
 
         ficheThemes = new ArrayList<>(Arrays.asList(
                 new EuropeanFicheTheme(),
@@ -85,17 +83,17 @@ public final class CosmeticController implements Controller, CosmeticMenuHandler
 
     @Override
     public List<FicheTheme> getFicheThemes() {
-        return new ArrayList<>(ficheThemes);
+        return ficheThemes;
     }
 
     @Override
     public List<CardTheme> getCardThemes() {
-        return new ArrayList<>(cardThemes);
+        return cardThemes;
     }
 
     @Override
     public List<BackgroundTheme> getBackgroundThemes() {
-        return new ArrayList<>(backgroundThemes);
+        return backgroundThemes;
     }
 
     @Override

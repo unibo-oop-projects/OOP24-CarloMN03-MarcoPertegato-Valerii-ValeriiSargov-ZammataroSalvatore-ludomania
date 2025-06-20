@@ -62,10 +62,4 @@ public interface AudioManager {
      */
     double getMasterVolume();
 
-    /**
-     * Creates a copy of the current {@link AudioManager}.
-     * @return a new AudioManager instance with the same theme settings
-     */
-    AudioManager copy();
-
 }

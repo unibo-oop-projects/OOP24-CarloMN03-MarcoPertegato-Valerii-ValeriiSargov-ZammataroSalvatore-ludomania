@@ -1,7 +1,5 @@
 package ludomania.controller.impl;
 
-import java.util.Objects;
-
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.util.Builder;
@@ -34,10 +32,9 @@ public final class MainMenuController implements Controller, MainMenuHandler {
      * @param sceneManager the {@link SceneManager} used for scene transitions
      * @param audioManager the {@link AudioManager} used to play sounds
      */
-    @SuppressWarnings("EI2")
     public MainMenuController(final SceneManager sceneManager, final AudioManager audioManager) {
-        this.sceneManager = Objects.requireNonNull(sceneManager);
-        this.audioManager = Objects.requireNonNull(audioManager);
+        this.sceneManager = sceneManager;
+        this.audioManager = audioManager;
         viewBuilder = new MainMenuViewBuilder(this, sceneManager.getLanguageManager(), sceneManager.getImageProvider());
     }
 
