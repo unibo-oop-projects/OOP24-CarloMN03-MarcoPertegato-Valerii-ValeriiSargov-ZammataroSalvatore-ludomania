@@ -37,8 +37,8 @@ public final class EuropeanFicheTheme extends SimpleFicheTheme {
         setTextColor("#000000");
         final Map<FicheValue, String> colori = getColori();
         colori.put(FicheValue.UNO, "#FFFFFF");
-        colori.put(FicheValue.CINQUE, "#800000");
-        colori.put(FicheValue.DIECI, "#000080");
+        colori.put(FicheValue.CINQUE, "#FF0000");
+        colori.put(FicheValue.DIECI, "#2626FF");
         colori.put(FicheValue.VENTICINQUE, "#008000");
         colori.put(FicheValue.CENTO, "#808080");
         colori.put(FicheValue.CINQUECENTO, "#800080");
