@@ -33,41 +33,46 @@ public class RoulettePlayer extends Player {
     }
 
     public Bet makeBet(Double amount, BetType type, Set<Object> choice) {
-        switch (type.getTypeName()) {
-            case "PLEIN" -> {
-                return RouletteBetFactory.PleinBet(choice, amount);
+        if (amount >= 0) {
+            switch (type.getTypeName()) {
+                case "PLEIN" -> {
+                    return RouletteBetFactory.PleinBet(choice, amount);
+                }
+                case "CHEVAL" -> {
+                    return RouletteBetFactory.ChevalBet(choice, amount);
+                }
+                case "CARRE" -> {
+                    return RouletteBetFactory.CarreBet(choice, amount);
+                }
+                case "DOUZAINE" -> {
+                    return RouletteBetFactory.DouzaineBet(choice, amount);
+                }
+                case "COLONNE" -> {
+                    return RouletteBetFactory.ColonneBet(choice, amount);
+                }
+                case "PAIR" -> {
+                    return RouletteBetFactory.PairBet(choice, amount);
+                }
+                case "IMPAIR" -> {
+                    return RouletteBetFactory.ImpairBet(choice, amount);
+                }
+                case "PASSE" -> {
+                    return RouletteBetFactory.PasseBet(choice, amount);
+                }
+                case "MANQUE" -> {
+                    return RouletteBetFactory.ManqueBet(choice, amount);
+                }
+                case "ROUGE" -> {
+                    return RouletteBetFactory.RougeBet(choice, amount);
+                }
+                case "NOIR" -> {
+                    return RouletteBetFactory.NoirBet(choice, amount);
+                }
+                default -> throw new IllegalArgumentException("Invalid bet type " + type);
             }
-            case "CHEVAL" -> {
-                return RouletteBetFactory.ChevalBet(choice, amount);
-            }
-            case "CARRE" -> {
-                return RouletteBetFactory.CarreBet(choice, amount);
-            }
-            case "DOUZAINE" -> {
-                return RouletteBetFactory.DouzaineBet(choice, amount);
-            }
-            case "COLONNE" -> {
-                return RouletteBetFactory.ColonneBet(choice, amount);
-            }
-            case "PAIR" -> {
-                return RouletteBetFactory.PairBet(choice, amount);
-            }
-            case "IMPAIR" -> {
-                return RouletteBetFactory.ImpairBet(choice, amount);
-            }
-            case "PASSE" -> {
-                return RouletteBetFactory.PasseBet(choice, amount);
-            }
-            case "MANQUE" -> {
-                return RouletteBetFactory.ManqueBet(choice, amount);
-            }
-            case "ROUGE" -> {
-                return RouletteBetFactory.RougeBet(choice, amount);
-            }
-            case "NOIR" -> {
-                return RouletteBetFactory.NoirBet(choice, amount);
-            }
-            default -> throw new IllegalArgumentException("Invalid bet type " + type);
+        } else {
+            throw new IllegalArgumentException("Cannot place a bet with amount 0");
         }
+
     }
 }
