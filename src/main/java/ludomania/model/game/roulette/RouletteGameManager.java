@@ -122,7 +122,7 @@ public class RouletteGameManager {
                 case 't' -> choices = RouletteWheel.thirdColonne();
                 default -> throw new IllegalArgumentException("Wrong column name: " + id.charAt(0));
             }
-            this.rouletteCroupier.addBet(this.currentPlayer, this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.COLONNE, Set.of(choices)));
+            this.rouletteCroupier.addBet(this.currentPlayer, this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.COLONNE, choices));
             this.currentPlayer.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");
@@ -169,7 +169,7 @@ public class RouletteGameManager {
                 case 'd' -> choices = RouletteWheel.thirdDouzaine();
                 default -> throw new IllegalArgumentException("Button is not clicked");
             }
-            this.rouletteCroupier.addBet(this.currentPlayer, this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.DOUZAINE, Set.of(choices)));
+            this.rouletteCroupier.addBet(this.currentPlayer, this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.DOUZAINE, choices));
             this.currentPlayer.resetBetAmount();
         } else {
             throw new IllegalArgumentException("Button is not clicked");

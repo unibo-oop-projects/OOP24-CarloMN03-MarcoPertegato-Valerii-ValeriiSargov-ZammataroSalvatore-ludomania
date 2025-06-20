@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import ludomania.controller.api.Controller;
@@ -35,6 +36,9 @@ public class RouletteController implements Controller {
     @FXML
     private HBox ficheBox;
 
+    @FXML
+    private GridPane board;
+
     private final RouletteGame game;
 
     private final BooleanProperty okBtnDisabled = new SimpleBooleanProperty(true);
@@ -54,6 +58,8 @@ public class RouletteController implements Controller {
         this.totalLabel.textProperty().bind(this.total);
         this.betAmountLabel.textProperty().bind(this.bet);
         this.wheel.disableProperty().bind(this.okBtnDisabled.not());
+        this.board.disableProperty().bind(this.okBtnDisabled.not());
+        this.ficheBox.disableProperty().bind(this.okBtnDisabled.not());
 
         this.resultLabel.textProperty()
                 .addListener((observable, oldValue, newValue) -> okBtnDisabled.set(newValue.trim().isEmpty()));
