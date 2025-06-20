@@ -1,7 +1,9 @@
 package ludomania.settings.impl;
 
 import java.util.Locale;
+import java.util.Objects;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
 import javafx.scene.Parent;
@@ -38,12 +40,15 @@ public final class SettingsController implements SettingsHandler, Controller {
      * @param sceneManager    the manager handling scene navigation
      * @param audioManager    the manager handling audio feedback
      */
-
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to languageManager and imageProvider are shared intentionally as they are immutable or managed externally."
+    )
     public SettingsController(final SettingsManager settingsManager, final SceneManager sceneManager,
             final AudioManager audioManager) {
-        this.settingsManager = settingsManager;
-        this.sceneManager = sceneManager;
-        this.audioManager = audioManager;
+        this.settingsManager = Objects.requireNonNull(settingsManager);
+        this.sceneManager = Objects.requireNonNull(sceneManager);
+        this.audioManager = Objects.requireNonNull(audioManager);
         viewBuilder = new SettingsViewBuilder(this, sceneManager.getLanguageManager());
     }
 

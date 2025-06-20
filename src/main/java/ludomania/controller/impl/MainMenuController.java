@@ -2,6 +2,7 @@ package ludomania.controller.impl;
 
 import java.util.Objects;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.util.Builder;
@@ -34,6 +35,10 @@ public final class MainMenuController implements Controller, MainMenuHandler {
      * @param sceneManager the {@link SceneManager} used for scene transitions
      * @param audioManager the {@link AudioManager} used to play sounds
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to languageManager and audiomanager are shared intentionally as they are immutable or managed externally."
+    )
     public MainMenuController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.sceneManager = Objects.requireNonNull(sceneManager);
         this.audioManager = Objects.requireNonNull(audioManager);

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -53,6 +54,10 @@ public final class MainMenuViewBuilder implements ViewBuilder {
      * @param languageManager the manager responsible for localizing UI elements
      * @param imageProvider   the provider for supplying image resources
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to languageManager and imageProvider are shared intentionally as they are immutable or managed externally."
+    )
     public MainMenuViewBuilder(final MainMenuHandler eventHandler,
             final LanguageManager languageManager,
             final ImageProvider imageProvider) {

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.Parent;
 import javafx.util.Builder;
 import ludomania.controller.api.Controller;
@@ -55,6 +56,10 @@ public final class CosmeticController implements Controller, CosmeticMenuHandler
      * @param sceneManager    the {@link SceneManager} used for scene transitions
      * @param audioManager    the {@link AudioManager} used to play sounds
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to languageManager and audioManager are shared intentionally as they are immutable or managed externally."
+    )
     public CosmeticController(final SettingsManager settingsManager, final SceneManager sceneManager,
             final AudioManager audioManager) {
         this.settingsManager = Objects.requireNonNull(settingsManager);

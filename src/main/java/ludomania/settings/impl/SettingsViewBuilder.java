@@ -3,6 +3,7 @@ package ludomania.settings.impl;
 import java.util.Locale;
 import java.util.Objects;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -47,7 +48,10 @@ public final class SettingsViewBuilder implements ViewBuilder {
      * @param eventHandler    the handler for managing user settings and actions
      * @param languageManager the manager responsible for providing localized text
      */
-
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to the languageManager are shared intentionally as they are immutable or managed externally."
+    )
     public SettingsViewBuilder(final SettingsHandler eventHandler,
             final LanguageManager languageManager) {
         this.eventHandler = Objects.requireNonNull(eventHandler);

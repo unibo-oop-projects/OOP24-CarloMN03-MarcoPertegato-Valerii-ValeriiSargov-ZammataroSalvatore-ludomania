@@ -3,6 +3,7 @@ package ludomania.settings.impl;
 import java.util.Locale;
 import java.util.prefs.Preferences;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -74,42 +75,74 @@ public final class SettingsManagerImpl implements SettingsManager {
         prefs.put("ficheThemeId", ficheTheme.get().name());
         prefs.put("backgroundThemeId", backgroundTheme.get().name());
     }
-
+    
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+    )
     @Override
     public ObjectProperty<CosmeticTheme> cardThemeProperty() {
         return cardTheme;
     }
 
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+    )
     @Override
     public ObjectProperty<CosmeticTheme> ficheThemeProperty() {
         return ficheTheme;
     }
 
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+    )
     @Override
     public ObjectProperty<CosmeticTheme> backgroundThemeProperty() {
         return backgroundTheme;
     }
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+    )
 
     @Override
     public ObjectProperty<Locale> currentLocaleProperty() {
         return currentLocale;
     }
 
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+    )
     @Override
     public DoubleProperty volumeProperty() {
         return volume;
     }
 
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+    )
     @Override
     public BooleanProperty fullscreenProperty() {
         return fullscreen;
     }
 
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+    )
     @Override
     public IntegerProperty resolutionWidthProperty() {
         return resolutionWidth;
     }
 
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+    )
     @Override
     public IntegerProperty resolutionHeightProperty() {
         return resolutionHeight;
