@@ -29,42 +29,40 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
                 controller, sceneManager.getLanguageManager(), sceneManager.getImageProvider());
 
         this.sceneManager = new RouletteSceneManager(sceneManager, audioManager);
-        this.gameManager = new RouletteGameManager(
-                new RouletteCroupier(),
-                new RoulettePlayer(new WalletImpl(10000.0), "RoulettePlayer"));
+        this.gameManager = new RouletteGameManager(new RouletteCroupier());
     }
 
     @Override
     public CounterResult<Pair<Integer, RouletteColor>> runGame() {
-        return new CounterResult<>(RouletteWheel.random());
+        return this.gameManager.runGame();
     }
 
     public Parent getView() {
         return viewBuilder.build();
     }
 
-    public void pleinBet(MouseEvent event) {
+    public void pleinBet(MouseEvent event) throws IllegalArgumentException {
         this.gameManager.pleinBet(event);
     }
 
-    public void chevalBet(MouseEvent event) {
+    public void chevalBet(MouseEvent event) throws IllegalArgumentException {
         this.gameManager.chevalBet(event);
     }
 
-    public void carreBet(MouseEvent event) {
+    public void carreBet(MouseEvent event) throws IllegalArgumentException {
         this.gameManager.carreBet(event);
     }
 
-    public void colonneBet(MouseEvent event) {
+    public void colonneBet(MouseEvent event) throws IllegalArgumentException {
         this.gameManager.colonneBet(event);
     }
 
     public void noirBet(MouseEvent event) {
-        this.gameManager.noirBet(event);
+        this.gameManager.noirBet();
     }
 
     public void rougeBet(MouseEvent event) {
-        this.gameManager.rougeBet(event);
+        this.gameManager.rougeBet();
     }
 
     public void pairBet() {
@@ -83,7 +81,7 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         this.gameManager.manqueBet();
     }
 
-    public void douzineBet(MouseEvent event) {
+    public void douzineBet(MouseEvent event) throws IllegalArgumentException {
         this.gameManager.douzaineBet(event);
     }
 
@@ -115,8 +113,8 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         return this.gameManager.getPlayerBalance();
     }
 
-    public void evaluateRound(MouseEvent event) {
-        //this.rouletteCroupier.checkBets();
+    public void evaluateRound() {
+        this.gameManager.evaluateGame();
     }
 
     public void attachFiches(Pane pane, IntegerProperty controlProperty) {

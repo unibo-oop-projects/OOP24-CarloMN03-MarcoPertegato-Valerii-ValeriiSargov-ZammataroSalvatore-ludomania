@@ -10,11 +10,11 @@ import java.util.Set;
 public class RouletteBetFactory {
     public static RouletteBet PleinBet(Set<Object> choice, double amount) {
         return new RouletteBet(
-                (cr,b) -> {
-                    if (b instanceof HashSet<Object>) {
-                        return b.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
+                (cr,coll) -> {
+                    if (coll != null && !coll.isEmpty()) {
+                        return coll.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + b);
+                        throw new IllegalArgumentException("Invalid choice " + coll);
                     }
                 },
                 choice,
@@ -25,7 +25,7 @@ public class RouletteBetFactory {
     public static RouletteBet ChevalBet(Set<Object> choice, double amount) {
         return new RouletteBet(
                 (cr,coll) -> {
-                    if (coll instanceof HashSet<Object>) {
+                    if (coll != null && !coll.isEmpty()) {
                         return coll.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
                         throw new IllegalArgumentException("Invalid choice " + coll);
@@ -39,7 +39,7 @@ public class RouletteBetFactory {
     public static RouletteBet CarreBet(Set<Object> choice, double amount) {
         return new RouletteBet(
                 (cr,coll) -> {
-                    if (coll instanceof HashSet<Object>) {
+                    if (coll != null && !coll.isEmpty()) {
                         return coll.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
                         throw new IllegalArgumentException("Invalid choice " + coll);
@@ -53,7 +53,7 @@ public class RouletteBetFactory {
     public static RouletteBet DouzaineBet(Set<Object> choice, double amount) {
         return new RouletteBet(
                 (cr,coll) -> {
-                    if (coll instanceof HashSet<Object>) {
+                    if (coll != null && !coll.isEmpty()) {
                         return coll.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
                         throw new IllegalArgumentException("Invalid choice " + coll);
@@ -67,7 +67,7 @@ public class RouletteBetFactory {
     public static RouletteBet ColonneBet(Set<Object> choice, double amount) {
         return new RouletteBet(
                 (cr,coll) -> {
-                    if (coll instanceof HashSet<Object>) {
+                    if (coll != null && !coll.isEmpty()) {
                         return coll.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
                         throw new IllegalArgumentException("Invalid choice " + coll);
