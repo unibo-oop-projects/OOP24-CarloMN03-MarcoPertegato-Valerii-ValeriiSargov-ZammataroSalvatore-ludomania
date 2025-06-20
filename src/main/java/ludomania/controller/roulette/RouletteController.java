@@ -15,6 +15,7 @@ import ludomania.core.api.SceneManager;
 import ludomania.model.Pair;
 import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.game.roulette.RouletteGame;
+import ludomania.view.roulette.RouletteViewBuilder;
 
 public class RouletteController implements Controller {
 
@@ -39,7 +40,11 @@ public class RouletteController implements Controller {
     @FXML
     private GridPane board;
 
+    @FXML
+    private Button exitBtn;
+
     private final RouletteGame game;
+    private final RouletteViewBuilder viewBuilder;
 
     private final BooleanProperty okBtnDisabled = new SimpleBooleanProperty(true);
     private final StringProperty result = new SimpleStringProperty();
@@ -49,6 +54,9 @@ public class RouletteController implements Controller {
 
     public RouletteController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.game = new RouletteGame(this, sceneManager, audioManager);
+
+        this.viewBuilder = new RouletteViewBuilder(
+                this, sceneManager.getLanguageManager(), sceneManager.getImageProvider());
     }
 
     @FXML
@@ -60,6 +68,7 @@ public class RouletteController implements Controller {
         this.wheel.disableProperty().bind(this.okBtnDisabled.not());
         this.board.disableProperty().bind(this.okBtnDisabled.not());
         this.ficheBox.disableProperty().bind(this.okBtnDisabled.not());
+        this.exitBtn.disableProperty().bind(this.okBtnDisabled.not());
 
         this.resultLabel.textProperty()
                 .addListener((observable, oldValue, newValue) -> okBtnDisabled.set(newValue.trim().isEmpty()));
@@ -77,7 +86,7 @@ public class RouletteController implements Controller {
 
     @Override
     public Parent getView() {
-        return this.game.getView();
+        return this.viewBuilder.build();
     }
 
     @FXML
@@ -214,6 +223,11 @@ public class RouletteController implements Controller {
     @FXML
     private void showRules() {
         this.game.showRules();
+    }
+
+    @FXML
+    private void showBets() {
+        this.game.showBets();
     }
 
     private String resultColor(RouletteColor color) {

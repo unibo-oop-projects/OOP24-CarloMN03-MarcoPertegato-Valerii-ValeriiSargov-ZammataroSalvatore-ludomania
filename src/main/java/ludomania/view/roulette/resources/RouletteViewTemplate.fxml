@@ -1089,7 +1089,15 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="rulesBnt" alignment="CENTER" contentDisplay="CENTER" layoutX="703.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#showRules" style="-fx-background-color: white;" text="Rules" textAlignment="CENTER">
+            <Button fx:id="rulesBnt1" alignment="CENTER" contentDisplay="CENTER" layoutX="108.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#showRules" style="-fx-background-color: white;" text="Rules" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="betsBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="703.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#showBets" style="-fx-background-color: white;" text="Bets" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -1128,7 +1136,7 @@
                   </Label>
                </children>
             </VBox>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#quitGame" style="-fx-background-color: white;" text="Exit" textAlignment="CENTER">
+            <Button fx:id="exitBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#quitGame" style="-fx-background-color: white;" text="Exit" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>

@@ -32,7 +32,7 @@ public class RoulettePlayer extends Player {
         return null;
     }
 
-    public Bet makeBet(Double amount, BetType type, Set<Object> choice) {
+    public Bet makeBet(Double amount, BetType type, Set<Object> choice) throws IllegalArgumentException {
         if (amount >= 0) {
             switch (type.getTypeName()) {
                 case "PLEIN" -> {

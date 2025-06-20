@@ -22,23 +22,14 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
 
     private final RouletteSceneManager sceneManager;
     private final RouletteGameManager gameManager;
-    private final ViewBuilder viewBuilder;
 
-    public RouletteGame(RouletteController controller, final SceneManager sceneManager, final AudioManager audioManager) {
-        this.viewBuilder = new RouletteViewBuilder(
-                controller, sceneManager.getLanguageManager(), sceneManager.getImageProvider());
-
-        this.sceneManager = new RouletteSceneManager(sceneManager, audioManager);
+    public RouletteGame(RouletteController controller, final SceneManager sceneManager, final AudioManager audioManager) {        this.sceneManager = new RouletteSceneManager(sceneManager, audioManager);
         this.gameManager = new RouletteGameManager(new RouletteCroupier());
     }
 
     @Override
     public CounterResult<Pair<Integer, RouletteColor>> runGame() {
         return this.gameManager.runGame();
-    }
-
-    public Parent getView() {
-        return viewBuilder.build();
     }
 
     public void pleinBet(MouseEvent event) throws IllegalArgumentException {
@@ -123,5 +114,9 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
 
     public void showRules() {
         this.sceneManager.showRules();
+    }
+
+    public void showBets() {
+        this.sceneManager.showBets();
     }
 }

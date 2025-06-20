@@ -89,7 +89,7 @@ public class RouletteSceneManager {
 
     public void attachFiches(Pane node, IntegerProperty controlProperty) {
         Arrays.stream(FicheValue.values())
-                .sorted((a, b) -> Integer.compare(b.getValue(), a.getValue()))
+                .sorted((a, b) -> -Integer.compare(b.getValue(), a.getValue()))
                 .forEach(ficheValue -> {
                     final ToggleButton button = new ToggleButton();
 
@@ -119,6 +119,31 @@ public class RouletteSceneManager {
     }
 
     public void showRules() {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setTitle("Trente et Quarante");
+
+        final Label rulesLabel = new Label(languageManager.getString("tq_rules_text"));
+        rulesLabel.setWrapText(true);
+
+        final ScrollPane scrollPane = new ScrollPane(rulesLabel);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefHeight(400);
+        scrollPane.setStyle("-fx-background: white;");
+
+        final Button okBtn = new Button(languageManager.getString("exit"));
+        okBtn.setOnAction(e -> dialog.close());
+
+        final VBox dialogVBox = new VBox(10, scrollPane, okBtn);
+        dialogVBox.setPadding(new Insets(10 * 2));
+        dialogVBox.setAlignment(Pos.CENTER);
+
+        final Scene dialogScene = new Scene(dialogVBox, DIALOG_SIZE, DIALOG_SIZE);
+        dialog.setScene(dialogScene);
+        dialog.showAndWait();
+    }
+
+    public void showBets() {
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setTitle("Trente et Quarante");
