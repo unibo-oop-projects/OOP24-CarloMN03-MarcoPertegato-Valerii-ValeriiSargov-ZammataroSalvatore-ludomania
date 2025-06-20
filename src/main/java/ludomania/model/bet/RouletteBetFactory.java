@@ -3,7 +3,6 @@ package ludomania.model.bet;
 import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.croupier.roulette.RouletteWheel;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
