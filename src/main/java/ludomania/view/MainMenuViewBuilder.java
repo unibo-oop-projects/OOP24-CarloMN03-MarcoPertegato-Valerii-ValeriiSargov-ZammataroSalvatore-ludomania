@@ -56,9 +56,9 @@ public final class MainMenuViewBuilder implements ViewBuilder {
     public MainMenuViewBuilder(final MainMenuHandler eventHandler,
             final LanguageManager languageManager,
             final ImageProvider imageProvider) {
-        this.eventHandler = eventHandler;
-        this.languageManager = languageManager;
-        this.imageProvider = imageProvider;
+        this.eventHandler = Objects.requireNonNull(eventHandler);
+        this.languageManager = Objects.requireNonNull(languageManager);
+        this.imageProvider = Objects.requireNonNull(imageProvider);
     }
 
     @Override

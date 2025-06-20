@@ -84,4 +84,6 @@ public interface CosmeticSet {
      * @return the string representing the fiche image
      */
     String getFiche(Integer number);
+
+    CosmeticSet copy();
 }

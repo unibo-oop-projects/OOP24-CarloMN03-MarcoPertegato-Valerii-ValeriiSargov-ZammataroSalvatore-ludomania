@@ -1,6 +1,7 @@
 package ludomania.cosmetics.fiches;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 
 import ludomania.cosmetics.CosmeticTheme;
