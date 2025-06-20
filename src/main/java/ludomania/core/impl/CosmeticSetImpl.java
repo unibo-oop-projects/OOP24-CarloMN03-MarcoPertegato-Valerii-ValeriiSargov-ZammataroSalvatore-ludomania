@@ -1,5 +1,7 @@
 package ludomania.core.impl;
 
+import java.util.Objects;
+
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
 import javafx.scene.paint.Color;
@@ -18,7 +20,7 @@ import ludomania.cosmetics.FicheTheme;
  * </p>
  */
 
-public final class CosmeticSetImpl implements CosmeticSet {
+public final class CosmeticSetImpl implements CosmeticSet{
     private CardTheme card;
     private FicheTheme fiche;
     private BackgroundTheme background;
@@ -35,6 +37,11 @@ public final class CosmeticSetImpl implements CosmeticSet {
         this.background = background.createBackgroundTheme();
         this.card = card.createCardTheme();
         this.fiche = fiche.createFicheTheme();
+    }
+    public CosmeticSetImpl(final CosmeticSet other) {
+        this.card = other.getCardTheme();         // oppure copia profonda
+        this.background = other.getBackgroundTheme();
+        this.fiche = other.getFicheTheme();
     }
 
     @Override
@@ -81,5 +88,23 @@ public final class CosmeticSetImpl implements CosmeticSet {
     public String getFiche(final Integer number) {
         return fiche.getCosmetic(number);
     }
+    
+	@Override
+    public FicheTheme getFicheTheme() {
+        return fiche;
+    }
 
+    @Override
+    public BackgroundTheme getBackgroundTheme() {
+        return background;
+    }
+
+    @Override
+    public CardTheme getCardTheme() {
+        return card;
+    }
+	@Override
+	public CosmeticSet copy() {
+        return new CosmeticSetImpl(getCardTheme().getTheme(), getBackgroundTheme().getTheme(), getFicheTheme().getTheme());
+	}
 }

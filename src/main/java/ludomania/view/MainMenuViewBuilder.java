@@ -53,12 +53,13 @@ public final class MainMenuViewBuilder implements ViewBuilder {
      * @param languageManager the manager responsible for localizing UI elements
      * @param imageProvider   the provider for supplying image resources
      */
+        
     public MainMenuViewBuilder(final MainMenuHandler eventHandler,
             final LanguageManager languageManager,
             final ImageProvider imageProvider) {
         this.eventHandler = eventHandler;
-        this.languageManager = languageManager;
-        this.imageProvider = imageProvider;
+        this.languageManager = Objects.requireNonNull(languageManager);
+        this.imageProvider = Objects.requireNonNull(imageProvider);
     }
 
     @Override

@@ -34,6 +34,11 @@ public final class AudioManagerImpl implements AudioManager {
         backgroundTracks = new HashMap<>();
         this.masterVolume = masterVolume;
     }
+    public AudioManagerImpl(final double masterVolume, Map<String,AudioClip> soundEffect, Map<String, MediaPlayer> backgroundTracks) {
+        this.soundEffects = new HashMap<>(soundEffect);
+        this.backgroundTracks = new HashMap<>(backgroundTracks);
+        this.masterVolume = masterVolume;
+    }
 
     @Override
     public void initialize() {
@@ -96,4 +101,8 @@ public final class AudioManagerImpl implements AudioManager {
     public double getMasterVolume() {
         return masterVolume;
     }
+	@Override
+	public AudioManager copy() {
+        return new AudioManagerImpl(masterVolume, soundEffects, backgroundTracks);
+	}
 }

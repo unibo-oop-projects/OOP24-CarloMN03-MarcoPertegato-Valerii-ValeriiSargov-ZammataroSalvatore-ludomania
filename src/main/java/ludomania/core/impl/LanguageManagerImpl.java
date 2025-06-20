@@ -22,7 +22,7 @@ import ludomania.core.api.LanguageManager;
  */
 
 public final class LanguageManagerImpl implements LanguageManager {
-    private final ObjectProperty<ResourceBundle> bundleProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<ResourceBundle> bundleProperty;
 
     /**
      * Constructs a new {@link LanguageManagerImpl} with the specified locale.
@@ -33,8 +33,14 @@ public final class LanguageManagerImpl implements LanguageManager {
      * @param locale the locale to set for the language manager
      */
     public LanguageManagerImpl(final Locale locale) {
+        this.bundleProperty = new SimpleObjectProperty<>();
         setLocale(locale != null ? locale : Locale.ITALIAN); // Lingua di default
     }
+    private LanguageManagerImpl(ResourceBundle bundle) {
+        this.bundleProperty = new SimpleObjectProperty<>(bundle);
+        setLocale(bundle.getLocale());
+    }
+
 
     @Override
     public void setLocale(final Locale locale) {
@@ -57,9 +63,20 @@ public final class LanguageManagerImpl implements LanguageManager {
         }
         return "Nessun testo disponibile";
     }
-
+    /**
+     * Restituisce la proprietà di bundle per consentire il binding e l'osservazione.
+     * È intenzionale esporre la proprietà interna per permettere aggiornamenti reattivi.
+     */
+    @SuppressWarnings("EI_EXPOSE_REP")
     @Override
     public ObjectProperty<ResourceBundle> bundleProperty() {
         return bundleProperty;
     }
+
+	@Override
+    public LanguageManager copy() {
+        return new LanguageManagerImpl(bundleProperty.get());
+    }
+    
 }
+ 

@@ -15,6 +15,7 @@ import ludomania.core.api.LanguageManager;
 import ludomania.core.api.SceneManager;
 import ludomania.settings.api.SettingsManager;
 import ludomania.settings.impl.SettingsController;
+import java.util.Objects;
 
 /**
  * Implementation of the {@link SceneManager} interface responsible for managing
@@ -52,14 +53,15 @@ public final class SceneManagerImpl implements SceneManager {
      * @param imageProvider the image provider for managing themes and
      * backgrounds
      */
+    @SuppressWarnings("EI2")
     public SceneManagerImpl(final Stage primaryStage, final SettingsManager settingsManager,
             final AudioManager audioManager,
             final LanguageManager languageManager, final ImageProvider imageProvider) {
-        this.primaryStage = primaryStage;
-        this.audioManager = audioManager;
-        this.settingsManager = settingsManager;
-        this.languageManager = languageManager;
-        this.imageProvider = imageProvider;
+        this.primaryStage = Objects.requireNonNull(primaryStage);
+        this.audioManager = audioManager.copy();
+        this.settingsManager = Objects.requireNonNull(settingsManager);
+        this.languageManager = languageManager.copy();
+        this.imageProvider = imageProvider.copy();
         initializeStageSettings();
         this.mainScene = createMainScene();
         primaryStage.setScene(mainScene);

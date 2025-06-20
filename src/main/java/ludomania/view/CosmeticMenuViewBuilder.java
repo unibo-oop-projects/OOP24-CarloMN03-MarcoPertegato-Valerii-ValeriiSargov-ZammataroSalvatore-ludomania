@@ -2,6 +2,7 @@ package ludomania.view;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -49,12 +50,13 @@ public final class CosmeticMenuViewBuilder implements ViewBuilder {
      * @param languageManager the manager responsible for providing localized text
      * @param imageProvider   the provider for supplying image and SVG resources
      */
+    @SuppressWarnings("EI2")
     public CosmeticMenuViewBuilder(final CosmeticMenuHandler eventHandler,
             final LanguageManager languageManager,
             final ImageProvider imageProvider) {
-        this.eventHandler = eventHandler;
-        this.languageManager = languageManager;
-        this.imageProvider = imageProvider;
+        this.eventHandler = Objects.requireNonNull(eventHandler);
+        this.languageManager = Objects.requireNonNull(languageManager);
+        this.imageProvider = Objects.requireNonNull(imageProvider);
     }
 
     @Override

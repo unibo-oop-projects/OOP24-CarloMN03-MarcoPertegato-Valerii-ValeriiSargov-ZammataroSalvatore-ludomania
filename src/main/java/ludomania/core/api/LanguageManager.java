@@ -43,4 +43,10 @@ public interface LanguageManager {
      * @return the property representing the current bundle
      */
     ObjectProperty<ResourceBundle> bundleProperty();
+
+    /**
+     * Creates a copy of the current {@link LanguageManager}.
+     * @return a new LanguageManager instance with the same theme settings
+     */
+    LanguageManager copy();
 }

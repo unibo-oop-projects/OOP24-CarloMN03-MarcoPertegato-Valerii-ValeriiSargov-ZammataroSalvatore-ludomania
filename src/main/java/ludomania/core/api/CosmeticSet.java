@@ -84,4 +84,31 @@ public interface CosmeticSet {
      * @return the string representing the fiche image
      */
     String getFiche(Integer number);
+    /**
+     * Returns the current fiche theme used for styling fiche elements.
+     *
+     * @return the active FicheTheme
+     */
+    FicheTheme getFicheTheme();
+
+    /**
+     * Returns the current background theme used for rendering the game's background.
+     *
+     * @return the active BackgroundTheme
+     */
+    BackgroundTheme getBackgroundTheme();
+
+    /**
+     * Returns the current card theme used for displaying playing cards.
+     *
+     * @return the active CardTheme
+     */
+    CardTheme getCardTheme();
+
+
+    /**
+     * Creates a copy of the current {@link CosmeticSet}.
+     * @return a new CosmeticSet instance with the same theme settings
+     */
+    CosmeticSet copy();
 }

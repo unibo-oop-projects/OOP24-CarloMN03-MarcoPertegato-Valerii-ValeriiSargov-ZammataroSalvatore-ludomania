@@ -104,4 +104,10 @@ public interface ImageProvider {
      * @return a Region representing the parsed SVG
      */
     Region svgHelperMethod(String svg);
+    /**
+     * Creates a copy of the current {@link ImageProvider}.
+     * @return a new ImageProvider instance with the same theme settings
+     */
+    ImageProvider copy();
+    
 }

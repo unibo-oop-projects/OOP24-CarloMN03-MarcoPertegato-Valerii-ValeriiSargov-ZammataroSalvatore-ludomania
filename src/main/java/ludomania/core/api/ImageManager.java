@@ -21,4 +21,10 @@ public interface ImageManager {
      * @return the corresponding Image object
      */
     Image getImage(String id);
+
+    /**
+     * Creates a copy of the current {@link ImageManager}.
+     * @return a new ImageManager instance with the same theme settings
+     */
+    ImageManager copy();
 }

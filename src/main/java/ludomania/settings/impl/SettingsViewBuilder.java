@@ -1,6 +1,7 @@
 package ludomania.settings.impl;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -46,11 +47,11 @@ public final class SettingsViewBuilder implements ViewBuilder {
      * @param eventHandler    the handler for managing user settings and actions
      * @param languageManager the manager responsible for providing localized text
      */
-
+    @SuppressWarnings("EI2")
     public SettingsViewBuilder(final SettingsHandler eventHandler,
             final LanguageManager languageManager) {
-        this.eventHandler = eventHandler;
-        this.languageManager = languageManager;
+        this.eventHandler = Objects.requireNonNull(eventHandler);
+        this.languageManager = Objects.requireNonNull(languageManager);
     }
 
     @Override
