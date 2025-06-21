@@ -167,7 +167,10 @@ public class RouletteGameManager {
                     case 'b' -> choices = RouletteWheel.FIRST_COLONNE;
                     case 'm' -> choices = RouletteWheel.SECOND_COLONNE;
                     case 't' -> choices = RouletteWheel.THIRD_COLONNE;
-                    default -> throw new IllegalArgumentException("Wrong column name: " + id.charAt(0));
+                    default -> {
+                        this.currentPlayer.restoreBalance();
+                        return;
+                    }
                 }
                 this.rouletteCroupier.addBet(
                         this.currentPlayer,
@@ -263,7 +266,10 @@ public class RouletteGameManager {
                     case 'p' -> choices = RouletteWheel.firstDouzaine();
                     case 'm' -> choices = RouletteWheel.secondDouzaine();
                     case 'd' -> choices = RouletteWheel.thirdDouzaine();
-                    default -> throw new IllegalArgumentException("Button is not clicked");
+                    default -> {
+                        this.currentPlayer.restoreBalance();
+                        return;
+                    }
                 }
                 this.rouletteCroupier.addBet(
                         this.currentPlayer,

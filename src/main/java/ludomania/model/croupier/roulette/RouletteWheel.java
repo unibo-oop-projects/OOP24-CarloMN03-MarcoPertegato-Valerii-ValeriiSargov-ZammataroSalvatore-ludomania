@@ -18,7 +18,7 @@ public class RouletteWheel {
     static final Integer FIRST_HALF_BOTTOM_BOUND = 1;
 
     public static final Map<Integer, RouletteColor> ROULETTE_NUMBERS = Map.ofEntries(
-            Map.entry(0, RouletteColor.GREEN),
+            Map.entry(0, RouletteColor.VERT),
             Map.entry(1, RouletteColor.ROUGE),
             Map.entry(2, RouletteColor.NOIR),
             Map.entry(3, RouletteColor.ROUGE),

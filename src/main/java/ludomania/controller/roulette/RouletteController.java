@@ -3,7 +3,8 @@ package ludomania.controller.roulette;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -17,6 +18,9 @@ import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.game.roulette.RouletteGame;
 import ludomania.view.roulette.RouletteViewBuilder;
 
+/**
+ *
+ */
 public class RouletteController implements Controller {
 
     @FXML
@@ -213,7 +217,7 @@ public class RouletteController implements Controller {
         return switch (color.name()) {
             case "NOIR" -> "black";
             case "ROUGE" -> "red";
-            case "GREEN" -> "green";
+            case "VERT" -> "green";
             default -> "white";
         };
     }
