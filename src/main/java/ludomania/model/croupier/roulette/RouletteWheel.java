@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
  *     Extracts numbers and supplies static bet sets.
  * </p>
  */
-public class RouletteWheel {
+public final class RouletteWheel {
     private static final Integer MAX = 36;
     private static final Integer FIRST_DOUZAINE_BOTTOM_BUOND = 1;
     private static final Integer FIRST_DOUZAINE_UP_BUOND = 12;
