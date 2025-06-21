@@ -1,5 +1,8 @@
 package ludomania.core.impl;
 
+import java.util.Objects;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -52,14 +55,18 @@ public final class SceneManagerImpl implements SceneManager {
      * @param imageProvider the image provider for managing themes and
      * backgrounds
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to languageManager and imageProvider are shared intentionally"
+    )
     public SceneManagerImpl(final Stage primaryStage, final SettingsManager settingsManager,
             final AudioManager audioManager,
             final LanguageManager languageManager, final ImageProvider imageProvider) {
-        this.primaryStage = primaryStage;
-        this.audioManager = audioManager;
-        this.settingsManager = settingsManager;
-        this.languageManager = languageManager;
-        this.imageProvider = imageProvider;
+        this.primaryStage = Objects.requireNonNull(primaryStage);
+        this.audioManager = Objects.requireNonNull(audioManager);
+        this.settingsManager = Objects.requireNonNull(settingsManager);
+        this.languageManager = Objects.requireNonNull(languageManager);
+        this.imageProvider = Objects.requireNonNull(imageProvider);
         initializeStageSettings();
         this.mainScene = createMainScene();
         primaryStage.setScene(mainScene);
@@ -125,17 +132,23 @@ public final class SceneManagerImpl implements SceneManager {
     @Override
     public void switchToRoulette() {
         audioManager.playMusic("furinaTheme");
-        Parent root = new RouletteController(this, audioManager).getView();
+        final Parent root = new RouletteController(this, audioManager).getView();
         applyBackgroundToRoot(root);
         mainScene.setRoot(root);
     }
-
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally"
+    )
     private void bindFullscreenToStage() {
         settingsManager.fullscreenProperty().addListener((obs, oldVal, newVal) -> {
             primaryStage.setFullScreen(newVal);
         });
     }
-
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally"
+    )
     private void bindResolutionToStage() {
         settingsManager.resolutionWidthProperty().addListener((obs, oldVal, newVal) -> {
             primaryStage.setWidth(newVal.intValue());
@@ -145,7 +158,10 @@ public final class SceneManagerImpl implements SceneManager {
             primaryStage.setHeight(newVal.intValue());
         });
     }
-
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally"
+    )
     private void bindLanguageToManager() {
         settingsManager.currentLocaleProperty().addListener((obs, oldLocale, newLocale) -> {
             if (newLocale != null) {
@@ -153,14 +169,20 @@ public final class SceneManagerImpl implements SceneManager {
             }
         });
     }
-
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally"
+    )
     private void bindVolumeToManager() {
         settingsManager.volumeProperty().addListener((obs, oldValue, newValue) -> {
             settingsManager.save();
             audioManager.setMasterVolume(newValue.doubleValue());
         });
     }
-
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally"
+    )
     private void bindCosmeticToProvider() {
         settingsManager.cardThemeProperty().addListener((obs, oldValue, newValue) -> {
             settingsManager.save();
@@ -183,12 +205,19 @@ public final class SceneManagerImpl implements SceneManager {
         }
         mainScene.setFill(imageProvider.getBackgroundColor());
     }
-
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally"
+    )
     @Override
     public LanguageManager getLanguageManager() {
         return this.languageManager;
     }
 
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Binding to the manager are shared intentionally"
+    )
     @Override
     public ImageProvider getImageProvider() {
         return this.imageProvider;
@@ -205,7 +234,7 @@ public final class SceneManagerImpl implements SceneManager {
     @Override
     public void switchToTrenteEtQuarante() {
         audioManager.playMusic("furinaTheme");
-        final Parent root = new TrenteEtQuaranteController(this, audioManager).getView();
+        final Parent root = new TrenteEtQuaranteController(this).getView();
         applyBackgroundToRoot(root);
         mainScene.setRoot(root);
     }

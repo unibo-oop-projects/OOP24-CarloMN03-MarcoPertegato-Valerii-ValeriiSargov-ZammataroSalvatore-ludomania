@@ -2,9 +2,11 @@ package ludomania.view;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
 import javafx.geometry.Pos;
@@ -40,7 +42,6 @@ public final class CosmeticMenuViewBuilder implements ViewBuilder {
     private final CosmeticMenuHandler eventHandler;
     private final LanguageManager languageManager;
     private final ImageProvider imageProvider;
-
     /**
      * Constructs a CosmeticMenuViewBuilder with the necessary dependencies.
      *
@@ -49,12 +50,16 @@ public final class CosmeticMenuViewBuilder implements ViewBuilder {
      * @param languageManager the manager responsible for providing localized text
      * @param imageProvider   the provider for supplying image and SVG resources
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to languageManager and imageProvider are shared intentionally"
+    )
     public CosmeticMenuViewBuilder(final CosmeticMenuHandler eventHandler,
             final LanguageManager languageManager,
             final ImageProvider imageProvider) {
-        this.eventHandler = eventHandler;
-        this.languageManager = languageManager;
-        this.imageProvider = imageProvider;
+        this.eventHandler = Objects.requireNonNull(eventHandler);
+        this.languageManager = Objects.requireNonNull(languageManager);
+        this.imageProvider = Objects.requireNonNull(imageProvider);
     }
 
     @Override

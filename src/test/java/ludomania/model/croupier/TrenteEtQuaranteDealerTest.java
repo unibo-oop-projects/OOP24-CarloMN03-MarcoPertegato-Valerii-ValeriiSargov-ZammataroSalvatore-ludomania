@@ -34,7 +34,7 @@ final class TrenteEtQuaranteDealerTest {
     private TrenteEtQuaranteBet bet;
 
     @BeforeEach
-    void setUp() {
+    void setUpTQDealer() {
         player = new TrenteEtQuarantePlayer(new WalletImpl(INITIAL_MONEY), "Player1");
         bet = new TrenteEtQuaranteBet(BET_VALUE, TrenteEtQuaranteBetType.ROUGE);
         final List<Pair<Player, Bet>> roundBet = new LinkedList<>();

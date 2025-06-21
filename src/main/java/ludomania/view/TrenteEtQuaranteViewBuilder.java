@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import io.lyuda.jcards.Rank;
+import io.lyuda.jcards.Suit;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -56,9 +59,10 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
     private final Label noirTotalLabel;
     private final Label rougeTotalLabel;
     private final List<Label> betZonesLabels;
-    private final VBox betList;
+    private final VBox betLog;
     private HBox noirCardsBox;
     private HBox rougeCardsBox;
+    private double currentBalance;
 
     /**
      * Constructs the Trente et Quarante game view builder.
@@ -67,6 +71,10 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
      * @param languageManager the language manager for localization
      * @param imageProvider   the provider for chip images
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to languageManager and imageProvider are shared intentionally"
+    )
     public TrenteEtQuaranteViewBuilder(final TrenteEtQuaranteHandler eventHandler,
             final LanguageManager languageManager,
             final ImageProvider imageProvider) {
@@ -78,7 +86,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         this.balanceLabel = new Label();
         this.noirTotalLabel = new Label();
         this.rougeTotalLabel = new Label();
-        this.betList = new VBox(OFFSET);
+        this.betLog = new VBox(OFFSET);
         this.betZonesLabels = new ArrayList<>();
     }
 
@@ -91,11 +99,13 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
 
         root.setBottom(createBottomBar());
 
-        root.setLeft(createBetList());
+        root.setLeft(createBetLog());
 
         root.setRight(createDoneButton());
 
         root.setCenter(createCenter());
+
+        eventHandler.handleStartGame();
 
         return root;
     }
@@ -165,7 +175,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         final Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        balanceLabel.setText(languageManager.getString("money") + ": xxx €");
+        balanceLabel.setText(languageManager.getString("money") + " : xxx €");
         balanceLabel.setTextFill(Color.WHITE);
         balanceLabel.setFont(Font.font(FONT_SIZE));
 
@@ -215,12 +225,12 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         return ficheBar;
     }
 
-    private Node createBetList() {
-        betList.setPadding(new Insets(OFFSET));
-        betList.setStyle("-fx-background-color: white;");
-        betList.setPrefWidth(BET_LIST_WIDTH);
+    private Node createBetLog() {
+        betLog.setPadding(new Insets(OFFSET));
+        betLog.setStyle("-fx-background-color: white;");
+        betLog.setPrefWidth(BET_LIST_WIDTH);
 
-        final ScrollPane scrollPane = new ScrollPane(betList);
+        final ScrollPane scrollPane = new ScrollPane(betLog);
         scrollPane.setFitToWidth(true);
         scrollPane.setPrefHeight(SCROLL_BAR_HEIGHT);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
@@ -237,7 +247,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
 
         final Button doneButton = new Button(languageManager.getString("done"));
         doneButton.setOnAction(e -> {
-            //TODO
+            eventHandler.handleNewRound();
         });
 
         rightBox.getChildren().add(doneButton);
@@ -303,9 +313,10 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         rowLabel.setFont(Font.font(FONT_SIZE));
         rowLabel.setMinWidth(ROW_LABEL_WIDTH);
 
-        totalLabel.setText("Total: 0");
+        totalLabel.setText("Tot: 0");
         totalLabel.setTextFill(Color.WHITE);
         totalLabel.setFont(Font.font(FONT_SIZE));
+        totalLabel.setMinWidth(BET_LABEL_WIDTH / 2);
 
         final HBox row = new HBox(OFFSET, rowLabel, scrollPane, totalLabel);
         row.setAlignment(Pos.CENTER_LEFT);
@@ -319,7 +330,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         zonesBox.setPadding(new Insets(OFFSET / 2));
         zonesBox.setAlignment(Pos.CENTER);
 
-        for (final String name : List.of("Noir", "Rouge", "Couleru", "Enverse")) {
+        for (final String name : List.of("Noir", "Rouge", "Couleur", "Enverse")) {
             final Label zone = new Label(name);
             zone.setTextFill(Color.WHITE);
             zone.setAlignment(Pos.CENTER);
@@ -331,9 +342,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
                 + TRANSPARENT_BACKGROUND
             );
             zone.setOnMouseClicked(e -> {
-                /*if (!zone.isDisable()) {
-                     
-                }*/
+                eventHandler.handleBetPlacement(name);
             });
 
             betZonesLabels.add(zone);
@@ -341,7 +350,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
         }
 
         ficheToggleGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
-        final boolean enabled = newToggle != null;
+        final boolean enabled = newToggle != null && ((FicheValue) newToggle.getUserData()).getValue() <= currentBalance;
         for (final Label zoneLabel : betZonesLabels) {
                 zoneLabel.setDisable(!enabled);
                 if (enabled) {
@@ -380,7 +389,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
      * @param total the card total to display
      */
     public void setNoirTotal(final int total) {
-        noirTotalLabel.setText("Total: " + total);
+        noirTotalLabel.setText("Tot: " + total);
     }
 
     /**
@@ -389,7 +398,7 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
      * @param total the card total to display
      */
     public void setRougeTotal(final int total) {
-        rougeTotalLabel.setText("Total: " + total);
+        rougeTotalLabel.setText("Tot: " + total);
     }
 
     /**
@@ -406,26 +415,38 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
      *
      * @param balance the user's balance in chips
      */
-    public void setBalance(final int balance) {
-        balanceLabel.setText("Balance: " + balance + " $");
+    public void setBalance(final double balance) {
+        currentBalance = balance;
+        balanceLabel.setText(languageManager.getString("money") + " " + balance + " $");
     }
 
     /**
-     * Adds a textual description of a placed bet to the list.
+     * Adds a textual description of a placed bet to the bet log.
      *
-     * @param betDescription a string describing the bet
+     * @param betDescription a string describing the bet to be displayed
      */
     public void addBet(final String betDescription) {
         final Label betLabel = new Label(betDescription);
         betLabel.setWrapText(true);
-        betList.getChildren().add(betLabel);
+        betLog.getChildren().add(betLabel);
+    }
+
+    /**
+     * Displays the current turn number in the bet log.
+     *
+     * @param turn the current turn number to display
+     */
+    public void setTurn(final int turn) {
+        final Label betLabel = new Label(languageManager.getString("turn") + turn);
+        betLabel.setWrapText(true);
+        betLog.getChildren().add(betLabel);
     }
 
     /**
      * Clears all displayed bets from the list.
      */
     public void clearBets() {
-        betList.getChildren().clear();
+        betLog.getChildren().clear();
     }
 
     /**
@@ -442,21 +463,23 @@ public final class TrenteEtQuaranteViewBuilder implements ViewBuilder {
     }
 
     /**
-     * Adds a card visual node to the Noir row.
+     * Adds a card to the Noir row using its rank and suit.
      *
-     * @param cardNode the node representing a card
+     * @param rank the rank of the card (e.g., ACE, KING, TEN)
+     * @param suit the suit of the card (e.g., HEARTS, SPADES)
      */
-    public void addCardToNoir(final Node cardNode) {
-        noirCardsBox.getChildren().add(cardNode);
+    public void addCardToNoir(final Rank rank, final Suit suit) {
+        noirCardsBox.getChildren().add(imageProvider.getSVGCard(rank, suit));
     }
 
-     /**
-     * Adds a card visual node to the Rouge row.
+    /**
+     * Adds a card to the Rouge row using its rank and suit.
      *
-     * @param cardNode the node representing a card
+     * @param rank the rank of the card (e.g., ACE, KING, TEN)
+     * @param suit the suit of the card (e.g., HEARTS, SPADES)
      */
-    public void addCardToRouge(final Node cardNode) {
-        rougeCardsBox.getChildren().add(cardNode);
+    public void addCardToRouge(final Rank rank, final Suit suit) {
+        rougeCardsBox.getChildren().add(imageProvider.getSVGCard(rank, suit));
     }
 
     /**
