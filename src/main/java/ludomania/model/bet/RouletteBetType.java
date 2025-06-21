@@ -2,6 +2,9 @@ package ludomania.model.bet;
 
 import ludomania.model.bet.api.BetType;
 
+/**
+ * Represent the bet types for the Roulette game.
+ */
 public class RouletteBetType {
     private static final Double PLEIN_PAYOUT = 35.0;
     private static final Double CHEVAL_PAYOUT = 17.0;
@@ -17,6 +20,9 @@ public class RouletteBetType {
 
     private RouletteBetType() { }
 
+    /**
+     * Plein bet type.
+     */
     public static final BetType PLEIN = new BetType() {
         @Override
         public String getTypeName() {
@@ -29,6 +35,9 @@ public class RouletteBetType {
         }
     };
 
+    /**
+     * Cheval bet type.
+     */
     public static final BetType CHEVAL = new BetType() {
         @Override
         public String getTypeName() {
@@ -40,7 +49,9 @@ public class RouletteBetType {
             return CHEVAL_PAYOUT;
         }
     };
-
+    /**
+     * Carre bet type.
+     */
     public static final BetType CARRE = new BetType() {
         @Override
         public String getTypeName() {
@@ -53,6 +64,9 @@ public class RouletteBetType {
         }
     };
 
+    /**
+     * Douzaine bet type.
+     */
     public static final BetType DOUZAINE = new BetType() {
         @Override
         public String getTypeName() {
@@ -65,6 +79,9 @@ public class RouletteBetType {
         }
     };
 
+    /**
+     * Colonne bet type.
+     */
     public static final BetType COLONNE = new BetType() {
         @Override
         public String getTypeName() {
@@ -77,6 +94,9 @@ public class RouletteBetType {
         }
     };
 
+    /**
+     * Pair bet type.
+     */
     public static final BetType PAIR = new BetType() {
         @Override
         public String getTypeName() {
@@ -89,6 +109,9 @@ public class RouletteBetType {
         }
     };
 
+    /**
+     * Impair bet type.
+     */
     public static final BetType IMPAIR = new BetType() {
         @Override
         public String getTypeName() {
@@ -101,6 +124,9 @@ public class RouletteBetType {
         }
     };
 
+    /**
+     * Manque bet type.
+     */
     public static final BetType MANQUE = new BetType() {
         @Override
         public String getTypeName() {
@@ -113,6 +139,9 @@ public class RouletteBetType {
         }
     };
 
+    /**
+     * Passe bet type.
+     */
     public static final BetType PASSE = new BetType() {
         @Override
         public String getTypeName() {
@@ -125,6 +154,9 @@ public class RouletteBetType {
         }
     };
 
+    /**
+     * Rouge bet type.
+     */
     public static final BetType ROUGE = new BetType() {
         @Override
         public String getTypeName() {
@@ -137,6 +169,9 @@ public class RouletteBetType {
         }
     };
 
+    /**
+     * Noir bet type.
+     */
     public static final BetType NOIR = new BetType() {
         @Override
         public String getTypeName() {

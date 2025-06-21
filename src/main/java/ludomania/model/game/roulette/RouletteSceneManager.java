@@ -35,6 +35,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Implements the Roulette game graphic logic.
+ * <p>
+ *     Handles operations related to the UI modifications.
+ * </p>
+ */
 public class RouletteSceneManager {
     private final int dialogSize = 450;
     private final int scrollPaneDefaultHeight = 400;
@@ -48,6 +54,11 @@ public class RouletteSceneManager {
 
     private final ToggleGroup ficheToggleGroup;
 
+    /**
+     * Instantiate the Roulette game scene manager.
+     * @param sceneManager the manager for the application scenes.
+     * @param audioManager the manager for audio features.
+     */
     public RouletteSceneManager(final SceneManager sceneManager, final AudioManager audioManager) {
         this.sceneManager = sceneManager;
         this.languageManager = sceneManager.getLanguageManager();
@@ -57,6 +68,9 @@ public class RouletteSceneManager {
         this.ficheToggleGroup = new ToggleGroup();
     }
 
+    /**
+     * Creates a dialog to ask the user confirmation to quit the game.
+     */
     public void quitGame() {
         final Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
         confirmDialog.setTitle(languageManager.getString("confirm_exit"));
@@ -75,18 +89,30 @@ public class RouletteSceneManager {
         }
     }
 
+    /**
+     * Highlights the carre bet cells.
+     * @param event the mouse enter event on carre bet button.
+     */
     public void highlightCarre(final MouseEvent event) {
         if (event.getSource() instanceof Node clickedButton) {
             clickedButton.getParent().setStyle("-fx-border-color: #00eeff; -fx-border-width: 3px;");
         }
     }
 
+    /**
+     * Unhighlights the carre bet cells.
+     * @param event the mouse exit event on carre bet button.
+     */
     public void unhighlightCarre(final MouseEvent event) {
         if (event.getSource() instanceof Node clickedButton) {
             clickedButton.getParent().setStyle("-fx-border-color: trasparent; -fx-border-width: 1px;");
         }
     }
 
+    /**
+     * Glows the roulette wheel.
+     * @param event the mouse click enter on roulette wheel image.
+     */
     public void glowWheel(final MouseEvent event) {
         if (event.getSource() instanceof ImageView node) {
             final Glow glow = new Glow();
@@ -96,12 +122,21 @@ public class RouletteSceneManager {
         }
     }
 
+    /**
+     * Unglows the roulette wheel.
+     * @param event the mouse click exit on roulette wheel image.
+     */
     public void unglowWheel(final MouseEvent event) {
         if (event.getSource() instanceof ImageView node) {
             node.setEffect(null);
         }
     }
 
+    /**
+     * Attachs the fiches images and creates corresponding event handlers on the game scene.
+     * @param node the element on which attaching fiches.
+     * @param controlProperty the control property to which attaching event listeners.
+     */
     public void attachFiches(final Pane node, final IntegerProperty controlProperty) {
         Arrays.stream(FicheValue.values())
                 .sorted((a, b) -> -Integer.compare(b.getValue(), a.getValue()))
@@ -133,6 +168,9 @@ public class RouletteSceneManager {
         });
     }
 
+    /**
+     * Shows a dialog containing the game rules.
+     */
     public void showRules() {
         if (this.rulesWindow != null) {
             this.rulesWindow.close();
@@ -162,6 +200,9 @@ public class RouletteSceneManager {
         this.rulesWindow.showAndWait();
     }
 
+    /**
+     * Shows a dialog containing the current placed bets.
+     */
     public void showBets(final List<Pair<Player, Bet>> bets) {
         if (this.betsWindow != null) {
             this.betsWindow.close();
@@ -192,6 +233,9 @@ public class RouletteSceneManager {
         this.betsWindow.showAndWait();
     }
 
+    /**
+     * Shows a dialog to inform the user it's game over.
+     */
     public void alertAndQuit() {
         final Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
         confirmDialog.setTitle(languageManager.getString("confirm_exit"));

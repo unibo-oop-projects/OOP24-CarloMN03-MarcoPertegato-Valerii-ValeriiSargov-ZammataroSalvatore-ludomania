@@ -22,7 +22,6 @@ import ludomania.view.roulette.RouletteViewBuilder;
  * Controller implementation for the Roulette game.
  * <p>
  * Manages interactions between the view (UI) and the model logic facade {@link RouletteGame}.
- * Handles user actions such as placing bets, starting rounds, and returning to the main menu.
  */
 public class RouletteController implements Controller {
 
@@ -60,9 +59,9 @@ public class RouletteController implements Controller {
     private final IntegerProperty betAmount = new SimpleIntegerProperty();
 
     /**
-     * Instantiate the game manager {@link RouletteGame} and the view builder {@link RouletteViewBuilder}
-     * @param sceneManager the manager for switching scenes
-     * @param audioManager the manager for audio features
+     * Instantiate the game manager {@link RouletteGame} and the view builder {@link RouletteViewBuilder}.
+     * @param sceneManager the manager for the application scenes.
+     * @param audioManager the manager for audio features.
      */
     public RouletteController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.game = new RouletteGame(sceneManager, audioManager);
@@ -70,7 +69,7 @@ public class RouletteController implements Controller {
     }
 
     /**
-     * Sets starting configurations right after UI is loaded
+     * Sets starting configurations right after UI is loaded.
      */
     @FXML
     public void initialize() {
@@ -99,7 +98,7 @@ public class RouletteController implements Controller {
 
     /**
      * {@inheritDoc}
-     * @return root node of the Roulette scene
+     * @return root node of the Roulette scene.
      */
     @Override
     public Parent getView() {

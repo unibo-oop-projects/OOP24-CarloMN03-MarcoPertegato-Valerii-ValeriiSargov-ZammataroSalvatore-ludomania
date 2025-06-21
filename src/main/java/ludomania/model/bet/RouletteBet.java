@@ -8,12 +8,22 @@ import ludomania.model.croupier.roulette.RouletteColor;
 import java.util.*;
 import java.util.function.BiFunction;
 
+/**
+ * Represents the Roulette game Bet.
+ */
 public class RouletteBet extends Bet {
 
     public final BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> success;
 
     private final Set<Object> choice;
 
+    /**
+     * Creates a new {@link RouletteBet}.
+     * @param success the function that will evaluate if the bet is winning.
+     * @param choice the choice operated by the player.
+     * @param value the value of the bet.
+     * @param type the type of the bet.
+     */
     public RouletteBet(
             final BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> success,
             final Set<Object> choice,
@@ -25,6 +35,10 @@ public class RouletteBet extends Bet {
         this.choice = choice;
     }
 
+    /**
+     * Evaluates the bet win.
+     * @return the bet win amount.
+     */
     @Override
     public Double evaluate() {
         return getValue() + (getValue() * getType().getPayout());
@@ -35,6 +49,10 @@ public class RouletteBet extends Bet {
         return String.format("%1$,.2f $, %2$s on %3$s", this.getValue(), this.getType().getTypeName(), this.getChoice().toString());
     }
 
+    /**
+     * Gets the choiche on which the bet is placed.
+     * @return the corresponding color or numbers.
+     */
     public Set<Object> getChoice() {
         return this.choice;
     }

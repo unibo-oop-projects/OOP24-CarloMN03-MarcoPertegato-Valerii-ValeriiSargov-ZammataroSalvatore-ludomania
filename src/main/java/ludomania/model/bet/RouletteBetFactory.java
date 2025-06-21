@@ -4,11 +4,21 @@ import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.croupier.roulette.RouletteWheel;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+/**
+ * Represents a {@code factory} for the roulette game bets.
+ */
 public final class RouletteBetFactory {
     private RouletteBetFactory() { }
 
+    /**
+     * Creates a plein bet.
+     * @param choice the player choice on which to place the bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
     public static RouletteBet pleinBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr, choices) -> {
@@ -23,6 +33,12 @@ public final class RouletteBetFactory {
                 RouletteBetType.PLEIN);
     }
 
+    /**
+     * Creates a cheval bet.
+     * @param choice the player choice on which to place the bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
     public static RouletteBet chevalBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr, choices) -> {
@@ -37,6 +53,12 @@ public final class RouletteBetFactory {
                 RouletteBetType.CHEVAL);
     }
 
+    /**
+     * Creates a carre bet.
+     * @param choice the player choice on which to place the bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
     public static RouletteBet carreBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr, choices) -> {
@@ -51,6 +73,12 @@ public final class RouletteBetFactory {
                 RouletteBetType.CARRE);
     }
 
+    /**
+     * Creates a douzaine bet.
+     * @param choice the player choice on which to place the bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
     public static RouletteBet douzaineBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr, choices) -> {
@@ -65,6 +93,12 @@ public final class RouletteBetFactory {
                 RouletteBetType.DOUZAINE);
     }
 
+    /**
+     * Creates a colonne bet.
+     * @param choice the player choice on which to place the bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
     public static RouletteBet colonneBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr, choices) -> {
@@ -79,50 +113,80 @@ public final class RouletteBetFactory {
                 RouletteBetType.COLONNE);
     }
 
-    public static RouletteBet pairBet(final Set<Object> choice, final double amount) {
+    /**
+     * Creates a pair bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
+    public static RouletteBet pairBet(final double amount) {
         return new RouletteBet(
                 (cr, choices) -> cr.getKey() != 0 && cr.getKey() % 2 == 0,
-                choice,
+                Set.of(),
                 amount,
                 RouletteBetType.PAIR);
     }
 
-    public static RouletteBet impairBet(final Set<Object> choice, final double amount) {
+    /**
+     * Creates a impair bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
+    public static RouletteBet impairBet(final double amount) {
         return new RouletteBet(
                 (cr,choices) -> cr.getKey() != 0 && cr.getKey() % 2 != 0,
-                choice,
+                Set.of(),
                 amount,
                 RouletteBetType.IMPAIR);
     }
 
-    public static RouletteBet passeBet(final Set<Object> choice, final double amount) {
+    /**
+     * Creates a passe bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
+    public static RouletteBet passeBet(final double amount) {
         return new RouletteBet(
                 (cr,choices) -> RouletteWheel.passe().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
-                choice,
+                Set.of(),
                 amount,
                 RouletteBetType.PASSE);
     }
 
-    public static RouletteBet manqueBet(final Set<Object> choice, final double amount) {
+    /**
+     * Creates a manque bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
+    public static RouletteBet manqueBet(final double amount) {
         return new RouletteBet(
                 (cr,choices) -> RouletteWheel.manque().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
-                choice,
+                Set.of(),
                 amount,
                 RouletteBetType.MANQUE);
     }
 
-    public static RouletteBet rougeBet(final Set<Object> choice, final double amount) {
+    /**
+     * Creates a rouge bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
+    public static RouletteBet rougeBet(final double amount) {
         return new RouletteBet(
                 (cr,choices) -> cr.getValue() == RouletteColor.ROUGE,
-                choice,
+                Set.of(),
                 amount,
                 RouletteBetType.ROUGE);
     }
 
-    public static RouletteBet noirBet(final Set<Object> choice, final double amount) {
+    /**
+     * Creates a noir bet.
+     * @param amount the value of the bet.
+     * @return the new bet instance.
+     */
+    public static RouletteBet noirBet(final double amount) {
         return new RouletteBet(
                 (cr,choices) -> cr.getValue() == RouletteColor.NOIR,
-                choice,
+                Set.of(),
                 amount,
                 RouletteBetType.NOIR);
     }

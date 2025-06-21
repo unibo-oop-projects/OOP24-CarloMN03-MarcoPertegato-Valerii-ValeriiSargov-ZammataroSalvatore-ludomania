@@ -10,11 +10,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Croupier for Roulette game.
+ * <p>
+ *     Keeps track of the round bets and evaluates them.
+ * </p>
+ */
 public class RouletteCroupier extends Croupier<Pair<Integer, RouletteColor>> {
     public RouletteCroupier() {
         super(new ArrayList<>());
     }
 
+    /**
+     * {@inheritDoc}
+     * @param result the outcome of the round to use for bet evaluation
+     * @return
+     */
     @Override
     public Map<Player, Double> checkBets(final CounterResult<Pair<Integer, RouletteColor>> result) {
         final Map<Player, Double> winningBets = new HashMap<>();

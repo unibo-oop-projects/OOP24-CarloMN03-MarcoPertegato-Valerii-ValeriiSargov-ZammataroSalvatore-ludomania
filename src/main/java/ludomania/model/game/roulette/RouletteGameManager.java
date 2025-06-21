@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Represents the core function that manages all behaviour aspects concerning Roulette game.
+ * Represents the core function that manages all behaviour aspects concerning Roulette game logic.
  */
 public class RouletteGameManager {
     private final static String DEFAULT_PLAYER_USERNAME = "DemoPlayer";
@@ -33,6 +33,11 @@ public class RouletteGameManager {
     private RoulettePlayer currentPlayer;
     private CounterResult<Pair<Integer, RouletteColor>> lastResult;
 
+    /**
+     * Gets the current set of players for the game if present, otherwise creates a demo player. Sets the current player.
+     * @param rouletteCroupier the croupier instance for the game.
+     * @param players the set of player for the game.
+     */
     public RouletteGameManager(final RouletteCroupier rouletteCroupier, final Set<RoulettePlayer> players) {
         this.rouletteCroupier = rouletteCroupier;
         if (players == null) {
@@ -44,41 +49,57 @@ public class RouletteGameManager {
         if (players != null && !players.isEmpty()) {
             final Optional<RoulettePlayer> firstPlayer = players.stream().findFirst();
             this.currentPlayer = firstPlayer.orElseGet(() -> {
-                final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME);
+                final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), DEFAULT_PLAYER_USERNAME);
                 this.players.put(demoPlayer.getUsername(), demoPlayer);
                 return demoPlayer;
             });
         } else {
-            final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME);
+            final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), DEFAULT_PLAYER_USERNAME);
             this.players.put(demoPlayer.getUsername(), demoPlayer);
             this.currentPlayer = demoPlayer;
         }
     }
 
+    /**
+     * Gets the current single player for the game if present, otherwise creates a demo player. Sets the current player.
+     * @param rouletteCroupier the croupier instance for the game.
+     * @param player the single player for the game.
+     */
     public RouletteGameManager(final RouletteCroupier rouletteCroupier, final RoulettePlayer player) {
         this.rouletteCroupier = rouletteCroupier;
 
         final RoulettePlayer singlePlayer =
-                player == null ? new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME) : player;
+                player == null ? new RoulettePlayer(new WalletImpl(1000.0), DEFAULT_PLAYER_USERNAME) : player;
 
         this.players = new HashMap<>();
         this.players.put(singlePlayer.getUsername(), singlePlayer);
         this.currentPlayer = singlePlayer;
     }
 
+    /**
+     * Creates ademo player for the game and sets it to be the current player.
+     * @param rouletteCroupier the croupier instance for the game.
+     */
     public RouletteGameManager(final RouletteCroupier rouletteCroupier) {
         this.rouletteCroupier = rouletteCroupier;
-        final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME);
+        final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), DEFAULT_PLAYER_USERNAME);
         this.players = new HashMap<>();
         this.players.put(demoPlayer.getUsername(), demoPlayer);
         this.currentPlayer = demoPlayer;
     }
 
+    /**
+     * Gets next roulette wheel result.
+     * @return s {@link CounterResult} of {@link Pair} containing number and related color.
+     */
     public CounterResult<Pair<Integer, RouletteColor>> runGame() {
         this.lastResult = new CounterResult<>(RouletteWheel.random());
         return this.lastResult;
     }
 
+    /**
+     * Checks all the winning bets of the round and pays corresponding players. Cleans all the round bets.
+     */
     public void evaluateGame() {
         final Map<Player, Double> winners =  this.rouletteCroupier.checkBets(this.lastResult);
 
@@ -91,16 +112,28 @@ public class RouletteGameManager {
         this.rouletteCroupier.clearRound();
     }
 
+    /**
+     * Checks if the current player has still money.
+     * @return true if success, false otherwise.
+     */
     public boolean checkGameOver() {
         return this.currentPlayer.getBalance() == 0;
     }
 
+    /**
+     * Sets the new current player, if present.
+     * @param username the player username.
+     */
     public void setCurrentPlayer(final String username) {
         if (this.players.containsKey(username)) {
             this.currentPlayer = this.players.get(username);
         }
     }
 
+    /**
+     * Places a plein bet, if possible.
+     * @param event the mouse click event on the plein bet button.
+     */
     public void pleinBet(final MouseEvent event) {
         try {
             if (event.getSource() instanceof Button button) {
@@ -118,6 +151,10 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Places a cheval bet, if possible.
+     * @param event the mouse click event on the cheval bet button.
+     */
     public void chevalBet(final MouseEvent event) {
         try {
             if (event.getSource() instanceof Separator separator) {
@@ -138,6 +175,10 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Places a carre bet, if possible.
+     * @param event the mouse click event on the carre bet button.
+     */
     public void carreBet(final MouseEvent event) {
         try {
             if (event.getSource() instanceof Button button) {
@@ -158,6 +199,10 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Places a colonne bet, if possible.
+     * @param event the mouse click event on the colonne bet button.
+     */
     public void colonneBet(final MouseEvent event) {
         try {
             if (event.getSource() instanceof Button button) {
@@ -185,6 +230,9 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Places a noir bet, if possible.
+     */
     public void noirBet() {
         try {
             this.rouletteCroupier.addBet(
@@ -198,6 +246,9 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Places a rouge bet, if possible.
+     */
     public void rougeBet() {
         try {
             this.rouletteCroupier.addBet(
@@ -211,6 +262,9 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Places a pair bet, if possible.
+     */
     public void pairBet() {
         try {
             this.rouletteCroupier.addBet(
@@ -222,6 +276,9 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Places an impair bet, if possible.
+     */
     public void impairBet() {
         try {
             this.rouletteCroupier.addBet(
@@ -234,6 +291,9 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Places a passe bet, if possible.
+     */
     public void passeBet() {
         try {
             this.rouletteCroupier.addBet(
@@ -245,6 +305,9 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Places a manque bet, if possible.
+     */
     public void manqueBet() {
         try {
             this.rouletteCroupier.addBet(
@@ -257,6 +320,10 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Places a douzaine bet, if possible.
+     * @param event the mouse click event on the corresponding douzaine bet button.
+     */
     public void douzaineBet(final MouseEvent event) {
         try {
             if (event.getSource() instanceof Button button) {
@@ -283,6 +350,11 @@ public class RouletteGameManager {
         }
     }
 
+    /**
+     * Adds the selected bet amount to the current bet amount, if possible.
+     * @param amount the amount to add.
+     * @return the resulting bet amount.
+     */
     public Double addBetAmount(final Integer amount) {
         if (this.currentPlayer.withdraw(Double.valueOf(amount))) {
             this.currentPlayer.addBetAmount(Double.valueOf(amount));
@@ -290,10 +362,18 @@ public class RouletteGameManager {
         return this.currentPlayer.getBetAmount();
     }
 
+    /**
+     * Gets current player available money.
+     * @return the current player available amount of money.
+     */
     public Double getPlayerBalance() {
         return this.currentPlayer.getBalance();
     }
 
+    /**
+     * Gets all bets placed in current round.
+     * @return a {@link List} of {@link Pair} containing bets and corresponding owner.
+     */
     public List<Pair<Player, Bet>> getBets() {
         return this.rouletteCroupier.getRoundBet();
     }
