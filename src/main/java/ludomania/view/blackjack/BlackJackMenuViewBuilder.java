@@ -51,7 +51,9 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
     private static final int MAX_SIZE = 60;
     private static final int PREF_HEIGHT = 300;
     private static final int TWENTYFIVE = 25;
-    private static final int FIVEHUNDRED = 300;
+    private static final int FIVEHUNDRED = 500;
+    private static final String WHITE = "white";
+    private static final String STYLE = "-fx-font-size:18px";
 
     private final BlackJackHandler handler;
     private final LanguageManager languageManager;
@@ -95,7 +97,8 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         topBar.setSpacing(10);
         topBar.setAlignment(Pos.CENTER);
         final Label title = new Label("BLACKJACK");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        title.setStyle("-fx-font-size: 30px; -fx-font-weight: bold;");
+        title.setTextFill(javafx.scene.paint.Paint.valueOf(WHITE));
         final Button rulesBtn = new Button(languageManager.getString("rule_button"));
         rulesBtn.setOnAction(e -> showRulesDialog());
         final Button exitButton = new Button();
@@ -257,7 +260,7 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
             final ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
             confirmDialog.getButtonTypes().setAll(buttonYes, buttonNo);
             final Optional<ButtonType> result = confirmDialog.showAndWait();
-            if (result.isPresent() && result.get() == buttonYes) {
+            if (result.isPresent() && result.get().equals(buttonYes)) {
                 handler.handleExitToMenu();
             }
     }
@@ -311,6 +314,8 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         final VBox dealerBox = new VBox(BOTTOM_AREA_SPACING);
         dealerBox.setAlignment(Pos.TOP_CENTER);
         dealerLabel = new Label("Dealer  ");
+        dealerLabel.setStyle(STYLE);
+        dealerLabel.setTextFill(javafx.scene.paint.Paint.valueOf(WHITE));
         dealerCards = new HBox(); // Carte più vicine tra loro
         dealerCards.setAlignment(Pos.CENTER);
         updateDealerBox(dealerCards, false);
@@ -320,6 +325,8 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
         final VBox playerBox = new VBox(BOTTOM_AREA_SPACING);
         playerBox.setAlignment(Pos.BOTTOM_CENTER);
         playerLabel = new Label("Player  ");
+        playerLabel.setStyle(STYLE);
+        playerLabel.setTextFill(javafx.scene.paint.Paint.valueOf(WHITE));
         final HBox playerCards = new HBox(2); 
         playerCards.setAlignment(Pos.CENTER);
         updatePlayerBox(playerCards);
@@ -348,6 +355,8 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
      */
     private void updateWinLabel(final Label label) {
         label.setText(handler.getGameOutcomeMessage());
+        label.setStyle("-fx-font-size:24px");
+        label.setTextFill(javafx.scene.paint.Paint.valueOf(WHITE));
     }
 
     /**
@@ -358,6 +367,8 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
     private void updateStatusLabel(final Label label) {
         label.setText("User: " + handler.getPlayerName()
             + " | Money: $" + String.format("%.2f", handler.getPlayerBalance()));
+        label.setStyle(STYLE);
+        label.setTextFill(javafx.scene.paint.Paint.valueOf(WHITE));
     }
 
     /**
@@ -371,6 +382,8 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
             () -> "Bet: " + String.format("%.2f", (double) puntata.get()),
             puntata
         ));
+        label.setStyle(STYLE);
+        label.setTextFill(javafx.scene.paint.Paint.valueOf(WHITE));
     }
 
     /**
