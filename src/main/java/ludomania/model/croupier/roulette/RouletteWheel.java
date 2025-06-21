@@ -4,22 +4,18 @@ import ludomania.model.Pair;
 
 import java.util.Map;
 import java.util.Set;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RouletteWheel {
-    private final static Integer MAX = 36;
-    private final static Integer FIRST_DOUZAINE_BOTTOM_BUOND = 1;
-    private final static Integer FIRST_DOUZAINE_UP_BUOND = 12;
-    private final static Integer SECOND_DOUZAINE_UP_BUOND = 24;
-    private final static Integer THIRD_DOUZAINE_UP_BUOND = 36;
-    private final static Integer FIRST_HALF_UP_BOUND = 18;
-    private final static Integer FIRST_HALF_BOTTOM_BOUND = 1;
-
-    private RouletteWheel() { }
+    static final Integer MAX = 36;
+    static final Integer FIRST_DOUZAINE_BOTTOM_BUOND = 1;
+    static final Integer FIRST_DOUZAINE_UP_BUOND = 12;
+    static final Integer SECOND_DOUZAINE_UP_BUOND = 24;
+    static final Integer THIRD_DOUZAINE_UP_BUOND = 36;
+    static final Integer FIRST_HALF_UP_BOUND = 18;
+    static final Integer FIRST_HALF_BOTTOM_BOUND = 1;
 
     public static final Map<Integer, RouletteColor> ROULETTE_NUMBERS = Map.ofEntries(
             Map.entry(0, RouletteColor.GREEN),
@@ -64,12 +60,14 @@ public class RouletteWheel {
     public final static Set<Object> SECOND_COLONNE = Set.of(2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35);
     public final static Set<Object> THIRD_COLONNE = Set.of(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36);
 
+    private RouletteWheel() { }
+
     public static Pair<Integer, RouletteColor> random() {
-        Integer number = new Random().nextInt(MAX + 1);
+        final Integer number = new Random().nextInt(MAX + 1);
         return new Pair<>(number, ROULETTE_NUMBERS.get(number));
     }
 
-    public static RouletteColor color(Integer number) {
+    public static RouletteColor color(final Integer number) {
         return ROULETTE_NUMBERS.get(number);
     }
 

@@ -11,28 +11,28 @@ import ludomania.controller.roulette.RouletteController;
 import ludomania.view.ViewBuilder;
 
 public class RouletteViewBuilder implements ViewBuilder {
-    private final String SEP = File.separator;
+    private final String sep = File.separator;
     private final String fxmlFileName = "RouletteViewTemplate.fxml";
     private final String fxmlStyleFileName = "RouletteView.css";
     private final String fxmlFilePath = new File(System.getProperty("user.dir")).getPath()
-            + SEP + "src"
-            + SEP + "main"
-            + SEP + "java"
-            + SEP + "ludomania"
-            + SEP + "view"
-            + SEP + "roulette"
-            + SEP + "resources"
-            + SEP + fxmlFileName;
+            + sep + "src"
+            + sep + "main"
+            + sep + "java"
+            + sep + "ludomania"
+            + sep + "view"
+            + sep + "roulette"
+            + sep + "resources"
+            + sep + fxmlFileName;
 
-    private final String FXML_STYLE_FILE_PATH = new File(System.getProperty("user.dir")).getPath()
-            + SEP + "src"
-            + SEP + "main"
-            + SEP + "java"
-            + SEP + "ludomania"
-            + SEP + "view"
-            + SEP + "roulette"
-            + SEP + "resources"
-            + SEP + fxmlStyleFileName;
+    private final String fxmlStyleFilePath = new File(System.getProperty("user.dir")).getPath()
+            + sep + "src"
+            + sep + "main"
+            + sep + "java"
+            + sep + "ludomania"
+            + sep + "view"
+            + sep + "roulette"
+            + sep + "resources"
+            + sep + fxmlStyleFileName;
 
     private final RouletteController controller;
 
@@ -52,9 +52,8 @@ public class RouletteViewBuilder implements ViewBuilder {
             loader.setLocation(fxml.toURI().toURL());
 
             root = loader.<BorderPane>load();
-            root.getStylesheets().add(this.FXML_STYLE_FILE_PATH);
+            root.getStylesheets().add(this.fxmlStyleFilePath);
         } catch (final IOException e) {
-            System.err.println(e.getMessage());
             root = new BorderPane();
             root.setCenter(new Label("ERRORE DURANTE IL CARICAMENTO DELLA VIEW"));
         }

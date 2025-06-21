@@ -32,15 +32,15 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         return this.gameManager.runGame();
     }
 
-    public void pleinBet(final MouseEvent event) throws IllegalArgumentException {
+    public void pleinBet(final MouseEvent event) {
         this.gameManager.pleinBet(event);
     }
 
-    public void chevalBet(final MouseEvent event) throws IllegalArgumentException {
+    public void chevalBet(final MouseEvent event) {
         this.gameManager.chevalBet(event);
     }
 
-    public void carreBet(final MouseEvent event) throws IllegalArgumentException {
+    public void carreBet(final MouseEvent event) {
         this.gameManager.carreBet(event);
     }
 
@@ -72,7 +72,7 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         this.gameManager.manqueBet();
     }
 
-    public void douzineBet(final MouseEvent event) throws IllegalArgumentException {
+    public void douzineBet(final MouseEvent event) {
         this.gameManager.douzaineBet(event);
     }
 
@@ -96,7 +96,7 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         this.sceneManager.quitGame();
     }
 
-    public Double addBetAmount(Integer amount) {
+    public Double addBetAmount(final Integer amount) {
         return this.gameManager.addBetAmount(amount);
     }
 

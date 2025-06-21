@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * Represents the core function that manages all behaviour aspects concerning Roulette game.
  */
 public class RouletteGameManager {
-    private final String defaultPlayerUsername = "DemoPlayer";
+    private final static String DEFAULT_PLAYER_USERNAME = "DemoPlayer";
 
     private final RouletteCroupier rouletteCroupier;
     private final Map<String, RoulettePlayer> players;
@@ -44,12 +44,12 @@ public class RouletteGameManager {
         if (players != null && !players.isEmpty()) {
             final Optional<RoulettePlayer> firstPlayer = players.stream().findFirst();
             this.currentPlayer = firstPlayer.orElseGet(() -> {
-                RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.defaultPlayerUsername);
+                final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME);
                 this.players.put(demoPlayer.getUsername(), demoPlayer);
                 return demoPlayer;
             });
         } else {
-            final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.defaultPlayerUsername);
+            final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME);
             this.players.put(demoPlayer.getUsername(), demoPlayer);
             this.currentPlayer = demoPlayer;
         }
@@ -59,7 +59,7 @@ public class RouletteGameManager {
         this.rouletteCroupier = rouletteCroupier;
 
         final RoulettePlayer singlePlayer =
-                player == null ? new RoulettePlayer(new WalletImpl(1000.0), this.defaultPlayerUsername) : player;
+                player == null ? new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME) : player;
 
         this.players = new HashMap<>();
         this.players.put(singlePlayer.getUsername(), singlePlayer);
@@ -68,7 +68,7 @@ public class RouletteGameManager {
 
     public RouletteGameManager(final RouletteCroupier rouletteCroupier) {
         this.rouletteCroupier = rouletteCroupier;
-        final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.defaultPlayerUsername);
+        final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME);
         this.players = new HashMap<>();
         this.players.put(demoPlayer.getUsername(), demoPlayer);
         this.currentPlayer = demoPlayer;
@@ -122,7 +122,9 @@ public class RouletteGameManager {
         try {
             if (event.getSource() instanceof Separator separator) {
                 final String id = separator.getId();
-                Set<Object> choices = Arrays.stream(id.split("-")).map(Integer::parseInt).collect(Collectors.toSet());
+                final Set<Object> choices =
+                        Arrays.stream(id.split("-")).map(Integer::parseInt).collect(Collectors.toSet());
+
                 this.rouletteCroupier.addBet(
                         this.currentPlayer,
                         this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.CHEVAL, Set.of(choices)));
@@ -140,7 +142,8 @@ public class RouletteGameManager {
         try {
             if (event.getSource() instanceof Button button) {
                 final String id = button.getId();
-                Set<Object> choices = Arrays.stream(id.split("-")).map(Integer::parseInt).collect(Collectors.toSet());
+                final Set<Object> choices =
+                        Arrays.stream(id.split("-")).map(Integer::parseInt).collect(Collectors.toSet());
 
                 this.rouletteCroupier.addBet(
                         this.currentPlayer,
