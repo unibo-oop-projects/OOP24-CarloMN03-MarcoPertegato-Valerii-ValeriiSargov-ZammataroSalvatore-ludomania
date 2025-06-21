@@ -1,4 +1,4 @@
-package ludomania.controller.impl;
+package ludomania.controller;
 
 import java.util.LinkedList;
 import java.util.List;

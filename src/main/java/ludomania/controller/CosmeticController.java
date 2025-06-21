@@ -1,4 +1,4 @@
-package ludomania.controller.impl;
+package ludomania.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;

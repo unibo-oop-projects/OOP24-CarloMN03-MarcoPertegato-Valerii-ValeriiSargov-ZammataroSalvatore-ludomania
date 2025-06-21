@@ -1,4 +1,4 @@
-package ludomania.controller.impl;
+package ludomania.controller;
 
 import io.lyuda.jcards.Hand;
 import javafx.scene.Parent;

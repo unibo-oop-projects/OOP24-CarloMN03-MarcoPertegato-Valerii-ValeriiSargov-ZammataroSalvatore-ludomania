@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
-import ludomania.controller.roulette.RouletteController;
+import ludomania.controller.RouletteController;
 import ludomania.view.ViewBuilder;
 
 public class RouletteViewBuilder implements ViewBuilder {
