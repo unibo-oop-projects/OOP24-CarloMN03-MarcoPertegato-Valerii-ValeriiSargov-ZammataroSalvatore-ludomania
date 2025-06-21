@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
@@ -44,6 +45,8 @@ import java.util.Optional;
 public class RouletteSceneManager {
     private final int dialogSize = 450;
     private final int scrollPaneDefaultHeight = 400;
+    private final double glowLevel = 0.7;
+
 
     private final SceneManager sceneManager;
     private final LanguageManager languageManager;
@@ -72,16 +75,17 @@ public class RouletteSceneManager {
      * Creates a dialog to ask the user confirmation to quit the game.
      */
     public void quitGame() {
-        final Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmDialog.setTitle(languageManager.getString("confirm_exit"));
-        confirmDialog.setHeaderText(languageManager.getString("back_to_menu"));
-        confirmDialog.setContentText(languageManager.getString("all_progress_lost"));
+        final Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        alert.setTitle(languageManager.getString("confirm_exit"));
+        alert.setHeaderText(languageManager.getString("back_to_menu"));
+        alert.setContentText(languageManager.getString("all_progress_lost"));
 
         final ButtonType buttonYes = new ButtonType(languageManager.getString("yes"));
         final ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-        confirmDialog.getButtonTypes().setAll(buttonYes, buttonNo);
-        final Optional<ButtonType> result = confirmDialog.showAndWait();
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+        final Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && Objects.equals(result.get(), buttonYes)) {
             audioManager.playSound("click");
@@ -117,7 +121,7 @@ public class RouletteSceneManager {
         if (event.getSource() instanceof ImageView node) {
             final Glow glow = new Glow();
 
-            glow.setLevel(0.7);
+            glow.setLevel(this.glowLevel);
             node.setEffect(glow);
         }
     }
@@ -176,11 +180,7 @@ public class RouletteSceneManager {
             this.rulesWindow.close();
         }
 
-        this.rulesWindow = new Stage();
-        this.rulesWindow.initModality(Modality.WINDOW_MODAL);
-        this.rulesWindow.setTitle("Trente et Quarante");
-
-        final Label rulesLabel = new Label(languageManager.getString("tq_rules_text"));
+        final Label rulesLabel = new Label(languageManager.getString("roulette_rules"));
         rulesLabel.setWrapText(true);
 
         final ScrollPane scrollPane = new ScrollPane(rulesLabel);
@@ -188,29 +188,25 @@ public class RouletteSceneManager {
         scrollPane.setPrefHeight(this.scrollPaneDefaultHeight);
         scrollPane.setStyle("-fx-background: white;");
 
-        final Button okBtn = new Button(languageManager.getString("exit"));
+        final Button okBtn = new Button(languageManager.getString("close"));
         okBtn.setOnAction(e -> this.rulesWindow.close());
 
         final VBox dialogVBox = new VBox(10, scrollPane, okBtn);
         dialogVBox.setPadding(new Insets(10 * 2));
         dialogVBox.setAlignment(Pos.CENTER);
 
-        final Scene dialogScene = new Scene(dialogVBox, dialogSize, dialogSize);
-        this.rulesWindow.setScene(dialogScene);
+        this.rulesWindow = this.createDialogScene(dialogVBox, Modality.WINDOW_MODAL, languageManager.getString("bets"));
         this.rulesWindow.showAndWait();
     }
 
     /**
      * Shows a dialog containing the current placed bets.
+     * @param bets the list of bets to show
      */
     public void showBets(final List<Pair<Player, Bet>> bets) {
         if (this.betsWindow != null) {
             this.betsWindow.close();
         }
-
-        this.betsWindow = new Stage();
-        this.betsWindow.initModality(Modality.WINDOW_MODAL);
-        this.betsWindow.setTitle("Trente et Quarante");
 
         final ListView<String> betsList = new ListView<>();
         betsList.getItems().addAll(
@@ -218,18 +214,17 @@ public class RouletteSceneManager {
 
         final ScrollPane scrollPane = new ScrollPane(betsList);
         scrollPane.setFitToWidth(true);
-        scrollPane.setPrefHeight(400);
+        scrollPane.setPrefHeight(this.scrollPaneDefaultHeight);
         scrollPane.setStyle("-fx-background: white;");
 
-        final Button okBtn = new Button(languageManager.getString("exit"));
+        final Button okBtn = new Button(languageManager.getString("close"));
         okBtn.setOnAction(e -> this.betsWindow.close());
 
         final VBox dialogVBox = new VBox(10, scrollPane, okBtn);
         dialogVBox.setPadding(new Insets(10 * 2));
         dialogVBox.setAlignment(Pos.CENTER);
 
-        final Scene dialogScene = new Scene(dialogVBox, dialogSize, dialogSize);
-        this.betsWindow.setScene(dialogScene);
+        this.betsWindow = this.createDialogScene(dialogVBox, Modality.WINDOW_MODAL, languageManager.getString("bets"));
         this.betsWindow.showAndWait();
     }
 
@@ -238,7 +233,7 @@ public class RouletteSceneManager {
      */
     public void alertAndQuit() {
         final Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmDialog.setTitle(languageManager.getString("confirm_exit"));
+        confirmDialog.setTitle(languageManager.getString("game_over"));
         confirmDialog.setHeaderText(languageManager.getString("back_to_menu"));
 
         final ButtonType okBtn = new ButtonType(languageManager.getString("exit"));
@@ -250,5 +245,15 @@ public class RouletteSceneManager {
             audioManager.playSound("click");
             sceneManager.switchToMainMenu();
         }
+    }
+
+    private Stage createDialogScene(final Parent sceneRoot, final Modality mode, final String title) {
+        final Stage window = new Stage();
+        window.initModality(mode);
+        window.setTitle(title);
+
+        final Scene dialogScene = new Scene(sceneRoot, dialogSize, dialogSize);
+        window.setScene(dialogScene);
+        return window;
     }
 }
