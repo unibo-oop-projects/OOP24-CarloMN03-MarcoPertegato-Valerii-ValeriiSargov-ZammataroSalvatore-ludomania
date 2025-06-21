@@ -53,10 +53,8 @@ public class RouletteController implements Controller {
     private final IntegerProperty betAmount = new SimpleIntegerProperty();
 
     public RouletteController(final SceneManager sceneManager, final AudioManager audioManager) {
-        this.game = new RouletteGame(this, sceneManager, audioManager);
-
-        this.viewBuilder = new RouletteViewBuilder(
-                this, sceneManager.getLanguageManager(), sceneManager.getImageProvider());
+        this.game = new RouletteGame(sceneManager, audioManager);
+        this.viewBuilder = new RouletteViewBuilder(this);
     }
 
     @FXML
@@ -76,7 +74,7 @@ public class RouletteController implements Controller {
         this.attachFiches(this.ficheBox, this.betAmount);
 
         this.betAmount.addListener((observable, oldValue, newValue) -> {
-            Double betAmount = this.selectAmount(newValue.intValue());
+            final Double betAmount = this.selectAmount(newValue.intValue());
             this.bet.set(betAmount.intValue() + " $");
             this.total.set(this.getBalance().intValue() + " $");
         });
@@ -90,54 +88,39 @@ public class RouletteController implements Controller {
     }
 
     @FXML
-    private void pleinBet(MouseEvent event) {
-        try {
-            this.game.pleinBet(event);
-            this.resetBelLabel();
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    private void chevalBet(MouseEvent event) {
-        try {
-            this.game.chevalBet(event);
-            this.resetBelLabel();
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    private void carreBet(MouseEvent event) {
-        try {
-            this.game.carreBet(event);
-            this.resetBelLabel();
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    private void colonneBet(MouseEvent event) {
-        try {
-            this.game.colonneBet(event);
-            this.resetBelLabel();
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    private void noirBet(MouseEvent event) {
-        this.game.noirBet(event);
+    private void pleinBet(final MouseEvent event) {
+        this.game.pleinBet(event);
         this.resetBelLabel();
     }
 
     @FXML
-    private void rougeBet(MouseEvent event) {
-        this.game.rougeBet(event);
+    private void chevalBet(final MouseEvent event) {
+        this.game.chevalBet(event);
+        this.resetBelLabel();
+
+    }
+
+    @FXML
+    private void carreBet(final MouseEvent event) {
+        this.game.carreBet(event);
+        this.resetBelLabel();
+    }
+
+    @FXML
+    private void colonneBet(final MouseEvent event) {
+        this.game.colonneBet(event);
+        this.resetBelLabel();
+    }
+
+    @FXML
+    private void noirBet() {
+        this.game.noirBet();
+        this.resetBelLabel();
+    }
+
+    @FXML
+    private void rougeBet() {
+        this.game.rougeBet();
         this.resetBelLabel();
     }
 
@@ -165,40 +148,36 @@ public class RouletteController implements Controller {
     }
 
     @FXML
-    private void douzineBet(MouseEvent event) {
-        try {
-            this.game.douzineBet(event);
-            this.resetBelLabel();
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException(e);
-        }
+    private void douzineBet(final MouseEvent event) {
+        this.game.douzineBet(event);
+        this.resetBelLabel();
     }
 
     @FXML
     private void spinWheel() {
-        Pair<Integer, RouletteColor> result = this.game.runGame().getResult();
+        final Pair<Integer, RouletteColor> result = this.game.runGame().getResult();
         this.result.set(result.getKey().toString());
-        String colorStyle = "-fx-text-fill: " + this.resultColor(result.getValue()) + ";";
+        final String colorStyle = "-fx-text-fill: " + this.resultColor(result.getValue()) + ";";
         this.resultLabel.setStyle(colorStyle);
     }
 
     @FXML
-    private void highlightCarre(MouseEvent event) {
+    private void highlightCarre(final MouseEvent event) {
         this.game.highlightCarre(event);
     }
 
     @FXML
-    private void unhighlightCarre(MouseEvent event) {
+    private void unhighlightCarre(final MouseEvent event) {
         this.game.unhighlightCarre(event);
     }
 
     @FXML
-    private void glowWheel(MouseEvent event) {
+    private void glowWheel(final MouseEvent event) {
         this.game.glowWheel(event);
     }
 
     @FXML
-    private void unglowWheel(MouseEvent event) {
+    private void unglowWheel(final MouseEvent event) {
         this.game.unglowWheel(event);
     }
 
@@ -208,12 +187,12 @@ public class RouletteController implements Controller {
     }
 
     @FXML
-    private Double selectAmount(Integer amount) {
+    private Double selectAmount(final Integer amount) {
         return this.game.addBetAmount(amount);
     }
 
     @FXML
-    private void evaluateRound(MouseEvent event) {
+    private void evaluateRound(final MouseEvent event) {
         this.result.set("");
         this.game.evaluateRound();
 
@@ -230,7 +209,7 @@ public class RouletteController implements Controller {
         this.game.showBets();
     }
 
-    private String resultColor(RouletteColor color) {
+    private String resultColor(final RouletteColor color) {
         return switch (color.name()) {
             case "NOIR" -> "black";
             case "ROUGE" -> "red";
@@ -239,7 +218,7 @@ public class RouletteController implements Controller {
         };
     }
 
-    private void attachFiches(Pane pane, IntegerProperty controlProperty) {
+    private void attachFiches(final Pane pane, final IntegerProperty controlProperty) {
         this.game.attachFiches(pane, controlProperty);
     }
 

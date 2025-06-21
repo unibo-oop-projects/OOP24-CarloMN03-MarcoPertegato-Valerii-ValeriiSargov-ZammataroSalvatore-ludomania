@@ -1,29 +1,29 @@
 package ludomania.model.game.roulette;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import ludomania.controller.roulette.RouletteController;
 import ludomania.core.api.AudioManager;
 import ludomania.core.api.SceneManager;
 import ludomania.model.Pair;
 import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.croupier.roulette.RouletteCroupier;
-import ludomania.model.croupier.roulette.RouletteWheel;
 import ludomania.model.game.api.Game;
 import ludomania.model.game.impl.CounterResult;
-import ludomania.model.player.RoulettePlayer;
-import ludomania.model.wallet.impl.WalletImpl;
-import ludomania.view.ViewBuilder;
-import ludomania.view.roulette.RouletteViewBuilder;
 
+/**
+ * Implementation of the {@link Game} interface for Roulette.
+ * <p>
+ * Handles the main game flow, including managing players, handling bets,
+ * calling wheel results, and determining winners.
+ */
 public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
 
     private final RouletteSceneManager sceneManager;
     private final RouletteGameManager gameManager;
 
-    public RouletteGame(RouletteController controller, final SceneManager sceneManager, final AudioManager audioManager) {        this.sceneManager = new RouletteSceneManager(sceneManager, audioManager);
+    public RouletteGame(final SceneManager sceneManager, final AudioManager audioManager) {
+        this.sceneManager = new RouletteSceneManager(sceneManager, audioManager);
         this.gameManager = new RouletteGameManager(new RouletteCroupier());
     }
 
@@ -32,27 +32,27 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         return this.gameManager.runGame();
     }
 
-    public void pleinBet(MouseEvent event) throws IllegalArgumentException {
+    public void pleinBet(final MouseEvent event) throws IllegalArgumentException {
         this.gameManager.pleinBet(event);
     }
 
-    public void chevalBet(MouseEvent event) throws IllegalArgumentException {
+    public void chevalBet(final MouseEvent event) throws IllegalArgumentException {
         this.gameManager.chevalBet(event);
     }
 
-    public void carreBet(MouseEvent event) throws IllegalArgumentException {
+    public void carreBet(final MouseEvent event) throws IllegalArgumentException {
         this.gameManager.carreBet(event);
     }
 
-    public void colonneBet(MouseEvent event) throws IllegalArgumentException {
+    public void colonneBet(final MouseEvent event) {
         this.gameManager.colonneBet(event);
     }
 
-    public void noirBet(MouseEvent event) {
+    public void noirBet() {
         this.gameManager.noirBet();
     }
 
-    public void rougeBet(MouseEvent event) {
+    public void rougeBet() {
         this.gameManager.rougeBet();
     }
 
@@ -72,23 +72,23 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         this.gameManager.manqueBet();
     }
 
-    public void douzineBet(MouseEvent event) throws IllegalArgumentException {
+    public void douzineBet(final MouseEvent event) throws IllegalArgumentException {
         this.gameManager.douzaineBet(event);
     }
 
-    public void highlightCarre(MouseEvent event) {
+    public void highlightCarre(final MouseEvent event) {
         this.sceneManager.highlightCarre(event);
     }
 
-    public void unhighlightCarre(MouseEvent event) {
+    public void unhighlightCarre(final MouseEvent event) {
         this.sceneManager.unhighlightCarre(event);
     }
 
-    public void glowWheel(MouseEvent event) {
+    public void glowWheel(final MouseEvent event) {
         this.sceneManager.glowWheel(event);
     }
 
-    public void unglowWheel(MouseEvent event) {
+    public void unglowWheel(final MouseEvent event) {
         this.sceneManager.unglowWheel(event);
     }
 
@@ -108,7 +108,7 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         this.gameManager.evaluateGame();
     }
 
-    public void attachFiches(Pane pane, IntegerProperty controlProperty) {
+    public void attachFiches(final Pane pane, final IntegerProperty controlProperty) {
         this.sceneManager.attachFiches(pane, controlProperty);
     }
 

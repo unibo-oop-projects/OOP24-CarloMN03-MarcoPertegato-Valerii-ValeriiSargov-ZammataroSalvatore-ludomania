@@ -7,10 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.Set;
 import java.util.function.BiFunction;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("RouletteBet Factory Methods Test")
 class RouletteBetTest {
@@ -22,49 +25,42 @@ class RouletteBetTest {
     }
 
     @Test
-    @DisplayName("ImpairBet should create a correct bet and its predicate should work")
     void testImpairBet() {
-        RouletteBet bet = RouletteBetFactory.ImpairBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.impairBet(Set.of(), mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
         assertEquals(RouletteBetType.IMPAIR, bet.getType());
 
-        // True cases (odd numbers)
         assertTrue(bet.success.apply(new Pair<>(17, RouletteColor.NOIR), bet.getChoice()));
         assertTrue(bet.success.apply(new Pair<>(11, RouletteColor.NOIR), bet.getChoice()));
         assertTrue(bet.success.apply(new Pair<>(29, RouletteColor.NOIR), bet.getChoice()));
 
-        // False cases (even numbers or zero)
         assertFalse(bet.success.apply(new Pair<>(22, RouletteColor.NOIR), bet.getChoice()));
         assertFalse(bet.success.apply(new Pair<>(4, RouletteColor.NOIR), bet.getChoice()));
         assertFalse(bet.success.apply(new Pair<>(0, RouletteColor.NOIR), bet.getChoice()));
     }
 
     @Test
-    @DisplayName("ImpairBet should create a correct bet and its predicate should work")
     void testPairBet() {
-        RouletteBet bet = RouletteBetFactory.PairBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.pairBet(Set.of(), mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
         assertEquals(RouletteBetType.PAIR, bet.getType());
 
-        // True cases (odd numbers)
         assertTrue(bet.success.apply(new Pair<>(16, RouletteColor.ROUGE), bet.getChoice()));
         assertTrue(bet.success.apply(new Pair<>(12, RouletteColor.ROUGE), bet.getChoice()));
         assertTrue(bet.success.apply(new Pair<>(30, RouletteColor.ROUGE), bet.getChoice()));
 
-        // False cases (even numbers or zero)
         assertFalse(bet.success.apply(new Pair<>(21, RouletteColor.ROUGE), bet.getChoice()));
         assertFalse(bet.success.apply(new Pair<>(3, RouletteColor.ROUGE), bet.getChoice()));
         assertFalse(bet.success.apply(new Pair<>(0, RouletteColor.GREEN), bet.getChoice()));
     }
 
     @Test
-    @DisplayName("PasseBet should create a correct bet and its predicate should work")
     void testPasseBet() {
-        RouletteBet bet = RouletteBetFactory.PasseBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.passeBet(Set.of(), mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -72,39 +68,35 @@ class RouletteBetTest {
 
         BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> predicate = bet.success;
 
-        assertTrue(predicate.apply(new Pair<>(19, RouletteColor.NOIR), Set.of()));
-        assertTrue(predicate.apply(new Pair<>(22, RouletteColor.NOIR), Set.of()));
-        assertTrue(predicate.apply(new Pair<>(36, RouletteColor.NOIR), Set.of()));
+        assertTrue(bet.success.apply(new Pair<>(19, RouletteColor.NOIR), bet.getChoice()));
+        assertTrue(bet.success.apply(new Pair<>(22, RouletteColor.NOIR), bet.getChoice()));
+        assertTrue(bet.success.apply(new Pair<>(36, RouletteColor.NOIR), bet.getChoice()));
 
-        assertFalse(predicate.apply(new Pair<>(1, RouletteColor.NOIR), Set.of()));
-        assertFalse(predicate.apply(new Pair<>(18, RouletteColor.NOIR), Set.of()));
-        assertFalse(predicate.apply(new Pair<>(0, RouletteColor.NOIR), Set.of()));
+        assertFalse(bet.success.apply(new Pair<>(1, RouletteColor.NOIR), bet.getChoice()));
+        assertFalse(bet.success.apply(new Pair<>(18, RouletteColor.NOIR), bet.getChoice()));
+        assertFalse(bet.success.apply(new Pair<>(0, RouletteColor.NOIR), bet.getChoice()));
     }
 
     @Test
-    @DisplayName("ManqueBet should create a correct bet and its predicate should work")
     void testManqueBet() {
-        RouletteBet bet = RouletteBetFactory.ManqueBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.manqueBet(Set.of(), mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
         assertEquals(RouletteBetType.MANQUE, bet.getType());
 
-        BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> predicate = bet.success;
+        assertTrue(bet.success.apply(new Pair<>(1, RouletteColor.NOIR), bet.getChoice()));
+        assertTrue(bet.success.apply(new Pair<>(11, RouletteColor.NOIR), bet.getChoice()));
+        assertTrue(bet.success.apply(new Pair<>(18, RouletteColor.NOIR), bet.getChoice()));
 
-        assertTrue(predicate.apply(new Pair<>(1, RouletteColor.NOIR), Set.of()));
-        assertTrue(predicate.apply(new Pair<>(11, RouletteColor.NOIR), Set.of()));
-        assertTrue(predicate.apply(new Pair<>(18, RouletteColor.NOIR), Set.of()));
-
-        assertFalse(predicate.apply(new Pair<>(19, RouletteColor.NOIR), Set.of()));
-        assertFalse(predicate.apply(new Pair<>(0, RouletteColor.NOIR), Set.of()));
-        assertFalse(predicate.apply(new Pair<>(36, RouletteColor.NOIR), Set.of()));
+        assertFalse(bet.success.apply(new Pair<>(19, RouletteColor.NOIR), bet.getChoice()));
+        assertFalse(bet.success.apply(new Pair<>(0, RouletteColor.NOIR), bet.getChoice()));
+        assertFalse(bet.success.apply(new Pair<>(36, RouletteColor.NOIR), bet.getChoice()));
     }
 
     @Test
-    @DisplayName("RougeBet should create a correct bet and its predicate should work")
     void testRougeBet() {
-        RouletteBet bet = RouletteBetFactory.RougeBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.rougeBet(Set.of(), mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -124,9 +116,8 @@ class RouletteBetTest {
     }
 
     @Test
-    @DisplayName("NoirBet should create a correct bet and its predicate should work")
     void testNoirBet() {
-        RouletteBet bet = RouletteBetFactory.NoirBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.noirBet(Set.of(), mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -137,7 +128,6 @@ class RouletteBetTest {
         assertTrue(bet.success.apply(new Pair<>(6, RouletteColor.NOIR), bet.getChoice()));
         assertTrue(bet.success.apply(new Pair<>(35, RouletteColor.NOIR), bet.getChoice()));
 
-        // False cases (Rouge or Green numbers)
         assertFalse(bet.success.apply(new Pair<>(0, RouletteColor.GREEN), bet.getChoice()));
         assertFalse(bet.success.apply(new Pair<>(3, RouletteColor.ROUGE), bet.getChoice()));
         assertFalse(bet.success.apply(new Pair<>(5, RouletteColor.ROUGE), bet.getChoice()));
@@ -145,10 +135,9 @@ class RouletteBetTest {
     }
 
     @Test
-    @DisplayName("")
     void PleinBet() {
-        Set<Object> mockChoice = Set.of(23);
-        RouletteBet bet = RouletteBetFactory.PleinBet(mockChoice, mockAmount);
+        final Set<Object> mockChoice = Set.of(23);
+        final RouletteBet bet = RouletteBetFactory.pleinBet(mockChoice, mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -161,10 +150,9 @@ class RouletteBetTest {
     }
 
     @Test
-    @DisplayName("")
     void ChevalBet() {
-        Set<Object> mockChoice = Set.of(25, 26);
-        RouletteBet bet = RouletteBetFactory.ChevalBet(mockChoice, mockAmount);
+        final Set<Object> mockChoice = Set.of(25, 26);
+        final RouletteBet bet = RouletteBetFactory.chevalBet(mockChoice, mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -179,10 +167,9 @@ class RouletteBetTest {
     }
 
     @Test
-    @DisplayName("")
     void CarreBet() {
-        Set<Object> mockChoice = Set.of(25,26,29,28);
-        RouletteBet bet = RouletteBetFactory.CarreBet(mockChoice, mockAmount);
+        final Set<Object> mockChoice = Set.of(25,26,29,28);
+        final RouletteBet bet = RouletteBetFactory.carreBet(mockChoice, mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -201,10 +188,9 @@ class RouletteBetTest {
     }
 
     @Test
-    @DisplayName("")
     void DouzaineBet() {
-        Set<Object> mockChoice = RouletteWheel.firstDouzaine();
-        RouletteBet bet = RouletteBetFactory.DouzaineBet(mockChoice, mockAmount);
+        final Set<Object> mockChoice = RouletteWheel.firstDouzaine();
+        final RouletteBet bet = RouletteBetFactory.douzaineBet(mockChoice, mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -221,10 +207,9 @@ class RouletteBetTest {
     }
 
     @Test
-    @DisplayName("")
     void ColonneBet() {
-        Set<Object> mockChoice = RouletteWheel.secondColonne();
-        RouletteBet bet = RouletteBetFactory.ColonneBet(mockChoice, mockAmount);
+        final Set<Object> mockChoice = RouletteWheel.secondColonne();
+        final RouletteBet bet = RouletteBetFactory.colonneBet(mockChoice, mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());

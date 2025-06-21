@@ -15,10 +15,10 @@ public class RouletteBet extends Bet {
     private final Set<Object> choice;
 
     public RouletteBet(
-            BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> success,
-            Set<Object> choice,
-            double value,
-            BetType type
+            final BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> success,
+            final Set<Object> choice,
+            final double value,
+            final BetType type
     ) {
         super(value, type);
         this.success = success;

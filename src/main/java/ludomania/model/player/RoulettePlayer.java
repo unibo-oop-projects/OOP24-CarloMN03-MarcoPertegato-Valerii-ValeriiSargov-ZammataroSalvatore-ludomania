@@ -15,11 +15,16 @@ public class RoulettePlayer extends Player {
         super(wallet, username);
     }
 
+    @Override
+    public Bet makeBet(Double amount, BetType type) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("Not supported.");
+    }
+
     public Double getBetAmount() {
         return this.betAmount;
     }
 
-    public void addBetAmount(Double amount) {
+    public void addBetAmount(final Double amount) {
         this.betAmount += amount;
     }
 
@@ -27,52 +32,51 @@ public class RoulettePlayer extends Player {
         this.betAmount = 0.0;
     }
 
-    @Override
-    public Bet makeBet(Double amount, BetType type) {
-        return null;
+    public void restoreBalance() {
+        this.deposit(this.getBetAmount());
+        this.resetBetAmount();
     }
 
-    public Bet makeBet(Double amount, BetType type, Set<Object> choice) throws IllegalArgumentException {
+    public Bet makeBet(final Double amount, final BetType type, final Set<Object> choice) {
         if (amount >= 0) {
             switch (type.getTypeName()) {
                 case "PLEIN" -> {
-                    return RouletteBetFactory.PleinBet(choice, amount);
+                    return RouletteBetFactory.pleinBet(choice, amount);
                 }
                 case "CHEVAL" -> {
-                    return RouletteBetFactory.ChevalBet(choice, amount);
+                    return RouletteBetFactory.chevalBet(choice, amount);
                 }
                 case "CARRE" -> {
-                    return RouletteBetFactory.CarreBet(choice, amount);
+                    return RouletteBetFactory.carreBet(choice, amount);
                 }
                 case "DOUZAINE" -> {
-                    return RouletteBetFactory.DouzaineBet(choice, amount);
+                    return RouletteBetFactory.douzaineBet(choice, amount);
                 }
                 case "COLONNE" -> {
-                    return RouletteBetFactory.ColonneBet(choice, amount);
+                    return RouletteBetFactory.colonneBet(choice, amount);
                 }
                 case "PAIR" -> {
-                    return RouletteBetFactory.PairBet(choice, amount);
+                    return RouletteBetFactory.pairBet(choice, amount);
                 }
                 case "IMPAIR" -> {
-                    return RouletteBetFactory.ImpairBet(choice, amount);
+                    return RouletteBetFactory.impairBet(choice, amount);
                 }
                 case "PASSE" -> {
-                    return RouletteBetFactory.PasseBet(choice, amount);
+                    return RouletteBetFactory.passeBet(choice, amount);
                 }
                 case "MANQUE" -> {
-                    return RouletteBetFactory.ManqueBet(choice, amount);
+                    return RouletteBetFactory.manqueBet(choice, amount);
                 }
                 case "ROUGE" -> {
-                    return RouletteBetFactory.RougeBet(choice, amount);
+                    return RouletteBetFactory.rougeBet(choice, amount);
                 }
                 case "NOIR" -> {
-                    return RouletteBetFactory.NoirBet(choice, amount);
+                    return RouletteBetFactory.noirBet(choice, amount);
                 }
                 default -> throw new IllegalArgumentException("Invalid bet type " + type);
             }
         } else {
             throw new IllegalArgumentException("Cannot place a bet with amount 0");
         }
-
     }
 }

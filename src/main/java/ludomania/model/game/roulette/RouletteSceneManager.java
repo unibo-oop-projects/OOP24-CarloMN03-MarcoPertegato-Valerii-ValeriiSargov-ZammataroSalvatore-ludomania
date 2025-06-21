@@ -4,9 +4,16 @@ import javafx.beans.property.IntegerProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,10 +32,12 @@ import ludomania.model.player.api.Player;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class RouletteSceneManager {
     private final int DIALOG_SIZE = 450;
+    private final int SCROLL_PANE_DEFAULT_HEIGHT = 400;
 
     private final SceneManager sceneManager;
     private final LanguageManager languageManager;
@@ -49,30 +58,30 @@ public class RouletteSceneManager {
     }
 
     public void quitGame() {
-        Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        final Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
         confirmDialog.setTitle(languageManager.getString("confirm_exit"));
         confirmDialog.setHeaderText(languageManager.getString("back_to_menu"));
         confirmDialog.setContentText(languageManager.getString("all_progress_lost"));
 
-        ButtonType buttonYes = new ButtonType(languageManager.getString("yes"));
-        ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        final ButtonType buttonYes = new ButtonType(languageManager.getString("yes"));
+        final ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
         confirmDialog.getButtonTypes().setAll(buttonYes, buttonNo);
-        Optional<ButtonType> result = confirmDialog.showAndWait();
+        final Optional<ButtonType> result = confirmDialog.showAndWait();
 
-        if (result.isPresent() && result.get() == buttonYes) {
+        if (result.isPresent() && Objects.equals(result.get(), buttonYes)) {
             audioManager.playSound("click");
             sceneManager.switchToMainMenu();
         }
     }
 
-    public void highlightCarre(MouseEvent event) {
+    public void highlightCarre(final MouseEvent event) {
         if (event.getSource() instanceof Node clickedButton) {
             clickedButton.getParent().setStyle("-fx-border-color: #00eeff; -fx-border-width: 3px;");
         }
     }
 
-    public void unhighlightCarre(MouseEvent event) {
+    public void unhighlightCarre(final MouseEvent event) {
         if (event.getSource() instanceof Node clickedButton) {
             clickedButton.getParent().setStyle("-fx-border-color: trasparent; -fx-border-width: 1px;");
         }
@@ -87,13 +96,13 @@ public class RouletteSceneManager {
         }
     }
 
-    public void unglowWheel(MouseEvent event) {
+    public void unglowWheel(final MouseEvent event) {
         if (event.getSource() instanceof ImageView node) {
             node.setEffect(null);
         }
     }
 
-    public void attachFiches(Pane node, IntegerProperty controlProperty) {
+    public void attachFiches(final Pane node, final IntegerProperty controlProperty) {
         Arrays.stream(FicheValue.values())
                 .sorted((a, b) -> -Integer.compare(b.getValue(), a.getValue()))
                 .forEach(ficheValue -> {
@@ -119,7 +128,7 @@ public class RouletteSceneManager {
             }
 
             if (newToggle != null) {
-                controlProperty.setValue(((FicheValue)newToggle.getUserData()).getValue());
+                controlProperty.setValue(((FicheValue) newToggle.getUserData()).getValue());
             }
         });
     }
@@ -138,7 +147,7 @@ public class RouletteSceneManager {
 
         final ScrollPane scrollPane = new ScrollPane(rulesLabel);
         scrollPane.setFitToWidth(true);
-        scrollPane.setPrefHeight(400);
+        scrollPane.setPrefHeight(this.SCROLL_PANE_DEFAULT_HEIGHT);
         scrollPane.setStyle("-fx-background: white;");
 
         final Button okBtn = new Button(languageManager.getString("exit"));
@@ -182,6 +191,4 @@ public class RouletteSceneManager {
         this.betsWindow.setScene(dialogScene);
         this.betsWindow.showAndWait();
     }
-
-
 }

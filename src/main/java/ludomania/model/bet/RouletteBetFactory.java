@@ -7,7 +7,9 @@ import java.util.Objects;
 import java.util.Set;
 
 public class RouletteBetFactory {
-    public static RouletteBet PleinBet(Set<Object> choice, double amount) {
+    private RouletteBetFactory() {}
+
+    public static RouletteBet pleinBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,coll) -> {
                     if (coll != null && !coll.isEmpty()) {
@@ -21,7 +23,7 @@ public class RouletteBetFactory {
                 RouletteBetType.PLEIN);
     }
 
-    public static RouletteBet ChevalBet(Set<Object> choice, double amount) {
+    public static RouletteBet chevalBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,coll) -> {
                     if (coll != null && !coll.isEmpty()) {
@@ -35,7 +37,7 @@ public class RouletteBetFactory {
                 RouletteBetType.CHEVAL);
     }
 
-    public static RouletteBet CarreBet(Set<Object> choice, double amount) {
+    public static RouletteBet carreBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,coll) -> {
                     if (coll != null && !coll.isEmpty()) {
@@ -49,7 +51,7 @@ public class RouletteBetFactory {
                 RouletteBetType.CARRE);
     }
 
-    public static RouletteBet DouzaineBet(Set<Object> choice, double amount) {
+    public static RouletteBet douzaineBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,coll) -> {
                     if (coll != null && !coll.isEmpty()) {
@@ -63,7 +65,7 @@ public class RouletteBetFactory {
                 RouletteBetType.DOUZAINE);
     }
 
-    public static RouletteBet ColonneBet(Set<Object> choice, double amount) {
+    public static RouletteBet colonneBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,coll) -> {
                     if (coll != null && !coll.isEmpty()) {
@@ -77,7 +79,7 @@ public class RouletteBetFactory {
                 RouletteBetType.COLONNE);
     }
 
-    public static RouletteBet PairBet(Set<Object> choice, double amount) {
+    public static RouletteBet pairBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,b) -> cr.getKey() != 0 && cr.getKey() % 2 == 0,
                 choice,
@@ -85,7 +87,7 @@ public class RouletteBetFactory {
                 RouletteBetType.PAIR);
     }
 
-    public static RouletteBet ImpairBet(Set<Object> choice, double amount) {
+    public static RouletteBet impairBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,b) -> cr.getKey() != 0 && cr.getKey() % 2 != 0,
                 choice,
@@ -93,7 +95,7 @@ public class RouletteBetFactory {
                 RouletteBetType.IMPAIR);
     }
 
-    public static RouletteBet PasseBet(Set<Object> choice, double amount) {
+    public static RouletteBet passeBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,b) -> RouletteWheel.passe().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
                 choice,
@@ -101,7 +103,7 @@ public class RouletteBetFactory {
                 RouletteBetType.PASSE);
     }
 
-    public static RouletteBet ManqueBet(Set<Object> choice, double amount) {
+    public static RouletteBet manqueBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,b) -> RouletteWheel.manque().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
                 choice,
@@ -109,7 +111,7 @@ public class RouletteBetFactory {
                 RouletteBetType.MANQUE);
     }
 
-    public static RouletteBet RougeBet(Set<Object> choice, double amount) {
+    public static RouletteBet rougeBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,b) -> cr.getValue() == RouletteColor.ROUGE,
                 choice,
@@ -117,7 +119,7 @@ public class RouletteBetFactory {
                 RouletteBetType.ROUGE);
     }
 
-    public static RouletteBet NoirBet(Set<Object> choice, double amount) {
+    public static RouletteBet noirBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
                 (cr,b) -> cr.getValue() == RouletteColor.NOIR,
                 choice,
