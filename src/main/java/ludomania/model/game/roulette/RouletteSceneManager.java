@@ -191,4 +191,20 @@ public class RouletteSceneManager {
         this.betsWindow.setScene(dialogScene);
         this.betsWindow.showAndWait();
     }
+
+    public void alertAndQuit() {
+        final Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmDialog.setTitle(languageManager.getString("confirm_exit"));
+        confirmDialog.setHeaderText(languageManager.getString("back_to_menu"));
+
+        final ButtonType okBtn = new ButtonType(languageManager.getString("exit"));
+
+        confirmDialog.getButtonTypes().setAll(okBtn);
+        final Optional<ButtonType> result = confirmDialog.showAndWait();
+
+        if (result.isPresent() && Objects.equals(result.get(), okBtn)) {
+            audioManager.playSound("click");
+            sceneManager.switchToMainMenu();
+        }
+    }
 }

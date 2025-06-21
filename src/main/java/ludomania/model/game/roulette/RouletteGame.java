@@ -106,6 +106,9 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
 
     public void evaluateRound() {
         this.gameManager.evaluateGame();
+        if (this.gameManager.checkGameOver()) {
+            this.sceneManager.alertAndQuit();
+        }
     }
 
     public void attachFiches(final Pane pane, final IntegerProperty controlProperty) {

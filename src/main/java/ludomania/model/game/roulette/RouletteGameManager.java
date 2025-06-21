@@ -89,6 +89,10 @@ public class RouletteGameManager {
         this.rouletteCroupier.clearRound();
     }
 
+    public boolean checkGameOver() {
+        return this.currentPlayer.getBalance() == 0;
+    }
+
     public void setCurrentPlayer(final String username) {
         if (this.players.containsKey(username)) {
             this.currentPlayer = this.players.get(username);
