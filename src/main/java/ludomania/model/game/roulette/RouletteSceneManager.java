@@ -161,8 +161,8 @@ public class RouletteSceneManager {
                 ((ToggleButton) oldToggle).setEffect(null);
             }
             if (newToggle != null && newToggle.isSelected()) {
-                Glow glow = new Glow();
-                glow.setLevel(0.7);
+                final Glow glow = new Glow();
+                glow.setLevel(this.glowLevel);
                 ((ToggleButton) newToggle).setEffect(glow);
             }
 

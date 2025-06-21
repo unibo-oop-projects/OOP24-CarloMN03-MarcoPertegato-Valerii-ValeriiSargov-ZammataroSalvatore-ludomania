@@ -10,7 +10,6 @@ import ludomania.model.player.RoulettePlayer;
 import ludomania.model.player.api.Player;
 import ludomania.model.wallet.impl.WalletImpl;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;

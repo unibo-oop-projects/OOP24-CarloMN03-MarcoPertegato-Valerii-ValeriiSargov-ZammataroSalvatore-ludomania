@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RoulettePlayerTest {
-    private static final Double mockAmount = 100.0;
+    private static final Double MOCK_AMOUNT = 100.0;
     private RoulettePlayer mockPlayer;
 
     @BeforeEach
@@ -19,19 +19,19 @@ public class RoulettePlayerTest {
 
     @Test
     void betAmount() {
-        this.mockPlayer.addBetAmount(this.mockAmount);
-        assertEquals(this.mockAmount, this.mockPlayer.getBetAmount());
+        this.mockPlayer.addBetAmount(MOCK_AMOUNT);
+        assertEquals(MOCK_AMOUNT, this.mockPlayer.getBetAmount());
     }
 
     @Test
     void addBetAmount() {
-        this.mockPlayer.addBetAmount(this.mockAmount);
-        assertEquals(this.mockAmount, this.mockPlayer.getBetAmount());
+        this.mockPlayer.addBetAmount(MOCK_AMOUNT);
+        assertEquals(MOCK_AMOUNT, this.mockPlayer.getBetAmount());
     }
 
     @Test
     void resetBetAmount() {
-        this.mockPlayer.addBetAmount(this.mockAmount);
+        this.mockPlayer.addBetAmount(MOCK_AMOUNT);
         this.mockPlayer.resetBetAmount();
 
         assertEquals(0.0, this.mockPlayer.getBetAmount());
@@ -40,7 +40,7 @@ public class RoulettePlayerTest {
     @Test
     void restoreBalance() {
         final Double startingBalance = this.mockPlayer.getBalance();
-        this.mockPlayer.addBetAmount(this.mockAmount);
+        this.mockPlayer.addBetAmount(MOCK_AMOUNT);
         this.resetBetAmount();
 
         assertEquals(startingBalance, this.mockPlayer.getBalance());
