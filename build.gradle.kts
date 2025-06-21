@@ -51,6 +51,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
     // Suppressions for SpotBugs
     compileOnly("com.github.spotbugs:spotbugs-annotations:4.9.3")
+    implementation("com.github.spotbugs:spotbugs-annotations:4.8.3")
     //lyudaio:jcards
     implementation("com.github.lyudaio:jcards:main-SNAPSHOT")
 

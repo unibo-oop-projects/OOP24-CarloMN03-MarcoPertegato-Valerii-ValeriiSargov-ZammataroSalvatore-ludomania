@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.testfx.framework.junit5.ApplicationExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationTest;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.lyuda.jcards.Rank;
 import io.lyuda.jcards.Suit;
 import javafx.beans.binding.StringBinding;
@@ -33,6 +36,8 @@ import ludomania.cosmetics.CosmeticTheme;
 import ludomania.cosmetics.FicheTheme;
 import ludomania.settings.api.SettingsManager;
 
+@SuppressFBWarnings(value = "UwF", justification = "Fields are initialized by TestFX's start method")
+@ExtendWith(ApplicationExtension.class)
 class SceneManagerImplBindingTest extends ApplicationTest {
     private static final double EXPECTED_VOLUME = 0.66;
     private static final int DEFAULT_WIDTH = 800;
@@ -46,7 +51,7 @@ class SceneManagerImplBindingTest extends ApplicationTest {
     private TestAudioManager audioManager;
     private TestLanguageManager languageManager;
     private Stage stage;
-    @BeforeEach
+
     @Override
     public void start(final Stage stage) {
         this.stage = stage;
