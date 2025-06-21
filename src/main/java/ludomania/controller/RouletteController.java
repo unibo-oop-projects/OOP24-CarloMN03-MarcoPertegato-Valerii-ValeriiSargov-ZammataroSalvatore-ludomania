@@ -54,6 +54,15 @@ public class RouletteController implements Controller {
     @FXML
     private Button exitBtn;
 
+    @FXML
+    private Button rulesBtn;
+
+    @FXML
+    private Button betsBtn;
+
+    private final String betsBtnText;
+    private final String rulesBtnText;
+
     private final RouletteGame game;
     private final RouletteViewBuilder viewBuilder;
 
@@ -71,6 +80,9 @@ public class RouletteController implements Controller {
     public RouletteController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.game = new RouletteGame(sceneManager, audioManager);
         this.viewBuilder = new RouletteViewBuilder(this);
+
+        this.rulesBtnText = sceneManager.getLanguageManager().getString("rule_button");
+        this.betsBtnText = sceneManager.getLanguageManager().getString("bets");
     }
 
     /**
@@ -99,6 +111,9 @@ public class RouletteController implements Controller {
         });
 
         this.total.set(this.getBalance().intValue() + " $");
+
+        this.rulesBtn.setText(this.rulesBtnText);
+        this.betsBtn.setText(this.betsBtnText);
     }
 
     /**

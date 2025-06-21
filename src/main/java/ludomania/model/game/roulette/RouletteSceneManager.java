@@ -234,7 +234,7 @@ public class RouletteSceneManager {
     public void alertAndQuit() {
         final Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
         confirmDialog.setTitle(languageManager.getString("game_over"));
-        confirmDialog.setHeaderText(languageManager.getString("back_to_menu"));
+        confirmDialog.setHeaderText(languageManager.getString("no_more_money"));
 
         final ButtonType okBtn = new ButtonType(languageManager.getString("exit"));
 

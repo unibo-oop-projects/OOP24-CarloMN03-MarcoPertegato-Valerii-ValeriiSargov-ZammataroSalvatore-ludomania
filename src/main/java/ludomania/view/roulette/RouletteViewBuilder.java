@@ -58,14 +58,14 @@ public class RouletteViewBuilder implements ViewBuilder {
         BorderPane root;
 
         try {
-            final File fxml = new File(this.FXML_FILE_PATH);
+            final File fxml = new File(FXML_FILE_PATH);
 
             final FXMLLoader loader = new FXMLLoader();
             loader.setController(controller);
             loader.setLocation(fxml.toURI().toURL());
 
             root = loader.<BorderPane>load();
-            root.getStylesheets().add(this.FXML_STYLE_FILE_PATH);
+            root.getStylesheets().add(FXML_STYLE_FILE_PATH);
         } catch (final IOException e) {
             root = new BorderPane();
             root.setCenter(new Label("ERRORE DURANTE IL CARICAMENTO DELLA VIEW"));

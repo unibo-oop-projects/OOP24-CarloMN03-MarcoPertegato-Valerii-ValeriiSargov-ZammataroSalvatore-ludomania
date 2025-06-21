@@ -1089,7 +1089,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="rulesBnt1" alignment="CENTER" contentDisplay="CENTER" layoutX="108.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#showRules" style="-fx-background-color: white;" text="Rules" textAlignment="CENTER">
+            <Button fx:id="rulesBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="108.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#showRules" style="-fx-background-color: white;" text="Rules" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
