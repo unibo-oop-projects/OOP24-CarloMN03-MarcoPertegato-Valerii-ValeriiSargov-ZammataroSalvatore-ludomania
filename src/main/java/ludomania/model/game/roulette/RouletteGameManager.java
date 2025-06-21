@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * Represents the core function that manages all behaviour aspects concerning Roulette game logic.
  */
 public class RouletteGameManager {
-    private final static String DEFAULT_PLAYER_USERNAME = "DemoPlayer";
+    private static final String DEFAULT_PLAYER_USERNAME = "DemoPlayer";
 
     private final RouletteCroupier rouletteCroupier;
     private final Map<String, RoulettePlayer> players;
@@ -207,7 +207,7 @@ public class RouletteGameManager {
         try {
             if (event.getSource() instanceof Button button) {
                 final String id = button.getId();
-                Set<Object> choices;
+                final Set<Object> choices;
                 switch (id.charAt(0)) {
                     case 'b' -> choices = RouletteWheel.FIRST_COLONNE;
                     case 'm' -> choices = RouletteWheel.SECOND_COLONNE;
@@ -328,7 +328,7 @@ public class RouletteGameManager {
         try {
             if (event.getSource() instanceof Button button) {
                 final String id = button.getId();
-                Set<Object> choices;
+                final Set<Object> choices;
                 switch (id.charAt(0)) {
                     case 'p' -> choices = RouletteWheel.firstDouzaine();
                     case 'm' -> choices = RouletteWheel.secondDouzaine();

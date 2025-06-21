@@ -116,6 +116,7 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
 
     /**
      * Calls the corresponding function to create a douzaine bet.
+     * @param event the mouse click event on the douzaine button
      */
     public void douzineBet(final MouseEvent event) {
         this.gameManager.douzaineBet(event);
@@ -161,17 +162,17 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
     }
 
     /**
-     * Calls the corresponding function to increase next bet amount
-     * @param amount the amount to add
-     * @return the resulting bet amount
+     * Calls the corresponding function to increase next bet amount.
+     * @param amount the amount to add.
+     * @return the resulting bet amount.
      */
     public Double addBetAmount(final Integer amount) {
         return this.gameManager.addBetAmount(amount);
     }
 
     /**
-     * Calls the corresponding function to get the current player balance
-     * @return the current player balance
+     * Calls the corresponding function to get the current player balance.
+     * @return the current player balance.
      */
     public Double getBalance() {
         return this.gameManager.getPlayerBalance();
@@ -179,7 +180,7 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
 
     /**
      * Calls the corresponding function to check on all bets which are successful and pays the corresponding player,
-     * checks if the current player has no more money
+     * checks if the current player has no more money.
      */
     public void evaluateRound() {
         this.gameManager.evaluateGame();
@@ -189,23 +190,23 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
     }
 
     /**
-     * Class the corresponding function to attach fiches images and event handling on the main scene
-     * @param pane the element on which adding the fiches
-     * @param controlProperty the control property to which attaching event listeners
+     * Class the corresponding function to attach fiches images and event handling on the main scene.
+     * @param pane the element on which adding the fiches.
+     * @param controlProperty the control property to which attaching event listeners.
      */
     public void attachFiches(final Pane pane, final IntegerProperty controlProperty) {
         this.sceneManager.attachFiches(pane, controlProperty);
     }
 
     /**
-     * Calls the corresponding function to open the rules window
+     * Calls the corresponding function to open the rules window.
      */
     public void showRules() {
         this.sceneManager.showRules();
     }
 
     /**
-     * Calls the corresponding function to open the bets summary window
+     * Calls the corresponding function to open the bets summary window.
      */
     public void showBets() {
         this.sceneManager.showBets(this.gameManager.getBets());

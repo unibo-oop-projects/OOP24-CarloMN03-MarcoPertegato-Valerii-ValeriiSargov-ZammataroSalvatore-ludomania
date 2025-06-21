@@ -5,17 +5,23 @@ import ludomania.model.bet.api.Bet;
 import ludomania.model.bet.api.BetType;
 import ludomania.model.croupier.roulette.RouletteColor;
 
-import java.util.*;
+import java.util.Set;
 import java.util.function.BiFunction;
 
 /**
  * Represents the Roulette game Bet.
  */
-public class RouletteBet extends Bet {
-
-    public final BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> success;
-
+public final class RouletteBet extends Bet {
+    private final BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> success;
     private final Set<Object> choice;
+
+    /**
+     * Gets the success {@link BiFunction}.
+     * @return the instance of private property {@code success}.
+     */
+    public BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> getSuccess() {
+        return success;
+    }
 
     /**
      * Creates a new {@link RouletteBet}.
@@ -46,7 +52,8 @@ public class RouletteBet extends Bet {
 
     @Override
     public String toString() {
-        return String.format("%1$,.2f $, %2$s on %3$s", this.getValue(), this.getType().getTypeName(), this.getChoice().toString());
+        return String.format(
+                "%1$,.2f $, %2$s on %3$s", this.getValue(), this.getType().getTypeName(), this.getChoice().toString());
     }
 
     /**

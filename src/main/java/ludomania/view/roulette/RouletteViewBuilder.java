@@ -16,10 +16,10 @@ import ludomania.view.ViewBuilder;
  * and balance and bet tracking.
  */
 public class RouletteViewBuilder implements ViewBuilder {
-    private final String sep = File.separator;
-    private final String fxmlFileName = "RouletteViewTemplate.fxml";
-    private final String fxmlStyleFileName = "RouletteView.css";
-    private final String fxmlFilePath = new File(System.getProperty("user.dir")).getPath()
+    private static final String sep = File.separator;
+    private static final String fxmlFileName = "RouletteViewTemplate.fxml";
+    private static final String fxmlStyleFileName = "RouletteView.css";
+    private static final String fxmlFilePath = new File(System.getProperty("user.dir")).getPath()
             + sep + "src"
             + sep + "main"
             + sep + "java"
@@ -29,7 +29,7 @@ public class RouletteViewBuilder implements ViewBuilder {
             + sep + "resources"
             + sep + fxmlFileName;
 
-    private final String fxmlStyleFilePath = new File(System.getProperty("user.dir")).getPath()
+    private static final String fxmlStyleFilePath = new File(System.getProperty("user.dir")).getPath()
             + sep + "src"
             + sep + "main"
             + sep + "java"

@@ -5,7 +5,7 @@ import ludomania.model.bet.api.BetType;
 /**
  * Represent the bet types for the Roulette game.
  */
-public class RouletteBetType {
+public final class RouletteBetType {
     private static final Double PLEIN_PAYOUT = 35.0;
     private static final Double CHEVAL_PAYOUT = 17.0;
     private static final Double CARRE_PAYOUT = 8.0;

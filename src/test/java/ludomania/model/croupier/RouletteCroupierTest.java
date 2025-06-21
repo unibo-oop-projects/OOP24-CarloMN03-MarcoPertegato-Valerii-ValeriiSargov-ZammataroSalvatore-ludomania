@@ -16,12 +16,11 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-@DisplayName("Roulette Wheel Methods Test")
 public class RouletteCroupierTest {
-    private final Integer _22 = 22;
     private final CounterResult<Pair<Integer, RouletteColor>> mockResult22 =
             new CounterResult<>(new Pair<>(22, RouletteColor.NOIR));
 
@@ -32,7 +31,8 @@ public class RouletteCroupierTest {
 
     @BeforeEach
     void setUp() {
-        mockChoice = Set.of(this._22);
+        final Integer mock22 = 22;
+        mockChoice = Set.of(mock22);
         mockCroupier = new RouletteCroupier();
         mockAmount = 10.0;
         this.mockPlayer = new RoulettePlayer(new WalletImpl(1000.0), "TestPlayer");
@@ -50,7 +50,7 @@ public class RouletteCroupierTest {
     }
 
     @Test
-    void getRoundBet() {
+    void roundBet() {
         final RouletteBet mockPleinBet = RouletteBetFactory.pleinBet(this.mockChoice, this.mockAmount);
         this.mockCroupier.addBet(this.mockPlayer, mockPleinBet);
 

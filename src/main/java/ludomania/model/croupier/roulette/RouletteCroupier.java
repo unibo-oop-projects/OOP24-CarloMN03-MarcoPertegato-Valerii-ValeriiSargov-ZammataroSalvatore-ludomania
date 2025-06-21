@@ -17,13 +17,17 @@ import java.util.Map;
  * </p>
  */
 public class RouletteCroupier extends Croupier<Pair<Integer, RouletteColor>> {
+
+    /**
+     * Instantiate round bets to empty collection.
+     */
     public RouletteCroupier() {
         super(new ArrayList<>());
     }
 
     /**
      * {@inheritDoc}
-     * @param result the outcome of the round to use for bet evaluation
+     * @param result the outcome of the round to use for bet evaluation.
      * @return
      */
     @Override
@@ -32,7 +36,7 @@ public class RouletteCroupier extends Croupier<Pair<Integer, RouletteColor>> {
 
         this.getRoundBet().forEach(bet -> {
             if (bet.getValue() instanceof RouletteBet rouletteBet) {
-                if (rouletteBet.success.apply(result.getResult(), rouletteBet.getChoice())) {
+                if (rouletteBet.getSuccess().apply(result.getResult(), rouletteBet.getChoice())) {
                     if (winningBets.containsKey(bet.getKey())) {
                         winningBets.put(bet.getKey(), winningBets.get(bet.getKey()) + rouletteBet.evaluate());
                     } else {

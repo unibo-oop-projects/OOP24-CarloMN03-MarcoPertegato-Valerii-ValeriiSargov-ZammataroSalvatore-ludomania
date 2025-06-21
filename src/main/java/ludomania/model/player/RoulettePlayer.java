@@ -25,6 +25,12 @@ public class RoulettePlayer extends Player {
         super(wallet, username);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param amount the amount of money to bet
+     * @param type the type of bet
+     * @return
+     */
     @Override
     public Bet makeBet(final Double amount, final BetType type) {
         throw new UnsupportedOperationException("Not supported.");

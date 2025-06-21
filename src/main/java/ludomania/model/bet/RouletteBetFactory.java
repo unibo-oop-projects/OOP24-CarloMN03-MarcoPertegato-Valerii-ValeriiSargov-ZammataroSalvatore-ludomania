@@ -4,7 +4,6 @@ import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.croupier.roulette.RouletteWheel;
 
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -133,7 +132,7 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet impairBet(final double amount) {
         return new RouletteBet(
-                (cr,choices) -> cr.getKey() != 0 && cr.getKey() % 2 != 0,
+                (cr, choices) -> cr.getKey() != 0 && cr.getKey() % 2 != 0,
                 Set.of(),
                 amount,
                 RouletteBetType.IMPAIR);
@@ -146,7 +145,7 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet passeBet(final double amount) {
         return new RouletteBet(
-                (cr,choices) -> RouletteWheel.passe().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
+                (cr, choices) -> RouletteWheel.passe().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
                 Set.of(),
                 amount,
                 RouletteBetType.PASSE);
@@ -159,7 +158,7 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet manqueBet(final double amount) {
         return new RouletteBet(
-                (cr,choices) -> RouletteWheel.manque().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
+                (cr, choices) -> RouletteWheel.manque().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
                 Set.of(),
                 amount,
                 RouletteBetType.MANQUE);
@@ -172,7 +171,7 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet rougeBet(final double amount) {
         return new RouletteBet(
-                (cr,choices) -> cr.getValue() == RouletteColor.ROUGE,
+                (cr, choices) -> cr.getValue() == RouletteColor.ROUGE,
                 Set.of(),
                 amount,
                 RouletteBetType.ROUGE);
@@ -185,7 +184,7 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet noirBet(final double amount) {
         return new RouletteBet(
-                (cr,choices) -> cr.getValue() == RouletteColor.NOIR,
+                (cr, choices) -> cr.getValue() == RouletteColor.NOIR,
                 Set.of(),
                 amount,
                 RouletteBetType.NOIR);
