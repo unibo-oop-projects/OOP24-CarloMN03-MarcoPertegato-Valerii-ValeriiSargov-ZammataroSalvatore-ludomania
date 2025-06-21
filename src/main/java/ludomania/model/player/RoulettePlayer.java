@@ -87,22 +87,22 @@ public class RoulettePlayer extends Player {
                     return RouletteBetFactory.colonneBet(choice, amount);
                 }
                 case "PAIR" -> {
-                    return RouletteBetFactory.pairBet(choice, amount);
+                    return RouletteBetFactory.pairBet(amount);
                 }
                 case "IMPAIR" -> {
-                    return RouletteBetFactory.impairBet(choice, amount);
+                    return RouletteBetFactory.impairBet(amount);
                 }
                 case "PASSE" -> {
-                    return RouletteBetFactory.passeBet(choice, amount);
+                    return RouletteBetFactory.passeBet(amount);
                 }
                 case "MANQUE" -> {
-                    return RouletteBetFactory.manqueBet(choice, amount);
+                    return RouletteBetFactory.manqueBet(amount);
                 }
                 case "ROUGE" -> {
-                    return RouletteBetFactory.rougeBet(choice, amount);
+                    return RouletteBetFactory.rougeBet(amount);
                 }
                 case "NOIR" -> {
-                    return RouletteBetFactory.noirBet(choice, amount);
+                    return RouletteBetFactory.noirBet(amount);
                 }
                 default -> throw new IllegalArgumentException("Invalid bet type " + type);
             }

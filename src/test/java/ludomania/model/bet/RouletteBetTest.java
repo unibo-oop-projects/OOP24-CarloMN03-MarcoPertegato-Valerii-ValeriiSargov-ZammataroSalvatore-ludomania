@@ -25,7 +25,7 @@ class RouletteBetTest {
 
     @Test
     void testImpairBet() {
-        final RouletteBet bet = RouletteBetFactory.impairBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.impairBet(mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -42,7 +42,7 @@ class RouletteBetTest {
 
     @Test
     void testPairBet() {
-        final RouletteBet bet = RouletteBetFactory.pairBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.pairBet(mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -59,7 +59,7 @@ class RouletteBetTest {
 
     @Test
     void testPasseBet() {
-        final RouletteBet bet = RouletteBetFactory.passeBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.passeBet(mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -76,7 +76,7 @@ class RouletteBetTest {
 
     @Test
     void testManqueBet() {
-        final RouletteBet bet = RouletteBetFactory.manqueBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.manqueBet(mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -93,7 +93,7 @@ class RouletteBetTest {
 
     @Test
     void testRougeBet() {
-        final RouletteBet bet = RouletteBetFactory.rougeBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.rougeBet(mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
@@ -113,7 +113,7 @@ class RouletteBetTest {
 
     @Test
     void testNoirBet() {
-        final RouletteBet bet = RouletteBetFactory.noirBet(Set.of(), mockAmount);
+        final RouletteBet bet = RouletteBetFactory.noirBet(mockAmount);
 
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
