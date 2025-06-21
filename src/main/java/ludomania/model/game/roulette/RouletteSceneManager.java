@@ -36,8 +36,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class RouletteSceneManager {
-    private final int DIALOG_SIZE = 450;
-    private final int SCROLL_PANE_DEFAULT_HEIGHT = 400;
+    private final int dialogSize = 450;
+    private final int scrollPaneDefaultHeight = 400;
 
     private final SceneManager sceneManager;
     private final LanguageManager languageManager;
@@ -87,9 +87,9 @@ public class RouletteSceneManager {
         }
     }
 
-    public void glowWheel(MouseEvent event) {
+    public void glowWheel(final MouseEvent event) {
         if (event.getSource() instanceof ImageView node) {
-            Glow glow = new Glow();
+            final Glow glow = new Glow();
 
             glow.setLevel(0.7);
             node.setEffect(glow);
@@ -147,7 +147,7 @@ public class RouletteSceneManager {
 
         final ScrollPane scrollPane = new ScrollPane(rulesLabel);
         scrollPane.setFitToWidth(true);
-        scrollPane.setPrefHeight(this.SCROLL_PANE_DEFAULT_HEIGHT);
+        scrollPane.setPrefHeight(this.scrollPaneDefaultHeight);
         scrollPane.setStyle("-fx-background: white;");
 
         final Button okBtn = new Button(languageManager.getString("exit"));
@@ -157,7 +157,7 @@ public class RouletteSceneManager {
         dialogVBox.setPadding(new Insets(10 * 2));
         dialogVBox.setAlignment(Pos.CENTER);
 
-        final Scene dialogScene = new Scene(dialogVBox, DIALOG_SIZE, DIALOG_SIZE);
+        final Scene dialogScene = new Scene(dialogVBox, dialogSize, dialogSize);
         this.rulesWindow.setScene(dialogScene);
         this.rulesWindow.showAndWait();
     }
@@ -187,7 +187,7 @@ public class RouletteSceneManager {
         dialogVBox.setPadding(new Insets(10 * 2));
         dialogVBox.setAlignment(Pos.CENTER);
 
-        final Scene dialogScene = new Scene(dialogVBox, DIALOG_SIZE, DIALOG_SIZE);
+        final Scene dialogScene = new Scene(dialogVBox, dialogSize, dialogSize);
         this.betsWindow.setScene(dialogScene);
         this.betsWindow.showAndWait();
     }

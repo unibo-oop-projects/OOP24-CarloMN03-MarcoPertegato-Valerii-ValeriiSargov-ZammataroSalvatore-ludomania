@@ -3,6 +3,19 @@ package ludomania.model.bet;
 import ludomania.model.bet.api.BetType;
 
 public class RouletteBetType {
+    private static final Double PleinPayout = 35.0;
+    private static final Double ChevalPayout = 17.0;
+    private static final Double CarrePayout = 8.0;
+    private static final Double DouzainePayout = 2.0;
+    private static final Double ColonnePayout = 2.0;
+    private static final Double PairPayout = 1.0;
+    private static final Double ImpairPayout = 1.0;
+    private static final Double ManquePayout = 1.0;
+    private static final Double PassePayout = 1.0;
+    private static final Double RougePayout = 1.0;
+    private static final Double NoirPayout = 1.0;
+
+    private RouletteBetType() { }
 
     public static final BetType PLEIN = new BetType() {
         @Override
@@ -12,7 +25,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 35.0;
+            return PleinPayout;
         }
     };
 
@@ -24,7 +37,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 17.0;
+            return ChevalPayout;
         }
     };
 
@@ -36,7 +49,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 8.0;
+            return CarrePayout;
         }
     };
 
@@ -48,7 +61,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 2.0;
+            return DouzainePayout;
         }
     };
 
@@ -60,7 +73,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 2.0;
+            return ColonnePayout;
         }
     };
 
@@ -72,7 +85,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 1.0;
+            return PairPayout;
         }
     };
 
@@ -84,7 +97,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 1.0;
+            return ImpairPayout;
         }
     };
 
@@ -96,7 +109,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 1.0;
+            return ManquePayout;
         }
     };
 
@@ -108,7 +121,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 1.0;
+            return PassePayout;
         }
     };
 
@@ -120,7 +133,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 1.0;
+            return RougePayout;
         }
     };
 
@@ -132,7 +145,7 @@ public class RouletteBetType {
 
         @Override
         public Double getPayout() {
-            return 1.0;
+            return NoirPayout;
         }
     };
 }

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
-import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -65,8 +64,6 @@ class RouletteBetTest {
         assertNotNull(bet);
         assertEquals(mockAmount, bet.getValue());
         assertEquals(RouletteBetType.PASSE, bet.getType());
-
-        BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> predicate = bet.success;
 
         assertTrue(bet.success.apply(new Pair<>(19, RouletteColor.NOIR), bet.getChoice()));
         assertTrue(bet.success.apply(new Pair<>(22, RouletteColor.NOIR), bet.getChoice()));
@@ -135,7 +132,7 @@ class RouletteBetTest {
     }
 
     @Test
-    void PleinBet() {
+    void pleinBet() {
         final Set<Object> mockChoice = Set.of(23);
         final RouletteBet bet = RouletteBetFactory.pleinBet(mockChoice, mockAmount);
 
@@ -150,7 +147,7 @@ class RouletteBetTest {
     }
 
     @Test
-    void ChevalBet() {
+    void chevalBet() {
         final Set<Object> mockChoice = Set.of(25, 26);
         final RouletteBet bet = RouletteBetFactory.chevalBet(mockChoice, mockAmount);
 
@@ -167,7 +164,7 @@ class RouletteBetTest {
     }
 
     @Test
-    void CarreBet() {
+    void carreBet() {
         final Set<Object> mockChoice = Set.of(25,26,29,28);
         final RouletteBet bet = RouletteBetFactory.carreBet(mockChoice, mockAmount);
 
@@ -188,7 +185,7 @@ class RouletteBetTest {
     }
 
     @Test
-    void DouzaineBet() {
+    void douzaineBet() {
         final Set<Object> mockChoice = RouletteWheel.firstDouzaine();
         final RouletteBet bet = RouletteBetFactory.douzaineBet(mockChoice, mockAmount);
 
@@ -207,8 +204,8 @@ class RouletteBetTest {
     }
 
     @Test
-    void ColonneBet() {
-        final Set<Object> mockChoice = RouletteWheel.secondColonne();
+    void colonneBet() {
+        final Set<Object> mockChoice = RouletteWheel.SECOND_COLONNE;
         final RouletteBet bet = RouletteBetFactory.colonneBet(mockChoice, mockAmount);
 
         assertNotNull(bet);

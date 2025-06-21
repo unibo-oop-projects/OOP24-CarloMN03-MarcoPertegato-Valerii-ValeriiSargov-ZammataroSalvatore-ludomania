@@ -16,7 +16,7 @@ public class RoulettePlayer extends Player {
     }
 
     @Override
-    public Bet makeBet(Double amount, BetType type) throws UnsupportedOperationException {
+    public Bet makeBet(final Double amount, final BetType type) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not supported.");
     }
 

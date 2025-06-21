@@ -12,33 +12,31 @@ import ludomania.view.ViewBuilder;
 
 public class RouletteViewBuilder implements ViewBuilder {
     private final String SEP = File.separator;
-    private final String FXML_FILE_NAME = "RouletteViewTemplate.fxml";
-    private final String FXML_STYLE_FILE_NAME = "RouletteView.css";
-    private final String FXML_FILE_PATH = new File(System.getProperty("user.dir")).getPath() +
-            SEP + "src" +
-            SEP + "main" +
-            SEP + "java" +
-            SEP + "ludomania" +
-            SEP + "view"+
-            SEP + "roulette" +
-            SEP + "resources" +
-            SEP + FXML_FILE_NAME;
+    private final String fxmlFileName = "RouletteViewTemplate.fxml";
+    private final String fxmlStyleFileName = "RouletteView.css";
+    private final String fxmlFilePath = new File(System.getProperty("user.dir")).getPath()
+            + SEP + "src"
+            + SEP + "main"
+            + SEP + "java"
+            + SEP + "ludomania"
+            + SEP + "view"
+            + SEP + "roulette"
+            + SEP + "resources"
+            + SEP + fxmlFileName;
 
-    private final String FXML_STYLE_FILE_PATH = new File(System.getProperty("user.dir")).getPath() +
-            SEP + "src" +
-            SEP + "main" +
-            SEP + "java" +
-            SEP + "ludomania" +
-            SEP + "view"+
-            SEP + "roulette" +
-            SEP + "resources" +
-            SEP + FXML_STYLE_FILE_NAME;
+    private final String FXML_STYLE_FILE_PATH = new File(System.getProperty("user.dir")).getPath()
+            + SEP + "src"
+            + SEP + "main"
+            + SEP + "java"
+            + SEP + "ludomania"
+            + SEP + "view"
+            + SEP + "roulette"
+            + SEP + "resources"
+            + SEP + fxmlStyleFileName;
 
     private final RouletteController controller;
 
-    public RouletteViewBuilder(
-            final RouletteController controller
-    ) {
+    public RouletteViewBuilder(final RouletteController controller) {
         this.controller = controller;
     }
 
@@ -47,11 +45,11 @@ public class RouletteViewBuilder implements ViewBuilder {
         BorderPane root;
 
         try {
-            File dbDirectory = new File(this.FXML_FILE_PATH);
+            final File fxml = new File(this.fxmlFilePath);
 
-            FXMLLoader loader = new FXMLLoader();
+            final FXMLLoader loader = new FXMLLoader();
             loader.setController(controller);
-            loader.setLocation(dbDirectory.toURI().toURL());
+            loader.setLocation(fxml.toURI().toURL());
 
             root = loader.<BorderPane>load();
             root.getStylesheets().add(this.FXML_STYLE_FILE_PATH);

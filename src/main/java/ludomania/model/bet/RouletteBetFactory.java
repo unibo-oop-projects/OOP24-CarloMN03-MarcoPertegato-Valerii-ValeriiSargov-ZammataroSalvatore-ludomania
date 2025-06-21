@@ -6,16 +6,16 @@ import ludomania.model.croupier.roulette.RouletteWheel;
 import java.util.Objects;
 import java.util.Set;
 
-public class RouletteBetFactory {
-    private RouletteBetFactory() {}
+public final class RouletteBetFactory {
+    private RouletteBetFactory() { }
 
     public static RouletteBet pleinBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,coll) -> {
-                    if (coll != null && !coll.isEmpty()) {
-                        return coll.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
+                (cr, choices) -> {
+                    if (choices != null && !choices.isEmpty()) {
+                        return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + coll);
+                        throw new IllegalArgumentException("Invalid choice " + choices);
                     }
                 },
                 choice,
@@ -25,11 +25,11 @@ public class RouletteBetFactory {
 
     public static RouletteBet chevalBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,coll) -> {
-                    if (coll != null && !coll.isEmpty()) {
-                        return coll.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
+                (cr, choices) -> {
+                    if (choices != null && !choices.isEmpty()) {
+                        return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + coll);
+                        throw new IllegalArgumentException("Invalid choice " + choices);
                     }
                 },
                 choice,
@@ -39,11 +39,11 @@ public class RouletteBetFactory {
 
     public static RouletteBet carreBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,coll) -> {
-                    if (coll != null && !coll.isEmpty()) {
-                        return coll.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
+                (cr, choices) -> {
+                    if (choices != null && !choices.isEmpty()) {
+                        return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + coll);
+                        throw new IllegalArgumentException("Invalid choice " + choices);
                     }
                 },
                 choice,
@@ -53,11 +53,11 @@ public class RouletteBetFactory {
 
     public static RouletteBet douzaineBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,coll) -> {
-                    if (coll != null && !coll.isEmpty()) {
-                        return coll.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
+                (cr, choices) -> {
+                    if (choices != null && !choices.isEmpty()) {
+                        return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + coll);
+                        throw new IllegalArgumentException("Invalid choice " + choices);
                     }
                 },
                 choice,
@@ -67,11 +67,11 @@ public class RouletteBetFactory {
 
     public static RouletteBet colonneBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,coll) -> {
-                    if (coll != null && !coll.isEmpty()) {
-                        return coll.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
+                (cr, choices) -> {
+                    if (choices != null && !choices.isEmpty()) {
+                        return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + coll);
+                        throw new IllegalArgumentException("Invalid choice " + choices);
                     }
                 },
                 choice,
@@ -81,7 +81,7 @@ public class RouletteBetFactory {
 
     public static RouletteBet pairBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,b) -> cr.getKey() != 0 && cr.getKey() % 2 == 0,
+                (cr, choices) -> cr.getKey() != 0 && cr.getKey() % 2 == 0,
                 choice,
                 amount,
                 RouletteBetType.PAIR);
@@ -89,7 +89,7 @@ public class RouletteBetFactory {
 
     public static RouletteBet impairBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,b) -> cr.getKey() != 0 && cr.getKey() % 2 != 0,
+                (cr,choices) -> cr.getKey() != 0 && cr.getKey() % 2 != 0,
                 choice,
                 amount,
                 RouletteBetType.IMPAIR);
@@ -97,7 +97,7 @@ public class RouletteBetFactory {
 
     public static RouletteBet passeBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,b) -> RouletteWheel.passe().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
+                (cr,choices) -> RouletteWheel.passe().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
                 choice,
                 amount,
                 RouletteBetType.PASSE);
@@ -105,7 +105,7 @@ public class RouletteBetFactory {
 
     public static RouletteBet manqueBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,b) -> RouletteWheel.manque().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
+                (cr,choices) -> RouletteWheel.manque().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
                 choice,
                 amount,
                 RouletteBetType.MANQUE);
@@ -113,7 +113,7 @@ public class RouletteBetFactory {
 
     public static RouletteBet rougeBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,b) -> cr.getValue() == RouletteColor.ROUGE,
+                (cr,choices) -> cr.getValue() == RouletteColor.ROUGE,
                 choice,
                 amount,
                 RouletteBetType.ROUGE);
@@ -121,7 +121,7 @@ public class RouletteBetFactory {
 
     public static RouletteBet noirBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
-                (cr,b) -> cr.getValue() == RouletteColor.NOIR,
+                (cr,choices) -> cr.getValue() == RouletteColor.NOIR,
                 choice,
                 amount,
                 RouletteBetType.NOIR);

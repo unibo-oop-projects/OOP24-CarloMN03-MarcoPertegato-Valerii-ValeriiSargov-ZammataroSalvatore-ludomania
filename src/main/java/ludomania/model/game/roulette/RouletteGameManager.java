@@ -23,10 +23,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Represents the core function that manages all behaviour aspects concerning Roulette game
+ * Represents the core function that manages all behaviour aspects concerning Roulette game.
  */
 public class RouletteGameManager {
-    private final String DEFAULT_PLAYER_USERNAME = "DemoPlayer";
+    private final String defaultPlayerUsername = "DemoPlayer";
 
     private final RouletteCroupier rouletteCroupier;
     private final Map<String, RoulettePlayer> players;
@@ -44,12 +44,12 @@ public class RouletteGameManager {
         if (players != null && !players.isEmpty()) {
             final Optional<RoulettePlayer> firstPlayer = players.stream().findFirst();
             this.currentPlayer = firstPlayer.orElseGet(() -> {
-                RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME);
+                RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.defaultPlayerUsername);
                 this.players.put(demoPlayer.getUsername(), demoPlayer);
                 return demoPlayer;
             });
         } else {
-            final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME);
+            final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.defaultPlayerUsername);
             this.players.put(demoPlayer.getUsername(), demoPlayer);
             this.currentPlayer = demoPlayer;
         }
@@ -58,7 +58,9 @@ public class RouletteGameManager {
     public RouletteGameManager(final RouletteCroupier rouletteCroupier, final RoulettePlayer player) {
         this.rouletteCroupier = rouletteCroupier;
 
-        final RoulettePlayer singlePlayer = player == null ? new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME) : player;
+        final RoulettePlayer singlePlayer =
+                player == null ? new RoulettePlayer(new WalletImpl(1000.0), this.defaultPlayerUsername) : player;
+
         this.players = new HashMap<>();
         this.players.put(singlePlayer.getUsername(), singlePlayer);
         this.currentPlayer = singlePlayer;
@@ -66,7 +68,7 @@ public class RouletteGameManager {
 
     public RouletteGameManager(final RouletteCroupier rouletteCroupier) {
         this.rouletteCroupier = rouletteCroupier;
-        final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.DEFAULT_PLAYER_USERNAME);
+        final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), this.defaultPlayerUsername);
         this.players = new HashMap<>();
         this.players.put(demoPlayer.getUsername(), demoPlayer);
         this.currentPlayer = demoPlayer;
@@ -103,12 +105,15 @@ public class RouletteGameManager {
         try {
             if (event.getSource() instanceof Button button) {
                 final int id = Integer.parseInt(button.getId());
-                this.rouletteCroupier.addBet(this.currentPlayer, this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.PLEIN, Set.of(id)));
+                this.rouletteCroupier.addBet(
+                        this.currentPlayer,
+                        this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.PLEIN, Set.of(id)));
+
                 this.currentPlayer.resetBetAmount();
             } else {
                 this.currentPlayer.restoreBalance();
             }
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             this.currentPlayer.restoreBalance();
         }
     }
@@ -118,12 +123,15 @@ public class RouletteGameManager {
             if (event.getSource() instanceof Separator separator) {
                 final String id = separator.getId();
                 Set<Object> choices = Arrays.stream(id.split("-")).map(Integer::parseInt).collect(Collectors.toSet());
-                this.rouletteCroupier.addBet(this.currentPlayer, this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.CHEVAL, Set.of(choices)));
+                this.rouletteCroupier.addBet(
+                        this.currentPlayer,
+                        this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.CHEVAL, Set.of(choices)));
+
                 this.currentPlayer.resetBetAmount();
             } else {
                 this.currentPlayer.restoreBalance();
             }
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             this.currentPlayer.restoreBalance();
         }
     }
@@ -133,12 +141,16 @@ public class RouletteGameManager {
             if (event.getSource() instanceof Button button) {
                 final String id = button.getId();
                 Set<Object> choices = Arrays.stream(id.split("-")).map(Integer::parseInt).collect(Collectors.toSet());
-                this.rouletteCroupier.addBet(this.currentPlayer, this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.CARRE, Set.of(choices)));
+
+                this.rouletteCroupier.addBet(
+                        this.currentPlayer,
+                        this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.CARRE, Set.of(choices)));
+
                 this.currentPlayer.resetBetAmount();
             } else {
                 this.currentPlayer.restoreBalance();
             }
-        } catch (NumberFormatException e) {
+        } catch (final IllegalArgumentException e) {
             this.currentPlayer.restoreBalance();
         }
     }
@@ -149,17 +161,20 @@ public class RouletteGameManager {
                 final String id = button.getId();
                 Set<Object> choices;
                 switch (id.charAt(0)) {
-                    case 'b' -> choices = RouletteWheel.firstColonne();
-                    case 'm' -> choices = RouletteWheel.secondColonne();
-                    case 't' -> choices = RouletteWheel.thirdColonne();
+                    case 'b' -> choices = RouletteWheel.FIRST_COLONNE;
+                    case 'm' -> choices = RouletteWheel.SECOND_COLONNE;
+                    case 't' -> choices = RouletteWheel.THIRD_COLONNE;
                     default -> throw new IllegalArgumentException("Wrong column name: " + id.charAt(0));
                 }
-                this.rouletteCroupier.addBet(this.currentPlayer, this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.COLONNE, choices));
+                this.rouletteCroupier.addBet(
+                        this.currentPlayer,
+                        this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.COLONNE, choices));
+
                 this.currentPlayer.resetBetAmount();
             } else {
                 this.currentPlayer.restoreBalance();
             }
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             this.currentPlayer.restoreBalance();
         }
     }
@@ -168,10 +183,11 @@ public class RouletteGameManager {
         try {
             this.rouletteCroupier.addBet(
                     this.currentPlayer,
-                    this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.NOIR, Set.of(RouletteColor.NOIR)));
+                    this.currentPlayer.makeBet(
+                            this.currentPlayer.getBetAmount(), RouletteBetType.NOIR, Set.of(RouletteColor.NOIR)));
 
             this.currentPlayer.resetBetAmount();
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             this.currentPlayer.restoreBalance();
         }
     }
@@ -180,10 +196,11 @@ public class RouletteGameManager {
         try {
             this.rouletteCroupier.addBet(
                     this.currentPlayer,
-                    this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.ROUGE, Set.of(RouletteColor.ROUGE)));
+                    this.currentPlayer.makeBet(
+                            this.currentPlayer.getBetAmount(), RouletteBetType.ROUGE, Set.of(RouletteColor.ROUGE)));
 
             this.currentPlayer.resetBetAmount();
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             this.currentPlayer.restoreBalance();
         }
     }
@@ -194,7 +211,7 @@ public class RouletteGameManager {
                     this.currentPlayer,
                     this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.PAIR, Set.of()));
             this.currentPlayer.resetBetAmount();
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             this.currentPlayer.restoreBalance();
         }
     }
@@ -206,7 +223,7 @@ public class RouletteGameManager {
                     this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.IMPAIR, Set.of()));
 
             this.currentPlayer.resetBetAmount();
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             this.currentPlayer.restoreBalance();
         }
     }
@@ -217,7 +234,7 @@ public class RouletteGameManager {
                     this.currentPlayer,
                     this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.PASSE, Set.of()));
             this.currentPlayer.resetBetAmount();
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             this.currentPlayer.restoreBalance();
         }
     }
@@ -229,7 +246,7 @@ public class RouletteGameManager {
                     this.currentPlayer.makeBet(this.currentPlayer.getBetAmount(), RouletteBetType.MANQUE, Set.of()));
 
             this.currentPlayer.resetBetAmount();
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             this.currentPlayer.restoreBalance();
         }
     }

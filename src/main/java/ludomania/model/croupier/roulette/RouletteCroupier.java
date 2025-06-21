@@ -16,8 +16,8 @@ public class RouletteCroupier extends Croupier<Pair<Integer, RouletteColor>> {
     }
 
     @Override
-    public Map<Player, Double> checkBets(CounterResult<Pair<Integer, RouletteColor>> result) throws IllegalArgumentException {
-        Map<Player, Double> winningBets = new HashMap<>();
+    public Map<Player, Double> checkBets(final CounterResult<Pair<Integer, RouletteColor>> result) {
+        final Map<Player, Double> winningBets = new HashMap<>();
 
         this.getRoundBet().forEach(bet -> {
             if (bet.getValue() instanceof RouletteBet rouletteBet) {
