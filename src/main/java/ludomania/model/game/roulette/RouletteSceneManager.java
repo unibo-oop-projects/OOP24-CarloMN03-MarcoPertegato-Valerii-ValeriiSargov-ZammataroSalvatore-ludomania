@@ -125,6 +125,10 @@ public class RouletteSceneManager {
     }
 
     public void showRules() {
+        if (this.rulesWindow != null) {
+            this.rulesWindow.close();
+        }
+
         this.rulesWindow = new Stage();
         this.rulesWindow.initModality(Modality.WINDOW_MODAL);
         this.rulesWindow.setTitle("Trente et Quarante");
@@ -150,6 +154,10 @@ public class RouletteSceneManager {
     }
 
     public void showBets(final List<Pair<Player, Bet>> bets) {
+        if (this.betsWindow != null) {
+            this.betsWindow.close();
+        }
+
         this.betsWindow = new Stage();
         this.betsWindow.initModality(Modality.WINDOW_MODAL);
         this.betsWindow.setTitle("Trente et Quarante");

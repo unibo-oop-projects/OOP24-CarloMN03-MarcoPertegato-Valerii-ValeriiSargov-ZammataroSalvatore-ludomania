@@ -32,7 +32,7 @@ public class RouletteBet extends Bet {
 
     @Override
     public String toString() {
-        return String.format("%1$,.2f $, %2$s on [%3$s]", this.getValue(), this.getType().getTypeName(), this.getChoice().toString());
+        return String.format("%1$,.2f $, %2$s on %3$s", this.getValue(), this.getType().getTypeName(), this.getChoice().toString());
     }
 
     public Set<Object> getChoice() {
