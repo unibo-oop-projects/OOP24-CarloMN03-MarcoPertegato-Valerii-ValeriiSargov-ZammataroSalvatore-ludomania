@@ -117,6 +117,6 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
     }
 
     public void showBets() {
-        this.sceneManager.showBets();
+        this.sceneManager.showBets(this.gameManager.getBets());
     }
 }

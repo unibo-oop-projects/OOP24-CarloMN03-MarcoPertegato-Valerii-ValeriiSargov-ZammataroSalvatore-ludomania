@@ -5,6 +5,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import ludomania.model.Pair;
 import ludomania.model.bet.RouletteBetType;
+import ludomania.model.bet.api.Bet;
 import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.croupier.roulette.RouletteCroupier;
 import ludomania.model.croupier.roulette.RouletteWheel;
@@ -185,5 +186,9 @@ public class RouletteGameManager {
 
     public Double getPlayerBalance() {
         return this.currentPlayer.getBalance();
+    }
+
+    public List<Pair<Player, Bet>> getBets() {
+        return this.rouletteCroupier.getRoundBet();
     }
 }

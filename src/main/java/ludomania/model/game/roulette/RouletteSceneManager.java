@@ -19,8 +19,12 @@ import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
 import ludomania.core.api.SceneManager;
 import ludomania.cosmetics.FicheValue;
+import ludomania.model.Pair;
+import ludomania.model.bet.api.Bet;
+import ludomania.model.player.api.Player;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public class RouletteSceneManager {
@@ -30,6 +34,8 @@ public class RouletteSceneManager {
     private final LanguageManager languageManager;
     private final AudioManager audioManager;
     private final ImageProvider imageProvider;
+    private Stage rulesWindow;
+    private Stage betsWindow;
 
     private final ToggleGroup ficheToggleGroup;
 
@@ -119,9 +125,9 @@ public class RouletteSceneManager {
     }
 
     public void showRules() {
-        final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.setTitle("Trente et Quarante");
+        this.rulesWindow = new Stage();
+        this.rulesWindow.initModality(Modality.WINDOW_MODAL);
+        this.rulesWindow.setTitle("Trente et Quarante");
 
         final Label rulesLabel = new Label(languageManager.getString("tq_rules_text"));
         rulesLabel.setWrapText(true);
@@ -132,39 +138,42 @@ public class RouletteSceneManager {
         scrollPane.setStyle("-fx-background: white;");
 
         final Button okBtn = new Button(languageManager.getString("exit"));
-        okBtn.setOnAction(e -> dialog.close());
+        okBtn.setOnAction(e -> this.rulesWindow.close());
 
         final VBox dialogVBox = new VBox(10, scrollPane, okBtn);
         dialogVBox.setPadding(new Insets(10 * 2));
         dialogVBox.setAlignment(Pos.CENTER);
 
         final Scene dialogScene = new Scene(dialogVBox, DIALOG_SIZE, DIALOG_SIZE);
-        dialog.setScene(dialogScene);
-        dialog.showAndWait();
+        this.rulesWindow.setScene(dialogScene);
+        this.rulesWindow.showAndWait();
     }
 
-    public void showBets() {
-        final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.setTitle("Trente et Quarante");
+    public void showBets(final List<Pair<Player, Bet>> bets) {
+        this.betsWindow = new Stage();
+        this.betsWindow.initModality(Modality.WINDOW_MODAL);
+        this.betsWindow.setTitle("Trente et Quarante");
 
-        final Label rulesLabel = new Label(languageManager.getString("tq_rules_text"));
-        rulesLabel.setWrapText(true);
+        final ListView<String> betsList = new ListView<>();
+        betsList.getItems().addAll(
+                bets.stream().map(b -> String.format("%1$s, %2$s", b.getKey().getUsername(), b.getValue().toString())).toList());
 
-        final ScrollPane scrollPane = new ScrollPane(rulesLabel);
+        final ScrollPane scrollPane = new ScrollPane(betsList);
         scrollPane.setFitToWidth(true);
         scrollPane.setPrefHeight(400);
         scrollPane.setStyle("-fx-background: white;");
 
         final Button okBtn = new Button(languageManager.getString("exit"));
-        okBtn.setOnAction(e -> dialog.close());
+        okBtn.setOnAction(e -> this.betsWindow.close());
 
         final VBox dialogVBox = new VBox(10, scrollPane, okBtn);
         dialogVBox.setPadding(new Insets(10 * 2));
         dialogVBox.setAlignment(Pos.CENTER);
 
         final Scene dialogScene = new Scene(dialogVBox, DIALOG_SIZE, DIALOG_SIZE);
-        dialog.setScene(dialogScene);
-        dialog.showAndWait();
+        this.betsWindow.setScene(dialogScene);
+        this.betsWindow.showAndWait();
     }
+
+
 }
