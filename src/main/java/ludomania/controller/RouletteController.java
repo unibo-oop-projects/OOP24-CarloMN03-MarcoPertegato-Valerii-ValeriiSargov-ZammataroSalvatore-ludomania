@@ -192,7 +192,8 @@ public class RouletteController implements Controller {
     }
 
     @FXML
-    private void spinWheel() {
+    private void spinWheel(final MouseEvent event) {
+        this.game.spinWheel(event);
         final Pair<Integer, RouletteColor> result = this.game.runGame().getResult();
         this.result.set(result.getKey().toString());
         final String colorStyle = "-fx-text-fill: " + this.resultColor(result.getValue()) + ";";

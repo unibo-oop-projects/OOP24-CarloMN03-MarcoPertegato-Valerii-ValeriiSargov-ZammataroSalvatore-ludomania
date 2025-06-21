@@ -1,5 +1,7 @@
 package ludomania.model.game.roulette;
 
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
 import javafx.beans.property.IntegerProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,6 +24,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import ludomania.core.api.AudioManager;
 import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
@@ -31,10 +34,7 @@ import ludomania.model.Pair;
 import ludomania.model.bet.api.Bet;
 import ludomania.model.player.api.Player;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Implements the Roulette game graphic logic.
@@ -46,6 +46,8 @@ public class RouletteSceneManager {
     private final int dialogSize = 450;
     private final int scrollPaneDefaultHeight = 400;
     private final double glowLevel = 0.7;
+    private final double circles = 5000;
+    private final int cycleCount = 1;
 
 
     private final SceneManager sceneManager;
@@ -244,6 +246,20 @@ public class RouletteSceneManager {
         if (result.isPresent() && Objects.equals(result.get(), okBtn)) {
             audioManager.playSound("click");
             sceneManager.switchToMainMenu();
+        }
+    }
+
+    public void spinWheel(final MouseEvent event) {
+        Object img = event.getSource();
+        if (img instanceof ImageView imageView) {
+            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), imageView);
+
+            rotateTransition.setByAngle(Math.random() * this.circles);
+            rotateTransition.setCycleCount(this.cycleCount);
+            rotateTransition.setInterpolator(Interpolator.EASE_BOTH);
+
+            // Play the animation
+            rotateTransition.play();
         }
     }
 
