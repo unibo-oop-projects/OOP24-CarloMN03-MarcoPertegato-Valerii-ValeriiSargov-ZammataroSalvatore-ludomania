@@ -120,7 +120,7 @@ public class RouletteSceneManager {
      */
     public void unhighlightCarre(final MouseEvent event) {
         if (event.getSource() instanceof Node clickedButton) {
-            clickedButton.getParent().setStyle("-fx-border-color: trasparent; -fx-border-width: 1px;");
+            clickedButton.getParent().setStyle("-fx-border-color: transparent; -fx-border-width: 1px;");
         }
     }
 
