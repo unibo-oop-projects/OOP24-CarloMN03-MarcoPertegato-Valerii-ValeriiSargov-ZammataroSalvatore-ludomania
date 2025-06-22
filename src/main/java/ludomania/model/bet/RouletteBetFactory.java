@@ -20,6 +20,8 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet pleinBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
+                amount,
+                RouletteBetType.PLEIN,
                 (cr, choices) -> {
                     if (choices != null && !choices.isEmpty()) {
                         return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
@@ -27,9 +29,7 @@ public final class RouletteBetFactory {
                         throw new IllegalArgumentException("Invalid choice " + choices);
                     }
                 },
-                choice,
-                amount,
-                RouletteBetType.PLEIN);
+                choice);
     }
 
     /**
@@ -40,6 +40,8 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet chevalBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
+                amount,
+                RouletteBetType.CHEVAL,
                 (cr, choices) -> {
                     if (choices != null && !choices.isEmpty()) {
                         return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
@@ -47,9 +49,7 @@ public final class RouletteBetFactory {
                         throw new IllegalArgumentException("Invalid choice " + choices);
                     }
                 },
-                choice,
-                amount,
-                RouletteBetType.CHEVAL);
+                choice);
     }
 
     /**
@@ -60,6 +60,8 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet carreBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
+                amount,
+                RouletteBetType.CARRE,
                 (cr, choices) -> {
                     if (choices != null && !choices.isEmpty()) {
                         return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
@@ -67,9 +69,7 @@ public final class RouletteBetFactory {
                         throw new IllegalArgumentException("Invalid choice " + choices);
                     }
                 },
-                choice,
-                amount,
-                RouletteBetType.CARRE);
+                choice);
     }
 
     /**
@@ -80,6 +80,8 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet douzaineBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
+                amount,
+                RouletteBetType.DOUZAINE,
                 (cr, choices) -> {
                     if (choices != null && !choices.isEmpty()) {
                         return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
@@ -87,9 +89,7 @@ public final class RouletteBetFactory {
                         throw new IllegalArgumentException("Invalid choice " + choices);
                     }
                 },
-                choice,
-                amount,
-                RouletteBetType.DOUZAINE);
+                choice);
     }
 
     /**
@@ -100,6 +100,8 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet colonneBet(final Set<Object> choice, final double amount) {
         return new RouletteBet(
+                amount,
+                RouletteBetType.COLONNE,
                 (cr, choices) -> {
                     if (choices != null && !choices.isEmpty()) {
                         return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
@@ -107,9 +109,7 @@ public final class RouletteBetFactory {
                         throw new IllegalArgumentException("Invalid choice " + choices);
                     }
                 },
-                choice,
-                amount,
-                RouletteBetType.COLONNE);
+                choice);
     }
 
     /**
@@ -119,10 +119,10 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet pairBet(final double amount) {
         return new RouletteBet(
-                (cr, choices) -> cr.getKey() != 0 && cr.getKey() % 2 == 0,
-                Set.of(),
                 amount,
-                RouletteBetType.PAIR);
+                RouletteBetType.PAIR,
+                (cr, choices) -> cr.getKey() != 0 && cr.getKey() % 2 == 0,
+                Set.of());
     }
 
     /**
@@ -132,10 +132,10 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet impairBet(final double amount) {
         return new RouletteBet(
-                (cr, choices) -> cr.getKey() != 0 && cr.getKey() % 2 != 0,
-                Set.of(),
                 amount,
-                RouletteBetType.IMPAIR);
+                RouletteBetType.IMPAIR,
+                (cr, choices) -> cr.getKey() != 0 && cr.getKey() % 2 != 0,
+                Set.of());
     }
 
     /**
@@ -145,10 +145,10 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet passeBet(final double amount) {
         return new RouletteBet(
-                (cr, choices) -> RouletteWheel.passe().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
-                Set.of(),
                 amount,
-                RouletteBetType.PASSE);
+                RouletteBetType.PASSE,
+                (cr, choices) -> RouletteWheel.passe().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
+                Set.of());
     }
 
     /**
@@ -158,10 +158,10 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet manqueBet(final double amount) {
         return new RouletteBet(
-                (cr, choices) -> RouletteWheel.manque().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
-                Set.of(),
                 amount,
-                RouletteBetType.MANQUE);
+                RouletteBetType.MANQUE,
+                (cr, choices) -> RouletteWheel.manque().stream().anyMatch(c -> Objects.equals(c, cr.getKey())),
+                Set.of());
     }
 
     /**
@@ -171,10 +171,10 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet rougeBet(final double amount) {
         return new RouletteBet(
-                (cr, choices) -> cr.getValue() == RouletteColor.ROUGE,
-                Set.of(),
                 amount,
-                RouletteBetType.ROUGE);
+                RouletteBetType.ROUGE,
+                (cr, choices) -> cr.getValue() == RouletteColor.ROUGE,
+                Set.of());
     }
 
     /**
@@ -184,9 +184,9 @@ public final class RouletteBetFactory {
      */
     public static RouletteBet noirBet(final double amount) {
         return new RouletteBet(
-                (cr, choices) -> cr.getValue() == RouletteColor.NOIR,
-                Set.of(),
                 amount,
-                RouletteBetType.NOIR);
+                RouletteBetType.NOIR,
+                (cr, choices) -> cr.getValue() == RouletteColor.NOIR,
+                Set.of());
     }
 }

@@ -51,6 +51,7 @@ public class RouletteSceneManager {
     private final double glowLevel = 0.7;
     private final double circles = 5000;
     private final int cycleCount = 1;
+    private final int animationTime = 3;
 
 
     private final SceneManager sceneManager;
@@ -142,7 +143,7 @@ public class RouletteSceneManager {
     }
 
     /**
-     * Attachs the fiches images and creates corresponding event handlers on the game scene.
+     * Attaches the fiches images and creates corresponding event handlers on the game scene.
      * @param node the element on which attaching fiches.
      * @param controlProperty the control property to which attaching event listeners.
      */
@@ -259,7 +260,7 @@ public class RouletteSceneManager {
     public void spinWheel(final MouseEvent event) {
         final Object img = event.getSource();
         if (img instanceof ImageView imageView) {
-            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), imageView);
+            final RotateTransition rotateTransition = new RotateTransition(Duration.seconds(this.animationTime), imageView);
 
             rotateTransition.setByAngle(Math.random() * this.circles);
             rotateTransition.setCycleCount(this.cycleCount);

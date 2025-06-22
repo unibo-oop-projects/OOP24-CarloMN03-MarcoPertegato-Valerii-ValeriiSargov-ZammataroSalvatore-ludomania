@@ -16,14 +16,6 @@ public final class RouletteBet extends Bet {
     private final Set<Object> choice;
 
     /**
-     * Gets the success {@link BiFunction}.
-     * @return the instance of private property {@code success}.
-     */
-    public BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> getSuccess() {
-        return success;
-    }
-
-    /**
      * Creates a new {@link RouletteBet}.
      * @param success the function that will evaluate if the bet is winning.
      * @param choice the choice operated by the player.
@@ -31,14 +23,22 @@ public final class RouletteBet extends Bet {
      * @param type the type of the bet.
      */
     public RouletteBet(
-            final BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> success,
-            final Set<Object> choice,
             final double value,
-            final BetType type
+            final BetType type,
+            final BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> success,
+            final Set<Object> choice
     ) {
         super(value, type);
         this.success = success;
         this.choice = choice;
+    }
+
+    /**
+     * Gets the success {@link BiFunction}.
+     * @return the instance of private property {@code success}.
+     */
+    public BiFunction<Pair<Integer, RouletteColor>, Set<Object>, Boolean> getSuccess() {
+        return success;
     }
 
     /**

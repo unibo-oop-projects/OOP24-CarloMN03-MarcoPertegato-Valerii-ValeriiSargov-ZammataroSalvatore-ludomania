@@ -15,16 +15,8 @@ import java.util.stream.IntStream;
  * </p>
  */
 public final class RouletteWheel {
-    private static final Integer MAX = 36;
-    private static final Integer FIRST_DOUZAINE_BOTTOM_BUOND = 1;
-    private static final Integer FIRST_DOUZAINE_UP_BUOND = 12;
-    private static final Integer SECOND_DOUZAINE_UP_BUOND = 24;
-    private static final Integer THIRD_DOUZAINE_UP_BUOND = 36;
-    private static final Integer FIRST_HALF_UP_BOUND = 18;
-    private static final Integer FIRST_HALF_BOTTOM_BOUND = 1;
-
     /**
-     * All the possible entries for the french Roulette game.
+     * All the possible entries for the French Roulette game.
      */
     public static final Map<Integer, RouletteColor> ROULETTE_NUMBERS = Map.ofEntries(
             Map.entry(0, RouletteColor.VERT),
@@ -78,6 +70,14 @@ public final class RouletteWheel {
      */
     public static final Set<Object> THIRD_COLONNE = Set.of(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36);
 
+    private static final Integer MAX = 36;
+    private static final Integer FIRST_DOUZAINE_BOTTOM_BOUND = 1;
+    private static final Integer FIRST_DOUZAINE_UP_BOUND = 12;
+    private static final Integer SECOND_DOUZAINE_UP_BOUND = 24;
+    private static final Integer THIRD_DOUZAINE_UP_BOUND = 36;
+    private static final Integer FIRST_HALF_UP_BOUND = 18;
+    private static final Integer FIRST_HALF_BOTTOM_BOUND = 1;
+
     private RouletteWheel() { }
 
     /**
@@ -90,8 +90,8 @@ public final class RouletteWheel {
     }
 
     /**
-     * The french Roulette game number corresponding color.
-     * @param number
+     * The French Roulette game number corresponding color.
+     * @param number the number whose color you want to find.
      * @return the color of the number.
      */
     public static RouletteColor color(final Integer number) {
@@ -104,7 +104,7 @@ public final class RouletteWheel {
      */
     public static Set<Object> firstDouzaine() {
         return ROULETTE_NUMBERS.keySet().stream()
-                .filter(key -> key >= FIRST_DOUZAINE_BOTTOM_BUOND && key <= FIRST_DOUZAINE_UP_BUOND)
+                .filter(key -> key >= FIRST_DOUZAINE_BOTTOM_BOUND && key <= FIRST_DOUZAINE_UP_BOUND)
                 .collect(Collectors.toSet());
     }
 
@@ -114,7 +114,7 @@ public final class RouletteWheel {
      */
     public static Set<Object> secondDouzaine() {
         return ROULETTE_NUMBERS.keySet().stream()
-                .filter(key -> key >= (FIRST_DOUZAINE_UP_BUOND + 1) && key <= SECOND_DOUZAINE_UP_BUOND)
+                .filter(key -> key >= (FIRST_DOUZAINE_UP_BOUND + 1) && key <= SECOND_DOUZAINE_UP_BOUND)
                 .collect(Collectors.toSet());
     }
 
@@ -124,7 +124,7 @@ public final class RouletteWheel {
      */
     public static Set<Object> thirdDouzaine() {
         return ROULETTE_NUMBERS.keySet().stream()
-                .filter(key -> key >= (SECOND_DOUZAINE_UP_BUOND + 1) && key <= THIRD_DOUZAINE_UP_BUOND)
+                .filter(key -> key >= (SECOND_DOUZAINE_UP_BOUND + 1) && key <= THIRD_DOUZAINE_UP_BOUND)
                 .collect(Collectors.toSet());
     }
 

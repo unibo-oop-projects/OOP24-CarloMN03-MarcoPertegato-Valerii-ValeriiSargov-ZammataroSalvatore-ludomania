@@ -6,20 +6,6 @@ import ludomania.model.bet.api.BetType;
  * Represent the bet types for the Roulette game.
  */
 public final class RouletteBetType {
-    private static final Double PLEIN_PAYOUT = 35.0;
-    private static final Double CHEVAL_PAYOUT = 17.0;
-    private static final Double CARRE_PAYOUT = 8.0;
-    private static final Double DOUZAINE_PAYOUT = 2.0;
-    private static final Double COLONNE_PAYOUT = 2.0;
-    private static final Double PAIR_PAYOUT = 1.0;
-    private static final Double IMPAIR_PAYOUT = 1.0;
-    private static final Double MANQUE_PAYOUT = 1.0;
-    private static final Double PASSE_PAYOUT = 1.0;
-    private static final Double ROUGE_PAYOUT = 1.0;
-    private static final Double NOIR_PAYOUT = 1.0;
-
-    private RouletteBetType() { }
-
     /**
      * Plein bet type.
      */
@@ -183,4 +169,18 @@ public final class RouletteBetType {
             return NOIR_PAYOUT;
         }
     };
+
+    private static final Double PLEIN_PAYOUT = 35.0;
+    private static final Double CHEVAL_PAYOUT = 17.0;
+    private static final Double CARRE_PAYOUT = 8.0;
+    private static final Double DOUZAINE_PAYOUT = 2.0;
+    private static final Double COLONNE_PAYOUT = 2.0;
+    private static final Double PAIR_PAYOUT = 1.0;
+    private static final Double IMPAIR_PAYOUT = 1.0;
+    private static final Double MANQUE_PAYOUT = 1.0;
+    private static final Double PASSE_PAYOUT = 1.0;
+    private static final Double ROUGE_PAYOUT = 1.0;
+    private static final Double NOIR_PAYOUT = 1.0;
+
+    private RouletteBetType() { }
 }
