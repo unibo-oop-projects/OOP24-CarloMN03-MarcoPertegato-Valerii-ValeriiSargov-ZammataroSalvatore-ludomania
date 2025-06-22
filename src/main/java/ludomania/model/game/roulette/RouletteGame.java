@@ -212,6 +212,10 @@ public class RouletteGame implements Game<Pair<Integer, RouletteColor>> {
         this.sceneManager.showBets(this.gameManager.getBets());
     }
 
+    /**
+     * Calls the corresponding function to animate the roulette wheel.
+     * @param event the mouse click event on image view.
+     */
     public void spinWheel(final MouseEvent event) {
         this.sceneManager.spinWheel(event);
     }

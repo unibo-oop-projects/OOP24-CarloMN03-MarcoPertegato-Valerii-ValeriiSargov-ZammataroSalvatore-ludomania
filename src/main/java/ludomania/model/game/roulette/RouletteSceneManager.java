@@ -34,7 +34,10 @@ import ludomania.model.Pair;
 import ludomania.model.bet.api.Bet;
 import ludomania.model.player.api.Player;
 
-import java.util.*;
+import java.util.Optional;
+import java.util.Objects;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Implements the Roulette game graphic logic.
@@ -249,8 +252,12 @@ public class RouletteSceneManager {
         }
     }
 
+    /**
+     * Starts the animation of Roulette wheel.
+     * @param event the mouse event on image view.
+     */
     public void spinWheel(final MouseEvent event) {
-        Object img = event.getSource();
+        final Object img = event.getSource();
         if (img instanceof ImageView imageView) {
             RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), imageView);
 
