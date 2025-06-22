@@ -10,6 +10,9 @@ import java.util.Set;
  * Represents a {@code factory} for the roulette game bets.
  */
 public final class RouletteBetFactory {
+    private static final String INVALID_CHOICE = "Invalid choice: ";
+    private static final String INVALID_CHOICES = "Invalid choices: ";
+
     private RouletteBetFactory() { }
 
     /**
@@ -26,7 +29,7 @@ public final class RouletteBetFactory {
                     if (choices != null && !choices.isEmpty()) {
                         return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + choices);
+                        throw new IllegalArgumentException(INVALID_CHOICE + choices);
                     }
                 },
                 choice);
@@ -46,7 +49,7 @@ public final class RouletteBetFactory {
                     if (choices != null && !choices.isEmpty()) {
                         return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + choices);
+                        throw new IllegalArgumentException(INVALID_CHOICES + choices);
                     }
                 },
                 choice);
@@ -66,7 +69,7 @@ public final class RouletteBetFactory {
                     if (choices != null && !choices.isEmpty()) {
                         return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + choices);
+                        throw new IllegalArgumentException(INVALID_CHOICES + choices);
                     }
                 },
                 choice);
@@ -86,7 +89,7 @@ public final class RouletteBetFactory {
                     if (choices != null && !choices.isEmpty()) {
                         return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + choices);
+                        throw new IllegalArgumentException(INVALID_CHOICES + choices);
                     }
                 },
                 choice);
@@ -106,7 +109,7 @@ public final class RouletteBetFactory {
                     if (choices != null && !choices.isEmpty()) {
                         return choices.stream().anyMatch(c -> Objects.equals(c, cr.getKey()));
                     } else {
-                        throw new IllegalArgumentException("Invalid choice " + choices);
+                        throw new IllegalArgumentException(INVALID_CHOICES + choices);
                     }
                 },
                 choice);

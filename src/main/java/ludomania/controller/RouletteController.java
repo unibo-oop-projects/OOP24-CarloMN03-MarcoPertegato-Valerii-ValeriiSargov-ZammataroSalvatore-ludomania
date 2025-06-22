@@ -28,6 +28,7 @@ import ludomania.view.roulette.RouletteViewBuilder;
  * <p>
  * Manages interactions between the view (UI) and the model logic facade {@link RouletteGame}.
  */
+@SuppressWarnings({"PMD.UnusedLocalVariable", "PMD.UnusedPrivateMethod"})
 public class RouletteController implements Controller {
 
     @FXML
@@ -231,7 +232,7 @@ public class RouletteController implements Controller {
     }
 
     @FXML
-    private void evaluateRound(final MouseEvent event) {
+    private void evaluateRound() {
         this.result.set("");
         this.game.evaluateRound();
 

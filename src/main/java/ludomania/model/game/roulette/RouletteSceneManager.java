@@ -46,12 +46,12 @@ import java.util.List;
  * </p>
  */
 public class RouletteSceneManager {
-    private final int dialogSize = 450;
-    private final int scrollPaneDefaultHeight = 400;
-    private final double glowLevel = 0.7;
-    private final double circles = 5000;
-    private final int cycleCount = 1;
-    private final int animationTime = 3;
+    private static final int DIALOG_SIZE = 450;
+    private static final int SCROLL_PANE_DEFAULT_HEIGHT = 400;
+    private static final double GLOW_LEVEL = 0.7;
+    private static final double CIRCLES = 3000;
+    private static final int CYCLE_COUNT = 1;
+    private static final int ANIMATION_TIME = 3;
 
 
     private final SceneManager sceneManager;
@@ -127,7 +127,7 @@ public class RouletteSceneManager {
         if (event.getSource() instanceof ImageView node) {
             final Glow glow = new Glow();
 
-            glow.setLevel(this.glowLevel);
+            glow.setLevel(this.GLOW_LEVEL);
             node.setEffect(glow);
         }
     }
@@ -168,7 +168,7 @@ public class RouletteSceneManager {
             }
             if (newToggle != null && newToggle.isSelected()) {
                 final Glow glow = new Glow();
-                glow.setLevel(this.glowLevel);
+                glow.setLevel(this.GLOW_LEVEL);
                 ((ToggleButton) newToggle).setEffect(glow);
             }
 
@@ -191,7 +191,7 @@ public class RouletteSceneManager {
 
         final ScrollPane scrollPane = new ScrollPane(rulesLabel);
         scrollPane.setFitToWidth(true);
-        scrollPane.setPrefHeight(this.scrollPaneDefaultHeight);
+        scrollPane.setPrefHeight(this.SCROLL_PANE_DEFAULT_HEIGHT);
         scrollPane.setStyle("-fx-background: white;");
 
         final Button okBtn = new Button(languageManager.getString("close"));
@@ -220,7 +220,7 @@ public class RouletteSceneManager {
 
         final ScrollPane scrollPane = new ScrollPane(betsList);
         scrollPane.setFitToWidth(true);
-        scrollPane.setPrefHeight(this.scrollPaneDefaultHeight);
+        scrollPane.setPrefHeight(this.SCROLL_PANE_DEFAULT_HEIGHT);
         scrollPane.setStyle("-fx-background: white;");
 
         final Button okBtn = new Button(languageManager.getString("close"));
@@ -260,10 +260,10 @@ public class RouletteSceneManager {
     public void spinWheel(final MouseEvent event) {
         final Object img = event.getSource();
         if (img instanceof ImageView imageView) {
-            final RotateTransition rotateTransition = new RotateTransition(Duration.seconds(this.animationTime), imageView);
+            final RotateTransition rotateTransition = new RotateTransition(Duration.seconds(this.ANIMATION_TIME), imageView);
 
-            rotateTransition.setByAngle(Math.random() * this.circles);
-            rotateTransition.setCycleCount(this.cycleCount);
+            rotateTransition.setByAngle(Math.random() * this.CIRCLES);
+            rotateTransition.setCycleCount(this.CYCLE_COUNT);
             rotateTransition.setInterpolator(Interpolator.EASE_BOTH);
 
             // Play the animation
@@ -276,7 +276,7 @@ public class RouletteSceneManager {
         window.initModality(mode);
         window.setTitle(title);
 
-        final Scene dialogScene = new Scene(sceneRoot, dialogSize, dialogSize);
+        final Scene dialogScene = new Scene(sceneRoot, DIALOG_SIZE, DIALOG_SIZE);
         window.setScene(dialogScene);
         return window;
     }
