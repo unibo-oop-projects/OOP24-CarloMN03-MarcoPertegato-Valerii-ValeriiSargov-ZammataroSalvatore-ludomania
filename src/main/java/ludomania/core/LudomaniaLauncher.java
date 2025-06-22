@@ -18,6 +18,24 @@ import ludomania.core.impl.SceneManagerImpl;
 import ludomania.settings.api.SettingsManager;
 import ludomania.settings.impl.SettingsManagerImpl;
 
+/**
+ * JavaFX application launcher for Ludomania.
+ * <p>
+ * This class extends {@link Application} and serves as the entry point when the
+ * JavaFX runtime starts the graphical user interface. It initializes all core
+ * managers needed by the application, including:
+ * </p>
+ * <ul>
+ *   <li>{@link SettingsManager} – for managing user settings such as volume, themes, and locale</li>
+ *   <li>{@link ImageManager} – for loading and managing application images</li>
+ *   <li>{@link AudioManager} – for managing and playing audio resources</li>
+ *   <li>{@link LanguageManager} – for handling internationalization and localization</li>
+ *   <li>{@link SceneManager} – for controlling scene transitions within the application</li>
+ * </ul>
+ * <p>
+ * After initializing these managers, the main menu is set as the initial scene and the application window is shown.
+ * </p>
+ */
 public final class LudomaniaLauncher extends Application {
 
     /**

@@ -26,6 +26,8 @@ import ludomania.settings.api.SettingsManager;
  */
 
 public final class SettingsManagerImpl implements SettingsManager {
+    private static final String JUSTIFICATION = 
+        "Binding to the manager are shared intentionally as they are immutable or managed externally.";
     private static final String PREFS_NODE = "ludomania.settings";
     private static final double DEFAULT_AUDIO_VALUE = 0.8;
     private static final int DEFAULT_WIDTH_VALUE = 800;
@@ -78,7 +80,7 @@ public final class SettingsManagerImpl implements SettingsManager {
 
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = JUSTIFICATION
     )
     @Override
     public ObjectProperty<CosmeticTheme> cardThemeProperty() {
@@ -87,7 +89,7 @@ public final class SettingsManagerImpl implements SettingsManager {
 
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = JUSTIFICATION
     )
     @Override
     public ObjectProperty<CosmeticTheme> ficheThemeProperty() {
@@ -96,7 +98,7 @@ public final class SettingsManagerImpl implements SettingsManager {
 
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = JUSTIFICATION
     )
     @Override
     public ObjectProperty<CosmeticTheme> backgroundThemeProperty() {
@@ -104,7 +106,7 @@ public final class SettingsManagerImpl implements SettingsManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = JUSTIFICATION
     )
 
     @Override
@@ -114,7 +116,7 @@ public final class SettingsManagerImpl implements SettingsManager {
 
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = JUSTIFICATION
     )
     @Override
     public DoubleProperty volumeProperty() {
@@ -123,7 +125,7 @@ public final class SettingsManagerImpl implements SettingsManager {
 
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = JUSTIFICATION
     )
     @Override
     public BooleanProperty fullscreenProperty() {
@@ -132,7 +134,7 @@ public final class SettingsManagerImpl implements SettingsManager {
 
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = JUSTIFICATION
     )
     @Override
     public IntegerProperty resolutionWidthProperty() {
@@ -141,7 +143,7 @@ public final class SettingsManagerImpl implements SettingsManager {
 
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally as they are immutable or managed externally."
+        justification = JUSTIFICATION
     )
     @Override
     public IntegerProperty resolutionHeightProperty() {

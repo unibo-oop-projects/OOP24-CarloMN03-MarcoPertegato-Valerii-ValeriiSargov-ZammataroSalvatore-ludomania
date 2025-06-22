@@ -14,6 +14,12 @@ import javafx.application.Application;
  */
 
 public final class Ludomania {
+
+    // Private constructor to prevent instantiation
+    private Ludomania() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     /**
      * The main entry point for the application.
      * <p>
@@ -23,7 +29,6 @@ public final class Ludomania {
      * 
      * @param args command line arguments (not used in this case)
      */
-
     public static void main(final String[] args) {
         Application.launch(LudomaniaLauncher.class, args);
     }

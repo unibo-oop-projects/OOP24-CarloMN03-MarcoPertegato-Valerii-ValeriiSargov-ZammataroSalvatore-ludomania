@@ -1,15 +1,15 @@
 package ludomania.controller;
 
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -101,7 +101,7 @@ public class RouletteController implements Controller {
         this.exitBtn.disableProperty().bind(this.okBtnDisabled.not());
 
         this.resultLabel.textProperty()
-                .addListener((observable, oldValue, newValue) -> okBtnDisabled.set(newValue.trim().isEmpty()));
+                .addListener((observable, oldValue, newValue) -> okBtnDisabled.set(newValue.isBlank()));
 
         this.attachFiches(this.ficheBox, this.betAmount);
 

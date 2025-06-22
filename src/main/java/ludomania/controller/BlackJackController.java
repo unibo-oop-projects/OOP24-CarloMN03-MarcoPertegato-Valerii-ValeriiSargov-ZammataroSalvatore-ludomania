@@ -1,5 +1,6 @@
 package ludomania.controller;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.lyuda.jcards.Hand;
 import javafx.scene.Parent;
 import javafx.util.Builder;
@@ -33,6 +34,10 @@ public final class BlackJackController implements Controller, BlackJackHandler {
      * @param sceneManager manages the scenes
      * @param audioManager manages sounds
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to audioManager is shared intentionally"
+    )
     public BlackJackController(final SceneManager sceneManager, final AudioManager audioManager) {
         this.sceneManager = sceneManager;
         this.audioManager = audioManager;

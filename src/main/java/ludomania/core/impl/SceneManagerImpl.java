@@ -10,8 +10,8 @@ import javafx.stage.Stage;
 import ludomania.controller.BlackJackController;
 import ludomania.controller.CosmeticController;
 import ludomania.controller.MainMenuController;
-import ludomania.controller.TrenteEtQuaranteController;
 import ludomania.controller.RouletteController;
+import ludomania.controller.TrenteEtQuaranteController;
 import ludomania.core.api.AudioManager;
 import ludomania.core.api.ImageProvider;
 import ludomania.core.api.LanguageManager;
@@ -31,6 +31,7 @@ import ludomania.settings.impl.SettingsController;
  */
 public final class SceneManagerImpl implements SceneManager {
 
+    private static final String JUSTIFICATION = "Binding to the manager are shared intentionally";
     private final SettingsManager settingsManager;
     private final AudioManager audioManager;
     private final LanguageManager languageManager;
@@ -138,7 +139,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally"
+        justification = JUSTIFICATION
     )
     private void bindFullscreenToStage() {
         settingsManager.fullscreenProperty().addListener((obs, oldVal, newVal) -> {
@@ -147,7 +148,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally"
+        justification = JUSTIFICATION
     )
     private void bindResolutionToStage() {
         settingsManager.resolutionWidthProperty().addListener((obs, oldVal, newVal) -> {
@@ -160,7 +161,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally"
+        justification = JUSTIFICATION
     )
     private void bindLanguageToManager() {
         settingsManager.currentLocaleProperty().addListener((obs, oldLocale, newLocale) -> {
@@ -171,7 +172,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally"
+        justification = JUSTIFICATION
     )
     private void bindVolumeToManager() {
         settingsManager.volumeProperty().addListener((obs, oldValue, newValue) -> {
@@ -181,7 +182,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally"
+        justification = JUSTIFICATION
     )
     private void bindCosmeticToProvider() {
         settingsManager.cardThemeProperty().addListener((obs, oldValue, newValue) -> {
@@ -207,7 +208,7 @@ public final class SceneManagerImpl implements SceneManager {
     }
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally"
+        justification = JUSTIFICATION
     )
     @Override
     public LanguageManager getLanguageManager() {
@@ -216,7 +217,7 @@ public final class SceneManagerImpl implements SceneManager {
 
     @SuppressFBWarnings(
         value = "EI",
-        justification = "Binding to the manager are shared intentionally"
+        justification = JUSTIFICATION
     )
     @Override
     public ImageProvider getImageProvider() {

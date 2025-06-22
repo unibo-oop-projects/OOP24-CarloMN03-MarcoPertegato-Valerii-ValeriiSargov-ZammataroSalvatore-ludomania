@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.lyuda.jcards.Card;
 import io.lyuda.jcards.DeckFactory;
 import io.lyuda.jcards.Hand;
@@ -102,7 +103,7 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
      * @return a {@code Map} of players and their associated bets
      */
     public Map<Player, Bet> getBjRoundBet() {
-        return this.bjRoundBet;
+        return new HashMap<>(this.bjRoundBet);
     }
 
     /**
@@ -132,6 +133,10 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
      *
      * @return the player's {@code Hand}
      */
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Access to player hand is intentionally allowed."
+    )
     public Hand getPlayer() {
         return player;
     }
@@ -141,6 +146,10 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
      *
      * @return the dealer's {@code Hand}
      */
+    @SuppressFBWarnings(
+        value = "EI",
+        justification = "Access to dealer hand is intentionally allowed."
+    )
     public Hand getDealer() {
         return dealer;
     }

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.lyuda.jcards.Card;
 import io.lyuda.jcards.Hand;
 import javafx.beans.binding.Bindings;
@@ -74,6 +75,10 @@ public class BlackJackMenuViewBuilder implements ViewBuilder {
      * @param languageManager  the manager used for internationalized text
      * @param imageProvider    the provider for retrieving image resources
      */
+    @SuppressFBWarnings(
+        value = "EI2",
+        justification = "References to languageManager and imageProvider are shared intentionally"
+    )
     public BlackJackMenuViewBuilder(final BlackJackHandler eventHandler, 
             final LanguageManager languageManager,
             final ImageProvider imageProvider) {

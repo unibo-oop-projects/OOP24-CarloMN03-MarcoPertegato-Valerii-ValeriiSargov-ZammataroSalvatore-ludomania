@@ -89,12 +89,27 @@ public final class MainMenuController implements Controller, MainMenuHandler {
         click();
         sceneManager.switchToTrenteEtQuarante();
     }
-    
+
+    /**
+     * Handles the user interaction to start the Roulette game.
+     * <p>
+     * This method plays a click sound and instructs the {@link SceneManager}
+     * to transition to the Roulette game scene.
+     * </p>
+     */
     public void handleRoulette() {
         click();
         sceneManager.switchToRoulette();
     }
-    private void click(){
+
+    /**
+     * Plays the click sound effect for menu interaction.
+     * <p>
+     * This method is typically invoked when the user interacts with the menu to provide
+     * audio feedback.
+     * </p>
+     */
+    private void click() {
         audioManager.playSound("click");
     }
 }
