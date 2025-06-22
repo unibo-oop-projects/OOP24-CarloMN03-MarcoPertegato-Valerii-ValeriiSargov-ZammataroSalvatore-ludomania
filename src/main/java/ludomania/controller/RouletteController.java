@@ -21,7 +21,7 @@ import ludomania.core.api.SceneManager;
 import ludomania.model.Pair;
 import ludomania.model.croupier.roulette.RouletteColor;
 import ludomania.model.game.roulette.RouletteGame;
-import ludomania.view.roulette.RouletteViewBuilder;
+import ludomania.view.RouletteViewBuilder;
 
 /**
  * Controller implementation for the Roulette game.

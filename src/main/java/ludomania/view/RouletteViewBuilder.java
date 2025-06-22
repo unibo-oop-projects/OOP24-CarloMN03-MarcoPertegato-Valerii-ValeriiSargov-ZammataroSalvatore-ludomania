@@ -1,4 +1,4 @@
-package ludomania.view.roulette;
+package ludomania.view;
 
 import java.io.IOException;
 
@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 import ludomania.controller.RouletteController;
-import ludomania.view.ViewBuilder;
 
 /**
  * Builds and manages the JavaFX view for the Roulette game.
