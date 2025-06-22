@@ -17,6 +17,32 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("RouletteBet Factory Methods Test")
 class RouletteBetTest {
     private double mockAmount;
+    private final Pair<Integer, RouletteColor> odd17 = new Pair<>(17, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> odd11 = new Pair<>(11, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> odd29 = new Pair<>(29, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> pair22 = new Pair<>(22, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> pair4 = new Pair<>(4, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> pair14 = new Pair<>(14, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> pair12 = new Pair<>(12, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> pair36 = new Pair<>(36, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> pair18 = new Pair<>(18, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> odd1 = new Pair<>(1, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> n0 = new Pair<>(0, RouletteColor.VERT);
+    private final Pair<Integer, RouletteColor> rouge1 = new Pair<>(1, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> rouge3 = new Pair<>(3, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> rouge5 = new Pair<>(5, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> rouge7 = new Pair<>(7, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> rouge9 = new Pair<>(9, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> noir2 = new Pair<>(2, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> noir4 = new Pair<>(4, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> noir6 = new Pair<>(6, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> vert0 = new Pair<>(0, RouletteColor.VERT);
+    private final Pair<Integer, RouletteColor> chevalChoice25 = new Pair<>(25, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> chevalChoice26 = new Pair<>(26, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> carreChoice25 = new Pair<>(25, RouletteColor.ROUGE);
+    private final Pair<Integer, RouletteColor> carreChoice26 = new Pair<>(26, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> carreChoice28 = new Pair<>(28, RouletteColor.NOIR);
+    private final Pair<Integer, RouletteColor> carreChoice29 = new Pair<>(29, RouletteColor.ROUGE);
 
     @BeforeEach
     void setUp() {
@@ -31,13 +57,13 @@ class RouletteBetTest {
         assertEquals(mockAmount, bet.getValue());
         assertEquals(RouletteBetType.IMPAIR, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(17, RouletteColor.NOIR), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(11, RouletteColor.NOIR), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(29, RouletteColor.NOIR), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.odd17, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.odd11, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.odd29, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(22, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(4, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(0, RouletteColor.NOIR), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair22, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair4, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.n0, bet.getChoice()));
     }
 
     @Test
@@ -48,13 +74,13 @@ class RouletteBetTest {
         assertEquals(mockAmount, bet.getValue());
         assertEquals(RouletteBetType.PAIR, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(16, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(12, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(30, RouletteColor.ROUGE), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.pair22, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.pair4, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.pair14, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(21, RouletteColor.ROUGE), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(3, RouletteColor.ROUGE), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(0, RouletteColor.VERT), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.n0, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.odd11, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.odd17, bet.getChoice()));
     }
 
     @Test
@@ -65,13 +91,13 @@ class RouletteBetTest {
         assertEquals(mockAmount, bet.getValue());
         assertEquals(RouletteBetType.PASSE, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(19, RouletteColor.NOIR), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(22, RouletteColor.NOIR), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(36, RouletteColor.NOIR), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.pair22, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.odd29, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.pair36, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(1, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(18, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(0, RouletteColor.NOIR), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.n0, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.odd17, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair14, bet.getChoice()));
     }
 
     @Test
@@ -82,13 +108,13 @@ class RouletteBetTest {
         assertEquals(mockAmount, bet.getValue());
         assertEquals(RouletteBetType.MANQUE, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(1, RouletteColor.NOIR), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(11, RouletteColor.NOIR), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(18, RouletteColor.NOIR), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.odd1, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.odd17, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.pair18, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(19, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(0, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(36, RouletteColor.NOIR), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair22, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.odd29, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair36, bet.getChoice()));
     }
 
     @Test
@@ -99,16 +125,16 @@ class RouletteBetTest {
         assertEquals(mockAmount, bet.getValue());
         assertEquals(RouletteBetType.ROUGE, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(1, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(3, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(5, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(7, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(9, RouletteColor.ROUGE), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.rouge1, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.rouge3, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.rouge5, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.rouge7, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.rouge9, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(2, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(4, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(6, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(0, RouletteColor.VERT), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.noir2, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.noir4, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.noir6, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.vert0, bet.getChoice()));
     }
 
     @Test
@@ -119,20 +145,19 @@ class RouletteBetTest {
         assertEquals(mockAmount, bet.getValue());
         assertEquals(RouletteBetType.NOIR, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(2, RouletteColor.NOIR), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(4, RouletteColor.NOIR), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(6, RouletteColor.NOIR), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(35, RouletteColor.NOIR), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.noir2, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.noir4, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.noir6, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(0, RouletteColor.VERT), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(3, RouletteColor.ROUGE), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(5, RouletteColor.ROUGE), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(9, RouletteColor.ROUGE), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.rouge1, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.rouge3, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.rouge5, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.vert0, bet.getChoice()));
     }
 
     @Test
     void pleinBet() {
-        final Set<Object> mockChoice = Set.of(23);
+        final Set<Object> mockChoice = Set.of(this.pair22.getKey());
         final RouletteBet bet = RouletteBetFactory.pleinBet(mockChoice, mockAmount);
 
         assertNotNull(bet);
@@ -140,14 +165,14 @@ class RouletteBetTest {
         assertEquals(mockChoice, bet.getChoice());
         assertEquals(RouletteBetType.PLEIN, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(23, RouletteColor.ROUGE), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.pair22, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(25, RouletteColor.ROUGE), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair18, bet.getChoice()));
     }
 
     @Test
     void chevalBet() {
-        final Set<Object> mockChoice = Set.of(25, 26);
+        final Set<Object> mockChoice = Set.of(this.chevalChoice25.getKey(), this.chevalChoice26.getKey());
         final RouletteBet bet = RouletteBetFactory.chevalBet(mockChoice, mockAmount);
 
         assertNotNull(bet);
@@ -155,16 +180,20 @@ class RouletteBetTest {
         assertEquals(mockChoice, bet.getChoice());
         assertEquals(RouletteBetType.CHEVAL, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(25, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(26, RouletteColor.ROUGE), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.chevalChoice25, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.chevalChoice26, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(17, RouletteColor.ROUGE), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(0, RouletteColor.VERT), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.odd17, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.n0, bet.getChoice()));
     }
 
     @Test
     void carreBet() {
-        final Set<Object> mockChoice = Set.of(25,26,29,28);
+        final Set<Object> mockChoice = Set.of(
+                this.carreChoice25.getKey(),
+                this.carreChoice26.getKey(),
+                this.carreChoice28.getKey(),
+                this.carreChoice29.getKey());
         final RouletteBet bet = RouletteBetFactory.carreBet(mockChoice, mockAmount);
 
         assertNotNull(bet);
@@ -172,15 +201,15 @@ class RouletteBetTest {
         assertEquals(mockChoice, bet.getChoice());
         assertEquals(RouletteBetType.CARRE, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(25, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(26, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(28, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(29, RouletteColor.ROUGE), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.carreChoice25, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.carreChoice26, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.carreChoice28, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.carreChoice29, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(23, RouletteColor.ROUGE), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(30, RouletteColor.ROUGE), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(17, RouletteColor.ROUGE), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(0, RouletteColor.ROUGE), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.n0, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair22, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair36, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair18, bet.getChoice()));
     }
 
     @Test
@@ -193,13 +222,13 @@ class RouletteBetTest {
         assertEquals(mockChoice, bet.getChoice());
         assertEquals(RouletteBetType.DOUZAINE, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(1, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(5, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(12, RouletteColor.ROUGE), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.odd1, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.pair4, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.pair12, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(17, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(13, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(0, RouletteColor.VERT), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair18, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair14, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.odd29, bet.getChoice()));
     }
 
     @Test
@@ -212,12 +241,12 @@ class RouletteBetTest {
         assertEquals(mockChoice, bet.getChoice());
         assertEquals(RouletteBetType.COLONNE, bet.getType());
 
-        assertTrue(bet.getSuccess().apply(new Pair<>(5, RouletteColor.ROUGE), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(11, RouletteColor.NOIR), bet.getChoice()));
-        assertTrue(bet.getSuccess().apply(new Pair<>(23, RouletteColor.ROUGE), bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.rouge5, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.odd11, bet.getChoice()));
+        assertTrue(bet.getSuccess().apply(this.odd29, bet.getChoice()));
 
-        assertFalse(bet.getSuccess().apply(new Pair<>(12, RouletteColor.ROUGE), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(6, RouletteColor.NOIR), bet.getChoice()));
-        assertFalse(bet.getSuccess().apply(new Pair<>(0, RouletteColor.VERT), bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair12, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.noir6, bet.getChoice()));
+        assertFalse(bet.getSuccess().apply(this.pair36, bet.getChoice()));
     }
 }

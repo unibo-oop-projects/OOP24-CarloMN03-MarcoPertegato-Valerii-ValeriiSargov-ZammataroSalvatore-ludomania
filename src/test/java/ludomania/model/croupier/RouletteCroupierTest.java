@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class RouletteCroupierTest {
+class RouletteCroupierTest {
     private final CounterResult<Pair<Integer, RouletteColor>> mockResult22 =
             new CounterResult<>(new Pair<>(22, RouletteColor.NOIR));
 

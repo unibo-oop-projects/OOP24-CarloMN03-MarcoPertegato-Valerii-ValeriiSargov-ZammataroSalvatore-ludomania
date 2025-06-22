@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RoulettePlayerTest {
+class RoulettePlayerTest {
     private static final Double MOCK_AMOUNT = 100.0;
     private RoulettePlayer mockPlayer;
 
