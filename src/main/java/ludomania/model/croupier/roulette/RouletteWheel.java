@@ -78,6 +78,8 @@ public final class RouletteWheel {
     private static final Integer FIRST_HALF_UP_BOUND = 18;
     private static final Integer FIRST_HALF_BOTTOM_BOUND = 1;
 
+    private static final Random RANDOM = new Random();
+
     private RouletteWheel() { }
 
     /**
@@ -85,7 +87,7 @@ public final class RouletteWheel {
      * @return a {@link Pair} containing the number extracted with corresponding color
      */
     public static Pair<Integer, RouletteColor> random() {
-        final Integer number = new Random().nextInt(MAX + 1);
+        final Integer number = RANDOM.nextInt(MAX + 1);
         return new Pair<>(number, ROULETTE_NUMBERS.get(number));
     }
 

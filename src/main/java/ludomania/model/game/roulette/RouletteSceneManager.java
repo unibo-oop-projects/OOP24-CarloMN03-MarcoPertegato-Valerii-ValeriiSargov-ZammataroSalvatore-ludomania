@@ -1,5 +1,6 @@
 package ludomania.model.game.roulette;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.beans.property.IntegerProperty;
@@ -36,8 +37,8 @@ import ludomania.model.player.api.Player;
 
 import java.util.Optional;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Arrays;
 
 /**
  * Implements the Roulette game graphic logic.
@@ -58,8 +59,8 @@ public class RouletteSceneManager {
     private final LanguageManager languageManager;
     private final AudioManager audioManager;
     private final ImageProvider imageProvider;
-    private Stage rulesWindow;
-    private Stage betsWindow;
+    private Stage rulesWindow = new Stage();
+    private Stage betsWindow = new Stage();
 
     private final ToggleGroup ficheToggleGroup;
 
@@ -68,6 +69,10 @@ public class RouletteSceneManager {
      * @param sceneManager the manager for the application scenes.
      * @param audioManager the manager for audio features.
      */
+    @SuppressFBWarnings(
+            value = "EI2",
+            justification = "References to audioManager and sceneManager are shared intentionally"
+    )
     public RouletteSceneManager(final SceneManager sceneManager, final AudioManager audioManager) {
         this.sceneManager = sceneManager;
         this.languageManager = sceneManager.getLanguageManager();
@@ -149,7 +154,7 @@ public class RouletteSceneManager {
      */
     public void attachFiches(final Pane node, final IntegerProperty controlProperty) {
         Arrays.stream(FicheValue.values())
-                .sorted((a, b) -> -Integer.compare(b.getValue(), a.getValue()))
+                .sorted((a, b) -> Integer.compare(b.getValue(), a.getValue()))
                 .forEach(ficheValue -> {
                     final ToggleButton button = new ToggleButton();
 

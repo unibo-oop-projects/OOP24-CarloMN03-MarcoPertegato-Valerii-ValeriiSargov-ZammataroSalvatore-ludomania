@@ -5,6 +5,7 @@ import ludomania.model.bet.api.Bet;
 import ludomania.model.bet.api.BetType;
 import ludomania.model.croupier.roulette.RouletteColor;
 
+import java.util.Collections;
 import java.util.Set;
 import java.util.function.BiFunction;
 
@@ -30,7 +31,7 @@ public final class RouletteBet extends Bet {
     ) {
         super(value, type);
         this.success = success;
-        this.choice = choice;
+        this.choice = Collections.unmodifiableSet(choice);
     }
 
     /**
@@ -61,6 +62,6 @@ public final class RouletteBet extends Bet {
      * @return the corresponding color or numbers.
      */
     public Set<Object> getChoice() {
-        return this.choice;
+        return Collections.unmodifiableSet(this.choice);
     }
 }

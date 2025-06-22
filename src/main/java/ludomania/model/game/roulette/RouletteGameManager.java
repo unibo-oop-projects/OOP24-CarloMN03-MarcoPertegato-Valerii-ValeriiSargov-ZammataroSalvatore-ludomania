@@ -1,5 +1,6 @@
 package ludomania.model.game.roulette;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
@@ -14,12 +15,12 @@ import ludomania.model.player.RoulettePlayer;
 import ludomania.model.player.api.Player;
 import ludomania.model.wallet.impl.WalletImpl;
 
-import java.util.Set;
 import java.util.Map;
+import java.util.Set;
 import java.util.HashMap;
-import java.util.Optional;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -38,6 +39,10 @@ public class RouletteGameManager {
      * @param rouletteCroupier the croupier instance for the game.
      * @param players the set of player for the game.
      */
+    @SuppressFBWarnings(
+            value = "EI2",
+            justification = "References to RouletteCropier is intentional, since no direct data is used in this class"
+    )
     public RouletteGameManager(final RouletteCroupier rouletteCroupier, final Set<RoulettePlayer> players) {
         this.rouletteCroupier = rouletteCroupier;
         if (players == null) {
@@ -65,6 +70,10 @@ public class RouletteGameManager {
      * @param rouletteCroupier the croupier instance for the game.
      * @param player the single player for the game.
      */
+    @SuppressFBWarnings(
+            value = "EI2",
+            justification = "References to RouletteCropier is intentional, since no direct data is used in this class"
+    )
     public RouletteGameManager(final RouletteCroupier rouletteCroupier, final RoulettePlayer player) {
         this.rouletteCroupier = rouletteCroupier;
 
@@ -80,8 +89,12 @@ public class RouletteGameManager {
      * Creates ademo player for the game and sets it to be the current player.
      * @param rouletteCroupier the croupier instance for the game.
      */
+    @SuppressFBWarnings(
+            value = "EI2",
+            justification = "References to RouletteCropier is intentional, since no direct data is used in this class"
+    )
     public RouletteGameManager(final RouletteCroupier rouletteCroupier) {
-        this.rouletteCroupier = rouletteCroupier;
+        this.rouletteCroupier = Set.of(rouletteCroupier).stream().findFirst().get();
         final RoulettePlayer demoPlayer = new RoulettePlayer(new WalletImpl(1000.0), DEFAULT_PLAYER_USERNAME);
         this.players = new HashMap<>();
         this.players.put(demoPlayer.getUsername(), demoPlayer);
