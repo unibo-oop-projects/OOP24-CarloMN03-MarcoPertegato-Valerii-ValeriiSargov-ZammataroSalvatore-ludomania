@@ -1,6 +1,5 @@
 package ludomania.view.roulette;
 
-import java.io.File;
 import java.io.IOException;
 
 import javafx.scene.Parent;
@@ -15,29 +14,12 @@ import ludomania.view.ViewBuilder;
  * Provides UI elements for chip selection, card visualization, bet zones,
  * and balance and bet tracking.
  */
-public class RouletteViewBuilder implements ViewBuilder {
-    private static final String SEP = File.separator;
+public final class RouletteViewBuilder implements ViewBuilder {
+//    private static final String SEP = File.separator;
     private static final String FXML_FILE_NAME = "RouletteViewTemplate.fxml";
     private static final String FXML_STYLE_FILE_NAME = "RouletteView.css";
-    private static final String FXML_FILE_PATH = new File(System.getProperty("user.dir")).getPath()
-            + SEP + "src"
-            + SEP + "main"
-            + SEP + "java"
-            + SEP + "ludomania"
-            + SEP + "view"
-            + SEP + "roulette"
-            + SEP + "resources"
-            + SEP + FXML_FILE_NAME;
-
-    private static final String FXML_STYLE_FILE_PATH = new File(System.getProperty("user.dir")).getPath()
-            + SEP + "src"
-            + SEP + "main"
-            + SEP + "java"
-            + SEP + "ludomania"
-            + SEP + "view"
-            + SEP + "roulette"
-            + SEP + "resources"
-            + SEP + FXML_STYLE_FILE_NAME;
+    private static final String FXML_FILE_PATH = FXML_FILE_NAME;
+    private static final String FXML_STYLE_FILE_PATH = FXML_STYLE_FILE_NAME;
 
     private final RouletteController controller;
 
@@ -58,14 +40,11 @@ public class RouletteViewBuilder implements ViewBuilder {
         BorderPane root;
 
         try {
-            final File fxml = new File(FXML_FILE_PATH);
-
             final FXMLLoader loader = new FXMLLoader();
             loader.setController(controller);
-            loader.setLocation(fxml.toURI().toURL());
-
-            root = loader.<BorderPane>load();
-            root.getStylesheets().add(FXML_STYLE_FILE_PATH);
+            loader.setLocation(ClassLoader.getSystemResource(FXML_FILE_PATH));
+            root = loader.load();
+            root.getStylesheets().add(ClassLoader.getSystemResource(FXML_STYLE_FILE_PATH).toString());
         } catch (final IOException e) {
             root = new BorderPane();
             root.setCenter(new Label("ERRORE DURANTE IL CARICAMENTO DELLA VIEW"));
