@@ -202,6 +202,7 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
     public Card extractNewCard(final Hand hand) {
         if (super.needToResetAllDecks()) {
             initDeck(NUMBER_OF_DEKS);
+            shuffleAll();
         }
         final Card extractedCard = drawCard();
         hand.addCard(extractedCard);
