@@ -69,6 +69,6 @@ final class TrenteEtQuarantePlayerTest {
         });
 
         assertEquals("Not enough money to place a bet.", exception.getMessage());
-        assertEquals(INITIAL_MONEY, wallet.getMoney()); // Saldo invariato
+        assertEquals(INITIAL_MONEY, wallet.getMoney());
     }
 }
