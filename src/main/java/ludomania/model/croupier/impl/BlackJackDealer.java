@@ -103,7 +103,7 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
      * @return a {@code Map} of players and their associated bets
      */
     public Map<Player, Bet> getBjRoundBet() {
-        return new HashMap<>(this.bjRoundBet);
+        return this.bjRoundBet;
     }
 
     /**
