@@ -1,9 +1,9 @@
 plugins {
     java
     application
-    id("com.gradleup.shadow") version "8.3.6"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     id("org.danilopianini.gradle-java-qa") version "1.96.0"
-    //id("org.openjfx.javafxplugin") version "0.1.0"
+    id("org.openjfx.javafxplugin") version "0.1.0"
 }
 
 java {
@@ -18,40 +18,50 @@ repositories { // Where to search for dependencies
     maven("https://jitpack.io")
 }
 
+javafx {
+    modules= listOf("javafx.controls", "javafx.media", "javafx.fxml")
+}
+
 val javaFXModules = listOf(
     "base",
     "controls",
     "fxml",
     "swing",
-    "graphics"
+    "graphics",
+    "media"
 )
 
-val supportedPlatforms = listOf("linux", "mac", "win") 
-
-// javafx {
-//     version = "21"
-//     modules("javafx.controls", "javafx.media", "javafx.fxml")
-// }
-
-val osName = when {
-    org.gradle.internal.os.OperatingSystem.current().isWindows -> "win"
-    org.gradle.internal.os.OperatingSystem.current().isMacOsX -> "mac"
-    else -> "linux"
-}
+val supportedPlatforms = listOf("linux", "mac", "win") // All required for OOP
 
 dependencies {
-    // testfx
-    testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
+    //JavaFX
+    val javaFxVersion = "23.0.2"
+    implementation("org.openjfx:javafx:$javaFxVersion")
+    for (platform in supportedPlatforms) {
+        for (module in javaFXModules) {
+            implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
+        }
+    }
+
+    //SLF4J
     val slf4jVersion = "2.0.17"
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.17")
-    // JUnit 5
-    val jUnitVersion = "5.11.4"
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+
+    /// The BOM (Bill of Materials) synchronizes all the versions of Junit coherently.
+    testImplementation(platform("org.junit:junit-bom:5.13.2"))
+    // The annotations, assertions and other elements we want to have access when compiling our tests.
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    // The engine that must be available at runtime to run the tests.
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // testfx
+    testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
+
     // Suppressions for SpotBugs
     compileOnly("com.github.spotbugs:spotbugs-annotations:4.9.3")
-    implementation("com.github.spotbugs:spotbugs-annotations:4.8.3")
+    testImplementation("com.github.spotbugs:spotbugs-annotations:4.9.3")
+
     //lyudaio:jcards
     implementation("com.github.lyudaio:jcards:main-SNAPSHOT")
 
@@ -61,21 +71,11 @@ dependencies {
     //jOOL
     implementation("org.jooq:jool:0.9.15")
 
-    implementation("org.openjfx:javafx-media:21:$osName")
-
     //Batik
     implementation("org.apache.xmlgraphics:batik-transcoder:1.17")
     implementation("org.apache.xmlgraphics:batik-codec:1.17")
     implementation("org.apache.xmlgraphics:batik-svg-dom:1.17")
     implementation("xml-apis:xml-apis:1.4.01")
-
-    val javaFxVersion = "21"
-    implementation("org.openjfx:javafx:$javaFxVersion")
-    for (platform in supportedPlatforms) {
-        for (module in javaFXModules) {
-            implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
-        }
-    }
 }
 
 application {
@@ -89,4 +89,24 @@ tasks.test {
         events(*org.gradle.api.tasks.testing.logging.TestLogEvent.values())
         showStandardStreams = true
     }
+}
+
+tasks.named<JavaExec>("run") {
+    val modules = listOf(
+        "javafx.base",
+        "javafx.controls",
+        "javafx.fxml",
+        "javafx.graphics",
+        "javafx.media",
+        "javafx.swing"
+    ).joinToString(",")
+
+    val javafxLibs = configurations.runtimeClasspath.get()
+        .filter { it.name.startsWith("javafx") }
+        .joinToString(System.getProperty("path.separator")) { it.absolutePath }
+
+    jvmArgs = listOf(
+        "--module-path", javafxLibs,
+        "--add-modules", modules
+    )
 }
