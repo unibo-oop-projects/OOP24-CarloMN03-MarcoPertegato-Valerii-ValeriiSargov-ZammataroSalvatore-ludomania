@@ -69,7 +69,7 @@ dependencies {
     implementation("org.apache.xmlgraphics:batik-svg-dom:1.17")
     implementation("xml-apis:xml-apis:1.4.01")
 
-    val javaFxVersion = "23.0.2"
+    val javaFxVersion = "21"
     implementation("org.openjfx:javafx:$javaFxVersion")
     for (platform in supportedPlatforms) {
         for (module in javaFXModules) {
