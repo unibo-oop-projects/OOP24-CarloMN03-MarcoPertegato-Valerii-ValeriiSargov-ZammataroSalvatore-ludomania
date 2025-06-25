@@ -102,6 +102,10 @@ public class BlackJackDealer extends CardDealer<Map<Player, BlackJackOutcomeResu
      *
      * @return a {@code Map} of players and their associated bets
      */
+    @SuppressFBWarnings(
+            value = "EI",
+            justification = "Round bet is intentionally shared."
+    )
     public Map<Player, Bet> getBjRoundBet() {
         return this.bjRoundBet;
     }
