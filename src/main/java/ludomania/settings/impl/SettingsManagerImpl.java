@@ -30,8 +30,8 @@ public final class SettingsManagerImpl implements SettingsManager {
         "Binding to the manager are shared intentionally as they are immutable or managed externally.";
     private static final String PREFS_NODE = "ludomania.settings";
     private static final double DEFAULT_AUDIO_VALUE = 0.8;
-    private static final int DEFAULT_WIDTH_VALUE = 800;
-    private static final int DEFAULT_HEIGHT_VALUE = 600;
+    private static final int DEFAULT_WIDTH_VALUE = 1280;
+    private static final int DEFAULT_HEIGHT_VALUE = 720;
 
     private final ObjectProperty<Locale> currentLocale = new SimpleObjectProperty<>();
     private final DoubleProperty volume = new SimpleDoubleProperty();

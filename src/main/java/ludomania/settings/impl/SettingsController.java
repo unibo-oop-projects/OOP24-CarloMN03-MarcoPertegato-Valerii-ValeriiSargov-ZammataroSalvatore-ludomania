@@ -26,8 +26,8 @@ import ludomania.settings.api.SettingsManager;
 
 public final class SettingsController implements SettingsHandler, Controller {
     private static final double DEFAULT_AUDIO_VALUE = 0.8;
-    private static final int DEFAULT_WIDTH_VALUE = 800;
-    private static final int DEFAULT_HEIGHT_VALUE = 600;
+    private static final int DEFAULT_WIDTH_VALUE = 1280;
+    private static final int DEFAULT_HEIGHT_VALUE = 720;
     private final SettingsManager settingsManager;
     private final SettingsViewBuilder viewBuilder;
     private final SceneManager sceneManager;
